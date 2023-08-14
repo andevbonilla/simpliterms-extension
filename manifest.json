@@ -1,0 +1,26 @@
+{
+  "name": "SimpliTerms",
+  "version": "0.1.0",
+  "description": "summarize terms and conditions, privacy policy and cookies from the any page",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "24": "assets/icon24.png",
+      "32": "assets/icon32.png"
+    },
+    "default_title": "SimpliTerms",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 3
+}
