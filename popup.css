@@ -14,3 +14,12 @@
     border-radius: 100%;
     margin-right: 0.5rem;
 }
+.sumary-text{
+    font-size: .9rem;
+}
+.semi-important{
+    font-weight: 600;
+}
+.important{
+    font-weight: 900;
+}
