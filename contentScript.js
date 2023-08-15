@@ -1,7 +1,6 @@
 (() => {
-  console.log("Sadasdasd")
-  const url = 'https://rickandmortyapi.com/api/character';
 
+  const url = 'https://rickandmortyapi.com/api/character';
   // Realizar la solicitud usando la Fetch API
   fetch(url)
     .then(response => {
@@ -18,5 +17,11 @@
     .catch(error => {
       console.error('Error:', error);
     });
+
+
+    chrome.runtime.onMessage.addListener((obj, sender, response) => {
+      console.log(obj, "recibidoooo");
+    });
+
 })();
 

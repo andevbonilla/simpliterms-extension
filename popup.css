@@ -1,0 +1,16 @@
+.container{
+    margin: 0;
+    height: 100%;
+    width: 20rem;
+    padding: 5%;
+    box-sizing: border-box;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    border-radius: 100%;
+    margin-right: 0.5rem;
+}
