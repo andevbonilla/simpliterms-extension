@@ -9,7 +9,9 @@ document.addEventListener("DOMContentLoaded", async() => {
   const summaryHtmlText = document.getElementById('simpli-summary');
   const defaultText = document.getElementById('default-text');
   const detectedText = document.getElementById('detected-text');
+  const defaultHostname = document.getElementById('default-hostname');
   const hostname = document.getElementById('hostname');
+  const policyList = document.getElementById('policy-list');
 
   const termButton = document.getElementById('terms-buttom')
   const privacyButton = document.getElementById('privacy-button')
@@ -28,11 +30,14 @@ document.addEventListener("DOMContentLoaded", async() => {
 
   chrome.storage.sync.get('summary', (obj) => {
 
-    if (obj.summary.ifTerms) {
+    hostname.innerHTML = obj.summary.host;
+    defaultHostname.innerHTML = obj.summary.host;
+
+    if (obj.summary.ifPrivacy) {
+        policyList.innerHTML =  `${obj.summary.policyToAccept.join(', ')}`
         defaultText.style.display = 'none';
         detectedText.style.display = 'block';
     }else{
-        hostname.innerHTML = obj.summary.host;
         detectedText.style.display = 'none';
         defaultText.style.display = 'block';
     }
