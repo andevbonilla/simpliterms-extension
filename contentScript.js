@@ -63,8 +63,10 @@
   //   });
 
     let actualSummary = '';
-    let isDetected =  false;
-    let bodyTag = document.querySelectorAll('a')
+    let ifPrivacy =  false;
+    let ifTerms =  false;
+    let linksTag = document.querySelectorAll('a');
+
     const privacyPosibilities = [
       'privacidad',         // Español
       'privacy',            // Inglés
@@ -103,43 +105,25 @@
 
         actualSummary = summaryObj.conditionsTerms
 
-        for (const tag of bodyTag) {
+        for (const tag of linksTag) {       
           for (const option of privacyPosibilities) {
-            console.log(tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase())
-            console.log(option)
-            console.log(tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option))
             if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
-              isDetected = true;
-              // hacer popup y texto
+              ifPrivacy = true;
             }
           }
-          // for (const option of termsPosibilities) {
-          //   if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
-          //     isDetected = true;
-          //     // hacer popup y texto
-          //   }
-          // }
-        
+          for (const option of termsPosibilities) {
+            if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
+              ifTerms = true;
+            }
+          }
         }
         
       }
     }
 
-    console.log(isDetected, "sssssssssssss")
-
-    if (actualSummary.length > 0) {
-
-      chrome.storage.sync.set({
-        'summary': {actualSummary, isDetected}
-      });
-
-    }else{
-
-      chrome.storage.sync.set({
-        'summary': {actualSummary, isDetected}
-      });
-
-    }
+    chrome.storage.sync.set({
+      'summary': {actualSummary, ifPrivacy, ifTerms, host: window.location.host}
+    });
     
 })();
 
