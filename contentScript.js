@@ -62,31 +62,84 @@
   //     console.error('Error:', error);
   //   });
 
-    let actualSummary = ''
+    let actualSummary = '';
+    let isDetected =  false;
+    let bodyTag = document.querySelectorAll('a')
+    const privacyPosibilities = [
+      'privacidad',         // Español
+      'privacy',            // Inglés
+      'vie privée',         // Francés
+      'Datenschutz',        // Alemán
+      'privacy',            // Italiano
+      'privacidade',        // Portugués
+      'privacy',            // Neerlandés
+      'integritet',         // Sueco
+      'privatliv',          // Danés
+      'personvern',         // Noruego
+      'yksityisyys',        // Finés
+      'конфиденциальность', // Ruso
+      '隐私',               // Chino Simplificado
+      '隱私', 
+    ];
+    const termsPosibilities = [
+        'términos',            // Español
+        'terms',               // Inglés
+        'termes',              // Francés
+        'bedingungen',         // Alemán
+        'termini',             // Italiano
+        'termos',              // Portugués
+        'voorwaarden',         // Neerlandés
+        'villkor',             // Sueco
+        'vilkår',              // Danés
+        'betingelser',         // Noruego
+        'ehdot',               // Finés
+        'условия',             // Ruso
+        '条款',                // Chino Simplificado
+        '條款',                // Chino Tradicional
+    ];
 
     for (const summaryObj of listUrls) {
       if (window.location.host.includes(summaryObj.policyWebpage)) {
+
         actualSummary = summaryObj.conditionsTerms
+
+        for (const tag of bodyTag) {
+          for (const option of privacyPosibilities) {
+            console.log(tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase())
+            console.log(option)
+            console.log(tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option))
+            if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
+              isDetected = true;
+              // hacer popup y texto
+            }
+          }
+          // for (const option of termsPosibilities) {
+          //   if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
+          //     isDetected = true;
+          //     // hacer popup y texto
+          //   }
+          // }
+        
+        }
+        
       }
     }
+
+    console.log(isDetected, "sssssssssssss")
 
     if (actualSummary.length > 0) {
 
       chrome.storage.sync.set({
-        'summary': actualSummary
+        'summary': {actualSummary, isDetected}
       });
 
     }else{
 
       chrome.storage.sync.set({
-        'summary': `Sorry, there isn't a summary for this page.`
+        'summary': {actualSummary, isDetected}
       });
 
     }
     
-
-    // console.log(window.location.host, "iiiiiiiiii")
-    // console.log(actualSummary, 'sadsad')
-
 })();
 
