@@ -16,6 +16,7 @@
 }
 .sumary-text{
     font-size: .9rem;
+    text-align: justify;
 }
 .semi-important{
     font-weight: 600;
