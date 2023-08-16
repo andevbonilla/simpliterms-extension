@@ -62,7 +62,10 @@
   //     console.error('Error:', error);
   //   });
 
-    let actualSummary = '';
+    let termsSummary = '';
+    let privacySummary = '';
+    let cookiesSummary = '';
+
     let ifPrivacy =  false;
     let ifTerms =  false;
     let linksTag = document.querySelectorAll('a');
@@ -103,7 +106,9 @@
     for (const summaryObj of listUrls) {
       if (window.location.host.includes(summaryObj.policyWebpage)) {
 
-        actualSummary = summaryObj.conditionsTerms
+        termsSummary = summaryObj.conditionsTerms;
+        privacySummary = summaryObj.privacyTerms;
+        cookiesTerms = summaryObj.cookiesTerms;
 
         for (const tag of linksTag) {       
           for (const option of privacyPosibilities) {
@@ -122,7 +127,7 @@
     }
 
     chrome.storage.sync.set({
-      'summary': {actualSummary, ifPrivacy, ifTerms, host: window.location.host}
+      'summary': {termsSummary, privacySummary, cookiesSummary, ifPrivacy, ifTerms, host: window.location.host}
     });
     
 })();
