@@ -52,3 +52,7 @@ h2{
     font-weight: bold;
     color: #5712DF;
 }
+
+.disclaimer{
+    color: rgba(0, 0, 0, 0.4);
+}

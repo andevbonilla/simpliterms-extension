@@ -128,14 +128,11 @@
           termsSummary = summaryObj.conditionsTerms;
           privacySummary = summaryObj.privacyTerms;
           cookiesSummary = summaryObj.cookiesTerms;
-
-          console.log(linksTag)
-          console.log(linksWithRoleLink)
           
           for (const tag of linksTag) {  
-            console.log(tag, 'ssssssssssssss')   
+ 
             for (const option of privacyPosibilities) {
-              console.log(tag.innerHTML, 'valueee')
+  
               if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
                 if (!policyToAccept.includes(tag.innerHTML)) {
                   policyToAccept.push(tag.innerHTML)

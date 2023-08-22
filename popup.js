@@ -19,20 +19,32 @@ document.addEventListener("DOMContentLoaded", async() => {
   termButton.addEventListener('click', ()=>{
     termButton.className = 'selected'
     privacyButton.className = ''
-    summaryHtmlText.innerHTML = summaryInfo.terms;
+    verifyIfThereArePolicies(summaryInfo.terms)
   })
 
   privacyButton.addEventListener('click', ()=>{
     privacyButton.className = 'selected'
     termButton.className = ''
-    summaryHtmlText.innerHTML = summaryInfo.privacy;
+    verifyIfThereArePolicies(summaryInfo.privacy)
   })
+
+  const verifyIfThereArePolicies = (terms) => {
+    if (terms.length === 0) {
+      summaryHtmlText.innerHTML = `<a href="https://simpliterms.com/#pricing" target="_blank">Upgrade to pro</a> plan to be able to generate summaries with AI in real time.`
+    }else{
+      summaryHtmlText.innerHTML = terms;
+    }
+  }
 
   chrome.storage.sync.get('summary', (obj) => {
 
-    hostname.innerHTML = obj.summary.host;
-    defaultHostname.innerHTML = obj.summary.host;
+    verifyIfThereArePolicies(obj.summary.termsSummary)
 
+    if (obj.summary.host) {
+      hostname.innerHTML = obj.summary.host;
+      defaultHostname.innerHTML = obj.summary.host;
+    }
+    
     if (obj.summary.ifPrivacy) {
         policyList.innerHTML =  `${obj.summary.policyToAccept.join(', ')}`
         defaultText.style.display = 'none';
@@ -41,8 +53,7 @@ document.addEventListener("DOMContentLoaded", async() => {
         detectedText.style.display = 'none';
         defaultText.style.display = 'block';
     }
-
-    summaryHtmlText.innerHTML = obj.summary.termsSummary;
+    
     summaryInfo = {
       privacy: obj.summary.privacySummary,
       terms: obj.summary.termsSummary,
