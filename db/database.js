@@ -1,8 +1,8 @@
 export const summariePolicyList = [
     {
-        name: 'facebook',
-        policyWebpage: 'https://es-la.facebook.com/legal/terms/',
-        privacyTerms: [
+      name: 'facebook',
+      policyWebpage: 'https://es-la.facebook.com/legal/terms/',
+      privacyTerms: [
           {
             subtitle: "Varied Data Collection",
             text: "Information gathered depends on product use (e.g., selling, posting), affecting the type of data collected."
@@ -35,9 +35,9 @@ export const summariePolicyList = [
             subtitle: "User Rights and Privacy Management",
             text: "Tools enable data management, rights exercise, and compliance with applicable laws."
           }
-        ],
-        vigencyOfPrivacy: '15/06/2023',
-        conditionsTerms: [
+      ],
+      vigencyOfPrivacy: '15/06/2023',
+      conditionsTerms: [
             {
               subtitle: "Personalized Experience",
               text: "Facebook offers a personalized experience, showing content based on user preferences and interactions. This covers everything from posts, stories, events, and ads on the news feed to pages followed and settings chosen. User data, interactions, and preferences contribute to this customization."
@@ -70,8 +70,8 @@ export const summariePolicyList = [
               subtitle: "User Responsibilities",
               text: "Users are expected to provide accurate information, follow content guidelines, and adhere to policies. By uploading content, users grant Facebook a license to use, distribute, modify, and create derivative works, contributing to the platform's functionality and services."
             }
-        ],
-        vigencyofUseTerms: '26/07/22',
+      ],
+      vigencyofUseTerms: '26/07/22',
     },
     {
       name: 'google',
@@ -182,6 +182,175 @@ export const summariePolicyList = [
         }
       ],
       vigencyofUseTerms: '00/02/2021',
+    },
+    {
+      name: 'twitter',
+      policyWebpage: 'https://twitter.com/es/tos',
+      privacyTerms: [
+        {
+          subtitle: "Data Collection",
+          text: [
+            "Categories: Data collected falls into three categories.",
+            "User Data: Providing account details is essential for services.",
+            "Profile Info: Public data includes name, username, etc.",
+            "Location & Contacts: Optional sharing of additional information."
+          ]
+        },
+        {
+          subtitle: "Data Usage",
+          text: [
+            "Purposes: Data used to improve services, personalize experience, and ensure security.",
+            "Personalization: Data used to customize settings and preferences.",
+            "Security: Data employed to protect users and platform.",
+            "Analysis: Data analyzed to enhance user experience.",
+            "Communication: Data used to inform users of updates."
+          ]
+        },
+        {
+          subtitle: "Data Sharing",
+          text: [
+            "Public Content: Understand visibility of public content.",
+            "Partnerships: Data shared with partners for service enhancement.",
+            "Legal Compliance: Data shared to comply with laws.",
+            "Change of Control: Data transferred during business transactions."
+          ]
+        },
+        {
+          subtitle: "Third-Party Interaction",
+          text: [
+            "External Services: Data shared with third-party websites/apps.",
+            "APIs: Third parties can access data through APIs.",
+            "Advertisers: Ad interactions can share data with advertisers."
+          ]
+        },
+        {
+          subtitle: "Data Retention",
+          text: [
+            "Account Data: Retained as long as account is active.",
+            "Usage Data: Generally retained up to 18 months.",
+            "Public Content: May persist even after deletion."
+          ]
+        },
+        {
+          subtitle: "User Rights",
+          text: [
+            "Privacy Control: Tools offered for global user privacy.",
+            "Data Processing: Legal bases and cross-border transfers explained."
+          ]
+        },
+        {
+          subtitle: "Audience Restrictions",
+          text: [
+            "Age Limit: Twitter not for users under 13 years."
+          ]
+        },
+        {
+          subtitle: "Policy Changes",
+          text: [
+            "Updates: Policy changes communicated to users."
+          ]
+        }
+      ],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [
+        {
+          "subtitle": "User Agreements and Location:",
+          "text": "Terms vary based on location: X Corp. for non-EU/UK users, Twitter International for others."
+        },
+        {
+          "subtitle": "Eligibility and Consent:",
+          "text": "Agree to binding contract, age requirements; entity representatives confirm authorization."
+        },
+        {
+          "subtitle": "Privacy Consent:",
+          "text": "Consent to data usage and transfer as per Privacy Policy, to countries including the US and Ireland."
+        },
+        {
+          "subtitle": "Content Ownership:",
+          "text": "You're liable for content and its legality. We don't guarantee content accuracy or completeness."
+        },
+        {
+          "subtitle": "Content Control and Rights:",
+          "text": "We can remove violating content, you retain rights, but we get broad usage rights."
+        },
+        {
+          "subtitle": "User Behavior and Rules:",
+          "text": "Adhere to Rules, avoid misuse. We can alter or limit services as needed."
+        },
+        {
+          "subtitle": "Ads and Limits:",
+          "text": "Advertisements may appear. Don't misuse services; we can access info for legal/security reasons."
+        },
+        {
+          "subtitle": "Additional Services:",
+          "text": "Some services have unique terms; usage implies agreement. Payment and developer services have specific agreements."
+        },
+        {
+          "subtitle": "Account Security:",
+          "text": "Secure your account; strong password and limited usage. We're not responsible for misuse."
+        },
+        {
+          "subtitle": "Service License:",
+          "text": "Personal, non-exclusive software license for Services use; no using our IP without permission."
+        },
+        {
+          "subtitle": "Termination Terms:",
+          "text": "You can stop using services; we can suspend/terminate for breaches, risks, inactivity."
+        },
+        {
+          "subtitle": "Limitation of Liability:",
+          "text": "Services \"as is\"; we're not liable for damages, even if warned of issues."
+        },
+        {
+          "subtitle": "Updates and Laws:",
+          "text": "Changes announced; California law governs outside EU/EFTA/UK."
+        },
+        {
+          "subtitle": "Legal Jurisdiction:",
+          "text": "Disputes resolved in San Francisco courts; different rules for US government entities."
+        }
+      ],
+      vigencyofUseTerms: '18/05/2023',
+    },
+    {
+      name: 'reddit',
+      policyWebpage: '',
+      privacyTerms: ``,
+      vigencyOfPrivacy: '',
+      conditionsTerms: ``,
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'notion',
+      policyWebpage: '',
+      privacyTerms: ``,
+      vigencyOfPrivacy: '',
+      conditionsTerms: ``,
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'netflix',
+      policyWebpage: '',
+      privacyTerms: ``,
+      vigencyOfPrivacy: '',
+      conditionsTerms: ``,
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'amazon',
+      policyWebpage: '',
+      privacyTerms: ``,
+      vigencyOfPrivacy: '',
+      conditionsTerms: ``,
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'linkedin',
+      policyWebpage: '',
+      privacyTerms: ``,
+      vigencyOfPrivacy: '',
+      conditionsTerms: ``,
+      vigencyofUseTerms: '',
     },
     {
       name: 'product hunt',
