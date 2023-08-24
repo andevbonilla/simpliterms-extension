@@ -604,11 +604,117 @@ export const summariePolicyList = [
     },
     {
       name: 'linkedin',
-      policyWebpage: '',
-      privacyTerms: ``,
-      vigencyOfPrivacy: '',
-      conditionsTerms: ``,
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://linkedin.com/legal/',
+      privacyTerms: [
+        {
+          subtitle: "Data Creation and Profile",
+          text: "LinkedIn gathers data for profiles, including personal and professional details, to optimize user experience."
+        },
+        {
+          subtitle: "Privacy Settings",
+          text: "Users control profile visibility and must exercise caution with sensitive information."
+        },
+        {
+          subtitle: "Communication",
+          text: "User data supports member interaction, messaging, invitations, and group activities, while content is monitored for security and adherence."
+        },
+        {
+          subtitle: "Personalized Marketing",
+          text: "User activities inform personalized ads and content delivery, with some control over ad preferences."
+        },
+        {
+          subtitle: "Premium Services",
+          text: "Customized tools for job seekers, recruiters, and marketers come with data sharing, often requiring user consent."
+        },
+        {
+          subtitle: "Research and Enhancement",
+          text: "Data aids research for user experience improvement, trend analysis, and economic opportunities, often using aggregated information."
+        },
+        {
+          subtitle: "Third-Party Links",
+          text: "Engaging with third-party sites sharing LinkedIn tools may lead to data exchange, warranting awareness of information flow."
+        },
+        {
+          subtitle: "Privacy Control",
+          text: "LinkedIn provides options for communication management, ad preferences, and data sharing control, allowing alignment with privacy choices."
+        }
+      ],
+      vigencyOfPrivacy: '11/08/2020',
+      conditionsTerms: [
+        {
+          subtitle: "Binding Agreement",
+          text: "Using LinkedIn means agreeing to their terms, including privacy policies, forming a legal contract."
+        },
+        {
+          subtitle: "Services",
+          text: "Covers LinkedIn.com, applications, and LinkedIn Learning for 'Members' or 'Visitors.'"
+        },
+        {
+          subtitle: "LinkedIn Entity",
+          text: "Agreement with LinkedIn Corporation (non-EU) or LinkedIn Ireland (EU)."
+        },
+        {
+          subtitle: "Age Requirement",
+          text: "Users must be 16 or older, potentially higher by law."
+        },
+        {
+          subtitle: "Account Responsibility",
+          text: "Keep password private, follow rules."
+        },
+        {
+          subtitle: "Payments",
+          text: "Pay fees for services, LinkedIn can store payment info."
+        },
+        {
+          subtitle: "Communication",
+          text: "LinkedIn contacts via service or provided info."
+        },
+        {
+          subtitle: "Content Sharing",
+          text: "Shared info is visible, LinkedIn has license to use it."
+        },
+        {
+          subtitle: "Availability",
+          text: "Services can change, suspend, or end, no permanent storage."
+        },
+        {
+          subtitle: "Third-party Content",
+          text: "Use third-party content at your own risk."
+        },
+        {
+          subtitle: "Limits and Restrictions",
+          text: "LinkedIn can suspend/close for rule violations."
+        },
+        {
+          subtitle: "Intellectual Property",
+          text: "LinkedIn retains IP rights."
+        },
+        {
+          subtitle: "Disclaimer and Limitation of Liability",
+          text: "No Warranty: Services provided 'as is' with no warranties. Limitation of Liability: LinkedIn's liability is limited, no responsibility for indirect damages. Scope of Liability: Limits apply to most claims except severe negligence or intentional infringement."
+        },
+        {
+          subtitle: "Termination",
+          text: "Contract can end, certain rights continue."
+        },
+        {
+          subtitle: "Applicable Law and Dispute Resolution",
+          text: "Legal conflicts resolved based on location, applicable law."
+        },
+        {
+          subtitle: "General Provisions",
+          text: "Terms can be modified, agreement supersedes past agreements."
+        },
+        {
+          subtitle: "LinkedIn User Conduct",
+          text: "Users must follow laws, provide accurate info, and act professionally."
+        },
+        {
+          subtitle: "Content Complaints",
+          text: "Users responsible for content, LinkedIn has complaint procedure."
+        }
+      ],
+      vigencyofUseTerms: '01/02/2022',
     },
     {
       name: 'product hunt',
