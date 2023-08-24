@@ -75,11 +75,97 @@ export const summariePolicyList = [
     },
     {
       name: 'google',
-      policyWebpage: '',
-      privacyTerms: ``,
-      vigencyOfPrivacy: '',
-      conditionsTerms: ``,
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://policies.google.com/',
+      privacyTerms: [
+        {
+          subtitle: "Account Creation and Personal Data",
+          text: "Creating a Google Account involves providing personal information like name, password, and contact details. Some data, even when not logged in, may be collected for communication purposes."
+        },
+        {
+          subtitle: "Content Collection",
+          text: "Google gathers content you create, upload, or receive, such as emails, photos, and comments. This content is used to enhance services and provide personalized experiences."
+        },
+        {
+          subtitle: "Device Details",
+          text: "Information about your devices, apps, and browsers is collected to improve products and tailor features, including updates and energy-saving adjustments."
+        },
+        {
+          subtitle: "Unique Identifiers",
+          text: "Google collects identifiers, device type, IP addresses, and interactions to better understand user preferences, improve services, and handle technical issues."
+        },
+        {
+          subtitle: "Activity Tracking",
+          text: "User activity, including searches, viewed videos, interactions, purchases, and third-party app usage, is collected to offer personalized recommendations and ads."
+        },
+        {
+          subtitle: "Location Data",
+          text: "Location information, acquired through GPS, IP addresses, and device sensors, enables features like navigation and location-based advertisements."
+        },
+        {
+          subtitle: "Public and Partner Data",
+          text: "Google obtains data from public sources and trusted partners to enhance services, index articles, and maintain security."
+        },
+        {
+          subtitle: "Data Usage Purposes",
+          text: "Collected data is utilized to provide, improve, personalize, and secure services. It aids in measuring performance, communication, and creating new features."
+        },
+        {
+          subtitle: "Data Protection",
+          text: "Google emphasizes encryption, offers security features, and restricts access to authorized personnel."
+        },
+        {
+          subtitle: "Data Export and Deletion",
+          text: "Users can export or delete their Google Account data, ensuring secure removal."
+        },
+        {
+          subtitle: "Data Retention",
+          text: "Data retention varies; some can be auto-deleted or retained for legal/business reasons."
+        },
+        {
+          subtitle: "Compliance and Cooperation",
+          text: "Google adheres to its Privacy Policy, works with regulators, and transfers data while applying appropriate safeguards."
+        },
+        {
+          subtitle: "Privacy Controls and Contact",
+          text: "Users manage data access, updates, and consent. Contact information is provided for inquiries."
+        }
+      ],
+      vigencyOfPrivacy: '01/07/2023',
+      conditionsTerms: [
+        {
+          subtitle: "Provider and Location",
+          text: "Google`apos;s services are provided by Google LLC, a company registered in Delaware, USA, headquartered in Mountain View, California."
+        },
+        {
+          subtitle: "Minimum Age and Responsibility",
+          text: "If you&apos;re under 18, you need parental permission to use the services. Parents are responsible for their children&apos;s activities."
+        },
+        {
+          subtitle: "Relationship with Google",
+          text: "These terms define your relationship with Google, allowing you to use its services under certain conditions."
+        },
+        {
+          subtitle: "Service Offerings",
+          text: "Google offers various services, including apps, platforms, and devices designed to work together for an improved user experience."
+        },
+        {
+          subtitle: "Your Responsibility",
+          text: "Comply with terms, policies, laws, and respect intellectual property. Avoid abusing services or causing harm."
+        },
+        {
+          subtitle: "Permission to Use Your Content",
+          text: "When using services that involve sharing content, you grant Google a license to use your content based on specific terms and restrictions."
+        },
+        {
+          subtitle: "Using Your Account",
+          text: "You can create a Google account if you meet age requirements. You&apos;re responsible for its use and security."
+        },
+        {
+          subtitle: "Disputes and Responsibilities",
+          text: "Google provides services with reasonable competency, and both parties have rights and responsibilities in case of issues."
+        }
+      ],
+      vigencyofUseTerms: '05/01/2022',
     },
     {
       name: 'tiktok',
