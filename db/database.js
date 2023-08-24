@@ -456,19 +456,151 @@ export const summariePolicyList = [
     },
     {
       name: 'netflix',
-      policyWebpage: '',
-      privacyTerms: ``,
-      vigencyOfPrivacy: '',
-      conditionsTerms: ``,
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://help.netflix.com/legal/privacy',
+      privacyTerms:  [
+        {
+          subtitle: "Data Collection",
+          text: "Users provide personal details like name, email, and payment info. Partner data and publicly sourced info are also collected, along with automatic user activity data."
+        },
+        {
+          subtitle: "Automatic Data Gathering",
+          text: "Netflix records user activity, device info, IP addresses, and more. This includes viewing choices and interactions."
+        },
+        {
+          subtitle: "Partner Data",
+          text: "Info from partners (internet providers, etc.) is collected, including commands and activations."
+        },
+        {
+          subtitle: "External Sources",
+          text: "Data from public and third-party sources is utilized, especially within Netflix's games."
+        },
+        {
+          subtitle: "Data Usage",
+          text: "Collected data is used to personalize content, improve service, process payments, respond to inquiries, analyze demographics, and more."
+        },
+        {
+          subtitle: "Data Sharing",
+          text: "Data is shared with affiliates, partners, and for legal reasons. International transfers can occur."
+        },
+        {
+          subtitle: "Account Management",
+          text: "Users control communication preferences, notifications, and can opt-out of certain promotions."
+        },
+        {
+          subtitle: "User Rights",
+          text: "Users can access, correct, update, or delete personal info. Security measures and platform privacy policies are important considerations."
+        }
+      ],
+      vigencyOfPrivacy: '01/11/2022',
+      conditionsTerms: [
+        {
+          "subtitle": "Membership",
+          "text": "Your membership continues until canceled. Internet access, Netflix-ready device, and payment methods are required. Netflix offers various membership plans, and special promotions may have eligibility requirements."
+        },
+        {
+          "subtitle": "Billing and Cancellation",
+          "text": "Membership fees and charges are billed through your payment method. You can cancel anytime. Payments are non-refundable, and changes in price or plans apply after 30 days' notice."
+        },
+        {
+          "subtitle": "Service Usage",
+          "text": "Members must be at least 18 or under adult supervision. Content is for personal, non-commercial use. Streaming is allowed only in licensed regions and based on your plan."
+        },
+        {
+          "subtitle": "Content Access and Usage",
+          "text": "You have limited rights to access content. Netflix's library is regularly updated, and some content is available for offline viewing. Usage must comply with laws, regulations, and terms."
+        },
+        {
+          "subtitle": "Video Quality and Devices",
+          "text": "Video quality varies based on device and internet speed. HD, Ultra HD, and HDR availability depend on internet and plan. You're responsible for internet charges."
+        },
+        {
+          "subtitle": "Software and Access",
+          "text": "Netflix software is for authorized streaming and access. You may receive software updates. Unauthorized use may lead to cancellation."
+        },
+        {
+          "subtitle": "Account Security",
+          "text": "You're responsible for account activity. Sharing access means accepting changes. Protect your account information and password. Netflix is not liable for unauthorized use."
+        },
+        {
+          "subtitle": "Disclaimers and Changes",
+          "text": "Netflix offers the service \"as is\" and may change terms with 30 days' notice. Claims must be individual, not collective. Netflix is not liable for unsolicited materials. Disputes are governed by Delaware law."
+        }
+      ],
+      vigencyofUseTerms: '05/01/2023',
     },
     {
       name: 'amazon',
-      policyWebpage: '',
-      privacyTerms: ``,
-      vigencyOfPrivacy: '',
-      conditionsTerms: ``,
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.amazon.com/hz/cs',
+      privacyTerms: [
+        {
+          "subtitle": "Minors' Usage",
+          "text": "Amazon ensures minors use its services under adult supervision and doesn't collect data from children under 13 without parental consent."
+        },
+        {
+          "subtitle": "Data Protection",
+          "text": "Amazon aligns with EU-US and Switzerland-US data protection frameworks, safeguarding user data."
+        },
+        {
+          "subtitle": "State-Specific Disclosures",
+          "text": "Amazon provides tailored privacy disclosures as mandated by state laws."
+        },
+        {
+          "subtitle": "Terms of Use",
+          "text": "User data handling is governed by this policy and Amazon's Terms of Use. Privacy changes won't compromise prior data protections."
+        },
+        {
+          "subtitle": "Data Collection",
+          "text": "Amazon collects personal info, payment data, and voice interactions to enhance services."
+        },
+        {
+          "subtitle": "Automatic Data",
+          "text": "Amazon gathers technical data via identifiers like cookies to improve user experience."
+        },
+        {
+          "subtitle": "Third-Party Data",
+          "text": "Amazon uses third-party sources for accurate records and interactions with affiliated products."
+        },
+        {
+          "subtitle": "User Access",
+          "text": "Customers can access, modify, and manage their data through their accounts, with options for communication preferences and ad personalization."
+        }
+      ],
+      vigencyOfPrivacy: '11/08/2023',
+      conditionsTerms: [
+        {
+          "subtitle": "Service-Specific Terms",
+          "text": "Using Amazon Services, including profiles, gift cards, and devices, subjects users to the specific terms, guidelines, and agreements applicable to each service. In cases of conflict between Usage Conditions and Service Terms, the latter prevails."
+        },
+        {
+          "subtitle": "Privacy",
+          "text": "Amazon's Privacy Notice applies to all Amazon Services, providing insight into data usage and practices."
+        },
+        {
+          "subtitle": "Electronic Communications",
+          "text": "User interactions via email, text, or mobile/desktop devices constitute electronic communication. Legal requirements for written communication are fulfilled electronically."
+        },
+        {
+          "subtitle": "Copyright and Trademarks",
+          "text": "Amazon-owned or provider content, including text, images, and software, is protected by intellectual property laws. Use of Amazon's trademarks is limited to avoid confusion or discrediting."
+        },
+        {
+          "subtitle": "License and Access",
+          "text": "Users are granted a limited, non-exclusive license to access and use Amazon Services for personal, non-commercial purposes. Commercial use, data mining, or unauthorized access is prohibited."
+        },
+        {
+          "subtitle": "Account Usage and Restrictions",
+          "text": "Amazon accounts may require age verification. Parents supervise minors' use, and age restrictions apply to alcohol purchases."
+        },
+        {
+          "subtitle": "User-Generated Content",
+          "text": "Users can post content, but it must not violate rights or contain harmful elements. Amazon reserves the right to edit or remove such content."
+        },
+        {
+          "subtitle": "Disclaimers and Limitation of Liability",
+          "text": "Amazon's services are provided \"as is\" with no explicit warranties. Amazon disclaims liability for damages arising from service use, though certain legal protections apply."
+        }
+      ],
+      vigencyofUseTerms: '22/09/2022',
     },
     {
       name: 'linkedin',
