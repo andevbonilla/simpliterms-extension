@@ -251,7 +251,7 @@ export const summariePolicyList = [
           ]
         }
       ],
-      vigencyOfPrivacy: '',
+      vigencyOfPrivacy: '18/05/2023',
       conditionsTerms: [
         {
           "subtitle": "User Agreements and Location:",
@@ -314,11 +314,137 @@ export const summariePolicyList = [
     },
     {
       name: 'reddit',
-      policyWebpage: '',
-      privacyTerms: ``,
-      vigencyOfPrivacy: '',
-      conditionsTerms: ``,
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.reddit.com/policies/privacy-policy',
+      privacyTerms: [
+        {
+          "subtitle": "Reddit's Data Collection Policy:",
+          "text": "1. User Data: Reddit collects user-provided information during registration, including account details and optional interests.\n2. Submitted Content: Content such as posts, comments, images, and videos is collected.\n3. User Actions: Interactions like voting, saving, and following are recorded.\n4. Transaction Data: Information from purchases, like name and email, is collected.\n5. Automatic Collection: Data like IP addresses, browsing habits, and device info is collected via cookies.\n6. Location Data: Location may be inferred from user IP addresses.\n7. Third-Party Data: Data from third parties, including advertisers, may be combined.\n8. Linked Services: Data from third-party services linked to accounts can be received."
+        },
+        {
+          "subtitle": "Use of Data:",
+          "text": "User data is used for personalized services, safety, support, ads, and analysis."
+        },
+        {
+          "subtitle": "Data Sharing:",
+          "text": "Data is shared with third parties under consent, legal requirements, service provision, emergencies, and affiliates. Aggregated data may be shared too."
+        },
+        {
+          "subtitle": "Data Protection:",
+          "text": "Security measures protect data. Two-factor authentication enhances security."
+        },
+        {
+          "subtitle": "User Rights:",
+          "text": "Users have rights to access, modify, delete data, control cookies, ads, and notifications."
+        },
+        {
+          "subtitle": "Policy Updates:",
+          "text": "Users are informed of policy changes, with an email for inquiries."
+        },
+        {
+          "subtitle": "Implications:",
+          "text": "Users should be aware of data visibility, sharing, and rights."
+        },
+        {
+          "subtitle": "User Rights in EEA:",
+          "text": "EEA users have data access, rectification, deletion, transfer, and processing rights."
+        },
+        {
+          "subtitle": "Legal Bases:",
+          "text": "Data processing is based on consent, necessity, legitimate interests, and legal obligations."
+        },
+        {
+          "subtitle": "International Transfers:",
+          "text": "Data may be stored in the US and other countries under approved mechanisms."
+        },
+        {
+          "subtitle": "California Users:",
+          "text": "Data collected, rights under CCPA, and Reddit's practices are detailed."
+        },
+        {
+          "subtitle": "Children's Privacy:",
+          "text": "Users under 13 can't create accounts. Age laws apply."
+        },
+        {
+          "subtitle": "Policy Changes:",
+          "text": "Users are alerted to policy changes and should stay informed."
+        }
+      ],
+      vigencyOfPrivacy: '31/07/2023',
+      conditionsTerms: [
+        {
+          "subtitle": "Age Restrictions",
+          "text": "Users under 13 cannot access Services; age limits may apply to additional services."
+        },
+        {
+          "subtitle": "User Declaration",
+          "text": "Users declare compliance with age, legal requirements, authority, and no suspension."
+        },
+        {
+          "subtitle": "Privacy",
+          "text": "Data processing governed by Privacy Policy; user agreement required."
+        },
+        {
+          "subtitle": "Content Usage",
+          "text": "Limited license for Service access; users must adhere to terms and guidelines."
+        },
+        {
+          "subtitle": "Service Modifications",
+          "text": "Reddit can modify or suspend Services with notice; no liability for changes."
+        },
+        {
+          "subtitle": "Account Security",
+          "text": "Users responsible for account security; prompt reporting of unauthorized access."
+        },
+        {
+          "subtitle": "User Content",
+          "text": "Users retain content ownership; Reddit granted broad usage license."
+        },
+        {
+          "subtitle": "Third-Party Content",
+          "text": "Users engage third-party content at own risk; Reddit not liable."
+        },
+        {
+          "subtitle": "Prohibited Actions",
+          "text": "Users must follow laws and Reddit policies; certain actions prohibited."
+        },
+        {
+          "subtitle": "Moderators",
+          "text": "Moderators voluntary and not Reddit's responsibility; rules apply."
+        },
+        {
+          "subtitle": "Copyright and Trademark",
+          "text": "Users can report violations; Reddit respects intellectual property."
+        },
+        {
+          "subtitle": "Paid Services",
+          "text": "Some services require payment; user agrees to charges."
+        },
+        {
+          "subtitle": "Intellectual Property",
+          "text": "Reddit owns materials; user cannot use without permission."
+        },
+        {
+          "subtitle": "Indemnity",
+          "text": "Users indemnify Reddit for claims arising from their usage."
+        },
+        {
+          "subtitle": "Limitation of Liability",
+          "text": "Reddit's liability limited where law permits; exceptions for specific cases."
+        },
+        {
+          "subtitle": "Changes to Terms",
+          "text": "Users must accept revised terms for continued usage."
+        },
+        {
+          "subtitle": "Additional Terms",
+          "text": "Specific services may have additional terms."
+        },
+        {
+          "subtitle": "Termination",
+          "text": "Users can terminate accounts; Reddit can suspend or cancel accounts."
+        }
+      ],
+      vigencyofUseTerms: '19/06/2023',
     },
     {
       name: 'notion',
