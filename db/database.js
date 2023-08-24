@@ -924,11 +924,145 @@ export const summariePolicyList = [
     },
     {
       name: 'paypal',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.paypal.com/webapps/',
+      privacyTerms: [
+        {
+          subtitle: "Data Collection",
+          text: "PayPal collects diverse user data during registration, transactions, and service usage, including payment info and additional service data."
+        },
+        {
+          subtitle: "Retention",
+          text: "Personal data is kept for legal and business needs, potentially beyond legal requirements for business interests."
+        },
+        {
+          subtitle: "Data Processing",
+          text: "PayPal processes data for transactions, authentication, communication, risk management, fraud prevention, marketing, and personalization."
+        },
+        {
+          subtitle: "Data Sharing",
+          text: "Personal data is shared with affiliates, service providers, financial institutions, and others. Linked accounts may share data with third-party platforms."
+        },
+        {
+          subtitle: "Cookies and Tracking",
+          text: "Cookies aid identification, personalization, analysis, and security. Cookie management affects site functionality."
+        },
+        {
+          subtitle: "Data Transfer",
+          text: "Cross-border data transfer is secure and necessary for policy purposes."
+        },
+        {
+          subtitle: "User Rights",
+          text: "Users have access, correction, deletion, and restriction rights. Consent withdrawal, objection, and complaint lodging are available."
+        },
+        {
+          subtitle: "Connected Accounts",
+          text: "User-managed preferences for third-party account connections."
+        },
+        {
+          subtitle: "Cookie Control",
+          text: "Cookie preferences influence website features."
+        },
+        {
+          subtitle: "Registration Data",
+          text: "User-editable personal data within accounts."
+        },
+        {
+          subtitle: "Communication Control",
+          text: "Users regulate marketing content and communication settings."
+        },
+        {
+          subtitle: "Data Rights",
+          text: "Access, correction, portability, consent revocation, and dispute rights."
+        },
+        {
+          subtitle: "Security Measures",
+          text: "Technical, physical, and administrative safeguards protect data."
+        },
+        {
+          subtitle: "Children's Privacy",
+          text: "Services aren't for kids under 13; data from minors is deleted unless legally required."
+        }
+      ],
+      vigencyOfPrivacy: '26/09/22',
+      conditionsTerms: [
+        {
+          subtitle: "Sending Payments",
+          text: "PayPal allows funds to friends/family, across currencies, with limits and fees. Recipients must claim funds."
+        },
+        {
+          subtitle: "Making Purchases",
+          text: "Buy, donate, and pay using various methods. High-risk transactions might be reviewed."
+        },
+        {
+          subtitle: "Refunds and Payment Methods",
+          text: "Refunds go to original method, preferred payment methods available, and eChecks involve processing time."
+        },
+        {
+          subtitle: "Payment Reception",
+          text: "Availability varies; comply with transaction fees and integration rules."
+        },
+        {
+          subtitle: "Surcharge Prohibition",
+          text: "No surcharges allowed, fair treatment of PayPal."
+        },
+        {
+          subtitle: "Payment Equal Presentation",
+          text: "PayPal should be presented fairly alongside other methods."
+        },
+        {
+          subtitle: "Tax and Refund Policies",
+          text: "Responsible for taxes and required policies."
+        },
+        {
+          subtitle: "Transaction Review",
+          text: "High-risk transactions may be reviewed."
+        },
+        {
+          subtitle: "Eligibility",
+          text: "To use PayPal, individuals must be at least 18 years old and reside in an approved region, while businesses should operate in approved countries."
+        },
+        {
+          subtitle: "Agreement Acceptance",
+          text: "By using PayPal, users agree to follow its Terms of Use and additional policies listed on the Legal Agreements page."
+        },
+        {
+          subtitle: "Policy Updates",
+          text: "PayPal may change terms with notice. Disagreeing allows account closure without penalty."
+        },
+        {
+          subtitle: "Business Overview",
+          text: "PayPal offers online payment services globally, allowing sending, receiving, and shopping."
+        },
+        {
+          subtitle: "Account Types",
+          text: "Choose between Personal and Business accounts, each with its features."
+        },
+        {
+          subtitle: "Third-Party Permissions",
+          text: "Users can grant and manage third-party permissions, remaining responsible for their actions."
+        },
+        {
+          subtitle: "Closing Account",
+          text: "Closure possible, but obligations continue. Certain cases might prevent closure."
+        },
+        {
+          subtitle: "Currency and Investment",
+          text: "Funds held as an unsecured credit, combined for investment. Users accountable for currency risks."
+        },
+        {
+          subtitle: "Prohibited Actions",
+          text: "Users restricted from illegal, fraudulent, and defamatory activities."
+        },
+        {
+          subtitle: "Fake Sales",
+          text: "Selling counterfeit items prohibited."
+        },
+        {
+          subtitle: "Account Control",
+          text: "Associating with restricted activities not allowed."
+        }
+      ],
+      vigencyofUseTerms: '27/06/2023',
     },
     {
       name: 'chase',
