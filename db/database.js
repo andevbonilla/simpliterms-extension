@@ -448,11 +448,57 @@ export const summariePolicyList = [
     },
     {
       name: 'notion',
-      policyWebpage: '',
-      privacyTerms: ``,
-      vigencyOfPrivacy: '',
-      conditionsTerms: ``,
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.notion.so/Privacy-Policy',
+      privacyTerms: [
+        {
+          subtitle: "Data Collection",
+          text: "Notion acquires information from users, the website, and other sources, encompassing account details, communication, payments, and interactive actions.",
+        },
+        {
+          subtitle: "Automatic Data Gathering",
+          text: "User interactions with the site or services generate data like IP addresses, location, and device IDs, tied to user accounts.",
+        },
+        {
+          subtitle: "Cookies and Analytics",
+          text: "Notion and third parties use cookies and pixel tags to gather data, including user interactions, for analytics and tracking.",
+        },
+        {
+          subtitle: "Advertising",
+          text: "User data might be shared with advertising partners for personalized content. Users can manage cookies and opt out of targeted ads.",
+        },
+        {
+          subtitle: "External Data",
+          text: "Information can originate from third-party services and apps accessed through Notion.",
+        },
+        {
+          subtitle: "Data Usage",
+          text: "Collected data fuels services, account management, communication, product enhancement, research, security, and compliance.",
+        },
+        {
+          subtitle: "Data Sharing",
+          text: "User data may be shared with partners, affiliates, and other users within shared workspaces, serving purposes such as security and fraud prevention.",
+        },
+        {
+          subtitle: "Global Data Transfer",
+          text: "Data may be processed and stored globally, adhering to local data protection laws.",
+        },
+        {
+          subtitle: "Affiliates",
+          text: "Shared data with affiliated entities under common ownership.",
+        },
+        {
+          subtitle: "Advertising Partners",
+          text: "User data not used for third-party ads, but shared for own service marketing.",
+        }
+      ],
+      vigencyOfPrivacy: '01/01/2023',
+      conditionsTerms: [
+        {
+          "subtitle": "Sorry",
+          "text": "it was not possible to detect them, you can read them in the following link: https://www.notion.so/Terms-and-Privacy-28ffdd083dc3473e9c2da6ec011b58ac"
+        },
+      ],
+      vigencyofUseTerms: 'does not apply',
     },
     {
       name: 'netflix',
@@ -718,10 +764,76 @@ export const summariePolicyList = [
     },
     {
       name: 'product hunt',
-      policyWebpage: '',
-      privacyTerms: ``,
-      vigencyOfPrivacy: '',
-      conditionsTerms: ``,
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.producthunt.com/legal',
+      privacyTerms: [
+        {
+          subtitle: "Privacy Safeguarding",
+          text: "The policy underscores Product Hunt's dedication to user privacy and expounds on the acquisition, application, and sharing of personal data within their services."
+        },
+        {
+          subtitle: "Consent and Usage",
+          text: "Utilizing Product Hunt's services implies consent to data utilization as outlined. Personal data sharing is circumscribed unless expressly stated."
+        },
+        {
+          subtitle: "Third-Party Links",
+          text: "Third-party websites linked via Product Hunt's Ship service adhere to distinct terms and privacy policies. Users must review these policies individually."
+        },
+        {
+          subtitle: "EU Representative",
+          text: "Product Hunt designates an EU representative to address data processing concerns for European users, streamlining data-related inquiries."
+        },
+        {
+          subtitle: "User Rights",
+          text: "Users, especially in the EU, possess rights to access, amend, delete, restrict, transfer, oppose processing, and revoke consent concerning their personal data."
+        },
+        {
+          subtitle: "Opt-Out",
+          text: "Users can decline marketing communications via various means and alter preferences related to marketing content."
+        },
+        {
+          subtitle: "Data Compilation",
+          text: "Product Hunt collects various personal data categories encompassing identity, contact, professional details, online presence, financials, transactions, content, behavior, and technical data."
+        },
+        {
+          subtitle: "Data Utilization",
+          text: "Personal data serves functions including service delivery, enhancement, security, account management, customer support, research, content personalization, usage analysis, and more."
+        }
+      ],
+      vigencyOfPrivacy: '01/01/2020',
+      conditionsTerms: [
+        {
+          "subtitle": "Acceptance and Binding Agreement",
+          "text": "By using Product Hunt's Services, you agree to the Terms of Service, which form a binding contract between you and Product Hunt, Inc. If you disagree, you cannot use the Services."
+        },
+        {
+          "subtitle": "Changes to Terms",
+          "text": "Product Hunt can modify the Terms at any time. Continued use after changes means acceptance of the new terms. Written consent is required for other amendments."
+        },
+        {
+          "subtitle": "Privacy",
+          "text": "Product Hunt takes user privacy seriously. The Privacy & Cookies Policy outlines data collection and usage practices."
+        },
+        {
+          "subtitle": "Age Restrictions",
+          "text": "Users under 16 are prohibited from sharing personal information without parental consent, as per COPPA regulations."
+        },
+        {
+          "subtitle": "Account and Usage",
+          "text": "Users must provide accurate information for account creation, only use the Services for personal, non-commercial purposes, and comply with applicable laws."
+        },
+        {
+          "subtitle": "User Submissions",
+          "text": "Users grant Product Hunt licenses to use their content within the Services. Different licenses apply to personal, limited, and public submissions."
+        },
+        {
+          "subtitle": "Liabilities and Disputes",
+          "text": "Product Hunt isn't liable for user-generated content or third-party actions. Users are responsible for their actions and content. Disputes are subject to arbitration, and class actions aren't permitted."
+        },
+        {
+          "subtitle": "Termination",
+          "text": "Users can terminate their account, but content associated with it might remain. Violating terms can lead to account termination."
+        }
+      ],
+      vigencyofUseTerms: '17/08/2014',
     },
 ]
