@@ -1069,8 +1069,41 @@ export const summariePolicyList = [
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      conditionsTerms: [
+        {
+          subtitle: "Agreement and Changes",
+          text: "By accessing the website, you agree to the terms below. The terms are subject to change and will be updated periodically on the site."
+        },
+        {
+          subtitle: "Unauthorized Use",
+          text: "Unauthorized access, misuse of passwords, offensive content posting, and using legally protected third-party content without permission on JPMorgan Chase systems are strictly prohibited."
+        },
+        {
+          subtitle: "Information Sharing",
+          text: "Information you provide through the website may be disclosed and transferred within JPMorgan Chase entities, affiliates, and other authorized entities worldwide, subject to your consent and legal requirements."
+        },
+        {
+          subtitle: "Monitoring and Tracking",
+          text: "Your interactions on the website, including patterns, could be monitored, tracked, and recorded by JPMorgan Chase."
+        },
+        {
+          subtitle: "OFAC Sanctions",
+          text: "You agree not to access the website from countries under the Office of Foreign Assets Control (OFAC) sanctions, as it could lead to access restrictions or revocation."
+        },
+        {
+          subtitle: "Unauthorized Account Access",
+          text: "If you access accounts you are not authorized to, you agree to indemnify JPMorgan Chase for any losses arising from such access, including personal data breaches."
+        },
+        {
+          subtitle: "Copyright and Trademarks",
+          text: "The website's content is owned by JPMorgan Chase. Copying, distributing, or altering content without permission is restricted, except for personal use as allowed by copyright laws."
+        },
+        {
+          subtitle: "Liability Limitation",
+          text: "The website is provided 'as is' and JPMorgan Chase disclaims liability for errors, delays, viruses, or other defects. JPMorgan Chase won't be liable for indirect, consequential, or punitive damages resulting from website use."
+        }
+      ],
+      vigencyofUseTerms: '00/08/2016',
     },
     {
       name: 'jp morgan',
