@@ -1066,9 +1066,42 @@ export const summariePolicyList = [
     },
     {
       name: 'chase',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
+      policyWebpage: 'https://www.chase.com/',
+      privacyTerms: [
+        {
+          subtitle: "Audience and Data Processing",
+          text: "The policy covers how we collect, share, use, and protect information when you use our online services in the US and Canada. Data may be transferred to the US. Additional privacy policies apply to services outside these regions."
+        },
+        {
+          subtitle: "Children's Privacy",
+          text: "Our online services, except Chase First Banking, are not intended for children under 13. We do not knowingly collect personal information from children without parental consent."
+        },
+        {
+          subtitle: "Financial Services",
+          text: "If you have financial products with us, information collected is used according to our Chase Privacy Notice, offering options on personal information use and disclosure."
+        },
+        {
+          subtitle: "California Residents",
+          text: "California residents have privacy rights under the CCPA (California Consumer Privacy Act). Learn more about CCPA rights."
+        },
+        {
+          subtitle: "Canada and Businesses",
+          text: "Canadian businesses have separate privacy notices. For US and Canada merchants, additional privacy information is available."
+        },
+        {
+          subtitle: "Service-Specific Privacy",
+          text: "Chase Mobile and social media pages may have additional privacy terms. Review the specific service's privacy policy."
+        },
+        {
+          subtitle: "Data Collection",
+          text: "Personal and usage information is collected, including names, email addresses, and device details. Usage information includes IP addresses, device type, and browsing patterns. Cookies and similar technologies are used for tracking."
+        },
+        {
+          subtitle: "Data Usage",
+          text: "Collected data is used for application processing, fraud prevention, communication, analysis, personalized content, marketing, compliance, and legal purposes. Aggregated and anonymous data may also be used."
+        }
+      ],
+      vigencyOfPrivacy: '00/01/2023',
       conditionsTerms: [
         {
           subtitle: "Agreement and Changes",
@@ -1139,14 +1172,194 @@ export const summariePolicyList = [
     },
     {
       name: 'stripe',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://stripe.com/',
+      privacyTerms: [
+        {
+          subtitle: "Different User Roles:",
+          text: "Explanation of user roles (End Users, Customers, Representatives, Visitors)."
+        },
+        {
+          subtitle: "Data Collection and Usage:",
+          text: "Transaction Data collection for various roles, highlighting payment info and identity data."
+        },
+        {
+          subtitle: "Data Sharing:",
+          text: "Sharing Personal Data with affiliates, providers, financial partners, and third parties with consent."
+        },
+        {
+          subtitle: "Advertising and Marketing:",
+          text: "Use of Personal Data in advertising, limited sharing for marketing, and no sale to third parties."
+        },
+        {
+          subtitle: "Security and Compliance:",
+          text: "Data security, fraud detection, and compliance with laws, anti-money laundering, and KYC."
+        },
+        {
+          subtitle: "Minors and Data Protection:",
+          text: "Services not for minors, adherence to age restrictions and data protection laws."
+        }
+      ],
+      vigencyOfPrivacy: '24/01/2023',
+      conditionsTerms: [
+        {
+          "subtitle": "Eligibility",
+          "text": "Only US businesses and non-profits can have Stripe Accounts. Suspended users are ineligible, and your authorized representative must hold a significant role."
+        },
+        {
+          "subtitle": "Service",
+          "text": "Stripe offers services through its Dashboard, governed by Terms. Changes are notified, and restrictions apply to legal activities."
+        },
+        {
+          "subtitle": "Information",
+          "text": "Maintain accurate User Information, with Stripe accessing third-party data. You're responsible for taxes and legal compliance."
+        },
+        {
+          "subtitle": "Fees and Payments",
+          "text": "Fees are on the Pricing Page; Stripe may change them. Deductions and debits can occur, with tax responsibilities on you."
+        },
+        {
+          "subtitle": "Bank Accounts",
+          "text": "A User Bank Account is needed for transactions. Stripe may invest funds, and some services involve regulated money transmission."
+        },
+        {
+          "subtitle": "Termination",
+          "text": "Account closure is possible, but using services renews the agreement. Stripe can terminate or suspend accounts for various reasons."
+        },
+        {
+          "subtitle": "Use Rights",
+          "text": "You're licensed to use Stripe Technology for business, adhering to Agreement and Documentation."
+        },
+        {
+          "subtitle": "Feedback, Marks, Privacy",
+          "text": "Feedback given is licensed for use, marks can be used for identification, and privacy policies must comply. Users hold data security responsibilities."
+        },
+        {
+          "subtitle": "Electronic Communications",
+          "text": "Agree to receive electronic communications and notices. Stripe can communicate through various means."
+        },
+        {
+          "subtitle": "Legal Process",
+          "text": "Stripe may comply with legal processes, holding funds/data, with users bearing any resulting losses."
+        },
+        {
+          "subtitle": "Collection Costs",
+          "text": "Users are liable for collection costs incurred by Stripe, including legal expenses."
+        },
+        {
+          "subtitle": "Interpretation",
+          "text": "Agreement interpretation is unbiased; terms like \"includes\" are \"without limitation.\""
+        },
+        {
+          "subtitle": "Prevailing Agreement",
+          "text": "The Agreement supersedes conflicting policies/agreements unless stated in writing."
+        },
+        {
+          "subtitle": "Waivers",
+          "text": "Waivers must be in writing, and not enforcing a provision doesn't waive future enforcement."
+        },
+        {
+          "subtitle": "Assignment",
+          "text": "User obligations can't be assigned without consent. Stripe can assign freely."
+        },
+        {
+          "subtitle": "Force Majeure",
+          "text": "Stripe isn't liable for losses due to uncontrollable events."
+        }
+      ],
+      vigencyofUseTerms: '22/08/22',
     },
     {
       name: 'openai',
+      policyWebpage: 'https://openai.com/policies/privacy-policy',
+      privacyTerms: [
+        {
+          subtitle: "Personal Information Collection:",
+          text: "Collection of Personal Information includes account data, user content, communication details, and social media interaction. Technical information like log data, usage data, device information, and cookies is automatically collected during service use."
+        },
+        {
+          subtitle: "Usage of Personal Information:",
+          text: "Personal Information is utilized for service provision, improvement, research, communication, fraud prevention, and legal compliance. Aggregated or de-identified information may be used for analysis and research purposes."
+        },
+        {
+          subtitle: "Disclosure of Personal Information:",
+          text: "Personal Information may be shared with vendors, service providers, and entities involved in business transfers, complying with legal obligations, or protecting rights and security."
+        },
+        {
+          subtitle: "User Rights:",
+          text: "Users have rights to access, rectify, delete, and restrict processing of their Personal Information. The right to data portability, consent withdrawal, objection, and lodging complaints with data protection authorities is provided. Accuracy issues in AI-generated content can be reported for correction."
+        },
+        {
+          subtitle: "Children's Privacy:",
+          text: "The service is not directed at children under 13, and parental consent is required for users aged 13 to 18."
+        },
+        {
+          subtitle: "Links to Third-Party Sites:",
+          text: "Links to third-party websites are provided, and their privacy policies govern interactions on those platforms."
+        },
+        {
+          subtitle: "Security and Retention:",
+          text: "Measures are taken to protect Personal Information, but no online method is completely secure. Personal Information is retained as required for service provision, security, compliance, and other business needs."
+        },
+        {
+          subtitle: "International Data Processing:",
+          text: "Users acknowledge that their data may be processed and stored in the United States and shared with affiliates and service providers worldwide."
+        },
+        {
+          subtitle: "Legal Basis and Compliance:",
+          text: "Processing is based on contract performance, legitimate interests, consent, and legal obligations. Representatives in the EEA and UK are designated for data protection matters."
+        },
+        {
+          subtitle: "Policy Changes:",
+          text: "The Privacy Policy may be updated, and changes will be posted on the respective page."
+        },
+        {
+          subtitle: "Contact Information:",
+          text: "Users can contact support for any questions or concerns regarding privacy policies."
+        }
+      ],
+      vigencyOfPrivacy: '23/06/2023',
+      conditionsTerms: [
+        {
+          "subtitle": "Registration and Access:",
+          "text": "Users must be 13+, with parental consent for under 18. Accurate registration details are necessary. Credentials must be kept private; users are accountable."
+        },
+        {
+          "subtitle": "Usage Requirements:",
+          "text": "Users get non-exclusive access, following terms. Compliance with terms and laws is vital. Feedback can be used without restrictions. Certain usage restrictions apply, avoiding competition. Data extraction and false representation are prohibited. Service usage limited to supported regions."
+        },
+        {
+          "subtitle": "Content:",
+          "text": "User input and generated output make 'Content.' Users own input; OpenAI has rights to output. Usage and commercial rights provided within terms. Machine learning can produce similar outputs."
+        },
+        {
+          "subtitle": "Fees and Payments:",
+          "text": "Fees follow stated pricing; payment due on invoice. Taxes not included in fees; users are responsible. OpenAI can adjust prices with notice. Late payments and disputes may lead to extra charges. Limits on multiple free tier accounts."
+        },
+        {
+          "subtitle": "Confidentiality, Security, and Data Protection:",
+          "text": "Limited access to confidential data is permitted. Users must ensure secure access and report issues. Processing personal data needs consent and compliance. Separate Data Processing Addendum for specific data."
+        },
+        {
+          "subtitle": "Term and Termination:",
+          "text": "Agreement lasts until user or OpenAI terminates. OpenAI can terminate for specific reasons with notice. Obligations upon termination and survival of certain terms."
+        },
+        {
+          "subtitle": "Indemnification, Disclaimer, and Liability Limits:",
+          "text": "Users are responsible for claims arising from use. Services provided 'as is' without warranties. Limits exist on OpenAI's liability for damages."
+        },
+        {
+          "subtitle": "Dispute Resolution:",
+          "text": "Disputes resolved through arbitration, with opt-out. Informal resolution precedes formal action. Arbitration forum, procedures, and limits detailed. Individual claims allowed; class actions not permitted."
+        },
+        {
+          "subtitle": "General Terms:",
+          "text": "No partnership created; branding use requires consent. Assignment has limits; OpenAI can modify terms. Notices given through defined channels. Compliance with export controls is mandatory. Injunctive relief available for violations. Complete agreement within these terms. Governing law, jurisdiction, and venue specified."
+        }
+      ],
+      vigencyofUseTerms: '14/03/2023',
+    },
+    {
+      name: 'walmart',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
@@ -1154,7 +1367,7 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
-      name: 'walmart',
+      name: 'xvideos',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
