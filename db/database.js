@@ -1148,11 +1148,111 @@ export const summariePolicyList = [
     },
     {
       name: 'max',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.max.com/terms-of-use',
+      privacyTerms: [
+        {
+          subtitle: "Information Collection",
+          text:
+            "WarnerMedia (WM) collects personal information when you use their services, including account details, payment information, demographics, location data, device information, and content you interact with, such as films and TV shows.",
+        },
+        {
+          subtitle: "Sources of Information",
+          text:
+            "WM gathers data not only from you but also from friends, third-party companies, linked sites, and tools, technology and service providers, advertising and marketing partners, and publicly available sources.",
+        },
+        {
+          subtitle: "Information Use",
+          text:
+            "Collected data is used to provide and enhance products and services, communicate with you, personalize content, target advertising, ensure safety and security, comply with laws, and more.",
+        },
+        {
+          subtitle: "Information Disclosure",
+          text:
+            "WM may share your information with affiliates, service providers, business partners, advertisers, law enforcement, and others. You can control some of these disclosures through opt-out options.",
+        },
+        {
+          subtitle: "Cookies and Identifiers",
+          text:
+            "Cookies and tracking technologies are used to enhance your online experience and serve personalized ads. You can manage cookie preferences and opt out of targeted advertising.",
+        },
+        {
+          subtitle: "Control Over Information",
+          text:
+            "Users have the right to access, delete, or correct their information. You can also opt out of marketing communications and targeted advertising.",
+        },
+        {
+          subtitle: "Information Protection",
+          text:
+            "WM employs administrative, technical, and physical safeguards to protect your data, although no system is entirely foolproof.",
+        },
+        {
+          subtitle: "US State Supplement",
+          text:
+            "Some states may have additional privacy rights and information, which you can review on the US State Supplement page.",
+        },
+        {
+          subtitle: "Policy Updates",
+          text:
+            "The Privacy Policy may be updated periodically, so it's advisable to check for changes.",
+        },
+        {
+          subtitle: "Contact",
+          text:
+            "If you have questions, you can contact WM via email, mail, or phone.",
+        },
+      ],
+      vigencyOfPrivacy: '23/05/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Binding Agreement",
+          "text": "The terms constitute a legally binding agreement for using the Max Platform."
+        },
+        {
+          "subtitle": "Eligibility",
+          "text": "Users must be 18+ and reside in specific U.S. locations. Minors can access the platform under parent/guardian accounts."
+        },
+        {
+          "subtitle": "Payment and Billing",
+          "text": "Subscriptions involve periodic fees, cancellable anytime, but non-refundable. Payment Methods may incur additional charges."
+        },
+        {
+          "subtitle": "Content Limitations",
+          "text": "Content access depends on location and subscription, with varying quality and availability."
+        },
+        {
+          "subtitle": "Parental Control",
+          "text": "Users can set controls to limit content access, especially for minors."
+        },
+        {
+          "subtitle": "Suspension and Termination",
+          "text": "Accounts can be suspended or terminated for various reasons, including misuse."
+        },
+        {
+          "subtitle": "Dispute Resolution",
+          "text": "Disputes are resolved through arbitration, with informal resolution attempts and a preference for arbitration over litigation."
+        },
+        {
+          "subtitle": "Class Action and Jury Trial Waiver",
+          "text": "Users can only bring individual claims, and jury trials are waived."
+        },
+        {
+          "subtitle": "Governing Law and Venue",
+          "text": "The agreement is governed by New York state law, and non-arbitral claims go to New York County courts."
+        },
+        {
+          "subtitle": "Force Majeure",
+          "text": "Max isn't liable for delays or failures caused by uncontrollable events."
+        },
+        {
+          "subtitle": "Export Controls; OFAC Compliance",
+          "text": "Users must comply with U.S. export laws and not be subject to OFAC sanctions."
+        },
+        {
+          "subtitle": "Modification of Terms",
+          "text": "Max can modify the agreement and communicate changes through the platform or email."
+        }
+      ],
+      vigencyofUseTerms: '23/05/23',
     },
     {
       name: 'yahoo',
