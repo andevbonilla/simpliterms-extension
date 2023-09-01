@@ -1542,11 +1542,93 @@ export const summariePolicyList = [
     },
     {
       name: 'walmart',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://corporate.walmart.com/privacy-security',
+      privacyTerms: [
+        {
+          "subtitle": "Scope of Coverage",
+          "text": "The Privacy Notice applies to personal information collected in Walmart and Amigo retail stores, websites, and mobile apps in the United States and Puerto Rico. It provides insight into what data is collected and how it is used."
+        },
+        {
+          "subtitle": "Exclusions",
+          "text": "The Notice doesn't cover specialized operations like health services, financial products, and mobile device sales. These have separate privacy policies."
+        },
+        {
+          "subtitle": "Categories of Personal Information",
+          "text": "Walmart outlines various categories of personal information it may collect, including basic identifiers, device and online identifiers, internet activity, commercial information, and more, offering transparency about data collection."
+        },
+        {
+          "subtitle": "Purpose of Data Use",
+          "text": "The policies clarify that personal information is used for purposes such as servicing accounts, advertising and marketing, security, and legal compliance, ensuring users understand how their data is utilized."
+        },
+        {
+          "subtitle": "Data Collection Sources",
+          "text": "Walmart collects data from various sources, both online and offline, including direct user input, technology, and third-party sources, giving users insights into how their data is obtained."
+        },
+        {
+          "subtitle": "Precise Geolocation",
+          "text": "The policies explain how geolocation data is collected and used, allowing users to control location-sharing settings on their mobile devices and understand the benefits of sharing location data."
+        },
+        {
+          "subtitle": "In-Store Technology",
+          "text": "Walmart describes the collection of personal information in physical stores, such as during payment processing and through in-store cameras, emphasizing transparency about data handling."
+        },
+        {
+          "subtitle": "Data from External Sources",
+          "text": "Users are informed that Walmart may obtain personal information from external sources to enhance services and prevent fraud, promoting transparency in data sourcing."
+        }
+      ],
+      vigencyOfPrivacy: '01/07/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Age Verification",
+          "text": "Users must confirm legal age or get parental consent, ensuring responsible use of the platform."
+        },
+        {
+          "subtitle": "Warranty Disclaimers",
+          "text": "Walmart's services come 'as is,' with limited liability for damages, urging caution."
+        },
+        {
+          "subtitle": "Prohibited Actions",
+          "text": "Users are prohibited from sharing prohibited content, distributing harmful code, and engaging in fraudulent activities or law violations."
+        },
+        {
+          "subtitle": "Content and Ideas",
+          "text": "Walmart can use user-generated content and ideas without compensation but is not obligated to do so."
+        },
+        {
+          "subtitle": "Account Restrictions",
+          "text": "Walmart can restrict or terminate accounts for policy breaches, maintaining site integrity."
+        },
+        {
+          "subtitle": "Pricing and Availability",
+          "text": "Walmart can cancel orders due to pricing or availability errors, ensuring fair transactions."
+        },
+        {
+          "subtitle": "Gift Cards",
+          "text": "Risk for gift cards passes upon transmission, and terms and conditions apply."
+        },
+        {
+          "subtitle": "Shipping and Delivery",
+          "text": "Risk of loss passes upon delivery, with varying delivery times based on options."
+        },
+        {
+          "subtitle": "Privacy",
+          "text": "Personal information is collected and used in line with Walmart's Privacy Policy, with possible wireless operator data disclosure."
+        },
+        {
+          "subtitle": "Walmart Marketplace",
+          "text": "Walmart is not responsible for Marketplace Retailers' products, enhancing clarity."
+        },
+        {
+          "subtitle": "Arbitration Agreement",
+          "text": "Disputes are resolved through arbitration, with a waiver of class actions for efficient conflict resolution."
+        },
+        {
+          "subtitle": "Eligibility for Registry for Good",
+          "text": "Users must have an eligible 501(c)(3) charity account to use the service, promoting charitable participation."
+        }
+      ],
+      vigencyofUseTerms: '19/06/23',
     },
     {
       name: 'xvideos',
