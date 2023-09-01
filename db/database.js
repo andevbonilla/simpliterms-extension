@@ -1156,11 +1156,93 @@ export const summariePolicyList = [
     },
     {
       name: 'yahoo',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://legal.yahoo.com/',
+      privacyTerms: [
+        {
+          subtitle: "Yahoo EMEA Limited",
+          text: "Yahoo EMEA Limited, an Irish company based in Dublin, Ireland, is responsible for data processing, meaning they handle personal information collected through their services.",
+        },
+        {
+          subtitle: "Scope of Privacy Policy",
+          text: "This privacy policy applies when using consumer services within the UK, EU, EEA, Middle East, or Africa, as well as when using third-party sites or applications that utilize Yahoo's digital advertising services.",
+        },
+        {
+          subtitle: "Categories of Information",
+          text: "The policy outlines various categories of personal information Yahoo processes, but more details can be found within the document.",
+        },
+        {
+          subtitle: "Data Collection",
+          text: "Yahoo collects user information from multiple sources, including user interactions, privacy settings, information from partners, and public sources. Cookies and similar technologies are also used.",
+        },
+        {
+          subtitle: "Purpose of Data Usage",
+          text: "Yahoo uses collected data for purposes such as providing consumer services, personalizing ads, content, and services, and improving and protecting their services.",
+        },
+        {
+          subtitle: "Sharing Information",
+          text: "Yahoo shares user data with Yahoo companies, service providers, advertising partners, search partners, content and social media partners, and law enforcement under certain circumstances.",
+        },
+        {
+          subtitle: "Privacy Rights",
+          text: "Users have rights to access, control, correct, or delete their personal information. However, there may be limitations depending on specific circumstances.",
+        },
+        {
+          subtitle: "Data Security and Retention",
+          text: "Yahoo takes data protection seriously, employing various security measures. They retain data for specified periods based on purposes and legal requirements.",
+        },
+      ],
+      vigencyOfPrivacy: '00/05/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Change in Ownership",
+          "text": "Yahoo's parent company, Apollo Global Management, Inc., has acquired Yahoo, but this doesn't immediately impact user information processing."
+        },
+        {
+          "subtitle": "Unified Terms",
+          "text": "Yahoo and AOL have merged under unified Terms of Service since June 2017, affecting all Yahoo and AOL account holders."
+        },
+        {
+          "subtitle": "User Agreement",
+          "text": "Users must agree to the Terms of Service, Privacy Center policies, and specific community rules when using Yahoo's services."
+        },
+        {
+          "subtitle": "Age and Authority",
+          "text": "Users must meet the legal age requirement and have the necessary authority if representing a business entity."
+        },
+        {
+          "subtitle": "Prohibited Conduct",
+          "text": "Prohibited conduct includes unauthorized access, harmful content sharing, illegal activities, impersonation, and copyright infringement."
+        },
+        {
+          "subtitle": "Usage Rules",
+          "text": "Users must adhere to usage rules and avoid misusing or interfering with services, especially for unauthorized commercial purposes."
+        },
+        {
+          "subtitle": "Export Control",
+          "text": "Users must comply with U.S. export laws and anti-corruption laws."
+        },
+        {
+          "subtitle": "Anti-Corruption",
+          "text": "Users agree to adhere to anti-corruption laws, which prohibit illegal payments."
+        },
+        {
+          "subtitle": "Comments and Feedback",
+          "text": "Users waive rights to comments and feedback, allowing the company to use them without notice or compensation."
+        },
+        {
+          "subtitle": "Billing Disputes",
+          "text": "Billing disputes must be reported within 90 days; otherwise, the right to address them later is forfeited."
+        },
+        {
+          "subtitle": "Delinquency",
+          "text": "Unpaid bills for 30 days may lead to service suspension or termination, with users responsible for fees and legal expenses."
+        },
+        {
+          "subtitle": "Reading Policies",
+          "text": "Users should carefully read and understand Yahoo's policies regarding data handling, jurisdiction, age requirements, and user rights before using its services."
+        }
+      ],
+      vigencyofUseTerms: '27/04/23',
     },
     {
       name: 'nytimes',
