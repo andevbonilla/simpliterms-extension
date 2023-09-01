@@ -1639,6 +1639,112 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
+      name: 'apple',
+      policyWebpage: 'https://www.apple.com/legal',
+      privacyTerms: [
+        {
+          "subtitle": "Activation of Services",
+          "text": "By signing in with your Apple ID on your iPhone, you activate services such as iCloud, App Store, iMessage, FaceTime, and Find My. This centralizes various functionalities for convenience."
+        },
+        {
+          "subtitle": "Data Sharing",
+          "text": "Apple collects and securely stores specific data from your device, including contacts, calendars, photos, health, and app-related data. It is used for backup and enhancing services across your devices."
+        },
+        {
+          "subtitle": "Privacy Assurance",
+          "text": "Apple emphasizes a commitment to privacy, collecting only necessary data to improve user experience. They believe in transparency, providing you with insights into what they collect and why."
+        },
+        {
+          "subtitle": "Apple ID Essentials",
+          "text": "Your Apple ID serves as your gateway to various Apple services. It includes login information, contact details, payment info, and security settings, which you can manage at appleid.apple.com."
+        },
+        {
+          "subtitle": "Automatic Service Activation",
+          "text": "Signing in with your Apple ID enables services like iCloud, App Store, iMessage, FaceTime, and Find My. This streamlines access and generates analytical data to enhance these services."
+        },
+        {
+          "subtitle": "iCloud and Data Storage",
+          "text": "iCloud automatically stores a wide range of data, including contacts, calendars, photos, health, and even third-party app data. It ensures easy access and provides secure backups."
+        },
+        {
+          "subtitle": "Data Security",
+          "text": "Apple encrypts data in transit and on iCloud servers, offering end-to-end encryption for certain data. This ensures your data is only accessible on devices where you are signed in."
+        },
+        {
+          "subtitle": "iCloud Keychain",
+          "text": "This feature securely stores passwords, credit card data, and Wi-Fi network info across your devices, enhancing convenience without compromising security."
+        },
+        {
+          "subtitle": "iCloud Backup",
+          "text": "You can back up essential data like photos, messages, health data, and device settings to iCloud. It offers control over what gets backed up and can be managed in device settings."
+        },
+        {
+          "subtitle": "Location Services",
+          "text": "iCloud powers features like Find My, aiding in device recovery. Location data is shared with Apple only when you or a family member actively request it, ensuring privacy."
+        }
+      ],
+      vigencyOfPrivacy: '06/04/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Ownership and Acceptance",
+          "text": "These Terms and Conditions apply to Apple's website, including all associated sites worldwide. By using the site, you agree to these terms. Apple reserves the right to modify them at any time, so it's your responsibility to review them regularly."
+        },
+        {
+          "subtitle": "Content Ownership",
+          "text": "All site content, including text, graphics, trademarks, and more, is owned or licensed by Apple and protected by various laws. You cannot use, reproduce, or distribute it without explicit written consent."
+        },
+        {
+          "subtitle": "Information Use",
+          "text": "You can use product and service information from Apple for personal, non-commercial purposes, as long as you respect copyright notices, don't modify it, and don't make additional warranties."
+        },
+        {
+          "subtitle": "Prohibited Activities",
+          "text": "You must not use automated tools or unauthorized access to gather, copy, or manipulate the site's content, and you should not interfere with its operation or others' use."
+        },
+        {
+          "subtitle": "Account Security",
+          "text": "If you create an account, you're responsible for maintaining its security and must report any unauthorized use. Using someone else's account without permission is strictly forbidden."
+        },
+        {
+          "subtitle": "Privacy",
+          "text": "Apple's Privacy Policy applies to site use, and you acknowledge that internet transmissions are never entirely private or secure."
+        },
+        {
+          "subtitle": "External Links",
+          "text": "Apple provides links to third-party sites for convenience but doesn't control or endorse them. Your interaction with such sites is at your discretion."
+        },
+        {
+          "subtitle": "Disclaimer",
+          "text": "Apple doesn't guarantee the site's error-free operation, nor specific results from its use. It disclaims warranties and limits liability, especially for indirect or punitive damages."
+        },
+        {
+          "subtitle": "Indemnification",
+          "text": "You agree to indemnify Apple against third-party claims resulting from your site use."
+        },
+        {
+          "subtitle": "Dispute Resolution",
+          "text": "These terms are governed by US and California law. You agree that disputes will be resolved in Santa Clara County, California. Some jurisdictions may not allow certain limitations of liability."
+        },
+        {
+          "subtitle": "International Use",
+          "text": "While accessible worldwide, certain products or services mentioned may not be available everywhere. Apple reserves the right to limit access."
+        },
+        {
+          "subtitle": "General",
+          "text": "If any part of these terms is deemed unlawful, void, or unenforceable, it will be limited or replaced, but the overall terms remain. Your comments on the site are considered non-confidential."
+        }
+      ],
+      vigencyofUseTerms: '20/11/2009',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
       name: 'example',
       policyWebpage: '',
       privacyTerms: [],
