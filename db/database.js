@@ -1346,11 +1346,77 @@ export const summariePolicyList = [
     },
     {
       name: 'nytimes',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://help.nytimes.com/',
+      privacyTerms: [
+        {
+          "subtitle": "Scope of Policy",
+          "text": "NYT's policy covers various services, including the newspaper, websites, apps, email newsletters, and social media pages."
+        },
+        {
+          "subtitle": "Information Collection",
+          "text": "NYT collects personal data voluntarily provided by users during registration, billing, user-generated content creation, and more. Additionally, automatic data collection methods, like cookies and geolocation tracking, are used."
+        },
+        {
+          "subtitle": "Sensitive Information",
+          "text": "NYT generally avoids collecting sensitive personal information but may collect precise geolocation data if users enable location-based services."
+        },
+        {
+          "subtitle": "Information Sources",
+          "text": "Data is collected directly from users, privately-owned databases, social media platforms, third-party services, workplaces, and schools."
+        },
+        {
+          "subtitle": "Use of Information",
+          "text": "Collected data is used for providing services, personalizing user experiences, allowing user-generated content sharing, developing products, and conducting administrative tasks."
+        },
+        {
+          "subtitle": "Advertising",
+          "text": "Personalized advertising is displayed on NYT services and shared with third-party advertisers, based on user data. Users can opt out."
+        },
+        {
+          "subtitle": "Data Disclosure",
+          "text": "Data may be shared within the NYT Company, with service providers, and select third parties for specific purposes."
+        },
+        {
+          "subtitle": "User Rights",
+          "text": "Users have rights to manage their data, including communication preferences, access, correction, and deletion. Specific California privacy rights are also addressed."
+        }
+      ],
+      vigencyOfPrivacy: '06/07/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Arbitration Agreement and Class Action Waiver",
+          "text": "Users must resolve disputes through binding arbitration and are prohibited from pursuing class actions or class arbitrations."
+        },
+        {
+          "subtitle": "Privacy Policy",
+          "text": "Users should review NYT's Privacy Policy, especially if residing outside the European Economic Area, to understand how personal data is handled."
+        },
+        {
+          "subtitle": "General Rules and Definitions",
+          "text": "Users must adhere to the Terms of Service, which may change, and it's their responsibility to stay updated."
+        },
+        {
+          "subtitle": "Prohibited Use of the Services",
+          "text": "Users must use the Services lawfully and not engage in malicious activities."
+        },
+        {
+          "subtitle": "User-Generated Content",
+          "text": "Users are responsible for their content, which should comply with laws and not involve hate speech. NYT can edit or remove user submissions."
+        },
+        {
+          "subtitle": "Representations and Warranties",
+          "text": "Users should ensure their content doesn't violate third-party rights and indemnify NYT. NYT doesn't endorse user content accuracy."
+        },
+        {
+          "subtitle": "Limitation of Liabilities",
+          "text": "NYT and affiliates aren't liable for indirect or consequential damages, and users use the Services at their own risk."
+        },
+        {
+          "subtitle": "Registration and Security",
+          "text": "Users must maintain account security, not share credentials, and agree to receive electronic notifications from NYT."
+        }
+      ],
+      vigencyofUseTerms: '25/08/23',
     },
     {
       name: 'stripe',
