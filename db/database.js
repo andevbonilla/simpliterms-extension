@@ -836,27 +836,183 @@ export const summariePolicyList = [
     },
     {
       name: 'telegram',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
-    },
-    {
-      name: 'airbnb',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://telegram.org/',
+      privacyTerms: [
+        {
+          "subtitle": "Privacy Principles",
+          "text": "Telegram has two key principles no data is used for ads, and only essential data is stored for secure messaging."
+        },
+        {
+          "subtitle": "Terms of Service",
+          "text": "The Privacy Policy is part of Telegram's Terms of Service, which governs your use of the Services."
+        },
+        {
+          "subtitle": "Table of Contents",
+          "text": "The Privacy Policy outlines the legal basis for processing data, the types of personal data collected, data security measures, purposes of data use, recipients of personal data, and user rights."
+        },
+        {
+          "subtitle": "EEA Representative",
+          "text": "For users in the European Economic Area (EEA), Telegram designates a representative for GDPR-related queries."
+        },
+        {
+          "subtitle": "Legal Ground for Processing",
+          "text": "Telegram processes data based on legitimate interests, such as providing secure services and addressing security issues."
+        },
+        {
+          "subtitle": "What Personal Data We Use",
+          "text": "Telegram collects basic account data like your mobile number, profile name, and picture. Some data, like your screen name, is public; others, like email, are used for verification."
+        },
+        {
+          "subtitle": "Your Messages",
+          "text": "Telegram stores messages, media, and documents from cloud chats securely on its servers. Secret chats are end-to-end encrypted, and no logs are kept."
+        }
+      ],
+      vigencyOfPrivacy: '24/04/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Prohibited Activities",
+          "text": "Users are prohibited from sending spam or scams and promoting violence or illegal pornographic content on publicly viewable Telegram channels or bots."
+        },
+        {
+          "subtitle": "Age Requirement",
+          "text": "EU citizens and UK residents must be at least 16 years old to sign up for Telegram."
+        },
+        {
+          "subtitle": "Subscription Authorization",
+          "text": "Purchasing Telegram Premium authorizes recurring payments, with third-party processors facilitating transactions."
+        },
+        {
+          "subtitle": "Cancellation",
+          "text": "Users can cancel Telegram Premium at any time, but refunds aren't provided for remaining subscription days."
+        },
+        {
+          "subtitle": "Third-Party Purchases",
+          "text": "If you buy Telegram Premium through third parties like Google Play or Apple App Store, their terms apply."
+        },
+        {
+          "subtitle": "Termination",
+          "text": "Telegram may stop offering subscriptions at any time, potentially resulting in subscription cancellation and prorated refunds."
+        },
+        {
+          "subtitle": "Taxes and Fees",
+          "text": "Users are responsible for applicable taxes, data plans, and other fees. Subscription charges are generally nonrefundable."
+        },
+        {
+          "subtitle": "Changes",
+          "text": "Telegram can change subscription terms and fees with at least 30 days' notice, provided via the Telegram app."
+        },
+        {
+          "subtitle": "Scope of Premium Services",
+          "text": "Premium Services include exclusive features, but occasional technical issues may disrupt service temporarily."
+        },
+        {
+          "subtitle": "Software Requirements",
+          "text": "Some Premium Services require the latest Telegram app version. Chat translation and voice-to-text conversion are optional and depend on third-party technologies."
+        },
+        {
+          "subtitle": "Download Speed",
+          "text": "Premium Services offer increased download speed, but actual speed depends on external factors."
+        },
+        {
+          "subtitle": "No Advertisements",
+          "text": "Telegram Premium subscribers are exempt from sponsored messages, but may still see third-party ads in channels managed by other users."
+        }
+      ],
+      vigencyofUseTerms: 'not found',
     },
     {
       name: 'github',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://github.com/',
+      privacyTerms: [
+        {
+          subtitle: "Responsibility for Data Processing",
+          text: "GitHub, Inc. is responsible for personal data for North American residents, and GitHub B.V. is responsible for residents outside North America.",
+        },
+        {
+          subtitle: "GitHub's Role on Behalf of the User",
+          text: "In some cases, GitHub processes personal data on behalf of the user, mainly when it comes to data added by collaborators to a repository. In such cases, GitHub processes data to provide, protect, and improve the service.",
+        },
+        {
+          subtitle: "Types of Information Collected",
+          text: "GitHub collects personal data based on user interactions with the service, including information provided directly, automatically collected information, data from third-party sources, and inferred or generated data.",
+        },
+        {
+          subtitle: "Information Provided Directly to GitHub",
+          text: "This includes registration information (name, email, username, password), demographic information, payment and billing information, content and files uploaded, emails and communications, comments, and ratings.",
+        },
+        {
+          subtitle: "Automatically Collected Information",
+          text: "GitHub collects data about transactions, subscription, and license information, usage and interaction data, geolocation information, and information generated from other data.",
+        },
+        {
+          subtitle: "Information Generated or Inferred",
+          text: "GitHub may infer new information from the data collected, such as inferring general geographic location from IP addresses.",
+        },
+        {
+          subtitle: "Information from Third Parties",
+          text: "GitHub may receive personal data from third parties with whom the user interacts, service providers, and publicly available sources like GitHub repositories.",
+        },
+        {
+          subtitle: "Sharing of Personal Data",
+          text: "GitHub shares personal data with public information settings, third-party applications with user consent, organizations you interact with, service providers, and affiliates for various purposes, including security, legal compliance, and business operations.",
+        },
+        {
+          subtitle: "User Responsibility",
+          text: "These policies highlight GitHub's practices regarding data collection, sharing, and user privacy. Users should carefully review and understand these policies to make informed decisions regarding their data on the platform.",
+        }
+      ],
+      vigencyOfPrivacy: '15/12/22',
+      conditionsTerms: [
+        {
+            "subtitle": "Account Control",
+            "text": "Users have control over their accounts and content. Organization owners have control over their organization's content, and at least one personal account must be an owner."
+        },
+        {
+            "subtitle": "Required Information",
+            "text": "A valid email address is necessary for registration. Other details like real names are optional unless representing a legal entity or opting for a Paid Account."
+        },
+        {
+            "subtitle": "Account Requirements",
+            "text": "Accounts are for humans, not machines. Each person or entity can have one free account."
+        },
+        {
+            "subtitle": "Age Requirement",
+            "text": "Users must be at least 13 years old or comply with local age laws."
+        },
+        {
+            "subtitle": "Account Security",
+            "text": "Users are responsible for their account security, with optional two-factor authentication."
+        },
+        {
+            "subtitle": "Additional Terms",
+            "text": "Third-party terms may apply, especially for organizations or third-party apps. U.S. government users have specific terms."
+        },
+        {
+            "subtitle": "User-Generated Content",
+            "text": "Users own their content but grant GitHub rights to display and share it. GitHub can remove or close accounts for violations."
+        },
+        {
+            "subtitle": "Private Repositories",
+            "text": "Content in private repositories is confidential; access by GitHub staff is limited."
+        },
+        {
+            "subtitle": "Copyright Infringement",
+            "text": "GitHub complies with copyright laws and has a mechanism for reporting violations."
+        },
+        {
+            "subtitle": "Intellectual Property",
+            "text": "GitHub retains ownership of its service and content. Users have limited rights to use the service."
+        },
+        {
+            "subtitle": "API Terms",
+            "text": "Additional terms apply to API use, including abuse prevention and high-demand access."
+        },
+        {
+            "subtitle": "Beta Previews",
+            "text": "Beta previews may change, are less secure, and involve confidential data handling. Users must maintain confidentiality."
+        }
+      ],
+      vigencyofUseTerms: '16/11/20',
     },
     {
       name: 'namecheap',
@@ -869,18 +1025,184 @@ export const summariePolicyList = [
     {
       name: 'microsoft',
       policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      privacyTerms: [
+        {
+          subtitle: "Privacy Importance",
+          text:
+            "Microsoft emphasizes the importance of user privacy in this statement, explaining what personal data they collect, how they process it, and for what purposes."
+        },
+        {
+          subtitle: "Diverse Product Range",
+          text:
+            "Microsoft offers a wide range of products, including server products for businesses, home devices, educational software, and developer services. This statement applies to all Microsoft products mentioned, including services, websites, apps, software, servers, and devices."
+        },
+        {
+          subtitle: "Young User Focus",
+          text:
+            "Microsoft provides a dedicated section for young users, highlighting information relevant to them, ensuring age-appropriate privacy considerations."
+        },
+        {
+          subtitle: "State-Specific Privacy",
+          text:
+            "For users in the United States, Microsoft provides additional information about data privacy, including state-specific data privacy laws and health consumer data privacy."
+        },
+        {
+          subtitle: "Data Collection",
+          text:
+            "Microsoft collects user data through various interactions and product usage. Users may provide data directly, and Microsoft may obtain data from third parties."
+        },
+        {
+          subtitle: "Data Usage",
+          text:
+            "Microsoft uses collected data to provide, improve, personalize, and market products, as well as for business operations and research."
+        },
+        {
+          subtitle: "Data Sharing",
+          text:
+            "Microsoft shares personal data with consent, for transactions, with subsidiaries, vendors, and as required by law or to protect users and property. Data sharing may also include personalized advertising."
+        },
+        {
+          subtitle: "Data Control",
+          text:
+            "Users can control their data collection and usage preferences, exercise data rights, and manage their Microsoft account settings. Some products may require specific data to function."
+        },
+        {
+          subtitle: "Additional Information",
+          text:
+            "This privacy statement covers cookies, EU-U.S. Privacy Shield, contact information, data collection for minors, and additional privacy information. It also details privacy considerations for products used within organizations and the types of accounts Microsoft offers. Lastly, it addresses data collection for users under 13 years old, outlining strict data protection measures."
+        }
+      ],
+      vigencyOfPrivacy: '00/08/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Your Content:",
+          "text": "Users own their content, but Microsoft may use it for service without compensation."
+        },
+        {
+          "subtitle": "Code of Conduct:",
+          "text": "Users must follow rules to avoid consequences like service interruption or account closure."
+        },
+        {
+          "subtitle": "Use of Services and Support:",
+          "text": "Microsoft accounts are often required; users should maintain security and backups."
+        },
+        {
+          "subtitle": "Third-Party Apps and Services:",
+          "text": "Users can access third-party apps with separate terms; Microsoft disclaims responsibility."
+        },
+        {
+          "subtitle": "Updates and Changes:",
+          "text": "Microsoft updates may occur, but users can cancel services if they disagree."
+        },
+        {
+          "subtitle": "Software License:",
+          "text": "icrosoft grants users the right to use software under certain conditions, prohibiting actions like circumventing technical protection measures, reverse engineering, distributing, or unauthorized use of the software."
+        },
+        {
+          "subtitle": "Payment Terms:",
+          "text": "Users must pay charges on time or risk suspension; billing and payment methods are defined."
+        },
+        {
+          "subtitle": "Entity and Dispute Resolution:",
+          "text": "Contracts vary by region; disputes are resolved locally or in Ireland."
+        },
+        {
+          "subtitle": "Limitation of Liability:",
+          "text": "Microsoft has limited liability except for gross negligence, fraud, or legal obligations."
+        },
+        {
+          "subtitle": "Specific Service Terms:",
+          "text": "Specific terms take precedence over general ones. Review these policies to protect your rights when using Microsoft services."
+        }
+      ],
+      vigencyofUseTerms: '15/08/22',
     },
     {
       name: 'office',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.office.com/',
+      privacyTerms: [
+        {
+          subtitle: "Privacy Importance",
+          text:
+            "Microsoft emphasizes the importance of user privacy in this statement, explaining what personal data they collect, how they process it, and for what purposes."
+        },
+        {
+          subtitle: "Diverse Product Range",
+          text:
+            "Microsoft offers a wide range of products, including server products for businesses, home devices, educational software, and developer services. This statement applies to all Microsoft products mentioned, including services, websites, apps, software, servers, and devices."
+        },
+        {
+          subtitle: "Young User Focus",
+          text:
+            "Microsoft provides a dedicated section for young users, highlighting information relevant to them, ensuring age-appropriate privacy considerations."
+        },
+        {
+          subtitle: "State-Specific Privacy",
+          text:
+            "For users in the United States, Microsoft provides additional information about data privacy, including state-specific data privacy laws and health consumer data privacy."
+        },
+        {
+          subtitle: "Data Collection",
+          text:
+            "Microsoft collects user data through various interactions and product usage. Users may provide data directly, and Microsoft may obtain data from third parties."
+        },
+        {
+          subtitle: "Data Usage",
+          text:
+            "Microsoft uses collected data to provide, improve, personalize, and market products, as well as for business operations and research."
+        },
+        {
+          subtitle: "Data Sharing",
+          text:
+            "Microsoft shares personal data with consent, for transactions, with subsidiaries, vendors, and as required by law or to protect users and property. Data sharing may also include personalized advertising."
+        },
+        {
+          subtitle: "Data Control",
+          text:
+            "Users can control their data collection and usage preferences, exercise data rights, and manage their Microsoft account settings. Some products may require specific data to function."
+        },
+        {
+          subtitle: "Additional Information",
+          text:
+            "This privacy statement covers cookies, EU-U.S. Privacy Shield, contact information, data collection for minors, and additional privacy information. It also details privacy considerations for products used within organizations and the types of accounts Microsoft offers. Lastly, it addresses data collection for users under 13 years old, outlining strict data protection measures."
+        }
+      ],
+      vigencyOfPrivacy: '00/08/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Usage Rights",
+          "text": "Microsoft 365 Home, Microsoft 365 Personal, Office Online, Sway, OneNote.com, and other Office-branded subscriptions are intended for personal, non-commercial use unless users have separate commercial usage rights through an independent contract with Microsoft."
+        },
+        {
+          "subtitle": "Application Usage",
+          "text": "The use of applications such as Word, Excel, PowerPoint, Outlook, OneDrive, Access, and Publisher within Microsoft 365 Family, Microsoft 365 Personal, and other Microsoft 365 subscription Services is subject to additional license terms found at https://aka.ms/useterms, in addition to these Terms."
+        },
+        {
+          "subtitle": "Outlook and Bing Maps",
+          "text": "Outlook includes the use of Bing Maps. Content provided through Bing Maps, including geographical codes, can only be used within the product through which the content is provided. The use of Bing Maps is governed by the Bing Maps End-User Terms of Use available at go.microsoft.com/?linkid=9710837 and Microsoft's Privacy Statement available at go.microsoft.com/fwlink/?LinkID=248686."
+        },
+        {
+          "subtitle": "Personal and Non-Commercial Use",
+          "text": "Users should primarily use Office Services for personal and non-commercial purposes, unless otherwise specified in a separate commercial usage agreement with Microsoft."
+        },
+        {
+          "subtitle": "Additional License Terms",
+          "text": "When using specific Office applications, users must adhere to any supplementary license terms provided in the accompanying documentation."
+        },
+        {
+          "subtitle": "Privacy and Data Usage",
+          "text": "Users should review Microsoft's Privacy Statement to understand how their data is collected, stored, and processed when using Office Services."
+        },
+        {
+          "subtitle": "Geographical Restrictions",
+          "text": "Some content and features, such as Bing Maps data, may have geographical restrictions and can only be used as allowed within the applicable product."
+        },
+        {
+          "subtitle": "External Links",
+          "text": "Links to additional terms and privacy statements related to specific services (e.g., Bing Maps) are provided for users to understand the terms and conditions governing those services."
+        }
+      ],
+      vigencyofUseTerms: '15/08/22',
     },
     {
       name: 'example',
