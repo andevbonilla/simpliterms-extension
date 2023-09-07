@@ -225,11 +225,109 @@ export const summariePolicyList = [
     },
     {
       name: 'ebay',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.ebay.com/',
+      privacyTerms: [
+        {
+          subtitle: "Controller",
+          text: "The eBay affiliate responsible for collecting and processing your personal data depends on how you use their services. Different affiliates handle data collection based on your location and the specific services you use."
+        },
+        {
+          subtitle: "Data Protection Officer and Contact",
+          text: "eBay has designated data protection officers in various countries. Contact details can be found in the Privacy Center. You can also reach out to eBay's Privacy Team or the controller responsible for processing your data."
+        },
+        {
+          subtitle: "What Personal Data We Collect and Process",
+          text: "eBay collects personal data when you use their services, create an eBay account, provide information via web forms, update your account, or interact with them. They may also collect data from other sources."
+        },
+        {
+          subtitle: "Purposes and Legal Basis for Data Processing",
+          text: "eBay processes your data for various purposes, including providing and improving services, personalized user experiences, customer support, marketing, and fraud prevention. They may share your information with third-party service providers."
+        },
+        {
+          subtitle: "International Data Transfers",
+          text: "Your data may be transferred to recipients in countries with different data protection laws. eBay provides appropriate security measures for these transfers."
+        },
+        {
+          subtitle: "Data Retention and Deletion",
+          text: "eBay retains your data as required by data protection laws or for purposes such as legal, tax, or auditing requirements. Data will be deleted once these requirements are met."
+        },
+        {
+          subtitle: "Rights as a Data Subject",
+          text: "You have rights to access, rectify, delete, restrict processing, and data portability. You can also withdraw consent and object to data processing. Complaints can be made to a supervisory authority."
+        },
+        {
+          subtitle: "Cookies and Similar Technologies",
+          text: "eBay and authorized third parties use cookies and similar technologies to enhance user experience, speed, security, and personalized advertising."
+        },
+        {
+          subtitle: "Data Security",
+          text: "eBay employs technical and organizational security measures to protect your data from loss, misuse, unauthorized access, disclosure, and alteration."
+        },
+        {
+          subtitle: "State and Regional Privacy Disclosures",
+          text: "eBay provides regional privacy disclosures for residents of specific U.S. states and other countries, including California and China."
+        }
+      ],
+      vigencyOfPrivacy: '24/03/23',
+      conditionsTerms: [
+        {
+          subtitle: "No Guarantee of Continuous Service",
+          text: "eBay does not guarantee uninterrupted service access and warns users of potential service interruptions beyond its control."
+        },
+        {
+          subtitle: "Use at Your Own Risk",
+          text: 'eBay services are provided "AS IS," excluding implied warranties, and users accept the associated risks.'
+        },
+        {
+          subtitle: "Limited Liability",
+          text: "eBay is not liable for various damages, including those arising from user-generated content, service interruptions, or third-party actions."
+        },
+        {
+          subtitle: "Jurisdictional Variations",
+          text: "Disclaimers and liability limitations may not apply universally due to jurisdictional differences."
+        },
+        {
+          subtitle: "Limited Liability",
+          text: "eBay's liability is capped at specific amounts, such as the item's sale price and $100, if found liable."
+        },
+        {
+          subtitle: "Dispute Resolution Release",
+          text: "Users release eBay from claims arising from disputes with other users, including unknown claims at the time of acceptance."
+        },
+        {
+          subtitle: "User Responsibility",
+          text: "Users must indemnify eBay for claims resulting from violations of Terms of Use or misuse of services."
+        },
+        {
+          subtitle: "Binding Arbitration",
+          text: "Legal claims must be resolved through binding arbitration, with restrictions on class actions and jury trials. New users can opt out within 30 days."
+        },
+        {
+          subtitle: "Contractual Understanding",
+          text: "These Terms of Use replace any prior agreements and constitute the entire agreement between users and eBay."
+        },
+        {
+          subtitle: "Modification of Terms",
+          text: "eBay can modify terms with notice, and continued use implies acceptance."
+        },
+        {
+          subtitle: "Termination",
+          text: "eBay can terminate the contract for any reason."
+        },
+        {
+          subtitle: "Surviving Provisions",
+          text: "Certain sections, including fees, disclaimers, and legal disputes, remain in effect after contract termination."
+        },
+        {
+          subtitle: "California Users",
+          text: "California users can seek legal compliance assistance."
+        },
+        {
+          subtitle: "Illinois Users",
+          text: "Specific dispute resolution options apply to Illinois users for event ticket transactions."
+        }
+      ],
+      vigencyofUseTerms: '11/03/22',
     },
     {
       name: 'discord',
