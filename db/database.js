@@ -268,7 +268,7 @@ export const summariePolicyList = [
           "text": "Discord shares aggregated or anonymized data for business analysis. Users can review specific retention periods and access their data."
         }
       ],
-      vigencyOfPrivacy: '27/03/2023',
+      vigencyOfPrivacy: '27/03/23',
       conditionsTerms: [
         {
           "subtitle": "Limitation of Liability",
@@ -311,15 +311,132 @@ export const summariePolicyList = [
           "text": "Users are granted a license for Discord's software but must not modify it."
         }
       ],
-      vigencyofUseTerms: '27/03/2023',
+      vigencyofUseTerms: '27/03/23',
     },
     {
       name: 'twich',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.twitch.tv/',
+      privacyTerms: [
+        {
+          subtitle: "Data Collection",
+          text:
+            "Twitch collects personal data through user-provided information (e.g., during registration), automatic data collection (e.g., through cookies), and from other sources, such as third-party services you connect with your Twitch account."
+        },
+        {
+          subtitle: "Data Usage",
+          text:
+            "Twitch uses this data to operate, improve, and provide its services, including personalized content and marketing. They also communicate with users via email and phone for important updates and customer service."
+        },
+        {
+          subtitle: "Data Disclosure",
+          text:
+            "Twitch shares personal data with its parent company, Amazon.com, Inc., and its affiliates. They also share data with service providers and may disclose data to comply with legal obligations or protect against fraud, abuse, or legal claims."
+        },
+        {
+          subtitle: "User Rights",
+          text:
+            "Users have rights to access, update, delete, or restrict the use of their personal data. They can also revoke consent for specific data processing purposes."
+        },
+        {
+          subtitle: "Account Closure",
+          text:
+            "Users can close their accounts, but Twitch may retain some data for legal or operational reasons."
+        },
+        {
+          subtitle: "Third-Party Websites and Services",
+          text:
+            "Twitch may link to third-party websites and services, whose privacy practices are not governed by their policy."
+        },
+        {
+          subtitle: "Extensions and Applications",
+          text:
+            "Twitch allows third-party developers to create extensions and applications that may collect user data, subject to developer agreements and privacy policies."
+        },
+        {
+          subtitle: "Minors' Privacy",
+          text:
+            "Twitch does not collect personal data from children under 13, and they comply with applicable data protection laws regarding the age of consent for data processing."
+        },
+        {
+          subtitle: "Mergers or Sales",
+          text:
+            "In case of mergers, acquisitions, or changes in control, Twitch may transfer user data as part of the process."
+        },
+        {
+          subtitle: "International Data Transfers",
+          text:
+            "Twitch may store and process data in different countries and ensures data protection compliance."
+        },
+        {
+          subtitle: "Changes and Updates",
+          text:
+            "Twitch reserves the right to change its Privacy Policy and advises users to check it periodically."
+        }
+      ],
+      vigencyOfPrivacy: '30/06/23',
+      conditionsTerms: [
+        {
+          subtitle: "Age Restrictions",
+          text: "Users under 13 cannot access Twitch, while minors need parental supervision."
+        },
+        {
+          subtitle: "Exclusions",
+          text: "Twitch services are prohibited for users excluded by Twitch or U.S. laws."
+        },
+        {
+          subtitle: "Account Security",
+          text: "Users must safeguard account information; sharing accounts is forbidden."
+        },
+        {
+          subtitle: "Device & Access",
+          text: "Access may incur third-party fees, requiring personal devices."
+        },
+        {
+          subtitle: "Terms Modification",
+          text: "Twitch can update terms; user acceptance through continued use."
+        },
+        {
+          subtitle: "License",
+          text: "Users have limited rights for personal use; commercial use is restricted."
+        },
+        {
+          subtitle: "User Content",
+          text: "Users can create and share content, granting Twitch usage rights."
+        },
+        {
+          subtitle: "Copyright Respect",
+          text: "Twitch respects copyrights; users can report infringements."
+        },
+        {
+          subtitle: "Trademarks",
+          text: "Twitch's intellectual property needs written consent for use."
+        },
+        {
+          subtitle: "Third-Party Content",
+          text: "Users should be cautious with third-party content on Twitch."
+        },
+        {
+          subtitle: "Submission of Ideas",
+          text: "Twitch can use user-submitted ideas without compensation."
+        },
+        {
+          subtitle: "Termination",
+          text: "Twitch permits users to terminate their accounts voluntarily, and the platform can also terminate accounts for policy breaches or operational reasons, potentially leading to the loss of access to all Twitch services and content. Users can appeal certain terminations if they believe they're unjust."
+        },
+        {
+          subtitle: "Disputes",
+          text: "Dispute resolution depends on location; collective actions may be excluded."
+        },
+        {
+          subtitle: "General Provisions",
+          text: "Unused rights remain, illegal provisions may be removed."
+        },
+        {
+          subtitle: "Information Requests",
+          text: "Legal inquiries must follow proper channels, no email or fax requests accepted."
+        }
+      ],
+      vigencyofUseTerms: '08/06/23',
     },
     {
       name: 'indeed',
@@ -331,11 +448,121 @@ export const summariePolicyList = [
     },
     {
       name: 'zoom',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://explore.zoom.us/',
+      privacyTerms: [
+        {
+          "subtitle": "End-to-End Encryption",
+          "text": "Zoom provides end-to-end encryption for email content, ensuring secure communication for intended recipients."
+        },
+        {
+          "subtitle": "Third-Party Integrations",
+          "text": "Data may be shared with third-party services when integrated with Zoom, but Zoom does not access third-party email or calendar content without permission or legal necessity."
+        },
+        {
+          "subtitle": "Marketing and Analytics",
+          "text": "Personal data is used for marketing and advertising, including targeted ads. Users can opt out of some of these activities for more data control."
+        },
+        {
+          "subtitle": "Security and Protection",
+          "text": "Personal data is used to enhance security, detect and prevent malicious activities, and ensure public safety."
+        },
+        {
+          "subtitle": "Communication",
+          "text": "Zoom communicates with users using the contact information provided for updates, account info, and policy changes."
+        },
+        {
+          "subtitle": "Legal Compliance",
+          "text": "Personal data may be shared to comply with the law, legal processes, or to protect against fraudulent or illegal activities."
+        },
+        {
+          "subtitle": "Recording Monitoring",
+          "text": "Account owners can monitor meeting and webinar recordings and enable advanced transcription features."
+        },
+        {
+          "subtitle": "Voting, Q&A, and Feedback",
+          "text": "Account owners can access respondent information for votes, questions, and feedback, unless responses are anonymous."
+        },
+        {
+          "subtitle": "Email and Calendar Content",
+          "text": "Account owners and administrators may access encrypted email and calendar content, depending on settings."
+        },
+        {
+          "subtitle": "Email and Calendar Recipients",
+          "text": "Recipients can view, save, and share email and calendar content, with encrypted content not being end-to-end secure."
+        },
+        {
+          "subtitle": "Webinar Panelists and Attendees",
+          "text": "Attendees can see panelists in webinars, and their visibility can be adjusted as needed."
+        },
+        {
+          "subtitle": "Live Streaming",
+          "text": "Hosts have the option to live stream meetings and webinars to third parties, potentially affecting content exposure."
+        },
+        {
+          "subtitle": "Applications and Integrations",
+          "text": "Account owners can add and control applications and integrations, with the possibility of personal data sharing."
+        },
+        {
+          "subtitle": "Privacy Rights and Options",
+          "text": "Users can opt out of receiving marketing communications and have rights to access, correct, or delete their personal data."
+        },
+        {
+          "subtitle": "International Data Transfers",
+          "text": "Zoom may transfer and store personal data internationally, with safeguards in place."
+        },
+        {
+          "subtitle": "US State Privacy Laws",
+          "text": "Residents of California and other US states have additional privacy rights, including data access and deletion."
+        },
+        {
+          "subtitle": "Privacy Policy Changes",
+          "text": "Zoom may periodically update its privacy policy, notifying users of significant changes. It's crucial to stay informed to protect your privacy."
+        }
+      ],
+      vigencyOfPrivacy: '11/08/223',
+      conditionsTerms: [
+        {
+          subtitle: "Account Information and Sharing",
+          text: "You must provide accurate account information and safeguard your username and password. Sharing accounts or credentials without Zoom's written approval is strictly prohibited."
+        },
+        {
+          subtitle: "Ordering Services",
+          text: "You can order services through approved forms. Any additional terms on the order form prevail in case of conflicts with this agreement. Zoom may modify or discontinue services at its discretion."
+        },
+        {
+          subtitle: "Minimum Commitment",
+          text: "You must maintain the minimum service level specified in your order form during the applicable subscription period."
+        },
+        {
+          subtitle: "System Requirements",
+          text: "You are responsible for meeting system requirements, including hardware, software, and internet access. High-speed internet is recommended."
+        },
+        {
+          subtitle: "Beta Services",
+          text: "If you use beta services, they are governed by separate terms, not this agreement."
+        },
+        {
+          subtitle: "Recordings",
+          text: "You are responsible for complying with laws related to recording conversations as a host. Zoom may store recordings with your consent."
+        },
+        {
+          subtitle: "Prohibited Uses",
+          text: "You agree not to engage in prohibited activities, including using the service for illegal or abusive purposes."
+        },
+        {
+          subtitle: "Compliance with Laws",
+          text: "You and your end users are responsible for complying with all applicable laws regarding data and content use."
+        },
+        {
+          subtitle: "Payment and Charges",
+          text: "You agree to pay all charges for the services and keep payment information up to date. Charges are non-refundable unless specified otherwise."
+        },
+        {
+          subtitle: "Price Changes",
+          text: "Zoom may change service prices, and you will be given notice of any changes. Failure to cancel or modify affected services implies acceptance of price changes."
+        }
+      ],
+      vigencyofUseTerms: '11/08/23',
     },
     {
       name: 'example',
