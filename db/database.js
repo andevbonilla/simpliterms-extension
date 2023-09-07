@@ -671,6 +671,76 @@ export const summariePolicyList = [
       vigencyofUseTerms: '11/08/23',
     },
     {
+      name: 'instagram',
+      policyWebpage: 'https://www.instagram.com/',
+      privacyTerms: [
+          {
+            subtitle: "Varied Data Collection",
+            text: "Information gathered depends on product use (e.g., selling, posting), affecting the type of data collected."
+          },
+          {
+            subtitle: "Essential vs. Optional",
+            text: "Some data is required for product use, while optional data impacts user experience quality."
+          },
+          {
+            subtitle: "De-identified Usage",
+            text: "Certain info is de-identified for use without re-identifying individuals."
+          },
+          {
+            subtitle: "User Control",
+            text: "Users have control over their data, including access and review."
+          },
+          {
+            subtitle: "Personalization and Ads",
+            text: "Automated processing creates personalized experiences, excluding ad personalization from user-provided data."
+          },
+          {
+            subtitle: "Safety and Protection",
+            text: "Data ensures user safety, product security, and content effectiveness."
+          },
+          {
+            subtitle: "Inter-Company Data Sharing",
+            text: "Meta entities share data for security, personalization, innovation, and more."
+          },
+          {
+            subtitle: "User Rights and Privacy Management",
+            text: "Tools enable data management, rights exercise, and compliance with applicable laws."
+          }
+      ],
+      vigencyOfPrivacy: '15/06/2023',
+      conditionsTerms: [
+        {
+            "subtitle": "Name Change",
+            "text": "Instagram is now called Meta, but their services and data practices remain the same."
+        },
+        {
+            "subtitle": "Service Description",
+            "text": "Instagram connects you with people and content you care about, offering personalized opportunities to create, connect, communicate, discover, and share."
+        },
+        {
+            "subtitle": "Safety and Inclusivity",
+            "text": "Meta strives to maintain a positive, inclusive, and safe environment, with tools to report issues and protect the community."
+        },
+        {
+            "subtitle": "Technology Use",
+            "text": "Meta employs advanced technologies like AI to personalize and enhance the service for a global community."
+        },
+        {
+            "subtitle": "Integration with Meta Products",
+            "text": "Instagram is part of Meta, and user experiences are designed to be seamless across Meta's products."
+        },
+        {
+            "subtitle": "Global Data Handling",
+            "text": "Data may be stored and transferred worldwide for the proper functioning of the service."
+        },
+        {
+            "subtitle": "Advertising",
+            "text": "Instagram shows relevant ads based on user data but does not sell personal information. Advertisers receive performance insights but not personally identifiable information."
+        }
+      ],
+      vigencyofUseTerms: '26/07/22',
+    },
+    {
       name: 'example',
       policyWebpage: '',
       privacyTerms: [],
