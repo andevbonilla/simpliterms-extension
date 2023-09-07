@@ -45,24 +45,84 @@
         },
       ]
 
-      // const url = 'https://rickandmortyapi.com/api/character';
-      // // Realizar la solicitud usando la Fetch API
-      // fetch(url)
-      //   .then(response => {
-      //     if (response) {
-      //       return response.json();
-      //     } else {
-      //       console.error("error")
-      //       return;
-      //     }
-      //   })
-      //   .then(data => {
-      //     console.log(data);
-      //   })
-      //   .catch(error => {
-      //     console.error('Error:', error);
-      //   });
+      // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
+      const listOfCookies = document.cookie.split(';');
+      let tokenValidator = '';
 
+      if (listOfCookies) {
+        for (const cookie of listOfCookies) {
+          if (cookie && cookie.split("=")[0].trim() === 'x-token') {
+            tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
+          }
+        }
+      }
+      
+      if (tokenValidator !== '') {
+
+        chrome.storage.sync.set({
+          'xtoken': tokenValidator
+        });
+
+        let webpageName = ''
+        if (window.location.host.split('.') > 1) {
+          webpageName = window.location.host.split('.')[window.location.host.split('.').length-2].trim();
+        }
+        
+        fetch(`http://localhost:4200/api/summary/google`, {
+                                                method: 'GET',
+                                                headers: {
+                                                    'x-token': tokenValidator,
+                                                },
+                                            })
+          .then(response => {
+            if (response) {
+              return response.json();
+            } else {
+              console.error("error")
+              return;
+            }
+          })
+          .then(data => {
+            console.log(data, "desde el servidorrr");
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+
+      }else{
+
+        chrome.storage.sync.get('xtoken', ({xtoken}) => {
+          tokenValidator = xtoken;
+          console.log(tokenValidator)
+          let webpageName = ''
+          if (window.location.host.split('.') > 1) {
+            webpageName = window.location.host.split('.')[window.location.host.split('.').length-2].trim();
+          }
+          
+          fetch(`http://localhost:4200/api/summary/google`, {
+                                                  method: 'GET',
+                                                  headers: {
+                                                      'x-token': tokenValidator,
+                                                  },
+                                              })
+            .then(response => {
+              if (response) {
+                return response.json();
+              } else {
+                console.error("error")
+                return;
+              }
+            })
+            .then(data => {
+              console.log(data, "desde el servidorrr");
+            })
+            .catch(error => {
+              console.error('Error:', error);
+            });
+        });
+
+      }
+      
       let termsSummary = '';
       let privacySummary = '';
       let cookiesSummary = '';
@@ -71,8 +131,6 @@
       let ifPrivacy =  false;
       let ifTerms =  false;
       const linksTag = document.querySelectorAll('a');
-      
-      const linksWithRoleLink = document.querySelectorAll('a[role="link"]');
 
       const privacyPosibilities = [
         'privacidad',         // Español
