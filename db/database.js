@@ -233,11 +233,85 @@ export const summariePolicyList = [
     },
     {
       name: 'discord',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://discord.com/',
+      privacyTerms: [
+        {
+          "subtitle": "Data Sharing",
+          "text": "Discord allows users to share their data, but permissions are controlled by server owners. Linking to third-party services or participating in servers with bots may result in data sharing for management. Purchasing goods or services may also involve data sharing."
+        },
+        {
+          "subtitle": "Third-Party Providers",
+          "text": "Discord shares limited information with service providers like payment processors and cloud services to improve user experiences and reach potential users."
+        },
+        {
+          "subtitle": "Legal Compliance",
+          "text": "Discord may disclose user information as required by law, with efforts to notify users when possible."
+        },
+        {
+          "subtitle": "Emergency Situations",
+          "text": "Data may be shared to prevent harm or emergencies and ensure user safety."
+        },
+        {
+          "subtitle": "Enforcing Policies",
+          "text": "Information sharing is done to uphold terms of service, policies, and protect Discord's rights and security."
+        },
+        {
+          "subtitle": "Related Companies",
+          "text": "Data may be shared with affiliated companies for business purposes."
+        },
+        {
+          "subtitle": "Business Transactions",
+          "text": "In cases of mergers, acquisitions, or sales, user information may be shared as part of such transactions."
+        },
+        {
+          "subtitle": "Anonymized Data",
+          "text": "Discord shares aggregated or anonymized data for business analysis. Users can review specific retention periods and access their data."
+        }
+      ],
+      vigencyOfPrivacy: '27/03/2023',
+      conditionsTerms: [
+        {
+          "subtitle": "Limitation of Liability",
+          "text": "The company does not exclude or limit its liability where it's illegal to do so. They will be responsible for damages resulting from their negligence, lack of skill, or material breach of the contract with you, but this does not affect your consumer rights."
+        },
+        {
+          "subtitle": "Information Accuracy",
+          "text": "Information provided through the services is for informational purposes only. The company does not confirm the accuracy, completeness, or usefulness of this information. You rely on it at your own risk."
+        },
+        {
+          "subtitle": "Exclusions in Permitted Countries",
+          "text": "In countries where liability exclusions or limitations are allowed, Discord and its affiliates won't be liable for incidental, special, exemplary, or consequential damages, or for loss of profit, revenue, business opportunities, data, or goodwill, among others."
+        },
+        {
+          "subtitle": "Limitation of Liability Amount",
+          "text": "Discord limits its liability to the greater of the amounts you paid them in the three months preceding your first claim or $100 USD, except for types of liability that cannot be limited by law."
+        },
+        {
+          "subtitle": "User Conduct and Content",
+          "text": "Discord is not responsible for the conduct or content, online or offline, of any user of their services."
+        },
+        {
+          "subtitle": "Dispute Resolution",
+          "text": "Most disputes should be resolved informally. You agree to contact Discord before filing a lawsuit or requesting arbitration. If you reside in the EU, you may have the option to use the Online Dispute Resolution platform for resolving disputes related to online purchases."
+        },
+        {
+          "subtitle": "Jurisdiction and Applicable Law",
+          "text": "These terms are governed by U.S. federal arbitration law and California law. Any disputes not subject to arbitration will be resolved exclusively in federal or state courts in San Francisco, California, unless you are an EU consumer, in which case jurisdiction may be in Amsterdam or your local court."
+        },
+        {
+          "subtitle": "Arbitration Agreement",
+          "text": "Discord and you agree to resolve disputes through binding arbitration in the U.S. The process will be governed by the American Arbitration Association rules. You have the right to opt out of this agreement within 30 days."
+        },
+        {
+          "subtitle": "Age Requirement",
+          "text": "Users must be at least 13 years old, and parents are responsible for their minor children's Discord usage."
+        },
+        {
+          "subtitle": "Software License",
+          "text": "Users are granted a license for Discord's software but must not modify it."
+        }
+      ],
+      vigencyofUseTerms: '27/03/2023',
     },
     {
       name: 'twich',
