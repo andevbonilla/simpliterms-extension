@@ -1016,11 +1016,93 @@ export const summariePolicyList = [
     },
     {
       name: 'namecheap',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.namecheap.com/',
+      privacyTerms: [
+        {
+          subtitle: "1. Information Collection (Account Level):",
+          text: "Collects data for managing services, support, and user experience. Some data collection is legally required. Use of information includes sending legally required emails and service communications."
+        },
+        {
+          subtitle: "2. Emails:",
+          text: "Legally required emails include verification, renewal, and legal notices. Users can't opt-out of these emails. Optional promotional emails can be managed in the account panel."
+        },
+        {
+          subtitle: "3. Legally Required Disclosure:",
+          text: "Information is not shared without permission, except when legally obligated. Compliance with court orders, subpoenas, and legal processes is ensured. Material changes to practices are posted with notice."
+        },
+        {
+          subtitle: "4. Retention & Deletion of Account Information:",
+          text: "Deactivated accounts retain information for dispute resolution and legal compliance. GDPR and CCPA deletion rights may not apply. Instructions for closing accounts are available."
+        },
+        {
+          subtitle: "5. Information Collection (Site Usage):",
+          text: "Collects device and cookie information for legal notices, support, and personalization. Third-party tools help improve user experience. Users can manage cookies through the cookie preference panel."
+        },
+        {
+          subtitle: "6. How Information Is Shared:",
+          text: "Information is shared within Namecheap and with partners. Consent is sought for sharing with third-party providers. Legal and security reasons may require information disclosure."
+        },
+        {
+          subtitle: "7. Specific Products and Services:",
+          text: "Additional privacy practices apply to some services. GDPR and UK GDPR representatives are available for inquiries."
+        },
+        {
+          subtitle: "8. Data Processing and Transfers:",
+          text: "Data may be processed and transferred as outlined in the Privacy Policy. Users consent to data transfer to the United States and other countries. Cooperation with law enforcement may require data disclosure."
+        }
+      ],
+      vigencyOfPrivacy: 'not found',
+      conditionsTerms: [
+        {
+            "subtitle": "Agreement Scope:",
+            "text": "This Agreement governs the relationship between Namecheap and Affiliate. It outlines terms for Affiliate participation in Namecheap's Affiliate Program."
+        },
+        {
+            "subtitle": "Acceptance:",
+            "text": "Affiliate's electronic acceptance indicates understanding and agreement with this Agreement and Namecheap's Universal Terms of Service Agreement, which are incorporated by reference."
+        },
+        {
+            "subtitle": "Affiliate Program Overview:",
+            "text": "Namecheap's Affiliate Program is a referral program where affiliates can earn commissions. Affiliates are independent contractors responsible for tax obligations and providing required tax information."
+        },
+        {
+            "subtitle": "Changes to Agreement:",
+            "text": "Namecheap may modify the Agreement and policies at any time, effective upon posting on the website. Continued participation implies acceptance of revisions. Namecheap may notify of changes by email."
+        },
+        {
+            "subtitle": "Suspension or Termination:",
+            "text": "Namecheap reserves the right to suspend Affiliate participation for non-compliance or unresolved breaches. Termination may occur for various reasons, including policy violations or non-payment."
+        },
+        {
+            "subtitle": "Platform Access:",
+            "text": "You may access the RDAP service only for legal purposes and not via high-volume automated processes. Data usage and redistribution restrictions apply."
+        },
+        {
+            "subtitle": "Modification of RDAP Terms:",
+            "text": "RDAP terms may change at Namecheap's discretion. Users are responsible for staying updated on changes and accepting them by continued usage."
+        },
+        {
+            "subtitle": "Apps Marketplace Terms:",
+            "text": "The Apps Marketplace Agreement outlines obligations when accessing third-party applications through Namecheap's platform. Modifications are effective upon posting. Users must adhere to both Namecheap and provider terms."
+        },
+        {
+            "subtitle": "Refunds:",
+            "text": "Apps purchased may be refundable within 24 hours, with exceptions for certain immediate service apps. Cancellation within trial periods is eligible for refunds."
+        },
+        {
+            "subtitle": "Disclaimer:",
+            "text": "Users acknowledge risks and disclaimers regarding the Apps Marketplace. Namecheap is not responsible for third-party apps' accuracy, completeness, or content."
+        },
+        {
+            "subtitle": "Indemnification:",
+            "text": "Users release Namecheap from liability and agree to defend, indemnify, and hold harmless Namecheap for various claims, including AUP violations and intellectual property disputes."
+        },
+        {
+            "subtitle": "Severability:",
+            "text": "If any part of this Agreement is unenforceable, the rest remains in effect. Invalid provisions may be limited to be valid."
+        }
+      ],
+      vigencyofUseTerms: 'not found',
     },
     {
       name: 'microsoft',
