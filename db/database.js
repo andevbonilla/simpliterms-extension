@@ -1,11 +1,129 @@
 export const summariePolicyList = [
     {
-      name: 'jp morgan',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      name: 'jpmorgan',
+      policyWebpage: 'https://www.jpmorgan.com/',
+      privacyTerms: [
+        {
+          subtitle: "Importance of Privacy",
+          text: "J.P. Morgan emphasizes the importance of user privacy and outlines its commitment to safeguarding personal information."
+        },
+        {
+          subtitle: "Data Protection Measures",
+          text: "The policy highlights the use of physical, electronic, and procedural safeguards to protect personal data against unauthorized access, alteration, or destruction."
+        },
+        {
+          subtitle: "Types of Information Collected",
+          text: "J.P. Morgan collects various types of personal information, including contact details, account numbers, and even sensitive data like Social Security numbers and biometric identifiers, where necessary and legally permitted."
+        },
+        {
+          subtitle: "Data Collection Methods",
+          text: "The policy explains that J.P. Morgan collects data not only directly from users but also through tracking IP addresses and using cookies for analytics purposes."
+        },
+        {
+          subtitle: "Data from External Sources",
+          text: "J.P. Morgan may obtain user information from external sources, such as social media or credit reporting agencies, and combine it with the data collected through their services."
+        },
+        {
+          subtitle: "Legal Basis for Data Processing",
+          text: "The policy outlines the legal bases for processing personal information, which include consent, legitimate business interests, compliance with laws, and contractual obligations."
+        },
+        {
+          subtitle: "Data Usage",
+          text: "Personal information is used for various purposes, including delivering services, business development, risk management, marketing, and compliance with legal and regulatory requirements."
+        },
+        {
+          subtitle: "Data Retention",
+          text: "J.P. Morgan retains personal data for as long as necessary for the purposes mentioned in the policy, with a focus on accuracy and relevance."
+        },
+        {
+          subtitle: "Mobile App Usage",
+          text: "The policy mentions data collection through mobile applications and mobile-optimized websites, emphasizing the importance of user permission for certain information, like geolocation."
+        },
+        {
+          subtitle: "Data Sharing",
+          text: "J.P. Morgan shares personal information with affiliates, business units, and third parties when it's legally permissible and enhances services. They also disclose information as required by law or for fraud prevention."
+        },
+        {
+          subtitle: "International Data Transfer",
+          text: "As a global company, J.P. Morgan may transfer personal information across borders but commits to handling it as described in the privacy policy and in compliance with relevant laws."
+        },
+        {
+          subtitle: "User Rights",
+          text: "Users have rights regarding their personal information, such as access, rectification, erasure, objection, and the right to lodge complaints with data protection authorities. The policy encourages users to exercise these rights."
+        },
+        {
+          subtitle: "Notice of Changes",
+          text: "J.P. Morgan commits to notifying users of any changes to their privacy policies and practices."
+        },
+        {
+          subtitle: "Contact Information",
+          text: "The policy provides contact details for users to address questions, concerns, or requests related to their personal information."
+        },
+        {
+          subtitle: "Advertising Practices",
+          text: "J.P. Morgan assures users that they do not allow third parties to collect personal information for advertising purposes without appropriate notice and choice."
+        }
+      ],
+      vigencyOfPrivacy: 'not found',
+      conditionsTerms: [
+        {
+          "subtitle": "User Agreement",
+          "text": "By accessing the website, users agree to abide by the terms and conditions outlined herein. The terms are subject to change without prior notice."
+        },
+        {
+          "subtitle": "Prohibited Activities",
+          "text": "Unauthorized use of the website, including unauthorized entry, password misuse, or any form of data misuse, is strictly prohibited."
+        },
+        {
+          "subtitle": "Information Disclosure",
+          "text": "Users acknowledge that their provided information may be disclosed to JPMorgan affiliates, other entities with consent, or as required by law, with consent to global transmission."
+        },
+        {
+          "subtitle": "Monitoring",
+          "text": "User activity on the website may be monitored, tracked, and recorded, with user consent."
+        },
+        {
+          "subtitle": "Copyright",
+          "text": "Website content, except as stated otherwise, is owned by JPMorgan and may not be copied or used without prior written consent, except as permitted by law."
+        },
+        {
+          "subtitle": "Trademarks",
+          "text": "Trademarks like 'JPMorgan,' 'Chase,' and others are owned by JPMorgan and cannot be used without permission."
+        },
+        {
+          "subtitle": "Information Accuracy",
+          "text": "Information on the website is for informational purposes only and not an offer or solicitation for financial products or services. Users should seek professional advice."
+        },
+        {
+          "subtitle": "Investment Risks",
+          "text": "Securities and financial products involve risks, and the website does not guarantee future performance. Changes in market conditions can affect investments."
+        },
+        {
+          "subtitle": "Use Restrictions",
+          "text": "Users agree not to engage in activities contrary to applicable law, regulations, or agreements with JPMorgan and not to use automated processes without permission."
+        },
+        {
+          "subtitle": "Service Disruptions",
+          "text": "JPMorgan is not liable for disruptions in website access, which can result from various factors beyond its control."
+        },
+        {
+          "subtitle": "External Links",
+          "text": "The website may contain links to unaffiliated websites. JPMorgan disclaims responsibility for the content and security of such sites."
+        },
+        {
+          "subtitle": "Legal Entity Disclosure",
+          "text": "Various J.P. Morgan entities are identified, and services offered may vary by location."
+        },
+        {
+          "subtitle": "Limitation of Liability",
+          "text": "JPMorgan disclaims warranties and limits liability, including for indirect or consequential damages resulting from website use."
+        },
+        {
+          "subtitle": "Enforceability and Governing Law",
+          "text": "In case of unenforceable terms, remaining provisions stand. These terms are governed by the laws of New York, and legal actions must be filed in New York courts."
+        }
+      ],
+      vigencyofUseTerms: 'not found',
     },
     {
       name: 'xvideos',
