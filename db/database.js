@@ -440,11 +440,117 @@ export const summariePolicyList = [
     },
     {
       name: 'indeed',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.indeed.com/',
+      privacyTerms: [
+        {
+          "subtitle": "Mission and Affiliates",
+          "text": "Indeed's primary mission is to connect job seekers with employers. The Privacy Policy now includes information about their affiliates and data sharing practices to improve their services."
+        },
+        {
+          "subtitle": "Privacy Policy Update",
+          "text": "The Privacy Policy has been revised to provide greater clarity on how Indeed collects and uses personal and non-personal data, enhancing user trust."
+        },
+        {
+          "subtitle": "Information Detail",
+          "text": "More comprehensive details about data collection, usage, and legal bases for processing are included."
+        },
+        {
+          "subtitle": "Japan Privacy Compliance",
+          "text": "A section on compliance with the Act on Protection of Personal Information (APPI) for Japan has been added."
+        },
+        {
+          "subtitle": "CCPA Updates",
+          "text": "Updates regarding the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), effective from January 1, 2023, are mentioned."
+        },
+        {
+          "subtitle": "Ownership",
+          "text": "Indeed and its affiliates are subsidiaries of Recruit Holdings Co. Ltd., a publicly traded Japanese parent company."
+        },
+        {
+          "subtitle": "Notification of Changes",
+          "text": "Users will receive notifications of significant data usage changes via email or site notices, with a 30-day notice period."
+        },
+        {
+          "subtitle": "Controller and Processor",
+          "text": "Clear distinctions are made regarding Indeed's roles as a controller or processor of personal information for job seekers and employers."
+        },
+        {
+          "subtitle": "Important Definitions",
+          "text": "Key definitions like 'Job Seeker,' 'Employer,' 'Personal Data,' and more are provided for clarity."
+        },
+        {
+          "subtitle": "Data Collection and Use",
+          "text": "Detailed information is provided on the types of data collected and the purposes for processing."
+        },
+        {
+          "subtitle": "Retention of Information",
+          "text": "Users are informed about data retention periods and criteria."
+        },
+        {
+          "subtitle": "User Feedback",
+          "text": "Users can provide feedback and ratings to contribute to service improvement."
+        }
+      ],
+      vigencyOfPrivacy: '04/09/23',
+      conditionsTerms: [
+        {
+          "subtitle": "User-Requested Questions",
+          "text": "Users are responsible for creating screening questions when using the automated phone screen product."
+        },
+        {
+          "subtitle": "Recording and Analysis",
+          "text": "Indeed records Job Seekers' answers and may analyze recordings in line with its Privacy Policy."
+        },
+        {
+          "subtitle": "User Indemnification",
+          "text": "Users must defend Indeed against claims arising from posted content."
+        },
+        {
+          "subtitle": "Job Ad Analytics",
+          "text": "Indeed provides analytics data on Job Ads and Employer accounts."
+        },
+        {
+          "subtitle": "Unpaid Invoices",
+          "text": "Unpaid invoices can result in product suspension."
+        },
+        {
+          "subtitle": "Data Analysis",
+          "text": "User interactions may be used for data analysis and site improvement."
+        },
+        {
+          "subtitle": "Communication",
+          "text": "Messages sent through the platform may be used for data analysis."
+        },
+        {
+          "subtitle": "Screening Tools",
+          "text": "Users must comply with laws, ensure job-related questions, and provide accommodations as required."
+        },
+        {
+          "subtitle": "Availability and Quality",
+          "text": "Indeed offers virtual communication tools without guaranteeing availability or quality."
+        },
+        {
+          "subtitle": "User Responsibility",
+          "text": "Users must accommodate individuals with disabilities."
+        },
+        {
+          "subtitle": "Third-Party Services",
+          "text": "Indeed collaborates with third-party providers for virtual interviews."
+        },
+        {
+          "subtitle": "Recording Interviews",
+          "text": "Employers may record virtual interviews with consent and must handle storage and access."
+        },
+        {
+          "subtitle": "Company Pages and Branding",
+          "text": "Employers are responsible for Company Page content and may incur charges for enhanced features."
+        },
+        {
+          "subtitle": "Modern Slavery",
+          "text": "Indeed is committed to preventing modern slavery and human trafficking in its business operations."
+        }
+      ],
+      vigencyofUseTerms: '06/09/23',
     },
     {
       name: 'zoom',
