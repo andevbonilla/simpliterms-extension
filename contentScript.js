@@ -123,14 +123,6 @@
                   }
                 }
           }
-          console.log({
-                          termsOfPrivacy, 
-                          termsOfUse, 
-                          ifPrivacy, 
-                          ifTerms, 
-                          host: window.location.host, 
-                          policyToAccept
-                      }, "perrooooo")
           chrome.storage.sync.set({
             'summary': {
                           termsOfPrivacy, 

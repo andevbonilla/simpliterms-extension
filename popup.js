@@ -21,6 +21,18 @@ document.addEventListener("DOMContentLoaded", async() => {
     verifyIfThereArePolicies(summaryInfo.terms)
   })
 
+  const showSummaries = (list) => {
+    console.log(list, "putaaaaaa");
+    let html = ''
+    for (const keypoint of list) {
+      html += `<li>
+                 <h3>${keypoint.subtitle}</h3>
+                 <p>${keypoint.text}</p>
+               </li>`
+    }
+    return html
+  }
+
   privacyButton.addEventListener('click', ()=>{
     privacyButton.className = 'selected'
     termButton.className = ''
@@ -31,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     if (terms.length === 0) {
       summaryHtmlText.innerHTML = `<a href="https://simpliterms.com/#pricing" target="_blank">Upgrade to pro</a> plan to be able to generate summaries with AI in real time.`
     }else{
-      summaryHtmlText.innerHTML = `wewewewe`;
+      summaryHtmlText.innerHTML = showSummaries(terms);
     }
   }
 
