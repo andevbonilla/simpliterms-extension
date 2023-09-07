@@ -1,6 +1,38 @@
 (() => {
 
   setTimeout(() => {
+
+      const requestSummaryInfo = (tokenValidator) => {
+        return new Promise((resolve, reject) => {
+
+            let webpageName = ''
+            if (window.location.host.split('.') > 1) {
+            webpageName = window.location.host.split('.')[window.location.host.split('.').length-2].trim();
+            }
+            
+            fetch(`http://localhost:4200/api/summary/google`, {
+                                                    method: 'GET',
+                                                    headers: {
+                                                        'x-token': tokenValidator,
+                                                    },
+                                                })
+            .then(response => {
+                if (response) {
+                return response.json();
+                } else {
+                console.error("error")
+                return;
+                }
+            })
+            .then(data => {
+                resolve(data)
+            })
+            .catch(error => {
+                reject(error)
+            });
+            
+        })
+      }
       // hacer peticion al backend para poder recibir la lista de summaries estaticos
       const listUrls = [
           {
@@ -48,6 +80,8 @@
       // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
       const listOfCookies = document.cookie.split(';');
       let tokenValidator = '';
+      let termsOfPrivacy = []
+      let termsOfUse = []
 
       if (listOfCookies) {
         for (const cookie of listOfCookies) {
@@ -62,70 +96,21 @@
         chrome.storage.sync.set({
           'xtoken': tokenValidator
         });
-
-        let webpageName = ''
-        if (window.location.host.split('.') > 1) {
-          webpageName = window.location.host.split('.')[window.location.host.split('.').length-2].trim();
-        }
+        requestSummaryInfo(tokenValidator).then(data=>{termsOfPrivacy = data.summaryDB.privacyTerms,
+                                                       termsOfUse = data.summaryDB.conditionsTerms })
+                                          .catch(err=> console.log(err, 'errrrrrrrrrr'))
         
-        fetch(`http://localhost:4200/api/summary/google`, {
-                                                method: 'GET',
-                                                headers: {
-                                                    'x-token': tokenValidator,
-                                                },
-                                            })
-          .then(response => {
-            if (response) {
-              return response.json();
-            } else {
-              console.error("error")
-              return;
-            }
-          })
-          .then(data => {
-            console.log(data, "desde el servidorrr");
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-
       }else{
 
         chrome.storage.sync.get('xtoken', ({xtoken}) => {
           tokenValidator = xtoken;
-          console.log(tokenValidator)
-          let webpageName = ''
-          if (window.location.host.split('.') > 1) {
-            webpageName = window.location.host.split('.')[window.location.host.split('.').length-2].trim();
-          }
-          
-          fetch(`http://localhost:4200/api/summary/google`, {
-                                                  method: 'GET',
-                                                  headers: {
-                                                      'x-token': tokenValidator,
-                                                  },
-                                              })
-            .then(response => {
-              if (response) {
-                return response.json();
-              } else {
-                console.error("error")
-                return;
-              }
-            })
-            .then(data => {
-              console.log(data, "desde el servidorrr");
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
+          requestSummaryInfo(tokenValidator).then(data=>{termsOfPrivacy = data.summaryDB.privacyTerms,
+                                                         termsOfUse = data.summaryDB.conditionsTerms })
+                                            .catch(err=> console.log(err, 'errrrrrrrrrr'))
         });
 
       }
       
-      let termsSummary = '';
-      let privacySummary = '';
-      let cookiesSummary = '';
       let policyToAccept = []
 
       let ifPrivacy =  false;
@@ -180,14 +165,9 @@
       ];
 
       
-      for (const summaryObj of listUrls) {
-        if (window.location.host.includes(summaryObj.policyWebpage)) {
 
-          termsSummary = summaryObj.conditionsTerms;
-          privacySummary = summaryObj.privacyTerms;
-          cookiesSummary = summaryObj.cookiesTerms;
           
-          for (const tag of linksTag) {  
+      for (const tag of linksTag) {  
  
             for (const option of privacyPosibilities) {
   
@@ -206,16 +186,14 @@
                 ifTerms = true;
               }
             }
-          }
-          
-        }
       }
+          
+
 
       chrome.storage.sync.set({
         'summary': {
-                      termsSummary, 
-                      privacySummary, 
-                      cookiesSummary, 
+                      termsOfPrivacy, 
+                      termsOfUse, 
                       ifPrivacy, 
                       ifTerms, 
                       host: window.location.host, 
