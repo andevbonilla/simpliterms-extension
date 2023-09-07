@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", async() => {
 
   let summaryInfo = {
-    privacy: '',
-    terms: '',
-    cookies: ''
+    privacy: [],
+    terms: []
   };
 
   const summaryHtmlText = document.getElementById('simpli-summary');
@@ -32,13 +31,13 @@ document.addEventListener("DOMContentLoaded", async() => {
     if (terms.length === 0) {
       summaryHtmlText.innerHTML = `<a href="https://simpliterms.com/#pricing" target="_blank">Upgrade to pro</a> plan to be able to generate summaries with AI in real time.`
     }else{
-      summaryHtmlText.innerHTML = terms;
+      summaryHtmlText.innerHTML = `wewewewe`;
     }
   }
 
   chrome.storage.sync.get('summary', (obj) => {
 
-    verifyIfThereArePolicies(obj.summary.termsSummary)
+    verifyIfThereArePolicies(obj.summary.termsOfUse)
 
     if (obj.summary.host) {
       hostname.innerHTML = obj.summary.host;
@@ -55,9 +54,8 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
     
     summaryInfo = {
-      privacy: obj.summary.privacySummary,
-      terms: obj.summary.termsSummary,
-      cookies: obj.summary.cookiesSummary
+      privacy: obj.summary.termsOfPrivacy,
+      terms: obj.summary.termsOfUse
     }
 
   });
