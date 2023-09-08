@@ -5,15 +5,19 @@ document.addEventListener("DOMContentLoaded", async() => {
     terms: []
   };
 
+  // not logged pages
+  const notloggedPage = document.getElementById('not-logged');
+
+  // logged part
+  const loggedPage = document.getElementById('logged')
   const summaryHtmlText = document.getElementById('simpli-summary');
   const defaultText = document.getElementById('default-text');
   const detectedText = document.getElementById('detected-text');
   const defaultHostname = document.getElementById('default-hostname');
   const hostname = document.getElementById('hostname');
   const policyList = document.getElementById('policy-list');
-
-  const termButton = document.getElementById('terms-buttom')
-  const privacyButton = document.getElementById('privacy-button')
+  const termButton = document.getElementById('terms-buttom');
+  const privacyButton = document.getElementById('privacy-button');
 
   termButton.addEventListener('click', ()=>{
     termButton.className = 'selected'
@@ -48,6 +52,9 @@ document.addEventListener("DOMContentLoaded", async() => {
   }
 
   chrome.storage.sync.get('summary', (obj) => {
+
+    loggedPage.style.display = "block";
+    notloggedPage.style.display = "none";
 
     verifyIfThereArePolicies(obj.summary.termsOfUse)
 

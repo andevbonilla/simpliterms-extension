@@ -1,3 +1,30 @@
+/* sign up pages */
+.not-logged{
+    text-align: center;
+}
+.not-logged h2{
+    margin-bottom: 3rem;
+    font-size: 1.2rem;
+}
+.sign{
+    background-color: #5712DF;
+    color: white;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.bottom-text{
+    margin-top: 3rem;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* logged pages */
+.logged{
+    display: none;
+}
+
 .container{
     margin: 0;
     height: 100%;

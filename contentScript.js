@@ -7,8 +7,7 @@
       let tokenValidator = '';
       let termsOfPrivacy = [];
       let termsOfUse = [];
-      let policyToAccept = []
-
+      let policyToAccept = [];
       let ifPrivacy =  false;
       let ifTerms =  false;
       const linksTag = document.querySelectorAll('a');
@@ -69,13 +68,20 @@
         }
       }
 
+      const selectHostPage = (page) => {
+        if (page.split('.')[0].toString().trim() !== 'www') {
+          return page.split('.')[0]
+        }else{
+          return page.split('.')[1]
+        }
+      }
+
       const requestSummaryInfo = (tokenValidator) => {
-        console.log("entrannndoooo")
         return new Promise((resolve, reject) => {
 
             let webpageName = ''
             if (window.location.host.split('.') > 1) {
-               webpageName = window.location.host.split('.')[window.location.host.split('.').length-2].trim();
+               webpageName = selectHostPage(window.location.host);
             }
             
             fetch(`http://localhost:4200/api/summary/google`, {
@@ -104,7 +110,6 @@
 
       const assignValues = () => {
           for (const tag of linksTag) {  
-    
                 for (const option of privacyPosibilities) {
       
                   if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {

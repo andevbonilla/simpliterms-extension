@@ -34,19 +34,27 @@
       <!-- main content -->
       <main>
 
-        <h2 id="default-text" class="semi-important">You're in: <span class="important" id="default-hostname"></span></h2>
-        <h2 id="detected-text" style="display: none;" class="semi-important">We detect that you must accept: <span class="important" id="policy-list">loading...</span> in: <span class="important" id="hostname"></span></h2>
-        
-        <div class="options-menu">
-          <button id="terms-buttom" class="selected">Terms</button>
-          <button id="privacy-button">Privacy</button>
+        <div class="not-logged" id="not-logged">
+          <h2>Create a free account</h2>
+          <a class="sign" href="https://simpliterms.com/auth/register" target="_blank">SIGN UP</a>
+          <p class="bottom-text">Already have an account? <a href="https://simpliterms.com/auth/login" target="_blank">Log in</a></p>
         </div>
 
-        <ul id="simpli-summary" class="sumary-text">
-        </ul>
+        <div class="logged" id="logged">
+          <h2 id="default-text" class="semi-important">You're in: <span class="important" id="default-hostname"></span></h2>
+          <h2 id="detected-text" style="display: none;" class="semi-important">We detect that you must accept: <span class="important" id="policy-list">loading...</span> in: <span class="important" id="hostname"></span></h2>
+          
+          <div class="options-menu">
+            <button id="terms-buttom" class="selected">Terms</button>
+            <button id="privacy-button">Privacy</button>
+          </div>
+  
+          <ul id="simpli-summary" class="sumary-text">
+          </ul>
+  
+          <p id="disclaimer" class="disclaimer"><span class="important">Disclaimer: </span>This summary seeks to summarize the policies of the page you are accessing. It is important to note that this summary has been generated with artificial intelligence, so it may not be exact, contain errors and erroneous information. We recommend checking the official source for this page's policies and only using simpliTerms as an aid.</p>
+        </div>
 
-        <p id="disclaimer" class="disclaimer"><span class="important">Disclaimer: </span>This summary seeks to summarize the policies of the page you are accessing. It is important to note that this summary has been generated with artificial intelligence, so it may not be exact, contain errors and erroneous information. We recommend checking the official source for this page's policies and only using simpliTerms as an aid.</p>
-      
       </main>
 
     </div>
