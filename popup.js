@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", async() => {
   })
 
   const showSummaries = (list) => {
-    console.log(list, "putaaaaaa");
     let html = ''
     for (const keypoint of list) {
       html += `<li>
