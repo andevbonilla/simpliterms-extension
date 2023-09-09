@@ -1385,6 +1385,14 @@ export const summariePolicyList = [
       vigencyofUseTerms: '15/08/22',
     },
     {
+      name: 'simpliterms',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
       name: 'example',
       policyWebpage: '',
       privacyTerms: [],

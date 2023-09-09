@@ -9,6 +9,7 @@
       let termsOfUse = [];
       let ifPrivacy =  false;
       let ifTerms =  false;
+      let isAuthenticate = false;
       const linksTag = document.querySelectorAll('a');
 
       const privacyPosibilities = [
@@ -107,10 +108,24 @@
         })
       }
 
-      const assignValues = () => {
+      const assignValues = (auth) => {
+
+          if (auth === false) {
+            chrome.storage.sync.set({
+            'summary': {
+                          termsOfPrivacy: [], 
+                          termsOfUse: [], 
+                          ifPrivacy: false, 
+                          ifTerms: false, 
+                          host: window.location.host,
+                          isAuthenticate
+                      }
+            });
+            return;
+          }
+
           for (const tag of linksTag) {  
                 for (const option of privacyPosibilities) {
-      
                   if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
                     ifPrivacy = true;
                   }
@@ -127,9 +142,11 @@
                           termsOfUse, 
                           ifPrivacy, 
                           ifTerms, 
-                          host: window.location.host
+                          host: window.location.host,
+                          isAuthenticate
                       }
           });
+
       }
       
       if (tokenValidator !== '') {
@@ -137,19 +154,29 @@
         chrome.storage.sync.set({
           'xtoken': tokenValidator
         });
-        requestSummaryInfo(tokenValidator).then(data=>{termsOfPrivacy = data.summaryDB.privacyTerms
-                                                       termsOfUse = data.summaryDB.conditionsTerms
-                                                       assignValues() })
-                                          .catch(err=> console.log(err, 'errrrrrrrrrr'))
+        requestSummaryInfo(tokenValidator).then(data=>{ termsOfPrivacy = data.summaryDB.privacyTerms;
+                                                        termsOfUse = data.summaryDB.conditionsTerms;
+                                                        isAuthenticate = true; 
+                                                        assignValues(isAuthenticate); 
+                                          })
+                                          .catch(err=> {
+                                            console.log(err, "erororoorororoor");
+                                            assignValues(isAuthenticate);
+                                          })
         
       }else{
 
         chrome.storage.sync.get('xtoken', ({xtoken}) => {
           tokenValidator = xtoken;
-          requestSummaryInfo(tokenValidator).then(data=>{termsOfPrivacy = data.summaryDB.privacyTerms
-                                                         termsOfUse = data.summaryDB.conditionsTerms
-                                                         assignValues() })
-                                            .catch(err=> console.log(err, 'errrrrrrrrrr'))
+          requestSummaryInfo(tokenValidator).then(data=>{ termsOfPrivacy = data.summaryDB.privacyTerms;
+                                                          termsOfUse = data.summaryDB.conditionsTerms;
+                                                          isAuthenticate = true; 
+                                                          assignValues(isAuthenticate); 
+                                            })
+                                            .catch(err=> {
+                                              console.log(err, "erororoorororoor");
+                                              assignValues(isAuthenticate);
+                                            })
         });
 
       }

@@ -50,12 +50,20 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
   }
 
+  const verifyIfAuthenticated = (auth) => {
+    if (auth === false) {
+      notloggedPage.style.display = "block";
+      loggedPage.style.display = "none";
+    }else{
+      loggedPage.style.display = "block";
+      notloggedPage.style.display = "none";
+    }
+  }
+
   chrome.storage.sync.get('summary', (obj) => {
 
-    loggedPage.style.display = "block";
-    notloggedPage.style.display = "none";
-
-    verifyIfThereArePolicies(obj.summary.termsOfUse)
+    verifyIfAuthenticated(obj.summary.isAuthenticate);
+    verifyIfThereArePolicies(obj.summary.termsOfUse);
 
     if (obj.summary.host) {
       hostname.innerHTML = obj.summary.host;
