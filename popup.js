@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
     
     if (obj.summary.ifPrivacy) {
-        policyList.innerHTML =  `${obj.summary.policyToAccept.join(', ')}`
+        policyList.innerHTML =  `${(obj.summary.ifPrivacy) ? 'Privacy Policy' : ''}, ${(obj.summary.ifTerms) ? 'Terms of Use' : ''}`
         defaultText.style.display = 'none';
         detectedText.style.display = 'block';
     }else{

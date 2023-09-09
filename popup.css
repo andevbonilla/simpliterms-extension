@@ -47,11 +47,23 @@ h2{
     border-radius: 100%;
     margin-right: 0.5rem;
 }
-.sumary-text{
-    font-size: .9rem;
-    line-height: 1.6rem;
-    text-align: justify;
+
+.simpli-summary{
+    padding: 1rem 0;
+    margin: 0;
+    line-height: 1.5rem;
+    list-style: none;
 }
+
+.simpli-summary h3{
+    font-size: 1rem;
+    margin: 0;
+}
+
+.simpli-summary p{
+    font-size: .8rem;
+}
+
 .semi-important{
     font-weight: 600;
 }

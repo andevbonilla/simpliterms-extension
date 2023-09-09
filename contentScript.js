@@ -7,7 +7,6 @@
       let tokenValidator = '';
       let termsOfPrivacy = [];
       let termsOfUse = [];
-      let policyToAccept = [];
       let ifPrivacy =  false;
       let ifTerms =  false;
       const linksTag = document.querySelectorAll('a');
@@ -113,17 +112,11 @@
                 for (const option of privacyPosibilities) {
       
                   if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
-                    if (!policyToAccept.includes(tag.innerHTML)) {
-                      policyToAccept.push(tag.innerHTML)
-                    }
                     ifPrivacy = true;
                   }
                 }
                 for (const option of termsPosibilities) {
                   if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
-                    if (!policyToAccept.includes(tag.innerHTML)) {
-                      policyToAccept.push(tag.innerHTML)
-                    }
                     ifTerms = true;
                   }
                 }
@@ -134,8 +127,7 @@
                           termsOfUse, 
                           ifPrivacy, 
                           ifTerms, 
-                          host: window.location.host, 
-                          policyToAccept
+                          host: window.location.host
                       }
           });
       }
