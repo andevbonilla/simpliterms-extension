@@ -1204,7 +1204,7 @@ export const summariePolicyList = [
     },
     {
       name: 'microsoft',
-      policyWebpage: '',
+      policyWebpage: 'https://privacy.microsoft.com/',
       privacyTerms: [
         {
           subtitle: "Privacy Importance",
@@ -1385,7 +1385,341 @@ export const summariePolicyList = [
       vigencyofUseTerms: '15/08/22',
     },
     {
+      name: 'signup.live',
+      policyWebpage: 'https://signup.live.com',
+      privacyTerms: [{
+        subtitle: "Privacy Importance",
+        text:
+          "Microsoft emphasizes the importance of user privacy in this statement, explaining what personal data they collect, how they process it, and for what purposes."
+      },
+      {
+        subtitle: "Diverse Product Range",
+        text:
+          "Microsoft offers a wide range of products, including server products for businesses, home devices, educational software, and developer services. This statement applies to all Microsoft products mentioned, including services, websites, apps, software, servers, and devices."
+      },
+      {
+        subtitle: "Young User Focus",
+        text:
+          "Microsoft provides a dedicated section for young users, highlighting information relevant to them, ensuring age-appropriate privacy considerations."
+      },
+      {
+        subtitle: "State-Specific Privacy",
+        text:
+          "For users in the United States, Microsoft provides additional information about data privacy, including state-specific data privacy laws and health consumer data privacy."
+      },
+      {
+        subtitle: "Data Collection",
+        text:
+          "Microsoft collects user data through various interactions and product usage. Users may provide data directly, and Microsoft may obtain data from third parties."
+      },
+      {
+        subtitle: "Data Usage",
+        text:
+          "Microsoft uses collected data to provide, improve, personalize, and market products, as well as for business operations and research."
+      },
+      {
+        subtitle: "Data Sharing",
+        text:
+          "Microsoft shares personal data with consent, for transactions, with subsidiaries, vendors, and as required by law or to protect users and property. Data sharing may also include personalized advertising."
+      },
+      {
+        subtitle: "Data Control",
+        text:
+          "Users can control their data collection and usage preferences, exercise data rights, and manage their Microsoft account settings. Some products may require specific data to function."
+      },
+      {
+        subtitle: "Additional Information",
+        text:
+          "This privacy statement covers cookies, EU-U.S. Privacy Shield, contact information, data collection for minors, and additional privacy information. It also details privacy considerations for products used within organizations and the types of accounts Microsoft offers. Lastly, it addresses data collection for users under 13 years old, outlining strict data protection measures."
+      }],
+      vigencyOfPrivacy: '00/08/23',
+      conditionsTerms: [
+        {
+          "subtitle": "License to Microsoft:",
+          "text": "However, when you share your content on Microsoft services, you grant Microsoft a worldwide and royalty-free license to use, store, display, and transmit that content solely for the purpose of operating, providing, and improving the services. This license persists even after you stop using the services, but Microsoft will not use your content for advertising without your explicit consent."
+        },
+        {
+          "subtitle": "Code of Conduct",
+          "text": "Users must adhere to strict rules prohibiting illegal activities, spam, inappropriate content, and more."
+        },
+        {
+          "subtitle": "Service Usage",
+          "text": "users must establish and actively maintain a Microsoft account, serving as the gateway to a range of Microsoft products and features, encompassing email, cloud storage, and software applications like Microsoft Office. Regular usage of this account is essential to prevent potential suspension or closure, which may occur if the account remains inactive for an extended period, potentially resulting in the loss of access to stored content and data."
+        },
+        {
+          "subtitle": "Account Closure",
+          "text": "Users can close their account anytime, but this may result in data deletion and loss of product access."
+        },
+        {
+          "subtitle": "Professional or Educational Accounts",
+          "text": "If using a professional or educational email address, the domain owner may control the account and data."
+        },
+        {
+          "subtitle": "Technical Support",
+          "text": "Customer support and technical assistance are available but may not apply to preview versions."
+        }
+      ],
+      vigencyofUseTerms: '15/08/22',
+    },
+    {
+      name: 'outlook',
+      policyWebpage: 'https://outlook.office.com/',
+      privacyTerms: [{
+        subtitle: "Privacy Importance",
+        text:
+          "Microsoft emphasizes the importance of user privacy in this statement, explaining what personal data they collect, how they process it, and for what purposes."
+      },
+      {
+        subtitle: "Diverse Product Range",
+        text:
+          "Microsoft offers a wide range of products, including server products for businesses, home devices, educational software, and developer services. This statement applies to all Microsoft products mentioned, including services, websites, apps, software, servers, and devices."
+      },
+      {
+        subtitle: "Young User Focus",
+        text:
+          "Microsoft provides a dedicated section for young users, highlighting information relevant to them, ensuring age-appropriate privacy considerations."
+      },
+      {
+        subtitle: "State-Specific Privacy",
+        text:
+          "For users in the United States, Microsoft provides additional information about data privacy, including state-specific data privacy laws and health consumer data privacy."
+      },
+      {
+        subtitle: "Data Collection",
+        text:
+          "Microsoft collects user data through various interactions and product usage. Users may provide data directly, and Microsoft may obtain data from third parties."
+      },
+      {
+        subtitle: "Data Usage",
+        text:
+          "Microsoft uses collected data to provide, improve, personalize, and market products, as well as for business operations and research."
+      },
+      {
+        subtitle: "Data Sharing",
+        text:
+          "Microsoft shares personal data with consent, for transactions, with subsidiaries, vendors, and as required by law or to protect users and property. Data sharing may also include personalized advertising."
+      },
+      {
+        subtitle: "Data Control",
+        text:
+          "Users can control their data collection and usage preferences, exercise data rights, and manage their Microsoft account settings. Some products may require specific data to function."
+      },
+      {
+        subtitle: "Additional Information",
+        text:
+          "This privacy statement covers cookies, EU-U.S. Privacy Shield, contact information, data collection for minors, and additional privacy information. It also details privacy considerations for products used within organizations and the types of accounts Microsoft offers. Lastly, it addresses data collection for users under 13 years old, outlining strict data protection measures."
+      }],
+      vigencyOfPrivacy: '00/08/23',
+      conditionsTerms: [
+        {
+          "subtitle": "License to Microsoft:",
+          "text": "However, when you share your content on Microsoft services, you grant Microsoft a worldwide and royalty-free license to use, store, display, and transmit that content solely for the purpose of operating, providing, and improving the services. This license persists even after you stop using the services, but Microsoft will not use your content for advertising without your explicit consent."
+        },
+        {
+          "subtitle": "Code of Conduct",
+          "text": "Users must adhere to strict rules prohibiting illegal activities, spam, inappropriate content, and more."
+        },
+        {
+          "subtitle": "Service Usage",
+          "text": "users must establish and actively maintain a Microsoft account, serving as the gateway to a range of Microsoft products and features, encompassing email, cloud storage, and software applications like Microsoft Office. Regular usage of this account is essential to prevent potential suspension or closure, which may occur if the account remains inactive for an extended period, potentially resulting in the loss of access to stored content and data."
+        },
+        {
+          "subtitle": "Account Closure",
+          "text": "Users can close their account anytime, but this may result in data deletion and loss of product access."
+        },
+        {
+          "subtitle": "Professional or Educational Accounts",
+          "text": "If using a professional or educational email address, the domain owner may control the account and data."
+        },
+        {
+          "subtitle": "Technical Support",
+          "text": "Customer support and technical assistance are available but may not apply to preview versions."
+        }
+      ],
+      vigencyofUseTerms: '15/08/22',
+    },
+    {
       name: 'simpliterms',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'booking',
+      policyWebpage: 'https://www.booking.com/',
+      privacyTerms: [
+        {
+          subtitle: "Applicability",
+          text: "The Privacy Policy applies to all Booking.com services, including their website, apps, and partner platforms, covering all information collected through these channels."
+        },
+        {
+          subtitle: "Updates",
+          text: "Booking.com may update the Privacy Policy, and significant changes will be communicated to users before they take effect."
+        },
+        {
+          subtitle: "Data Types",
+          text: "Personal data collected by Booking.com includes basic information like names, contact details, and payment information, as well as data from devices such as IP addresses and browser settings."
+        },
+        {
+          subtitle: "Purpose",
+          text: "Data is primarily collected to facilitate travel reservations and enhance services, including informing users about discounts, special offers, and relevant products or services."
+        },
+        {
+          subtitle: "Sharing Data",
+          text: "Booking.com shares data with travel providers, financial institutions, advertisers, affiliates, and governmental authorities when required by law."
+        },
+        {
+          subtitle: "Security and Control",
+          text: "Booking.com implements security measures to protect user data, and users have control over their data and can exercise rights to access, rectify, or delete it."
+        }
+      ],
+      vigencyOfPrivacy: '8/08/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Accuracy Disclaimer",
+          "text": "Booking.com relies on service provider information and cannot guarantee content accuracy. Users should be aware of potential errors or missing details."
+        },
+        {
+          "subtitle": "No Endorsement",
+          "text": "Booking.com does not endorse service providers. Users are solely responsible for their choices, and Booking.com doesn't guarantee service quality."
+        },
+        {
+          "subtitle": "Payment Commitment",
+          "text": "Users commit to paying for their travel experiences, including all charges and taxes, by booking."
+        },
+        {
+          "subtitle": "Accessibility Needs",
+          "text": "Users with accessibility requests should contact Booking.com or service providers as needed."
+        },
+        {
+          "subtitle": "Genius Program",
+          "text": "Booking.com's Genius program offers discounts based on changing criteria. Users should check the current terms."
+        },
+        {
+          "subtitle": "Reward Types",
+          "text": "Booking.com may grant rewards like credits or refunds based on specific criteria. Users must adhere to the conditions outlined by Booking.com to utilize these rewards effectively."
+        },
+        {
+          "subtitle": "Price Match",
+          "text": "Booking.com offers a Price Match guarantee for identical accommodations found cheaper elsewhere."
+        },
+        {
+          "subtitle": "Linked Travel Services",
+          "text": "Adding services within 24 hours may not grant package trip rights. Insolvency protection applies to payments to Booking.com. Users should consider these factors when modifying their bookings."
+        }
+      ],
+      vigencyofUseTerms: '14/02/22',
+    },
+    {
+      name: 'airbnb',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'canva',
+      policyWebpage: 'https://www.canva.com/',
+      privacyTerms: [
+        {
+          subtitle: "Sharing Anonymized Data",
+          text: "Canva may share aggregated and anonymized data with third parties, which does not contain personally identifiable information."
+        },
+        {
+          subtitle: "Sharing with Authorities",
+          text: "Canva may access, preserve, and share user information with law enforcement and regulatory authorities if they have a good-faith belief that it's necessary to detect, prevent, or address fraud, illegal activity, or protect Canva's rights or others."
+        },
+        {
+          subtitle: "Advertising",
+          text: "Canva partners with third-party advertising networks and social media platforms to deliver personalized ads on its service and other sites. User information may be shared with advertising partners to deliver relevant ads."
+        },
+        {
+          subtitle: "Data Transfer and Storage",
+          text: "User information collected through Canva may be stored and processed in various countries worldwide, including the United States, Australia, European Union, and more. Canva transfers data across borders but takes steps to ensure data protection compliance."
+        },
+        {
+          subtitle: "Keeping Your Information Safe",
+          text: "Canva takes measures to safeguard user data but cannot guarantee absolute security. Users are responsible for maintaining the secrecy of their passwords."
+        },
+        {
+          subtitle: "User Control",
+          text: "Users can access, correct, download, or delete their account data. They can also opt-out of marketing messages but may receive service-related communications."
+        },
+        {
+          subtitle: "Opting Out of Tracking",
+          text: "Users can adjust settings in their browsers or devices to opt-out of data collection through tracking technologies, like cookies. However, this may impact the functionality of the service."
+        },
+        {
+          subtitle: "Rights Regarding Information",
+          text: "Depending on their location, users may have rights to request access, correction, deletion, or restriction of their personal data. They can also object to certain data processing."
+        },
+        {
+          subtitle: "Data Retention",
+          text: "Canva retains user profile information and content for a reasonable time, particularly for legal and audit obligations."
+        },
+        {
+          subtitle: "Canva for Education",
+          text: "Specific policies apply to students using Canva for Education, with a focus on children's privacy and protection."
+        },
+        {
+          subtitle: "Links to Other Websites and Services",
+          text: "Canva is not responsible for the practices of third-party websites or services linked from Canva's platform."
+        },
+        {
+          subtitle: "Additional Information for European Users",
+          text: "Canva complies with European data protection laws and processes personal data in accordance with GDPR and UK GDPR. Users in these regions have specific rights."
+        },
+        {
+          subtitle: "California and Virginia User Requests",
+          text: "Users in California and Virginia have additional rights under state privacy laws, including the right to access, delete, and opt-out of certain data sharing practices."
+        },
+      ],
+      vigencyOfPrivacy: '07/02/23',
+      conditionsTerms: [
+        {
+            "subtitle": "Service Overview",
+            "text": "Canva is a platform for designing various materials, but users should understand its scope."
+        },
+        {
+            "subtitle": "Usage Requirements",
+            "text": "Users must meet age requirements and adhere to Canva's Acceptable Use Policy, avoiding discriminatory or harmful activities."
+        },
+        {
+            "subtitle": "Restrictions",
+            "text": "Users cannot misuse the service, reverse-engineer it, or engage in data mining or spamming."
+        },
+        {
+            "subtitle": "Security and Privacy",
+            "text": "Canva takes data security seriously and has a privacy policy. Users must accept a Data Processing Addendum for certain data processing."
+        },
+        {
+            "subtitle": "Content Ownership",
+            "text": "Users retain ownership of their content but grant Canva a license to use it. Licensed content has specific terms, and design ownership varies."
+        },
+        {
+            "subtitle": "Website Publishing",
+            "text": "Canva allows website design and publishing, including free and paid options."
+        },
+        {
+            "subtitle": "Magic Studio Apps",
+            "text": "Canva offers AI-powered apps with separate terms."
+        },
+        {
+            "subtitle": "Teams Collaboration",
+            "text": "Collaboration features are available, allowing team owners and administrators control over user content."
+        },
+        {
+            "subtitle": "Billing",
+            "text": "Canva offers both free and paid services, with monthly or annual subscriptions. Pricing may vary by location, and taxes are included. Free trials and pricing changes can occur with notice."
+        }
+      ],
+      vigencyofUseTerms: '17/01/23',
+    },
+    {
+      name: 'cnn',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
