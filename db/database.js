@@ -216,14 +216,6 @@ export const summariePolicyList = [
       vigencyofUseTerms: '01/08/23',
     },
     {
-      name: 'espn',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
-    },
-    {
       name: 'ebay',
       policyWebpage: 'https://www.ebay.com/',
       privacyTerms: [
@@ -1719,12 +1711,126 @@ export const summariePolicyList = [
       vigencyofUseTerms: '17/01/23',
     },
     {
-      name: 'cnn',
+      name: 'bankofamerica',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
       conditionsTerms: [],
       vigencyofUseTerms: '',
+    },
+    {
+      name: 'hsbc',
+      policyWebpage: 'https://www.hsbc.com/privacy-notice',
+      privacyTerms: [
+        {
+          subtitle: "Data Collection",
+          text: "HSBC collects information about your online activities and device, including what you click, view, and how long you spend on pages. They also collect device and internet connection details."
+        },
+        {
+          subtitle: "Data Sources",
+          text: "HSBC gathers data from your interactions with their website, social media sites, and emails you open. This includes information you provide through forms."
+        },
+        {
+          subtitle: "Data Sharing",
+          text: "Some data is shared with partners, cybersecurity companies, and social media platforms. This sharing is for various purposes, including personalized advertising."
+        },
+        {
+          subtitle: "Cookies",
+          text: "HSBC uses cookies and similar technologies. Users can manage their cookie preferences through the Cookie notice."
+        },
+        {
+          subtitle: "Data Usage",
+          text: "HSBC uses collected data for website operation, providing information, improving services, and enhancing security. They may personalize website content and show targeted ads."
+        },
+        {
+          subtitle: "Security Measures",
+          text: "HSBC employs security measures to protect user data, including encryption."
+        },
+        {
+          subtitle: "Data Retention",
+          text: "User data is retained in accordance with legal requirements and HSBC's data retention policy."
+        },
+        {
+          subtitle: "User Rights",
+          text: "Users have the right to access, correct, or delete their personal information and can object to certain data processing."
+        }
+      ],
+      vigencyOfPrivacy: '26/05/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Product and Service Availability",
+          "text": "Not all products and services mentioned on the website may be available in all locations. Eligibility is determined by the relevant HSBC Group member."
+        },
+        {
+          "subtitle": "Local Sites",
+          "text": "Users are subject to both the general Terms and Conditions and the specific terms and conditions of their Local Site. Local Site terms prevail in case of conflicts."
+        },
+        {
+          "subtitle": "Changes",
+          "text": "Information on the website can change without notice, including updates to the Terms and Conditions."
+        },
+        {
+          "subtitle": "Security",
+          "text": "Users registering with a Local Site should keep login credentials confidential. Immediate notification is required in case of unauthorized access."
+        },
+        {
+          "subtitle": "No Investment Advice",
+          "text": "Information on the website is not investment advice, and users should seek professional advice for investments."
+        },
+        {
+          "subtitle": "User Responsibility",
+          "text": "Users are responsible for others using their computer to access the website and must ensure compliance with the Terms."
+        },
+        {
+          "subtitle": "Warranty Limitations",
+          "text": "HSBC disclaims all warranties regarding the website and its content. Use of the website is at the user's risk."
+        },
+        {
+          "subtitle": "Links to Third-Party Sites",
+          "text": "Users are cautioned when following hyperlinks, as HSBC does not endorse third-party sites, and their content may not be verified."
+        },
+        {
+          "subtitle": "Internet E-mail",
+          "text": "Ordinary e-mail is not secure for sending personal or confidential information to HSBC. A secure server should be used."
+        },
+        {
+          "subtitle": "E-mail Alert Service",
+          "text": "The e-mail alert service is subject to terms, and user data is held and used as indicated in the agreement."
+        },
+        {
+          "subtitle": "Trademarks and Copyright",
+          "text": "Content from the website may only be used for personal information and not for commercial purposes. Copyright and trademarks are protected."
+        },
+        {
+          "subtitle": "Not Intended for Children",
+          "text": "The website is not intended for minors."
+        },
+        {
+          "subtitle": "Thomson Reuters Data",
+          "text": "Reuters content is the property of Thomson Reuters and is not part of HSBC Group plc."
+        },
+        {
+          "subtitle": "Social Media Terms and Conditions",
+          "text": "Users engaging with HSBC on social media platforms must comply with terms and conditions outlined. Monitoring and recording of comments may occur."
+        },
+        {
+          "subtitle": "Information Storage and Sharing",
+          "text": "Users are made aware that information shared on social media may be stored on external servers outside their control."
+        },
+        {
+          "subtitle": "Protection of Personal Information",
+          "text": "Users are cautioned against sharing personal, account, or security information on social media."
+        },
+        {
+          "subtitle": "Feedback and Ideas",
+          "text": "HSBC welcomes feedback and ideas through social media but does not guarantee responses. Ideas submitted become non-confidential and non-proprietary."
+        },
+        {
+          "subtitle": "Content Sharing",
+          "text": "Users who tag HSBC grant permission for content sharing and engagement."
+        }
+      ],
+      vigencyofUseTerms: 'not found',
     },
     {
       name: 'example',
