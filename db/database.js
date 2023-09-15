@@ -1532,11 +1532,81 @@ export const summariePolicyList = [
     },
     {
       name: 'simpliterms',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.simpliterms.com/',
+      privacyTerms: [
+        {
+          "subtitle": "Acceptance of Terms",
+          "text": "By using the services or purchasing products on this site, you agree to these Terms and Conditions."
+        },
+        {
+          "subtitle": "Third-Party Products",
+          "text": "Products may be provided by third-party websites, each with its own terms."
+        },
+        {
+          "subtitle": "User Registration",
+          "text": "Some products may require user registration with personal data and password creation. Protect your password; the site is not responsible for third-party access."
+        },
+        {
+          "subtitle": "Purchase Verification",
+          "text": "All purchases are subject to confirmation, including product availability, payment validation, and compliance with payment conditions."
+        },
+        {
+          "subtitle": "Price Validity",
+          "text": "Product prices are only valid for purchases made on this website."
+        },
+        {
+          "subtitle": "License",
+          "text": "Users are granted a license to use purchased products as per the Terms and Conditions."
+        },
+        {
+          "subtitle": "Unauthorized Redistribution",
+          "text": "Redistribution or resale of products, especially software or design items, is prohibited."
+        },
+        {
+          "subtitle": "Property and Warranty",
+          "text": "Users cannot claim intellectual property, and products come with no warranties. The company is not liable for damages, except for fraud or misleading information leading to refunds."
+        },
+        {
+          "subtitle": "Refund Policy",
+          "text": "Refunds are considered only for cases involving program fraud or misleading information; otherwise, no refunds are provided."
+        }
+      ],
+      vigencyOfPrivacy: '10/09/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Data Collection",
+          "text": "simpliterms collects personal information, including names, contact details, and demographics, to enhance user experience and fulfill orders."
+        },
+        {
+          "subtitle": "Information Usage",
+          "text": "The collected data is primarily used for user registration, order processing, and service improvement. Users may receive promotional emails but can opt out."
+        },
+        {
+          "subtitle": "Data Security",
+          "text": "The company employs advanced security measures to protect user information from unauthorized access."
+        },
+        {
+          "subtitle": "Cookies Usage",
+          "text": "Cookies are used for web traffic analysis and personalized service. Users can manage cookie settings in their browsers."
+        },
+        {
+          "subtitle": "Third-Party Links",
+          "text": "The website may contain links to external sites with their privacy policies. Users should review these policies when redirected to third-party websites."
+        },
+        {
+          "subtitle": "Control of Personal Information",
+          "text": "Users can control the collection and use of personal information, including email preferences. simpliterms does not share data without consent unless legally required."
+        },
+        {
+          "subtitle": "Newsletter and Advertising",
+          "text": "Users can opt in or out of receiving newsletters and promotional materials."
+        },
+        {
+          "subtitle": "Policy Changes",
+          "text": "simpliterms reserves the right to update this Privacy Policy, so users are encouraged to review it periodically to stay informed about any changes."
+        }
+      ],
+      vigencyofUseTerms: '10/09/23',
     },
     {
       name: 'booking',
@@ -1603,14 +1673,6 @@ export const summariePolicyList = [
         }
       ],
       vigencyofUseTerms: '14/02/22',
-    },
-    {
-      name: 'airbnb',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
     },
     {
       name: 'canva',
@@ -1712,11 +1774,85 @@ export const summariePolicyList = [
     },
     {
       name: 'bankofamerica',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.bankofamerica.com/',
+      privacyTerms: [
+        {
+          subtitle: "Transparency and Consent",
+          text: "Users must consent to the collection, use, and sharing of their personal information when using the site and mobile apps. Compliance with applicable laws is emphasized."
+        },
+        {
+          subtitle: "Linking to Third-Party Sites",
+          text: "Bank of America provides links to non-affiliated third-party sites. Users are advised to review the privacy and security policies of these sites, as Bank of America is not responsible for them."
+        },
+        {
+          subtitle: "Data Protection",
+          text: "Bank of America employs security measures to protect personal information. In the event of a data breach, timely notification will be provided in accordance with laws and regulations."
+        },
+        {
+          subtitle: "Protection of Children's Privacy",
+          text: "Sites and mobile apps are not intended for users under 13 years old, and personal information should not be provided by them."
+        },
+        {
+          subtitle: "Accuracy of Personal Information",
+          text: "Users are encouraged to keep their personal information accurate and up-to-date, with various methods provided for updates."
+        },
+        {
+          subtitle: "Collection of Personal Information",
+          text: "Personal information is collected through cookies, tracking technologies, and user-provided data for various purposes such as account creation, product registration, surveys, and more."
+        },
+        {
+          subtitle: "Types of Personal Information",
+          text: "Information collected may include contact details, financial information, identifiers, access authorization, communication data, and more."
+        },
+        {
+          subtitle: "Online Behavioral Advertising",
+          text: "Users can opt out of online behavioral advertising, but they may still receive general advertising from Bank of America in some cases. Tailored ads are presented on Bank of America's sites, off-line channels, and non-affiliated third-party sites."
+        },
+        {
+          subtitle: "Third-Party Data Sharing",
+          text: "Users may share their data with third-party aggregation services. Caution is advised, and users should review third-party policies before sharing their information."
+        },
+        {
+          subtitle: "Social Media Engagement",
+          text: "Content shared on Bank of America's social media pages is subject to platform terms. Social share buttons on Bank of America's sites may share browsing information with third parties who own these widgets."
+        }
+      ],
+      vigencyOfPrivacy: '31/01/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Small Business Inclusion",
+          "text": "Small business owners are covered with additional terms in the Commercial Services Appendix."
+        },
+        {
+          "subtitle": "Linked Accounts",
+          "text": "All eligible Bank of America accounts are linked, allowing authorized signatories to act."
+        },
+        {
+          "subtitle": "Service Availability",
+          "text": "Service availability varies by device, and there are differences between online and mobile platforms."
+        },
+        {
+          "subtitle": "Bill Payments",
+          "text": "Timely scheduling is crucial, and payments can be electronic or by check."
+        },
+        {
+          "subtitle": "Insufficient Funds",
+          "text": "Lack of funds may result in non-initiation of transfers and overdraft charges."
+        },
+        {
+          "subtitle": "Overdraft Responsibility",
+          "text": "Users are responsible for overdraft fees caused by initiated transfers."
+        },
+        {
+          "subtitle": "Privacy",
+          "text": "Information sharing for electronic bill presentment and with beneficiaries."
+        },
+        {
+          "subtitle": "Limitation of Liability for Online Banking Transactions",
+          "text": "Reporting compromised passwords and liability for unauthorized transactions."
+        }
+      ],
+      vigencyofUseTerms: '19/04/23',
     },
     {
       name: 'hsbc',
@@ -1831,6 +1967,168 @@ export const summariePolicyList = [
         }
       ],
       vigencyofUseTerms: 'not found',
+    },
+    {
+      name: 'indiehackers',
+      policyWebpage: 'https://www.indiehackers.com/',
+      privacyTerms: [
+        {
+            "subtitle": "Welcome",
+            "text": "Indie Hackers prioritizes the security and privacy of entrusted personal data."
+        },
+        {
+            "subtitle": "Personal Data Definition",
+            "text": "\"Personal Data\" encompasses information related to an identifiable individual, including data on engagement with our Services (e.g., device information, IP address)."
+        },
+        {
+            "subtitle": "Personal Data Collection",
+            "text": "Information collected through forms, forums, contact details, and account creation."
+        },
+        {
+            "subtitle": "Personal Data Usage and Sharing",
+            "text": "We use and share your data for various purposes, including delivering products, communication, personalization, improving services, advertising, harm prevention, security, and legal compliance."
+        },
+        {
+            "subtitle": "Personal Data Sharing",
+            "text": "We share data with affiliates, service providers, and others with consent, as well as in corporate transactions and for legal compliance and harm prevention."
+        },
+        {
+            "subtitle": "Legal Basis for Processing Personal Data",
+            "text": "We process data based on contractual obligations, legal compliance, legitimate business interests, and consent."
+        },
+        {
+            "subtitle": "Your Rights",
+            "text": "Opt-out of electronic communications, exercise data protection rights, and contact us for inquiries."
+        },
+        {
+            "subtitle": "Security and Retention",
+            "text": "We maintain measures to secure Personal Data and retain it during service provision or as required by law."
+        },
+        {
+            "subtitle": "International Data Transfers",
+            "text": "Personal Data may be transferred to countries with different data protection rules, but we ensure compliance with relevant laws."
+        },
+        {
+            "subtitle": "Updates and Notifications",
+            "text": "This Privacy Policy may change due to new services, evolving data practices, or applicable laws. The \"Last updated\" date indicates revisions' effectiveness, and we provide disclosures through the Services where permitted by law."
+        }
+      ],
+      vigencyOfPrivacy: '28/04/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Changes to Terms",
+          "text": "Indie Hackers may update their Terms at any time, and you are bound by these changes if you continue to use the Services. You have the option to reject the new Terms but can no longer use the Services if you do."
+        },
+        {
+          "subtitle": "Account Responsibility",
+          "text": "You must provide accurate registration information and not share your account. You must be of legal age or have parental/guardian permission to use the Services."
+        },
+        {
+          "subtitle": "Compliance with Laws",
+          "text": "You must use the Services in compliance with all applicable laws. Indie Hackers is not responsible for your unlawful use of the Services."
+        },
+        {
+          "subtitle": "Content Restrictions",
+          "text": "You must not contribute harmful, offensive, or infringing content. Violation of these rules can lead to account termination."
+        },
+        {
+          "subtitle": "Intellectual Property",
+          "text": "Respect copyright and intellectual property rights when using or sharing content on Indie Hackers."
+        },
+        {
+          "subtitle": "Dispute Resolution",
+          "text": "Disputes with Indie Hackers will be resolved through arbitration. Class actions are not permitted."
+        },
+        {
+          "subtitle": "Costs",
+          "text": "While basic access is free, Indie Hackers reserves the right to charge for certain Services in the future."
+        },
+        {
+          "subtitle": "Termination",
+          "text": "You can stop using Indie Hackers at any time, but account termination leads to the deletion of associated content. Indie Hackers can terminate accounts for various reasons, including violating their Terms."
+        },
+        {
+          "subtitle": "Apple App Users",
+          "text": "Additional terms apply if you use Indie Hackers' iOS applications via the Apple App Store."
+        },
+        {
+          "subtitle": "Terms of Sale",
+          "text": "Purchases made through Indie Hackers are subject to separate Terms of Sale."
+        },
+        {
+          "subtitle": "Disclaimer",
+          "text": "Indie Hackers and its licensors do not guarantee the accuracy, legality, or decency of content. The Services are provided \"AS IS.\""
+        },
+        {
+          "subtitle": "Limitation of Liability",
+          "text": "Indie Hackers is not liable for indirect, special, or consequential damages, and their liability is limited to a specific amount."
+        },
+        {
+          "subtitle": "Indemnity",
+          "text": "You agree to indemnify Indie Hackers against any third-party claims related to your use of the Services."
+        },
+        {
+          "subtitle": "Miscellaneous",
+          "text": "You are responsible for taxes related to your use of the Services. These Terms constitute the entire agreement between you and Indie Hackers."
+        }
+      ],
+      vigencyofUseTerms: 'not found',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
+    },
+    {
+      name: 'example',
+      policyWebpage: '',
+      privacyTerms: [],
+      vigencyOfPrivacy: '',
+      conditionsTerms: [],
+      vigencyofUseTerms: '',
     },
     {
       name: 'example',
