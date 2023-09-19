@@ -1,7 +1,7 @@
 export const summariePolicyList = [
     {
       name: 'jpmorgan',
-      policyWebpage: 'https://www.jpmorgan.com/',
+      policyWebpage: 'https://www.jpmorgan.com',
       privacyTerms: [
         {
           subtitle: "Importance of Privacy",
@@ -143,7 +143,7 @@ export const summariePolicyList = [
     },
     {
       name: 'pinterest',
-      policyWebpage: 'https://policy.pinterest.com/',
+      policyWebpage: 'https://policy.pinterest.com',
       privacyTerms: [
         {
           subtitle: "Our Mission",
@@ -217,7 +217,7 @@ export const summariePolicyList = [
     },
     {
       name: 'ebay',
-      policyWebpage: 'https://www.ebay.com/',
+      policyWebpage: 'https://www.ebay.com',
       privacyTerms: [
         {
           subtitle: "Controller",
@@ -323,7 +323,7 @@ export const summariePolicyList = [
     },
     {
       name: 'discord',
-      policyWebpage: 'https://discord.com/',
+      policyWebpage: 'https://discord.com',
       privacyTerms: [
         {
           "subtitle": "Data Sharing",
@@ -405,7 +405,7 @@ export const summariePolicyList = [
     },
     {
       name: 'twich',
-      policyWebpage: 'https://www.twitch.tv/',
+      policyWebpage: 'https://www.twitch.tv',
       privacyTerms: [
         {
           subtitle: "Data Collection",
@@ -530,7 +530,7 @@ export const summariePolicyList = [
     },
     {
       name: 'indeed',
-      policyWebpage: 'https://www.indeed.com/',
+      policyWebpage: 'https://www.indeed.com',
       privacyTerms: [
         {
           "subtitle": "Mission and Affiliates",
@@ -644,7 +644,7 @@ export const summariePolicyList = [
     },
     {
       name: 'zoom',
-      policyWebpage: 'https://explore.zoom.us/',
+      policyWebpage: 'https://explore.zoom.us',
       privacyTerms: [
         {
           "subtitle": "End-to-End Encryption",
@@ -762,7 +762,7 @@ export const summariePolicyList = [
     },
     {
       name: 'instagram',
-      policyWebpage: 'https://www.instagram.com/',
+      policyWebpage: 'https://www.instagram.com',
       privacyTerms: [
           {
             subtitle: "Varied Data Collection",
@@ -832,7 +832,7 @@ export const summariePolicyList = [
     },
     {
       name: 'youtube',
-      policyWebpage: 'https://www.youtube.com/',
+      policyWebpage: 'https://www.youtube.com',
       privacyTerms: [
         {
           subtitle: "Account Creation and Personal Data",
@@ -926,7 +926,7 @@ export const summariePolicyList = [
     },
     {
       name: 'telegram',
-      policyWebpage: 'https://telegram.org/',
+      policyWebpage: 'https://telegram.org',
       privacyTerms: [
         {
           "subtitle": "Privacy Principles",
@@ -1012,7 +1012,7 @@ export const summariePolicyList = [
     },
     {
       name: 'github',
-      policyWebpage: 'https://github.com/',
+      policyWebpage: 'https://github.com',
       privacyTerms: [
         {
           subtitle: "Responsibility for Data Processing",
@@ -1106,7 +1106,7 @@ export const summariePolicyList = [
     },
     {
       name: 'namecheap',
-      policyWebpage: 'https://www.namecheap.com/',
+      policyWebpage: 'https://www.namecheap.com',
       privacyTerms: [
         {
           subtitle: "1. Information Collection (Account Level):",
@@ -1196,7 +1196,7 @@ export const summariePolicyList = [
     },
     {
       name: 'microsoft',
-      policyWebpage: 'https://privacy.microsoft.com/',
+      policyWebpage: 'https://privacy.microsoft.com',
       privacyTerms: [
         {
           subtitle: "Privacy Importance",
@@ -1291,7 +1291,7 @@ export const summariePolicyList = [
     },
     {
       name: 'office',
-      policyWebpage: 'https://www.office.com/',
+      policyWebpage: 'https://www.office.com',
       privacyTerms: [
         {
           subtitle: "Privacy Importance",
@@ -1455,7 +1455,7 @@ export const summariePolicyList = [
     },
     {
       name: 'outlook',
-      policyWebpage: 'https://outlook.office.com/',
+      policyWebpage: 'https://outlook.office.com',
       privacyTerms: [{
         subtitle: "Privacy Importance",
         text:
@@ -1532,7 +1532,7 @@ export const summariePolicyList = [
     },
     {
       name: 'simpliterms',
-      policyWebpage: 'https://www.simpliterms.com/',
+      policyWebpage: 'https://www.simpliterms.com',
       privacyTerms: [
         {
           "subtitle": "Acceptance of Terms",
@@ -1610,7 +1610,7 @@ export const summariePolicyList = [
     },
     {
       name: 'booking',
-      policyWebpage: 'https://www.booking.com/',
+      policyWebpage: 'https://www.booking.com',
       privacyTerms: [
         {
           subtitle: "Applicability",
@@ -1676,7 +1676,7 @@ export const summariePolicyList = [
     },
     {
       name: 'canva',
-      policyWebpage: 'https://www.canva.com/',
+      policyWebpage: 'https://www.canva.com',
       privacyTerms: [
         {
           subtitle: "Sharing Anonymized Data",
@@ -1774,7 +1774,7 @@ export const summariePolicyList = [
     },
     {
       name: 'bankofamerica',
-      policyWebpage: 'https://www.bankofamerica.com/',
+      policyWebpage: 'https://www.bankofamerica.com',
       privacyTerms: [
         {
           subtitle: "Transparency and Consent",
@@ -1856,7 +1856,7 @@ export const summariePolicyList = [
     },
     {
       name: 'hsbc',
-      policyWebpage: 'https://www.hsbc.com/privacy-notice',
+      policyWebpage: 'https://www.hsbc.com',
       privacyTerms: [
         {
           subtitle: "Data Collection",
@@ -1970,7 +1970,7 @@ export const summariePolicyList = [
     },
     {
       name: 'indiehackers',
-      policyWebpage: 'https://www.indiehackers.com/',
+      policyWebpage: 'https://www.indiehackers.com',
       privacyTerms: [
         {
             "subtitle": "Welcome",
@@ -2075,7 +2075,85 @@ export const summariePolicyList = [
       vigencyofUseTerms: 'not found',
     },
     {
-      name: 'example',
+      name: 'ycombinator',
+      policyWebpage: 'https://apply.ycombinator.com',
+      privacyTerms: [
+        {
+          subtitle: "Personal Information Collection",
+          text: "Y Combinator collects Personal Information, including Hacker News information, Event Information, Work at a Startup Information, Startup School Information, Communication Information, and Technical Information."
+        },
+        {
+          subtitle: "Usage of Personal Information",
+          text: "Personal Information is used for various purposes, including providing access to the Service, event administration, communication, analytics, and ensuring security."
+        },
+        {
+          subtitle: "Sharing and Disclosure",
+          text: "Y Combinator may share Personal Information with vendors, service providers, affiliates, and in certain business transactions. Some information may also be visible to other users."
+        },
+        {
+          subtitle: "California Privacy Rights",
+          text: "California residents have rights to know, delete, and be free from discrimination related to their Personal Information. Y Combinator does not sell Personal Information."
+        },
+        {
+          subtitle: "Children's Privacy",
+          text: "The Service is not directed at children under 13, and Y Combinator does not knowingly collect their Personal Information."
+        },
+        {
+          subtitle: "Links to Other Websites",
+          text: "Third Party Sites linked in the Service have their own privacy policies, and Y Combinator is not responsible for them."
+        },
+        {
+          subtitle: "Security",
+          text: "Y Combinator employs measures to protect Personal Information but cautions that no online system is entirely secure."
+        },
+        {
+          subtitle: "International Users",
+          text: "Users outside the U.S. understand their data may be transferred to the U.S."
+        },
+        {
+          subtitle: "User Choices and Deletion Requests",
+          text: "Users can request updates, corrections, or deletion of Personal Information."
+        },
+        {
+          subtitle: "Changes to Privacy Policy",
+          text: "Y Combinator may update the Privacy Policy, and continued use of the Service implies consent to the revised terms."
+        }
+      ],
+      vigencyOfPrivacy: '00/08/22',
+      conditionsTerms: [
+        {
+          subtitle: "Arbitration Agreement",
+          text: "Users must resolve claims through arbitration, not in court, and class actions are not allowed."
+        },
+        {
+          subtitle: "Changes to Terms",
+          text: "Y Combinator can modify terms, and continued use implies acceptance of changes."
+        },
+        {
+          subtitle: "Registration Obligations",
+          text: "Accurate registration information is required, and minors under 13 cannot register."
+        },
+        {
+          subtitle: "Account Security",
+          text: "Users are responsible for account security and must report unauthorized use promptly."
+        },
+        {
+          subtitle: "Modifications to Site",
+          text: "Y Combinator can change or discontinue the site without notice."
+        },
+        {
+          subtitle: "User Conduct",
+          text: "Users must not upload harmful content or violate laws."
+        },
+        {
+          subtitle: "Intellectual Property Rights",
+          text: "Y Combinator's content is protected, and users grant Y Combinator a license to use uploaded content. Objectionable content may be removed or disclosed as required by law."
+        }
+      ],
+      vigencyofUseTerms: '00/08/22',
+    },
+    {
+      name: 'quora',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
@@ -2083,7 +2161,7 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
-      name: 'example',
+      name: 'my.clevelandclinic',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
@@ -2091,7 +2169,7 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
-      name: 'example',
+      name: 'glassdoor',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
@@ -2099,7 +2177,7 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
-      name: 'example',
+      name: 'myworkdayjobs',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
@@ -2107,7 +2185,7 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
-      name: 'example',
+      name: 'arbeitsagentur',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
@@ -2115,7 +2193,7 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
-      name: 'example',
+      name: 'starbucks',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
@@ -2123,15 +2201,7 @@ export const summariePolicyList = [
       vigencyofUseTerms: '',
     },
     {
-      name: 'example',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
-    },
-    {
-      name: 'example',
+      name: 'x',
       policyWebpage: '',
       privacyTerms: [],
       vigencyOfPrivacy: '',
