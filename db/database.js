@@ -2236,11 +2236,113 @@ export const summariePolicyList = [
     },
     {
       name: 'my.clevelandclinic',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://my.clevelandclinic.org/',
+      privacyTerms: [
+        {
+          "subtitle": "Scope and Priority",
+          "text": "This Privacy Policy covers both Protected Health Information (PHI) and non-PHI. The HIPAA Notice takes precedence over this Privacy Policy for PHI, and it doesn't apply to non-PHI information."
+        },
+        {
+          "subtitle": "Collection of Information",
+          "text": "Information collected includes personal details, payment information, health information, and more, which may be combined with existing data. Automatic collection methods like cookies and location data are used."
+        },
+        {
+          "subtitle": "Information Sources",
+          "text": "Data is obtained from user-provided information, third-party services, health care providers, and other sources, including social media logins."
+        },
+        {
+          "subtitle": "Use of Information",
+          "text": "Information is used for various purposes, including providing and improving services, contact, research, and analysis. Users may provide separate written authorization for research use."
+        },
+        {
+          "subtitle": "Sharing of Information",
+          "text": "Information is shared with authorized vendors, corporate affiliates, for legal purposes, business transfers, or with user consent. Publicly shared information on third-party sites is not controlled by the clinic."
+        },
+        {
+          "subtitle": "Security",
+          "text": "Measures are in place to protect information, but no system is 100% secure. PHI is protected in accordance with HIPAA."
+        },
+        {
+          "subtitle": "User Choices",
+          "text": "Users can request the deletion of personal information and control cookie settings. PHI is not shared for direct marketing."
+        },
+        {
+          "subtitle": "Third-party Links",
+          "text": "The clinic is not responsible for the privacy practices of third-party sites linked within the Services."
+        },
+        {
+          "subtitle": "Limiting Data Collection and Do Not Track",
+          "text": "Users can opt out of interest-based advertising, but do-not-track signals are not acted upon."
+        },
+        {
+          "subtitle": "For Android Users",
+          "text": "Certain Health Apps interact with microphone and camera roll based on user choices. Information usage aligns with the 'Use of Information' section."
+        },
+        {
+          "subtitle": "International Users",
+          "text": "User information may be transferred to the U.S. and stored there, subject to U.S. laws, even for residents of other countries."
+        },
+        {
+          "subtitle": "Children",
+          "text": "Individuals under 18 cannot create accounts for access to the Services."
+        },
+        {
+          "subtitle": "Questions",
+          "text": "For inquiries about the Privacy Policy or practices, users can email onlineprivacy@ccf.org."
+        }
+      ],
+      vigencyOfPrivacy: '22/05/23',
+      conditionsTerms: [
+        {
+          subtitle: "Health Information Source",
+          text: "Information on the site is based on the latest research and approved by Cleveland Clinic physicians. It's designed to support, not replace, the patient-physician relationship."
+        },
+        {
+          subtitle: "Site Access",
+          text: "Cleveland Clinic can restrict or discontinue access for violations. They can modify Terms of Use without notice, so periodic review is advised."
+        },
+        {
+          subtitle: "Medical Disclaimer",
+          text: "For medical emergencies, call 911; electronic communication isn't for immediate medical needs. Response times aren't guaranteed."
+        },
+        {
+          subtitle: "Security",
+          text: "Personal info forms are secure and encrypted. Refer to the Website Privacy Policy for encryption details."
+        },
+        {
+          subtitle: "Disclaimer of Warranty",
+          text: "Information is provided 'as is' for educational purposes; no warranties, including accuracy, are guaranteed."
+        },
+        {
+          subtitle: "Limitation of Liability",
+          text: "Cleveland Clinic isn't liable for damages related to site material use or connectivity to other sites."
+        },
+        {
+          subtitle: "Governing Law",
+          text: "Claims or disputes are governed by Ohio law, subject to local courts' jurisdiction in Cuyahoga County."
+        },
+        {
+          subtitle: "User Name and Password",
+          text: "Users must keep login info confidential for services requiring it."
+        },
+        {
+          subtitle: "Children",
+          text: "The site is intended for adults over 18; children under 18 should seek help from a parent or guardian."
+        },
+        {
+          subtitle: "Inbound Links",
+          text: "You can't establish links to the site without written consent from Cleveland Clinic's General Counsel."
+        },
+        {
+          subtitle: "External Links",
+          text: "Pages may link to other sites with different terms; Cleveland Clinic isn't responsible for their content or privacy practices."
+        },
+        {
+          subtitle: "Trademarks and Copyrights",
+          text: "Trademarks, service marks, logos, or copyrights belong to their respective owners, and their use requires written permission."
+        }
+      ],
+      vigencyofUseTerms: '03/18/2009',
     },
     {
       name: 'glassdoor',
