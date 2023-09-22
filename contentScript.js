@@ -87,7 +87,7 @@
                   webpageName = selectHostPage(window.location.host);
                 }
                 
-                fetch(`http://localhost:4200/api/summary/${webpageName}`, {
+                fetch(`http://localhost:4200/api/summary/google`, {
                                                         method: 'GET',
                                                         headers: {
                                                             'x-token': tokenValidator,
