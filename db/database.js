@@ -2154,11 +2154,85 @@ export const summariePolicyList = [
     },
     {
       name: 'quora',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://es.quora.com/',
+      privacyTerms: [
+        {
+          subtitle: "Information Collection",
+          text:
+            "Quora collects your personal data directly from you, third parties, and automatically through your use of the platform. This includes account and profile information, your content, communication records, and login through third-party apps.",
+        },
+        {
+          subtitle: "Cookies and Similar Technologies",
+          text:
+            "Quora and its partners use cookies and similar technologies to gather information automatically about your activities on the platform, such as searches, page views, and device information.",
+        },
+        {
+          subtitle: "Billing and Payment Information",
+          text:
+            "Quora collects billing information if you subscribe to Quora+ and payment information if you participate in the Quora Partners Program.",
+        },
+        {
+          subtitle: "Purpose and Legal Basis",
+          text:
+            "Quora processes your information for various purposes, including providing services, personalization, billing, advertising, marketing, communications, analytics, legal compliance, fraud prevention, and user research.",
+        },
+        {
+          subtitle: "Sharing Your Information",
+          text:
+            "Quora shares your information with service providers, affiliates, in the event of business transfers, to protect rights and when required by law. Your public content is visible to other users and may be indexed by search engines.",
+        },
+        {
+          subtitle: "Protection and Storage",
+          text:
+            "Quora employs security measures to protect your data and retains it for as long as necessary for business and legal purposes.",
+        },
+        {
+          subtitle: "Data Transfer",
+          text:
+            "Quora may transfer your personal information to jurisdictions with different data protection standards and uses mechanisms like contractual clauses for data transfer.",
+        },
+        {
+          subtitle: "Privacy Rights",
+          text:
+            "Depending on your location and applicable laws, you have rights like access, rectification, deletion, data portability, and withdrawal of consent. You can exercise these rights by contacting Quora.",
+        },
+      ],
+      vigencyOfPrivacy: '24/06/23',
+      conditionsTerms: [
+        {
+          subtitle: "Age Requirements ",
+          text: "Users must be at least 13 years old or have parental consent to use Quora.",
+        },
+        {
+          subtitle: "Policy Compliance ",
+          text: "Users must follow Quora's policies, including Acceptable Use, Copyright, and Trademark policies.",
+        },
+        {
+          subtitle: "User Content ",
+          text: "Users retain rights to their content but grant Quora a broad license to use it on the platform.",
+        },
+        {
+          subtitle: "Quora's Content ",
+          text: "Quora's intellectual property is protected, and users have limited rights to access it.",
+        },
+        {
+          subtitle: "Third-Party Links ",
+          text: "Quora is not responsible for third-party sites linked on the platform.",
+        },
+        {
+          subtitle: "Account Termination",
+          text: "Users can close their accounts, but Quora may terminate them for policy violations.",
+        },
+        {
+          subtitle: "Dispute Resolution and Arbitration",
+          text: "Users must attempt informal dispute resolution, and disputes may be subject to binding arbitration. Exceptions apply for small claims, intellectual property disputes, opt-out rights, and jurisdiction.",
+        },
+        {
+          subtitle: "General Provisions",
+          text: "This section covers changes to terms, export controls, mobile app usage, persistence of certain terms, notices, relationship, and waiver.",
+        },
+      ],
+      vigencyofUseTerms: '24/07/23',
     },
     {
       name: 'my.clevelandclinic',
@@ -2170,19 +2244,142 @@ export const summariePolicyList = [
     },
     {
       name: 'glassdoor',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.glassdoor.com/',
+      privacyTerms: [
+        {
+          "subtitle": "Scope and Definitions",
+          "text": "Glassdoor's policy covers personal data collected across its services, including websites and applications. It includes affiliates like Indeed and Indeed Flex."
+        },
+        {
+          "subtitle": "Personal Data Collection",
+          "text": "Glassdoor collects various personal data categories, including communications activity, job-related information, and demographic data."
+        },
+        {
+          "subtitle": "Use of Personal Data",
+          "text": "Data is used for advertising, account creation, and job-related services. Personalized ads and third-party data sharing are part of the service."
+        },
+        {
+          "subtitle": "Creating an Account & Profile",
+          "text": "Users must provide personal data to access services, and third-party services may share data with Glassdoor."
+        },
+        {
+          "subtitle": "Communications",
+          "text": "Users receive service and promotional communications via various channels, with opt-out options for some."
+        },
+        {
+          "subtitle": "Demographic Data",
+          "text": "Users can provide demographic data for wage analysis and recommendations, with efforts to protect anonymity."
+        },
+        {
+          "subtitle": "Content Moderation",
+          "text": "Negative comments about identifiable individuals outside of prominent company positions are not allowed."
+        },
+        {
+          "subtitle": "Researching & Applying to Jobs",
+          "text": "Search activities personalize job recommendations, and job applications are processed by affiliates."
+        },
+        {
+          "subtitle": "Interacting with Content",
+          "text": "Users can control how personal data and identity are presented to others, with anonymity options."
+        },
+        {
+          "subtitle": "Live Audio/Video",
+          "text": "Users can join live audio or video conversations, and some events may be recorded."
+        },
+        {
+          "subtitle": "Embedded Information",
+          "text": "Information embedded from third-party services is subject to those services' policies."
+        },
+        {
+          "subtitle": "Sharing of Personal Data",
+          "text": "Glassdoor shares personal data with various partners for legitimate interests and with user consent."
+        },
+        {
+          "subtitle": "Retention of Personal Data",
+          "text": "Data is retained as long as necessary for specified purposes."
+        },
+        {
+          "subtitle": "Data Security",
+          "text": "Glassdoor takes measures to protect data but acknowledges the complexity of user interactions."
+        }
+      ],
+      vigencyOfPrivacy: '27/07/23',
+      conditionsTerms: [
+        {
+          subtitle: "Eligibility",
+          text: "Users must be at least 18 years old or meet the legal age in their jurisdiction to access services. Commercial use requires a separate agreement, and banned users are prohibited from accessing services."
+        },
+        {
+          subtitle: "Content Ownership",
+          text: "While users own the content they submit, Glassdoor is granted broad rights to use, reproduce, and distribute it. Glassdoor may also record and use live audio/video events."
+        },
+        {
+          subtitle: "Communication Consent",
+          text: "By creating an account, users consent to receiving various communications from Glassdoor and its affiliates, including emails, text messages, calls, and push notifications."
+        },
+        {
+          subtitle: "User Responsibilities",
+          text: "Users are expected to use the services lawfully, adhere to community guidelines, and not impersonate others. Engagement in illegal activities or violating privacy rights is prohibited."
+        },
+        {
+          subtitle: "Actions by Glassdoor",
+          text: "Glassdoor retains the right to take actions at its discretion, which may include limiting service access, removing content, or suspending/terminating user accounts."
+        },
+        {
+          subtitle: "Indemnity",
+          text: "Users agree to indemnify and hold Glassdoor harmless from any claims arising from their use of the platform, including providing false information or misrepresenting their identity or employment history."
+        },
+        {
+          subtitle: "Disclaimers and Liability",
+          text: "Glassdoor disclaims responsibility for the accuracy, completeness, legality, and reliability of information on the platform. They are not liable for any loss or damage resulting from the use of their services."
+        },
+        {
+          subtitle: "Dispute Resolution",
+          text: "Users waive their right to a trial by jury and agree to resolve disputes through binding arbitration. Class actions are not permitted. Certain exceptions exist for specific types of claims."
+        }
+      ],
+      vigencyofUseTerms: '01/12/23',
     },
     {
       name: 'myworkdayjobs',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
+      policyWebpage: 'https://workday.wd5.myworkdayjobs.com/',
+      privacyTerms: [
+        {
+          "Subtitle": "Global Presence and Commitment to Privacy",
+          "Text": "Workday, a global company, is dedicated to protecting the personal information of prospective personnel while adhering to applicable laws worldwide."
+        },
+        {
+          "Subtitle": "Supplementary Information",
+          "Text": "In addition to this Privacy Statement, supplementary transparency information may be provided to users, keeping them informed during various interactions."
+        },
+        {
+          "Subtitle": "Applicability",
+          "Text": "This Privacy Statement applies to all prospective employees and candidates for various positions at Workday, offering insights into their personal information rights and how to exercise them."
+        },
+        {
+          "Subtitle": "Personal Information Defined",
+          "Text": "\"Personal information\" refers to data related to identifiable individuals, processed automatically or as part of structured manual filing systems."
+        },
+        {
+          "Subtitle": "Processing Definition",
+          "Text": "Processing involves various activities related to personal information, including collection, use, disclosure, deletion, transfer, and storage by Workday."
+        },
+        {
+          "Subtitle": "Quick Links",
+          "Text": "Users can access specific sections of the Privacy Statement using quick links, ensuring they find relevant information easily."
+        },
+        {
+          "Subtitle": "Personal Information Collection",
+          "Text": "Workday collects personal information directly from applicants during the recruitment process, including data from third-party career sites."
+        },
+        {
+          "Subtitle": "Third-Party Sources",
+          "Text": "Personal information may also be collected from sources like recruiting agencies, educational institutions, professional organizations, and publicly available platforms."
+        }
+      ],
+      vigencyOfPrivacy: '18/08/23',
       conditionsTerms: [],
-      vigencyofUseTerms: '',
+      vigencyofUseTerms: 'not found',
     },
     {
       name: 'arbeitsagentur',
