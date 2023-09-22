@@ -2391,11 +2391,97 @@ export const summariePolicyList = [
     },
     {
       name: 'starbucks',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
+      policyWebpage: 'https://www.starbucks.com/',
+      privacyTerms: [
+        {
+          "subtitle": "Updates to this Privacy Notice",
+          "text": "The policy can change, so users must stay informed about revisions to maintain transparency."
+        },
+        {
+          "subtitle": "Information We Collect",
+          "text": "Starbucks gathers various personal data categories, emphasizing the importance of understanding collected data and its purposes."
+        },
+        {
+          "subtitle": "Sources of Information",
+          "text": "Starbucks receives data from users and other sources, underscoring the diverse origins of collected information."
+        },
+        {
+          "subtitle": "How We Use Your Information",
+          "text": "Starbucks processes user data for services, communication, research, and compliance, stressing the importance of comprehending these purposes."
+        },
+        {
+          "subtitle": "How We Disclose Your Information",
+          "text": "Starbucks shares data with subsidiaries, partners, and providers for specific purposes. Transparency is crucial in understanding data utilization."
+        },
+        {
+          "subtitle": "Cookies, Web Beacons, and Similar Technologies",
+          "text": "The policy addresses tracking technologies like cookies and web beacons, offering opt-out options and promoting user awareness."
+        },
+        {
+          "subtitle": "How We Protect Your Information",
+          "text": "While Starbucks implements security measures, users play a vital role in safeguarding passwords and device security."
+        }
+      ],
+      vigencyOfPrivacy: '27/06/23',
+      conditionsTerms: [
+        {
+          "subtitle": "Liability Updates (Rewards Program)",
+          "text": "The terms now provide updates on liability related to Starbucks Rewards services, affecting users' rights and responsibilities."
+        },
+        {
+          "subtitle": "Dispute Resolution and Arbitration (Rewards Program)",
+          "text": "Users should understand the new dispute resolution and arbitration process for Starbucks Rewards, including the limitation on jury trials and class actions."
+        },
+        {
+          "subtitle": "Electronic Communication (Rewards Program)",
+          "text": "Starbucks communicates program updates electronically, making it crucial for users to regularly check the website for information."
+        },
+        {
+          "subtitle": "Personal Use (Rewards Program)",
+          "text": "Starbucks Rewards is for personal use only, and commercial use is prohibited. Parental supervision is required for users under 13."
+        },
+        {
+          "subtitle": "Privacy Statement (Rewards Program)",
+          "text": "The Privacy Statement governs customer data handling practices within the Starbucks Rewards program and is essential for users to review."
+        },
+        {
+          "subtitle": "Earning Stars (Rewards Program)",
+          "text": "Understanding how to earn Stars, the program's currency, is crucial for maximizing rewards in the Starbucks Rewards program."
+        },
+        {
+          "subtitle": "Star Redemption (Rewards Program)",
+          "text": "Users can redeem Stars for rewards within the Starbucks Rewards program, but availability may vary by location. Users need to be aware of redemption options and any exclusions."
+        },
+        {
+          "subtitle": "Arbitration Agreement (Card Terms)",
+          "text": "The Starbucks Card Terms & Conditions include an arbitration clause that eliminates the right to a jury trial and limits class actions in disputes related to Starbucks Cards."
+        },
+        {
+          "subtitle": "Notices and Amendments (Card Terms)",
+          "text": "Users should regularly check the Starbucks website for updates to the Starbucks Card Terms & Conditions, which are communicated electronically."
+        },
+        {
+          "subtitle": "Purpose of Starbucks Card (Card Terms)",
+          "text": "The Starbucks Card allows loading a dollar value for purchases at Starbucks stores and is nonrefundable."
+        },
+        {
+          "subtitle": "Store Acceptance (Card Terms)",
+          "text": "Most Starbucks stores in North America accept the card, but some exceptions apply. Users should verify store acceptance through the store locator."
+        },
+        {
+          "subtitle": "Eligibility (Card Terms)",
+          "text": "The card is not intended for users under 13, and those between 13 and 18 require parental supervision when using Starbucks Cards."
+        },
+        {
+          "subtitle": "Loading Value (Card Terms)",
+          "text": "Users can load value onto Starbucks Cards online, in-store, or by phone, with limits subject to change."
+        },
+        {
+          "subtitle": "Currency Conversion (Card Terms)",
+          "text": "Transactions made abroad with Starbucks Cards are converted to the card's base currency, with potential bank fees applying."
+        }
+      ],
+      vigencyofUseTerms: '24/07/23',
     },
     {
       name: 'x',
