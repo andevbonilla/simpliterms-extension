@@ -2,7 +2,7 @@
   "name": "SimpliTerms",
   "version": "0.1.0",
   "description": "summarize terms and conditions, privacy policy and cookies from the any page",
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage", "tabs", "activeTab"],
   "host_permissions": ["http://*/*","https://*/*"],
   "background": {
     "service_worker": "background.js"

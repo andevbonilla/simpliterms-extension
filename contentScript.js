@@ -1,15 +1,17 @@
 (() => {
 
-  setTimeout(() => {
-
+      console.log("cambiandoooo....");
       // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
       const listOfCookies = document.cookie.split(';');
       let tokenValidator = '';
+
       let termsOfPrivacy = [];
       let termsOfUse = [];
       let ifPrivacy =  false;
       let ifTerms =  false;
-      let isAuthenticate = false;
+      let isAuthenticate = false
+
+
       const linksTag = document.querySelectorAll('a');
 
       const privacyPosibilities = [
@@ -84,7 +86,7 @@
                webpageName = selectHostPage(window.location.host);
             }
             
-            fetch(`http://localhost:4200/api/summary/google`, {
+            fetch(`http://localhost:4200/api/summary/${webpageName}`, {
                                                     method: 'GET',
                                                     headers: {
                                                         'x-token': tokenValidator,
@@ -92,10 +94,10 @@
                                                 })
             .then(response => {
                 if (response) {
-                return response.json();
+                  return response.json();
                 } else {
-                console.error("error")
-                return;
+                  console.error("error")
+                  return;
                 }
             })
             .then(data => {
@@ -180,8 +182,20 @@
         });
 
       }
+
+      
+      chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        // Verifica si el mensaje contiene una URL
+        if (request.url) {
+          const url = request.url;
+      
+          // Aquí puedes realizar acciones basadas en la URL recibida
+          console.log('Se ha recibido la URL:', url);
+        }
+      });
+
             
-  }, 400);
-   
+  // }, 2000);
+
 })();
 
