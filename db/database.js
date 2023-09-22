@@ -2484,14 +2484,6 @@ export const summariePolicyList = [
       vigencyofUseTerms: 'not found',
     },
     {
-      name: 'arbeitsagentur',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
-    },
-    {
       name: 'starbucks',
       policyWebpage: 'https://www.starbucks.com/',
       privacyTerms: [
@@ -2586,11 +2578,77 @@ export const summariePolicyList = [
       vigencyofUseTerms: '24/07/23',
     },
     {
-      name: 'x',
-      policyWebpage: '',
-      privacyTerms: [],
-      vigencyOfPrivacy: '',
-      conditionsTerms: [],
-      vigencyofUseTerms: '',
-    },
+      name: 'wikipedia',
+      policyWebpage: 'https://wikipedia.org/',
+      privacyTerms: [
+        {
+          "subtitle": "Anonymous Use",
+          "text": "Wikimedia Sites allow you to browse and contribute content without requiring you to provide personal information, register an account, or disclose your real name or email address. Your anonymity is respected."
+        },
+        {
+          "subtitle": "Information Collection",
+          "text": "Wikimedia collects data when you interact with their platforms, such as when you edit articles, register an account, or communicate with them. This information helps improve the user experience and content quality by understanding user behavior."
+        },
+        {
+          "subtitle": "Data Security",
+          "text": "The Foundation is committed to safeguarding your information and does not sell or share it for marketing purposes. They employ physical and technical measures, like access controls and network firewalls, to protect your data, though complete security cannot be guaranteed."
+        },
+        {
+          "subtitle": "Information Sharing",
+          "text": "Your data may be shared in specific situations, including legal compliance, protecting users, or improving Wikimedia Sites. However, these instances are carefully controlled."
+        },
+        {
+          "subtitle": "Permanent Contributions",
+          "text": "Content you contribute to Wikimedia Sites is considered public and will remain permanently accessible to others. This is fundamental to the open nature of the platform."
+        },
+        {
+          "subtitle": "Administrator Access",
+          "text": "Some administrators have limited access to nonpublic information to enforce policies and maintain the sites' integrity. These administrators follow privacy and confidentiality guidelines."
+        },
+        {
+          "subtitle": "Scope of Policy",
+          "text": "The Privacy Policy applies to Wikimedia Foundation sites and services but may not cover third-party websites or services you may access through Wikimedia Sites."
+        },
+        {
+          "subtitle": "Information Release",
+          "text": "Wikimedia occasionally releases public or non-personal information for purposes such as education and research, aligning with their commitment to open knowledge."
+        }
+      ],
+      vigencyOfPrivacy: '25/06/21',
+      conditionsTerms: [
+        {
+          "subtitle": "Empowering Participation",
+          "text": "Wikimedia aims to empower people to actively engage in its projects, fostering diversity and inclusivity to create a world where everyone can share knowledge freely."
+        },
+        {
+          "subtitle": "Global Community Commitment",
+          "text": "All contributors should contribute to a global community that promotes fairness, avoids bias and prejudice, and strives for accuracy and verifiability in their work."
+        },
+        {
+          "subtitle": "Applicability",
+          "text": "The UCoC applies to all Wikimedia contributors, from newcomers to experienced editors, and includes functionaries, event organizers, employees, and board members across various Wikimedia spaces, both online and offline."
+        },
+        {
+          "subtitle": "Baseline of Behavior",
+          "text": "The UCoC establishes a minimum standard for behavior, with the flexibility for communities to create additional policies considering local and cultural contexts."
+        },
+        {
+          "subtitle": "Responsibility for Behavior",
+          "text": "Every Wikimedian is responsible for their behavior, and all interactions should be founded on respect, civility, and good citizenship, irrespective of personal characteristics."
+        },
+        {
+          "subtitle": "Mutual Respect",
+          "text": "Contributors should practice empathy, assume good faith, and respect the way others describe themselves, including their identity, culture, and background."
+        },
+        {
+          "subtitle": "Civility and Support",
+          "text": "Civility, collegiality, mutual support, and good citizenship are encouraged behaviors, including mentorship, recognizing and crediting others' work, and looking out for fellow contributors."
+        },
+        {
+          "subtitle": "Unacceptable Behavior",
+          "text": "Unacceptable behavior includes harassment, abuse of power, privilege or influence, and content vandalism or abuse of the projects, and may result in sanctions."
+        }
+      ],
+      vigencyofUseTerms: 'not found',
+    }
 ]
