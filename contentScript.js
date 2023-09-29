@@ -1,7 +1,6 @@
 (() => {
 
       const contentScript = () => {
-          console.log("cambiandoooo....");
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
           const listOfCookies = document.cookie.split(';');
           let tokenValidator = '';
@@ -10,7 +9,8 @@
           let termsOfUse = [];
           let ifPrivacy =  false;
           let ifTerms =  false;
-          let isAuthenticate = false
+          let isAuthenticate = false;
+          let errorMessage = "";
 
 
           const linksTag = document.querySelectorAll('a');
@@ -71,33 +71,22 @@
             }
           }
 
-          const selectHostPage = (page) => {
-            if (page.split('.')[0].toString().trim() !== 'www') {
-              return page.split('.')[0]
-            }else{
-              return page.split('.')[1]
-            }
-          }
 
           const requestSummaryInfo = (tokenValidator) => {
             return new Promise((resolve, reject) => {
-
-                let webpageName = ''
-                if (window.location.host.split('.') > 1) {
-                  webpageName = selectHostPage(window.location.host);
-                }
                 
-                fetch(`http://localhost:4200/api/summary/google`, {
+                fetch(`http://localhost:4200/api/summary/`, {
                                                         method: 'GET',
                                                         headers: {
                                                             'x-token': tokenValidator,
+                                                            'host-petition': window.location.host
                                                         },
                                                     })
                 .then(response => {
                     if (response) {
                       return response.json();
                     } else {
-                      console.error("error")
+                      console.error("777777777777777777777777777777")
                       return;
                     }
                 })
@@ -121,7 +110,8 @@
                               ifPrivacy: false, 
                               ifTerms: false, 
                               host: window.location.host,
-                              isAuthenticate
+                              isAuthenticate,
+                              errorMessage
                           }
                 });
                 return;
@@ -146,24 +136,59 @@
                               ifPrivacy, 
                               ifTerms, 
                               host: window.location.host,
-                              isAuthenticate
+                              isAuthenticate,
+                              errorMessage
                           }
               });
+
+          }
+
+          const setDataOrShowError = (data) => {
+
+              if (!data) {
+                assignValues(isAuthenticate);
+                return;
+              }
+
+              if (data.msj && (data.msj === "Auth failed")) {
+                console.log(data, "jashdkashdjkhasjkdhjkashdjkheiuhduidabfcfbui")
+                isAuthenticate = false;
+                assignValues(isAuthenticate);
+                return;
+              }
+
+              if (data.res === false) {
+                console.log(data, "67676767676767")
+                errorMessage = data.message;
+                isAuthenticate = true;
+                assignValues(isAuthenticate);
+                return;
+              }
+
+              if (data.summaryDB) {
+                console.log(data, "909090909090909")
+                termsOfPrivacy = data.summaryDB.privacyTerms;
+                termsOfUse = data.summaryDB.conditionsTerms;
+                errorMessage = "";
+                isAuthenticate = true;
+                assignValues(isAuthenticate);
+                return;
+              }
 
           }
           
           if (tokenValidator !== '') {
 
+            
+
             chrome.storage.sync.set({
               'xtoken': tokenValidator
             });
-            requestSummaryInfo(tokenValidator).then(data=>{ termsOfPrivacy = data.summaryDB.privacyTerms;
-                                                            termsOfUse = data.summaryDB.conditionsTerms;
-                                                            isAuthenticate = true; 
-                                                            assignValues(isAuthenticate); 
+            requestSummaryInfo(tokenValidator).then(data=>{
+                                                  setDataOrShowError(data);
                                               })
                                               .catch(err=> {
-                                                console.log(err, "erororoorororoor");
+                                                console.log(err, "uyuyuyuyuyuyyuyuyuyuy");
                                                 assignValues(isAuthenticate);
                                               })
             
@@ -171,13 +196,11 @@
 
             chrome.storage.sync.get('xtoken', ({xtoken}) => {
               tokenValidator = xtoken;
-              requestSummaryInfo(tokenValidator).then(data=>{ termsOfPrivacy = data.summaryDB.privacyTerms;
-                                                              termsOfUse = data.summaryDB.conditionsTerms;
-                                                              isAuthenticate = true; 
-                                                              assignValues(isAuthenticate); 
+              requestSummaryInfo(tokenValidator).then(data=>{  
+                                                    setDataOrShowError(data);
                                                 })
                                                 .catch(err=> {
-                                                  console.log(err, "erororoorororoor");
+                                                  console.log(err, "popdofpsdofpo");
                                                   assignValues(isAuthenticate);
                                                 })
             });

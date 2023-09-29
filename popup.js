@@ -5,10 +5,16 @@ document.addEventListener("DOMContentLoaded", async() => {
     terms: []
   };
 
+
+
   // not logged pages
   const notloggedPage = document.getElementById('not-logged');
 
   // logged part
+
+  const errorView = document.getElementById('if-error');
+  const successView = document.getElementById('not-error');
+
   const loggedPage = document.getElementById('logged')
   const summaryHtmlText = document.getElementById('simpli-summary');
   const defaultText = document.getElementById('default-text');
@@ -42,14 +48,6 @@ document.addEventListener("DOMContentLoaded", async() => {
     verifyIfThereArePolicies(summaryInfo.privacy)
   })
 
-  const verifyIfThereArePolicies = (terms) => {
-    if (terms.length === 0) {
-      summaryHtmlText.innerHTML = `<a href="https://simpliterms.com/#pricing" target="_blank">Upgrade to pro</a> plan to be able to generate summaries with AI in real time.`
-    }else{
-      summaryHtmlText.innerHTML = showSummaries(terms);
-    }
-  }
-
   const verifyIfAuthenticated = (auth) => {
     if (auth === false) {
       notloggedPage.style.display = "block";
@@ -60,24 +58,59 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
   }
 
+  const ifErrorShowIt = (errorMessage) => {
+    if (errorMessage === "") {
+      // there weren't none one error (different of the auth error) from the backend
+      successView.style.display = "block";
+      errorView.style.display = "none";
+    }else{
+      successView.style.display = "none";
+      errorView.style.display = "block";
+    }
+  }
+
   chrome.storage.sync.get('summary', (obj) => {
 
+    // verify the authentication of user
     verifyIfAuthenticated(obj.summary.isAuthenticate);
-    verifyIfThereArePolicies(obj.summary.termsOfUse);
 
+    // show the errors from backend or the suscces view in case of no errors
+    ifErrorShowIt(obj.summary.errorMessage);
+
+    // validate there are policies to show
+    if (obj.summary.termsOfPrivacy.length !== 0) {
+
+      showSummaries(obj.summary.termsOfPrivacy)
+
+    }else if (obj.summary.termsOfUse.length !== 0) {
+
+      showSummaries(obj.summary.termsOfUse)
+
+    }else{
+
+      showSummaries([])
+
+    }
+
+    // set the host
     if (obj.summary.host) {
       hostname.innerHTML = obj.summary.host;
       defaultHostname.innerHTML = obj.summary.host;
     }
     
     if (obj.summary.ifPrivacy) {
+        showSummaries(obj.summary.termsOfPrivacy)
         policyList.innerHTML =  `${(obj.summary.ifPrivacy) ? 'Privacy Policy' : ''}, ${(obj.summary.ifTerms) ? 'Terms of Use' : ''}`
         defaultText.style.display = 'none';
         detectedText.style.display = 'block';
     }else{
+        if (obj.summary.ifTerms) {
+          showSummaries(obj.summary.termsOfUse);
+        }
         detectedText.style.display = 'none';
         defaultText.style.display = 'block';
     }
+    
     
     summaryInfo = {
       privacy: obj.summary.termsOfPrivacy,
