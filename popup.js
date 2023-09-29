@@ -58,6 +58,14 @@ document.addEventListener("DOMContentLoaded", async() => {
     }
   }
 
+  const verifyIfThereArePolicies = (terms) => {
+    if (terms.length === 0) {
+      summaryHtmlText.innerHTML = `<a href="https://simpliterms.com/#pricing" target="_blank">Upgrade to pro</a> plan to be able to generate summaries with AI in real time.`
+    }else{
+      summaryHtmlText.innerHTML = showSummaries(terms);
+    }
+  }
+
   const ifErrorShowIt = (errorMessage) => {
     if (errorMessage === "") {
       // there weren't none one error (different of the auth error) from the backend
@@ -78,19 +86,7 @@ document.addEventListener("DOMContentLoaded", async() => {
     ifErrorShowIt(obj.summary.errorMessage);
 
     // validate there are policies to show
-    if (obj.summary.termsOfPrivacy.length !== 0) {
-
-      showSummaries(obj.summary.termsOfPrivacy)
-
-    }else if (obj.summary.termsOfUse.length !== 0) {
-
-      showSummaries(obj.summary.termsOfUse)
-
-    }else{
-
-      showSummaries([])
-
-    }
+    verifyIfThereArePolicies(obj.summary.termsOfUse);
 
     // set the host
     if (obj.summary.host) {
