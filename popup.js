@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", async() => {
   const subTypeElement = document.getElementById("sub-type");
   const usernameElement = document.getElementById("username-element");
 
+  const greetingElement = document.getElementById("greeting");
+  const simplitermsNameElement = document.getElementById("simpliterms-name");
+
   const loggedPage = document.getElementById('logged');
   const summaryHtmlText = document.getElementById('simpli-summary');
   const defaultText = document.getElementById('default-text');
@@ -55,11 +58,19 @@ document.addEventListener("DOMContentLoaded", async() => {
 
   const verifyIfAuthenticated = (auth) => {
     if (auth === false) {
+
       notloggedPage.style.display = "block";
+      simplitermsNameElement.style.display = "block";
+
       loggedPage.style.display = "none";
+      greetingElement.style.display = "none";
+
     }else{
       loggedPage.style.display = "block";
+      greetingElement.style.display = "block";
+
       notloggedPage.style.display = "none";
+      simplitermsNameElement.style.display = "none";
     }
   }
 
