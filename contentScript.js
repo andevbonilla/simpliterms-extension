@@ -11,6 +11,7 @@
           let ifTerms =  false;
           let isAuthenticate = false;
           let errorMessage = "";
+          let userInfo = {};
 
 
           const linksTag = document.querySelectorAll('a');
@@ -111,6 +112,7 @@
                               ifTerms: false, 
                               host: window.location.host,
                               isAuthenticate,
+                              userInfo: {},
                               errorMessage
                           }
                 });
@@ -137,6 +139,7 @@
                               ifTerms, 
                               host: window.location.host,
                               isAuthenticate,
+                              userInfo,
                               errorMessage
                           }
               });
@@ -151,14 +154,12 @@
               }
 
               if (data.msj && (data.msj === "Auth failed")) {
-                console.log(data, "jashdkashdjkhasjkdhjkashdjkheiuhduidabfcfbui")
                 isAuthenticate = false;
                 assignValues(isAuthenticate);
                 return;
               }
 
               if (data.res === false) {
-                console.log(data, "67676767676767")
                 errorMessage = data.message;
                 isAuthenticate = true;
                 assignValues(isAuthenticate);
@@ -166,11 +167,14 @@
               }
 
               if (data.summaryDB) {
-                console.log(data, "909090909090909")
                 termsOfPrivacy = data.summaryDB.privacyTerms;
                 termsOfUse = data.summaryDB.conditionsTerms;
                 errorMessage = "";
                 isAuthenticate = true;
+                userInfo = {
+                  username: data.userDB.username,
+                  planType: data.userDB.planType
+                }
                 assignValues(isAuthenticate);
                 return;
               }
@@ -212,12 +216,8 @@
       contentScript();
 
       chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-        // Verifica si el mensaje contiene una URL
         if (request.url) {
-          const url = request.url;
           contentScript();
-          // Aquí puedes realizar acciones basadas en la URL recibida
-          console.log('Se ha recibido la URL:', url);
         }
       });
 

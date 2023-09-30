@@ -42,6 +42,7 @@ h2{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: .5rem;
 }
 .logo{
     border-radius: 100%;
@@ -94,4 +95,31 @@ h2{
 
 .disclaimer{
     color: rgba(0, 0, 0, 0.4);
+}
+
+.error-message{
+    font-size: 1rem;
+}
+
+.greeting{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
+.greeting p{
+    margin: 0 !important;
+}
+
+.greeting h1{
+    font-size: 1rem;
+    margin: 0 !important;
+}
+
+.sub-type{
+    background-color: green;
+    color: white;
+    padding: .4rem;
+    font-size: .6rem;
 }

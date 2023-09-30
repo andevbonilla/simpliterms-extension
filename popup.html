@@ -16,17 +16,16 @@
       <nav class="navbar">
         <div class="navbar">
           <a href="https://simpliterms.com" target="_blank" title="simpliterms logo">
-            <img class="logo" src="./assets/simpliterms-logo.png" alt="Logo de simpliterms" width="30px" height="30px"/>
+            <img class="logo" src="./assets/simpliterms-logo.png" alt="Logo de simpliterms" width="35px" height="35px"/>
           </a>
-          <h1>SimpliTerms</h1>
+          <div class="greeting">
+            <p>Hola</p>
+            <h1 id="username-element">Loading...</h1>
+          </div>
         </div>
         <div>
           <a href="https://simpliterms.com/account" target="_blank">
-            <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="9" r="3" stroke="#1C274C" stroke-width="1.5"/>
-              <path d="M17.9691 20C17.81 17.1085 16.9247 15 11.9999 15C7.07521 15 6.18991 17.1085 6.03076 20" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
+            <h3 class="sub-type" id="sub-type"></h3>
           </a>
         </div>
       </nav>
@@ -45,8 +44,8 @@
 
           
           <div class="if-error" id="if-error">
-              <h2>Ups something went wrong!</h2>
-              <p class="error-message">Loading...</p>
+              <h2>😔 Ups something went wrong!</h2>
+              <p class="error-message" id="error-message">Loading...</p>
           </div>
 
           <div class="not-error" id="not-error">

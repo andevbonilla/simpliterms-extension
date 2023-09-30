@@ -15,7 +15,12 @@ document.addEventListener("DOMContentLoaded", async() => {
   const errorView = document.getElementById('if-error');
   const successView = document.getElementById('not-error');
 
-  const loggedPage = document.getElementById('logged')
+  const ErrorMessagDiv = document.getElementById("error-message");
+
+  const subTypeElement = document.getElementById("sub-type");
+  const usernameElement = document.getElementById("username-element");
+
+  const loggedPage = document.getElementById('logged');
   const summaryHtmlText = document.getElementById('simpli-summary');
   const defaultText = document.getElementById('default-text');
   const detectedText = document.getElementById('detected-text');
@@ -72,8 +77,16 @@ document.addEventListener("DOMContentLoaded", async() => {
       successView.style.display = "block";
       errorView.style.display = "none";
     }else{
+      ErrorMessagDiv.innerHTML = `Message: ${errorMessage}`
       successView.style.display = "none";
       errorView.style.display = "block";
+    }
+  }
+
+  const setUserInfo = (userInfo) => {
+    if (userInfo.username && userInfo.planType) {
+      subTypeElement.innerHTML = `${userInfo.planType}`;
+      usernameElement.innerHTML = `${userInfo.username}`;
     }
   }
 
@@ -87,6 +100,9 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     // validate there are policies to show
     verifyIfThereArePolicies(obj.summary.termsOfUse);
+
+    // set the username info
+    setUserInfo(obj.summary.userInfo);
 
     // set the host
     if (obj.summary.host) {
