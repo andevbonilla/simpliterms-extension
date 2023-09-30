@@ -84,7 +84,12 @@ document.addEventListener("DOMContentLoaded", async() => {
   }
 
   const setUserInfo = (userInfo) => {
-    if (userInfo.username && userInfo.planType) {
+
+    if (userInfo.username !== null && 
+        userInfo.planType !== null && 
+        userInfo.username !== undefined && 
+        userInfo.planType !== undefined)  
+    {
       subTypeElement.innerHTML = `${userInfo.planType.toUpperCase()}`;
       usernameElement.innerHTML = `${userInfo.username}`;
       if (userInfo.planType === "free") {
@@ -101,10 +106,12 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       }else{
 
+          subTypeElement.innerHTML = "NONE"
           subTypeElement.style.backgroundColor = 'gray';
 
       }
     }
+
   }
 
   chrome.storage.sync.get('summary', (obj) => {

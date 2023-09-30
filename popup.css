@@ -123,3 +123,7 @@ h2{
     padding: .3rem .5rem;
     font-size: .6rem;
 }
+
+.account-link{
+   text-decoration: none;
+}

@@ -148,6 +148,8 @@
 
           const setDataOrShowError = (data) => {
 
+              console.log("spisodioi", data)
+
               if (!data) {
                 assignValues(isAuthenticate);
                 return;
@@ -155,11 +157,17 @@
 
               if (data.msj && (data.msj === "Auth failed")) {
                 isAuthenticate = false;
+                userInfo = {}
                 assignValues(isAuthenticate);
                 return;
               }
 
-              if (data.userDB && data.userDB.username && data.userDB.planType) {
+              if (data.userDB.username !== null && 
+                  data.userDB.planType !== null && 
+                  data.userDB.username !== undefined && 
+                  data.userDB.planType !== undefined) 
+              {
+                console.log("sssssssssssssssssssh")
                 userInfo = {
                   username: data.userDB.username,
                   planType: data.userDB.planType
