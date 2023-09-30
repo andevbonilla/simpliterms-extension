@@ -85,8 +85,25 @@ document.addEventListener("DOMContentLoaded", async() => {
 
   const setUserInfo = (userInfo) => {
     if (userInfo.username && userInfo.planType) {
-      subTypeElement.innerHTML = `${userInfo.planType}`;
+      subTypeElement.innerHTML = `${userInfo.planType.toUpperCase()}`;
       usernameElement.innerHTML = `${userInfo.username}`;
+      if (userInfo.planType === "free") {
+
+          subTypeElement.style.backgroundColor = '#5712DF';
+
+      }else if(userInfo.planType === "basic"){
+
+          subTypeElement.style.backgroundColor = '#32EEB8';
+
+      }else if(userInfo.planType === "pro"){
+
+          subTypeElement.style.backgroundColor = 'black';
+
+      }else{
+
+          subTypeElement.style.backgroundColor = 'gray';
+
+      }
     }
   }
 

@@ -159,6 +159,13 @@
                 return;
               }
 
+              if (data.userDB && data.userDB.username && data.userDB.planType) {
+                userInfo = {
+                  username: data.userDB.username,
+                  planType: data.userDB.planType
+                }
+              }
+
               if (data.res === false) {
                 errorMessage = data.message;
                 isAuthenticate = true;
@@ -171,10 +178,6 @@
                 termsOfUse = data.summaryDB.conditionsTerms;
                 errorMessage = "";
                 isAuthenticate = true;
-                userInfo = {
-                  username: data.userDB.username,
-                  planType: data.userDB.planType
-                }
                 assignValues(isAuthenticate);
                 return;
               }
