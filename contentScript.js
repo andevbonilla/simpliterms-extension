@@ -185,7 +185,7 @@
                   default:
                     return false;
                 }
-              }
+            }
 
             //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
             if (privacyURLs.length > 0) {
