@@ -20,7 +20,7 @@
             'privacidad',         // Español
             'privacy',            // Inglés
             'vie privée',         // Francés
-            'Datenschutz',        // Alemán
+            'datenschutz',        // Alemán
             'privacy',            // Italiano
             'privacidade',        // Portugués
             'privacy',            // Neerlandés
@@ -30,7 +30,37 @@
             'yksityisyys',        // Finés
             'конфиденциальность', // Ruso
             '隐私',               // Chino Simplificado
-            '隱私', 
+            '隱私',
+            "política de tratamiento de datos personales", // Español
+            "política de tratamento de dados pessoais", // Portugués (Brasil)
+            "politique de traitement des données personnelles", // Francés
+            "politik zur verarbeitung personenbezogener daten", // Alemán
+            "政策個人資料處理", // Chino (Simplificado)
+            "политика обработки персональных данных", // Ruso
+            "πολιτική επεξεργασίας προσωπικών δεδομένων", // Griego
+            "سياسة معالجة البيانات الشخصية", // Árabe
+            "პერსონალურ მონაცემთა დამუშავების პოლიტიკა", // Georgiano
+            "política de manipulare a datelor personale", // Rumano
+            "politika o rukovanju ličnim podacima", // Serbio
+            "politiikka henkilötietojen käsittelystä", // Finés
+            "מדיניות לטיפול בנתונים אישיים", // Hebreo
+            "personu datu apstrādes politika", // Letón
+            "politika o obradi osobnih podataka", // Croata
+            "politika o spracovaní osobných údajov", // Eslovaco
+            "politica di trattamento dei dati personali", // Italiano
+            "polityka przetwarzania danych osobowych", // Polaco
+            "política de processamento de dados pessoais", // Portugués (Portugal)
+            "politika o procesiranju osobnih podataka", // Bosnio
+            "політика обробки персональних даних", // Ucraniano
+            "политика за обработка на лични данни", // Búlgaro
+            "पर्सनल डेटा प्रसंस्करण नीति", // Hindi
+            "trattamento dati personali politica", // Italiano
+            "politika apie asmens duomenų tvarkymą", // Lituano
+            "politica de prelucrare a datelor cu caracter personal", // Rumano
+            "política de processament de dades personals", // Catalán
+            "politika obdelave osebnih podatkov", // Esloveno
+            "politika o obdelavi osebnih podatkov", // Esloveno
+            "politika za obdelavo osebnih podatkov", // Esloveno 
           ];
           const termsPosibilities = [
               'términos',            // Español
@@ -47,20 +77,39 @@
               'условия',             // Ruso
               '条款',                // Chino Simplificado
               '條款',                // Chino Tradicional
-              'condiciones',         // Español
-              'conditions',          // Inglés
-              'conditions',          // Francés (mismo en inglés)
-              'bedingungen',         // Alemán
-              'condizioni',          // Italiano
-              'condições',           // Portugués
-              'voorwaarden',         // Neerlandés
-              'villkor',             // Sueco
-              'betingelser',         // Danés
-              'betingelser',         // Noruego (mismo en danés)
-              'ehdot',               // Finés
-              'условия',             // Ruso
-              '条款',                // Chino Simplificado
-              '條款',                // Chino Tradicional
+              "acuerdo legal",       // Español
+              "accord légal",        // Francés
+              "juristische Vereinbarung", // Alemán
+              "法律協議",                  // Chino (Simplificado)
+              "юридическое соглашение",   // Ruso
+              "νομική συμφωνία",          // Griego
+              "اتفاق قانوني",            // Árabe
+              "სამართალი ხელშეკრულება", // Georgiano
+              "acord legal",             // Rumano
+              "pravni sporazum",          // Serbio
+              "oikeudellinen sopimus",   // Finés
+              "הסכם משפטי",             // Hebreo
+              "juridiskais līgums",      // Letón
+              "pravna suglasnost",       // Croata
+              "právna dohoda",           // Eslovaco
+              "accordo legale",          // Italiano
+              "umowa prawna",            // Polaco
+              "acordo legal",            // Portugués
+              "condiciones",             // Español
+              "condições",               // Portugués
+              "conditions",              // Inglés
+              "条件",                    // Chino (Simplificado)
+              "συνθήκες",               // Griego
+              "شروط",                   // Árabe
+              "პირობები",               // Georgiano
+              "condiții",               // Rumano
+              "uslovi",                 // Serbio
+              "תנאים",                  // Hebreo
+              "nosacījumi",             // Letón
+              "uvjeti",                 // Croata
+              "podmienky",              // Eslovaco
+              "condizioni",             // Italiano
+              "warunki",                // Polaco
           ];
 
 
@@ -73,15 +122,130 @@
           }
 
 
-          const requestSummaryInfo = (tokenValidator) => {
+          const requestSummaryInfo = async(tokenValidator) => {
+
+            // analyse if there are links realted to terms of use or privacy policies
+            const privacyURLs = [];
+            const termsUseURLs = [];
+
+            let privacyBody = "";
+            let termsBody = "";
+
+            let PrivacyHtmlWebpage = "";
+            let TermsHtmlWebpage = "";
+
+            for (const tag of linksTag) {
+                //extract privacy policies links from any page  
+                for (const option of privacyPosibilities) {
+                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                    if (!privacyURLs.includes(tag.getAttribute("href"))) {
+                      privacyURLs.push(tag.getAttribute("href"));
+                    }
+                    ifPrivacy = true;
+                  }
+                }
+                //extract terms of use policies links from any page 
+                for (const option of termsPosibilities) {
+                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                    if (!termsUseURLs.includes(tag.getAttribute("href"))) {
+                      termsUseURLs.push(tag.getAttribute("href"));
+                    }
+                    ifTerms = true;
+                  }
+                }
+            }
+
+            const ifIsImportantTag = (tag) => {
+                switch (tag.toString()) {
+                  case "SPAN":
+                    
+                    return true;
+                  case "H1":
+                    
+                    return true;
+                  case "H2":
+                    
+                    return true;
+                  case "H3":
+                    
+                    return true;
+                  case "H4":
+                    
+                    return true;
+                  case "H5":
+                    
+                    return true;
+                  case "H6":
+                    
+                    return true;
+                  case "P":
+                    
+                    return true;
+                
+                  default:
+                    return false;
+                }
+              }
+
+            //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
+            if (privacyURLs.length > 0) {
+              const responseOfprivacy = await fetch(privacyURLs[0])
+              PrivacyHtmlWebpage = await responseOfprivacy.text();
+              // Crear un elemento HTML temporal para analizar el HTML
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(PrivacyHtmlWebpage, 'text/html');
+
+              // only select the text of the important elements
+              
+              const elements = doc.querySelectorAll('*');
+
+              // iterte whole html elements
+              for (let i = 0; i < elements.length; i++) {
+                const element = elements[i];
+                if (ifIsImportantTag(element.tagName)) {
+                  privacyBody = privacyBody + " " + element.textContent;
+                }
+              }
+              console.log("PRIVACY", privacyBody)  
+              
+            }
+
+            //convert the html of TERMS OF USE WEBPAGE to string to will be sent towards the backend
+            if (termsUseURLs.length > 0) {
+              const responseOfterms = await fetch(termsUseURLs[0])
+              TermsHtmlWebpage = await responseOfterms.text()
+              // Crear un elemento HTML temporal para analizar el HTML
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(TermsHtmlWebpage, 'text/html');
+
+              // only select the text of the important elements
+              const elements = doc.querySelectorAll('*');
+
+              // iterte whole html elements
+              for (let i = 0; i < elements.length; i++) {
+                const element = elements[i];
+                if (ifIsImportantTag(element.tagName)) {
+                  termsBody = termsBody + " " + element.textContent;
+                }
+              }
+              console.log("TERMS", termsBody)
+            
+            }
+
+
             return new Promise((resolve, reject) => {
                 
                 fetch(`http://localhost:4200/api/summary/`, {
-                                                        method: 'GET',
+                                                        method: 'POST',
                                                         headers: {
+                                                            'Content-Type': 'application/json',
                                                             'x-token': tokenValidator,
                                                             'host-petition': window.location.host
                                                         },
+                                                        body: JSON.stringify({
+                                                                              privacyBody: privacyBody.toString(), 
+                                                                              termsBody: termsBody.toString()
+                                                                             })
                                                     })
                 .then(response => {
                     if (response) {
@@ -119,18 +283,6 @@
                 return;
               }
 
-              for (const tag of linksTag) {  
-                    for (const option of privacyPosibilities) {
-                      if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
-                        ifPrivacy = true;
-                      }
-                    }
-                    for (const option of termsPosibilities) {
-                      if (tag.innerHTML.replaceAll(' ','').trim().toLocaleLowerCase().includes(option)) {
-                        ifTerms = true;
-                      }
-                    }
-              }
               chrome.storage.sync.set({
                 'summary': {
                               termsOfPrivacy, 
@@ -224,8 +376,10 @@
 
       }
 
-      contentScript();
-
+      setTimeout(() => {
+        contentScript();
+      }, 200);
+      
       chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         if (request.url) {
           contentScript();
