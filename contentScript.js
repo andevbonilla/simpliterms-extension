@@ -110,6 +110,10 @@
               "podmienky",              // Eslovaco
               "condizioni",             // Italiano
               "warunki",                // Polaco
+              "légal",            // French
+              "legal",            // English
+              "legale",           // Italian
+              "légale"            // french other option
           ];
 
 
