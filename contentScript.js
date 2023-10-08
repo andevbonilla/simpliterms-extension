@@ -125,41 +125,8 @@
             }
           }
 
-
-          const requestSummaryInfo = async(tokenValidator) => {
-
-            // analyse if there are links realted to terms of use or privacy policies
-            const privacyURLs = [];
-            const termsUseURLs = [];
-
-            let privacyBody = "";
-            let termsBody = "";
-
-            let PrivacyHtmlWebpage = "";
-            let TermsHtmlWebpage = "";
-
-            for (const tag of linksTag) {
-                //extract privacy policies links from any page  
-                for (const option of privacyPosibilities) {
-                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
-                    if (!privacyURLs.includes(tag.getAttribute("href"))) {
-                      privacyURLs.push(tag.getAttribute("href"));
-                    }
-                    ifPrivacy = true;
-                  }
-                }
-                //extract terms of use policies links from any page 
-                for (const option of termsPosibilities) {
-                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
-                    if (!termsUseURLs.includes(tag.getAttribute("href"))) {
-                      termsUseURLs.push(tag.getAttribute("href"));
-                    }
-                    ifTerms = true;
-                  }
-                }
-            }
-
-            const ifIsImportantTag = (tag) => {
+          // decides if a tag is important to be readed or not
+          const ifIsImportantTag = (tag) => {
                 switch (tag.toString()) {
                   case "SPAN":
                     
@@ -189,6 +156,25 @@
                   default:
                     return false;
                 }
+          }
+
+          // prepare the info and make the http request to obtain the privacy summary
+          const requestPrivacySummaryInfo = async(tokenValidator) => {
+
+            const privacyURLs = [];
+            let privacyBody = "";
+            let PrivacyHtmlWebpage = "";
+
+            for (const tag of linksTag) {
+                //extract privacy policies links from any page  
+                for (const option of privacyPosibilities) {
+                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                    if (!privacyURLs.includes(tag.getAttribute("href"))) {
+                      privacyURLs.push(tag.getAttribute("href"));
+                    }
+                    ifPrivacy = true;
+                  }
+                }
             }
 
             //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
@@ -214,32 +200,9 @@
               
             }
 
-            //convert the html of TERMS OF USE WEBPAGE to string to will be sent towards the backend
-            if (termsUseURLs.length > 0) {
-              const responseOfterms = await fetch(termsUseURLs[0])
-              TermsHtmlWebpage = await responseOfterms.text()
-              // Crear un elemento HTML temporal para analizar el HTML
-              const parser = new DOMParser();
-              const doc = parser.parseFromString(TermsHtmlWebpage, 'text/html');
-
-              // only select the text of the important elements
-              const elements = doc.querySelectorAll('*');
-
-              // iterte whole html elements
-              for (let i = 0; i < elements.length; i++) {
-                const element = elements[i];
-                if (ifIsImportantTag(element.tagName)) {
-                  termsBody = termsBody + " " + element.textContent;
-                }
-              }
-              console.log("TERMS", termsBody)
-            
-            }
-
-
             return new Promise((resolve, reject) => {
                 
-                fetch(`http://localhost:4200/api/summary/`, {
+                fetch(`http://localhost:4200/api/summary/privacy`, {
                                                         method: 'POST',
                                                         headers: {
                                                             'Content-Type': 'application/json',
@@ -247,8 +210,79 @@
                                                             'host-petition': window.location.host
                                                         },
                                                         body: JSON.stringify({
-                                                                              privacyBody: privacyBody.toString(), 
-                                                                              termsBody: termsBody.toString()
+                                                                               privacyBody: privacyBody.toString()
+                                                                             })
+                                                    })
+                .then(response => {
+                    if (response) {
+                      return response.json();
+                    } else {
+                      console.error("PRIVACY77777")
+                      return;
+                    }
+                })
+                .then(data => {
+                    resolve(data)
+                })
+                .catch(error => {
+                    reject(error)
+                });
+                
+            })
+          }
+
+          // prepare the info and make the http request to obtain the terms summary
+          const requestTermsSummaryInfo = async(tokenValidator) => {
+
+            const termsUseURLs = [];
+            let termsBody = "";
+            let TermsHtmlWebpage = "";
+
+            for (const tag of linksTag) {
+                //extract terms of use policies links from any page 
+                for (const option of termsPosibilities) {
+                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                    if (!termsUseURLs.includes(tag.getAttribute("href"))) {
+                      termsUseURLs.push(tag.getAttribute("href"));
+                    }
+                    ifTerms = true;
+                  }
+                }
+            }
+
+            //convert the html of TERMS OF USE WEBPAGE to string to will be sent towards the backend
+            if (termsUseURLs.length > 0) {
+                const responseOfterms = await fetch(termsUseURLs[0])
+                TermsHtmlWebpage = await responseOfterms.text();
+                // Crear un elemento HTML temporal para analizar el HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(TermsHtmlWebpage, 'text/html');
+
+                // only select the text of the important elements
+                const elements = doc.querySelectorAll('*');
+
+                // iterte whole html elements
+                for (let i = 0; i < elements.length; i++) {
+                  const element = elements[i];
+                  if (ifIsImportantTag(element.tagName)) {
+                    termsBody = termsBody + " " + element.textContent;
+                  }
+                }
+                console.log("TERMS", termsBody);
+            }
+
+
+            return new Promise((resolve, reject) => {
+                
+                fetch(`http://localhost:4200/api/summary/terms`, {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                            'x-token': tokenValidator,
+                                                            'host-petition': window.location.host
+                                                        },
+                                                        body: JSON.stringify({ 
+                                                                                termsBody: termsBody.toString()
                                                                              })
                                                     })
                 .then(response => {
@@ -307,73 +341,105 @@
               console.log("spisodioi", data)
 
               if (!data) {
-                assignValues(isAuthenticate);
-                return;
+                  console.log("noooo dataaa")
+                  return;
               }
 
               if (data.msj && (data.msj === "Auth failed")) {
-                isAuthenticate = false;
-                userInfo = {}
-                assignValues(isAuthenticate);
-                return;
-              }
-
-              if (data.userDB.username !== null && 
-                  data.userDB.planType !== null && 
-                  data.userDB.username !== undefined && 
-                  data.userDB.planType !== undefined) 
-              {
-                console.log("sssssssssssssssssssh")
-                userInfo = {
-                  username: data.userDB.username,
-                  planType: data.userDB.planType
-                }
+                  isAuthenticate = false;
+                  userInfo = {}
+                  assignValues(isAuthenticate);
+                  return;
               }
 
               if (data.res === false) {
-                errorMessage = data.message;
-                isAuthenticate = true;
-                assignValues(isAuthenticate);
-                return;
+                  errorMessage = data.message;
+                  isAuthenticate = true;
+                  assignValues(isAuthenticate);
+                  return;
+              }
+
+              if ( data.userDB.username && data.userDB.planType ){
+                  userInfo = {
+                    username: data.userDB.username,
+                    planType: data.userDB.planType
+                  }
+                  isAuthenticate = true;
+              }else{
+                  isAuthenticate = false;
+                  assignValues(isAuthenticate);
+                  return;
               }
 
               if (data.summaryDB) {
-                termsOfPrivacy = data.summaryDB.privacyTerms;
-                termsOfUse = data.summaryDB.conditionsTerms;
-                errorMessage = "";
-                isAuthenticate = true;
-                assignValues(isAuthenticate);
-                return;
+                  termsOfPrivacy = data.summaryDB.privacyTerms;
+                  termsOfUse = data.summaryDB.conditionsTerms;
+                  errorMessage = "";
+                  isAuthenticate = true;
+                  assignValues(isAuthenticate);
+                  return;
+              }
+
+              if (data.termSummary) {
+                  termsOfUse = data.termSummary;
+                  errorMessage = "";
+                  isAuthenticate = true;
+                  assignValues(isAuthenticate);
+                  return;
+              }
+
+              if (data.privacySummary) {
+                  termsOfPrivacy = data.privacySummary;
+                  errorMessage = "";
+                  isAuthenticate = true;
+                  assignValues(isAuthenticate);
+                  return;
               }
 
           }
           
           if (tokenValidator !== '') {
 
-            
-
             chrome.storage.sync.set({
               'xtoken': tokenValidator
             });
-            requestSummaryInfo(tokenValidator).then(data=>{
+            // request privacy
+            requestPrivacySummaryInfo(tokenValidator).then(data=>{
                                                   setDataOrShowError(data);
                                               })
                                               .catch(err=> {
                                                 console.log(err, "uyuyuyuyuyuyyuyuyuyuy");
                                                 assignValues(isAuthenticate);
+                                              });
+            // request terms 
+            requestTermsSummaryInfo(tokenValidator).then(data=>{
+                                                  setDataOrShowError(data);
                                               })
+                                              .catch(err=> {
+                                                console.log(err, "uyuyuyuyuyuyyuyuyuyuy");
+                                                assignValues(isAuthenticate);
+                                              });
             
           }else{
 
             chrome.storage.sync.get('xtoken', ({xtoken}) => {
               tokenValidator = xtoken;
-              requestSummaryInfo(tokenValidator).then(data=>{  
-                                                    setDataOrShowError(data);
+              // request privacy
+              requestPrivacySummaryInfo(tokenValidator).then(data=>{  
+                                                  setDataOrShowError(data);
                                                 })
                                                 .catch(err=> {
                                                   console.log(err, "popdofpsdofpo");
                                                   assignValues(isAuthenticate);
+                                                });
+              // request terms 
+              requestTermsSummaryInfo(tokenValidator).then(data=>{  
+                                                  setDataOrShowError(data);
                                                 })
+                                                .catch(err=> {
+                                                  console.log(err, "popdofpsdofpo");
+                                                  assignValues(isAuthenticate);
+                                                });
             });
 
           }
