@@ -1,6 +1,6 @@
 (() => {
 
-      const contentScript = () => {
+      const contentScript = async() => {
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
           const listOfCookies = document.cookie.split(';');
           let tokenValidator = '';
@@ -12,8 +12,7 @@
           let isAuthenticate = false;
           let errorMessage = "";
           let userInfo = {};
-
-
+          
           const linksTag = document.querySelectorAll('a');
 
           const privacyPosibilities = [
@@ -168,7 +167,7 @@
             for (const tag of linksTag) {
                 //extract privacy policies links from any page  
                 for (const option of privacyPosibilities) {
-                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
                     if (!privacyURLs.includes(tag.getAttribute("href"))) {
                       privacyURLs.push(tag.getAttribute("href"));
                     }
@@ -241,7 +240,7 @@
             for (const tag of linksTag) {
                 //extract terms of use policies links from any page 
                 for (const option of termsPosibilities) {
-                  if (tag.innerHTML.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
                     if (!termsUseURLs.includes(tag.getAttribute("href"))) {
                       termsUseURLs.push(tag.getAttribute("href"));
                     }
@@ -303,38 +302,38 @@
             })
           }
 
-          const assignValues = (auth) => {
+          // const assignValues = (auth) => {
 
-              if (auth === false) {
-                chrome.storage.sync.set({
-                'summary': {
-                              termsOfPrivacy: [], 
-                              termsOfUse: [], 
-                              ifPrivacy: false, 
-                              ifTerms: false, 
-                              host: window.location.host,
-                              isAuthenticate,
-                              userInfo: {},
-                              errorMessage
-                          }
-                });
-                return;
-              }
+          //     if (auth === false) {
+          //       chrome.storage.sync.set({
+          //       'summary': {
+          //                     termsOfPrivacy: [], 
+          //                     termsOfUse: [], 
+          //                     ifPrivacy: false, 
+          //                     ifTerms: false, 
+          //                     host: window.location.host,
+          //                     isAuthenticate,
+          //                     userInfo: {},
+          //                     errorMessage
+          //                 }
+          //       });
+          //       return;
+          //     }
 
-              chrome.storage.sync.set({
-                'summary': {
-                              termsOfPrivacy, 
-                              termsOfUse, 
-                              ifPrivacy, 
-                              ifTerms, 
-                              host: window.location.host,
-                              isAuthenticate,
-                              userInfo,
-                              errorMessage
-                          }
-              });
+          //     chrome.storage.sync.set({
+          //       'summary': {
+          //                     termsOfPrivacy, 
+          //                     termsOfUse, 
+          //                     ifPrivacy, 
+          //                     ifTerms, 
+          //                     host: window.location.host,
+          //                     isAuthenticate,
+          //                     userInfo,
+          //                     errorMessage
+          //                 }
+          //     });
 
-          }
+          // }
 
           const setDataOrShowError = (data) => {
 
@@ -342,20 +341,23 @@
 
               if (!data) {
                   console.log("noooo dataaa")
+                  thereWasResponse = true;
                   return;
               }
 
               if (data.msj && (data.msj === "Auth failed")) {
                   isAuthenticate = false;
                   userInfo = {}
-                  assignValues(isAuthenticate);
+                  // assignValues(isAuthenticate);
+                  thereWasResponse = true;
                   return;
               }
 
               if (data.res === false) {
                   errorMessage = data.message;
                   isAuthenticate = true;
-                  assignValues(isAuthenticate);
+                  // assignValues(isAuthenticate);
+                  thereWasResponse = true;
                   return;
               }
 
@@ -367,7 +369,8 @@
                   isAuthenticate = true;
               }else{
                   isAuthenticate = false;
-                  assignValues(isAuthenticate);
+                  // assignValues(isAuthenticate);
+                  thereWasResponse = true;
                   return;
               }
 
@@ -376,7 +379,8 @@
                   termsOfUse = data.summaryDB.conditionsTerms;
                   errorMessage = "";
                   isAuthenticate = true;
-                  assignValues(isAuthenticate);
+                  // assignValues(isAuthenticate);
+                  thereWasResponse = true;
                   return;
               }
 
@@ -384,7 +388,8 @@
                   termsOfUse = data.termSummary;
                   errorMessage = "";
                   isAuthenticate = true;
-                  assignValues(isAuthenticate);
+                  // assignValues(isAuthenticate);
+                  thereWasResponse = true;
                   return;
               }
 
@@ -392,57 +397,95 @@
                   termsOfPrivacy = data.privacySummary;
                   errorMessage = "";
                   isAuthenticate = true;
-                  assignValues(isAuthenticate);
+                  // assignValues(isAuthenticate);
+                  thereWasResponse = true;
                   return;
               }
 
           }
-          
-          if (tokenValidator !== '') {
 
-            chrome.storage.sync.set({
-              'xtoken': tokenValidator
-            });
-            // request privacy
-            requestPrivacySummaryInfo(tokenValidator).then(data=>{
-                                                  setDataOrShowError(data);
-                                              })
-                                              .catch(err=> {
-                                                console.log(err, "uyuyuyuyuyuyyuyuyuyuy");
-                                                assignValues(isAuthenticate);
-                                              });
-            // request terms 
-            requestTermsSummaryInfo(tokenValidator).then(data=>{
-                                                  setDataOrShowError(data);
-                                              })
-                                              .catch(err=> {
-                                                console.log(err, "uyuyuyuyuyuyyuyuyuyuy");
-                                                assignValues(isAuthenticate);
-                                              });
-            
-          }else{
 
-            chrome.storage.sync.get('xtoken', ({xtoken}) => {
-              tokenValidator = xtoken;
-              // request privacy
-              requestPrivacySummaryInfo(tokenValidator).then(data=>{  
-                                                  setDataOrShowError(data);
-                                                })
-                                                .catch(err=> {
-                                                  console.log(err, "popdofpsdofpo");
-                                                  assignValues(isAuthenticate);
-                                                });
-              // request terms 
-              requestTermsSummaryInfo(tokenValidator).then(data=>{  
-                                                  setDataOrShowError(data);
-                                                })
-                                                .catch(err=> {
-                                                  console.log(err, "popdofpsdofpo");
-                                                  assignValues(isAuthenticate);
-                                                });
-            });
 
-          }
+          chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
+
+              if (request.message === 'popupLoaded') {
+
+                if (tokenValidator !== '') {
+
+                    chrome.storage.sync.set({
+                      'xtoken': tokenValidator
+                    });
+
+                    try {
+                      // request privacy
+                      const privacyData = await requestPrivacySummaryInfo(tokenValidator);
+                      setDataOrShowError(privacyData);
+                      // request terms 
+                      const termsData = await requestTermsSummaryInfo(tokenValidator);
+                      setDataOrShowError(termsData);
+                      // if both petition were made 
+                      if (privacyData && termsData) {
+                            chrome.runtime.sendMessage({
+                                  message: 'serverResult',
+                                  serverData: {
+                                    termsOfPrivacy, 
+                                    termsOfUse, 
+                                    ifPrivacy, 
+                                    ifTerms, 
+                                    host: window.location.host,
+                                    isAuthenticate,
+                                    userInfo,
+                                    errorMessage
+                                  }
+                                }, function(response) {
+                                // Maneja el contenido del popup obtenido en response.content
+                                console.log("recibidaaaaaaaa");
+                            });
+                      }
+                    } catch (error) {
+                      console.log(error);
+                    }
+
+                }else{
+                  chrome.storage.sync.get('xtoken', async({xtoken}) => {
+                      tokenValidator = xtoken;
+                      try {
+
+                        // request privacy
+                        const privacyData = await requestPrivacySummaryInfo(tokenValidator);
+                        setDataOrShowError(privacyData);
+
+                        // request terms 
+                        const termsData = await requestTermsSummaryInfo(tokenValidator);
+                        setDataOrShowError(termsData);
+
+                        // if both petition were made 
+                        if (privacyData && termsData) {
+                            chrome.runtime.sendMessage({
+                                  message: 'serverResult',
+                                  serverData: {
+                                    termsOfPrivacy, 
+                                    termsOfUse, 
+                                    ifPrivacy, 
+                                    ifTerms, 
+                                    host: window.location.host,
+                                    isAuthenticate,
+                                    userInfo,
+                                    errorMessage
+                                  }
+                                }, function(response) {
+                                // Maneja el contenido del popup obtenido en response.content
+                                console.log("recibidaaaaaaaa");
+                            });
+                        }
+                        
+                      } catch (error) {
+                        console.log(error);
+                      }
+                  });
+                }                       
+              }
+          });             
 
       }
 
