@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async() => {
       // logged part
 
       const loadingContainer = document.getElementById('loading-container');
-      const loadingMessage = document.getElementById('loading-message');
 
       const errorView = document.getElementById('if-error');
       const successView = document.getElementById('not-error');
