@@ -1,7 +1,7 @@
 (() => {
 
       let firstOpened = true;
-      
+
       const contentScript = async() => {
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
           const listOfCookies = document.cookie.split(';');
@@ -417,7 +417,7 @@
 
           }
 
-          const requestSummaryAndRespondMessage = async() => {
+          const respondMessage = async() => {
             
               try {
 
@@ -467,7 +467,7 @@
                 }
                 
               } catch (error) {
-                console.log(error);
+                console.log(error, "error in respond message function");
                 chrome.runtime.sendMessage({
                   message: 'serverResult',
                   serverData: {
@@ -497,15 +497,18 @@
                       'xtoken': tokenValidator
                     });
 
-                    await requestSummaryAndRespondMessage();
+                    await respondMessage();
                     
 
                 }else{
+
                   chrome.storage.sync.get('xtoken', async({xtoken}) => {
                       tokenValidator = xtoken;
-                      await requestSummaryAndRespondMessage();
+                      await respondMessage();
                   });
-                }                       
+
+                }
+
               }
 
           });
