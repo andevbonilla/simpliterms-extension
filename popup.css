@@ -150,6 +150,27 @@ h2{
    animation: rotate 1s ease 0s infinite;
 }
 
+.question-header{
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: .5rem .6rem;
+    border-radius: 1rem;
+    background-color: #5712DF;
+}
+
+.question-header button:first-of-type{
+    background-color: rgb(0, 159, 0);
+    margin: 0 .6rem;
+}
+
+.question-header button{
+    border: none;
+    background-color: red;
+    padding: .5rem;
+}
+
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);

@@ -126,7 +126,17 @@
               "légal",            // French
               "legal",            // English
               "legale",           // Italian
-              "légale"            // french other option
+              "légale",            // french other option
+              "安全",             // Chino (mandarín)
+              "seguridad",       // Español
+              "security",        // Inglés
+              "सुरक्षा",          // Hindi
+              "أمان",            // Árabe
+              "segurança",       // Portugués
+              "নিরাপত্তা",        // Bengalí
+              "безопасность",     // Ruso
+              "سلامتی",          // Urdu
+              "sécurité"         // Francés
           ];
 
 
@@ -192,7 +202,7 @@
 
             //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
             if (privacyURLs.length > 0) {
-              const responseOfprivacy = await fetch(privacyURLs[0])
+              const responseOfprivacy = await fetch(privacyURLs[0], {mode: 'no-cors',})
               PrivacyHtmlWebpage = await responseOfprivacy.text();
               // Crear un elemento HTML temporal para analizar el HTML
               const parser = new DOMParser();
@@ -265,7 +275,7 @@
 
             //convert the html of TERMS OF USE WEBPAGE to string to will be sent towards the backend
             if (termsUseURLs.length > 0) {
-                const responseOfterms = await fetch(termsUseURLs[0])
+                const responseOfterms = await fetch(termsUseURLs[0], {mode: 'no-cors'})
                 TermsHtmlWebpage = await responseOfterms.text();
                 // Crear un elemento HTML temporal para analizar el HTML
                 const parser = new DOMParser();
