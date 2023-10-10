@@ -1,6 +1,7 @@
 (() => {
 
       let firstOpened = true;
+      
       const contentScript = async() => {
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
           const listOfCookies = document.cookie.split(';');
@@ -13,19 +14,7 @@
           let isAuthenticate = false;
           let errorMessage = "";
           let userInfo = {};
-          // let firstOpened = true;
 
-          console.log({
-            firstOpened,
-            termsOfPrivacy, 
-                                        termsOfUse, 
-                                        ifPrivacy, 
-                                        ifTerms, 
-                                        host: window.location.host,
-                                        isAuthenticate,
-                                        userInfo,
-                                        errorMessage
-          }, "firstOpened")
           
           const linksTag = document.querySelectorAll('a');
 
@@ -428,6 +417,74 @@
 
           }
 
+          const requestSummaryAndRespondMessage = async() => {
+            
+              try {
+
+                if (firstOpened === true) {
+                    // request privacy
+                    const privacyData = await requestPrivacySummaryInfo(tokenValidator);
+                    setDataOrShowError(privacyData);
+                    // request terms 
+                    const termsData = await requestTermsSummaryInfo(tokenValidator);
+                    setDataOrShowError(termsData);
+                    // if both petition were made 
+                    if (privacyData && termsData) {
+                          firstOpened = false;
+                          chrome.runtime.sendMessage({
+                                message: 'serverResult',
+                                serverData: {
+                                  termsOfPrivacy, 
+                                  termsOfUse, 
+                                  ifPrivacy, 
+                                  ifTerms, 
+                                  host: window.location.host,
+                                  isAuthenticate,
+                                  userInfo,
+                                  errorMessage,
+                                  tokenValidator
+                                }
+                          });
+                    }
+
+                }else {
+                    console.log("ssssad000000000000")
+                    // only send info saved to don't repeat request in the same page
+                    chrome.runtime.sendMessage({
+                                  message: 'serverResult',
+                                  serverData: {
+                                    termsOfPrivacy, 
+                                    termsOfUse, 
+                                    ifPrivacy, 
+                                    ifTerms, 
+                                    host: window.location.host,
+                                    isAuthenticate,
+                                    userInfo,
+                                    errorMessage,
+                                    tokenValidator
+                                  }
+                    });
+                }
+                
+              } catch (error) {
+                console.log(error);
+                chrome.runtime.sendMessage({
+                  message: 'serverResult',
+                  serverData: {
+                    termsOfPrivacy: [], 
+                    termsOfUse: [], 
+                    ifPrivacy: false, 
+                    ifTerm: false, 
+                    host: window.location.host,
+                    isAuthenticate,
+                    userInfo,
+                    errorMessage: error.toString(),
+                    tokenValidator
+                  }
+                });
+              }
+
+          }
 
 
           chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
@@ -440,113 +497,19 @@
                       'xtoken': tokenValidator
                     });
 
-                    try {
-
-                      if (firstOpened === true) {
-                          // request privacy
-                          const privacyData = await requestPrivacySummaryInfo(tokenValidator);
-                          setDataOrShowError(privacyData);
-                          // request terms 
-                          const termsData = await requestTermsSummaryInfo(tokenValidator);
-                          setDataOrShowError(termsData);
-                          // if both petition were made 
-                          if (privacyData && termsData) {
-                                firstOpened = false;
-                                chrome.runtime.sendMessage({
-                                      message: 'serverResult',
-                                      serverData: {
-                                        termsOfPrivacy, 
-                                        termsOfUse, 
-                                        ifPrivacy, 
-                                        ifTerms, 
-                                        host: window.location.host,
-                                        isAuthenticate,
-                                        userInfo,
-                                        errorMessage,
-                                        tokenValidator
-                                      }
-                                });
-                          }
-
-                      }else {
-                        console.log("ssssad000000000000")
-                          // only send info saved to don't repeat request in the same page
-                          chrome.runtime.sendMessage({
-                                        message: 'serverResult',
-                                        serverData: {
-                                          termsOfPrivacy, 
-                                          termsOfUse, 
-                                          ifPrivacy, 
-                                          ifTerms, 
-                                          host: window.location.host,
-                                          isAuthenticate,
-                                          userInfo,
-                                          errorMessage,
-                                          tokenValidator
-                                        }
-                          });
-                      }
-                      
-                    } catch (error) {
-                      console.log(error);
-                    }
+                    await requestSummaryAndRespondMessage();
+                    
 
                 }else{
                   chrome.storage.sync.get('xtoken', async({xtoken}) => {
                       tokenValidator = xtoken;
-                      try {
-                              if (firstOpened === true) {
-                                  // request privacy
-                                  const privacyData = await requestPrivacySummaryInfo(tokenValidator);
-                                  setDataOrShowError(privacyData);
-                                  // request terms 
-                                  const termsData = await requestTermsSummaryInfo(tokenValidator);
-                                  setDataOrShowError(termsData);
-                                  // if both petition were made 
-                                  if (privacyData && termsData) {
-                                        firstOpened = false;
-                                        chrome.runtime.sendMessage({
-                                              message: 'serverResult',
-                                              serverData: {
-                                                termsOfPrivacy, 
-                                                termsOfUse, 
-                                                ifPrivacy, 
-                                                ifTerms, 
-                                                host: window.location.host,
-                                                isAuthenticate,
-                                                userInfo,
-                                                errorMessage
-                                              }
-                                        });
-                                  }
-
-                              }else{
-                                  // only send info saved to don't repeat request in the same page
-                                  chrome.runtime.sendMessage({
-                                                message: 'serverResult',
-                                                serverData: {
-                                                  termsOfPrivacy, 
-                                                  termsOfUse, 
-                                                  ifPrivacy, 
-                                                  ifTerms, 
-                                                  host: window.location.host,
-                                                  isAuthenticate,
-                                                  userInfo,
-                                                  errorMessage
-                                                }
-                                  });
-                              }
-                            
-                      } catch (error) {
-                          console.log(error);
-                      }
+                      await requestSummaryAndRespondMessage();
                   });
                 }                       
               }
-          });
-          
-          
 
+          });
+             
       }
 
       
