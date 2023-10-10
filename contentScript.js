@@ -1,5 +1,6 @@
 (() => {
 
+      let firstOpened = true;
       const contentScript = async() => {
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
           const listOfCookies = document.cookie.split(';');
@@ -12,6 +13,19 @@
           let isAuthenticate = false;
           let errorMessage = "";
           let userInfo = {};
+          // let firstOpened = true;
+
+          console.log({
+            firstOpened,
+            termsOfPrivacy, 
+                                        termsOfUse, 
+                                        ifPrivacy, 
+                                        ifTerms, 
+                                        host: window.location.host,
+                                        isAuthenticate,
+                                        userInfo,
+                                        errorMessage
+          }, "firstOpened")
           
           const linksTag = document.querySelectorAll('a');
 
@@ -407,7 +421,7 @@
 
 
           chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
-
+              
               if (request.message === 'popupLoaded') {
 
                 if (tokenValidator !== '') {
@@ -417,31 +431,50 @@
                     });
 
                     try {
-                      // request privacy
-                      const privacyData = await requestPrivacySummaryInfo(tokenValidator);
-                      setDataOrShowError(privacyData);
-                      // request terms 
-                      const termsData = await requestTermsSummaryInfo(tokenValidator);
-                      setDataOrShowError(termsData);
-                      // if both petition were made 
-                      if (privacyData && termsData) {
-                            chrome.runtime.sendMessage({
-                                  message: 'serverResult',
-                                  serverData: {
-                                    termsOfPrivacy, 
-                                    termsOfUse, 
-                                    ifPrivacy, 
-                                    ifTerms, 
-                                    host: window.location.host,
-                                    isAuthenticate,
-                                    userInfo,
-                                    errorMessage
-                                  }
-                                }, function(response) {
-                                // Maneja el contenido del popup obtenido en response.content
-                                console.log("recibidaaaaaaaa");
-                            });
+
+                      if (firstOpened === true) {
+                          // request privacy
+                          const privacyData = await requestPrivacySummaryInfo(tokenValidator);
+                          setDataOrShowError(privacyData);
+                          // request terms 
+                          const termsData = await requestTermsSummaryInfo(tokenValidator);
+                          setDataOrShowError(termsData);
+                          // if both petition were made 
+                          if (privacyData && termsData) {
+                                firstOpened = false;
+                                chrome.runtime.sendMessage({
+                                      message: 'serverResult',
+                                      serverData: {
+                                        termsOfPrivacy, 
+                                        termsOfUse, 
+                                        ifPrivacy, 
+                                        ifTerms, 
+                                        host: window.location.host,
+                                        isAuthenticate,
+                                        userInfo,
+                                        errorMessage
+                                      }
+                                });
+                          }
+
+                      }else {
+                        console.log("ssssad000000000000")
+                          // only send info saved to don't repeat request in the same page
+                          chrome.runtime.sendMessage({
+                                        message: 'serverResult',
+                                        serverData: {
+                                          termsOfPrivacy, 
+                                          termsOfUse, 
+                                          ifPrivacy, 
+                                          ifTerms, 
+                                          host: window.location.host,
+                                          isAuthenticate,
+                                          userInfo,
+                                          errorMessage
+                                        }
+                          });
                       }
+                      
                     } catch (error) {
                       console.log(error);
                     }
@@ -450,54 +483,70 @@
                   chrome.storage.sync.get('xtoken', async({xtoken}) => {
                       tokenValidator = xtoken;
                       try {
-
-                        // request privacy
-                        const privacyData = await requestPrivacySummaryInfo(tokenValidator);
-                        setDataOrShowError(privacyData);
-
-                        // request terms 
-                        const termsData = await requestTermsSummaryInfo(tokenValidator);
-                        setDataOrShowError(termsData);
-
-                        // if both petition were made 
-                        if (privacyData && termsData) {
-                            chrome.runtime.sendMessage({
-                                  message: 'serverResult',
-                                  serverData: {
-                                    termsOfPrivacy, 
-                                    termsOfUse, 
-                                    ifPrivacy, 
-                                    ifTerms, 
-                                    host: window.location.host,
-                                    isAuthenticate,
-                                    userInfo,
-                                    errorMessage
+                              if (firstOpened === true) {
+                                  // request privacy
+                                  const privacyData = await requestPrivacySummaryInfo(tokenValidator);
+                                  setDataOrShowError(privacyData);
+                                  // request terms 
+                                  const termsData = await requestTermsSummaryInfo(tokenValidator);
+                                  setDataOrShowError(termsData);
+                                  // if both petition were made 
+                                  if (privacyData && termsData) {
+                                        firstOpened = false;
+                                        chrome.runtime.sendMessage({
+                                              message: 'serverResult',
+                                              serverData: {
+                                                termsOfPrivacy, 
+                                                termsOfUse, 
+                                                ifPrivacy, 
+                                                ifTerms, 
+                                                host: window.location.host,
+                                                isAuthenticate,
+                                                userInfo,
+                                                errorMessage
+                                              }
+                                        });
                                   }
-                                }, function(response) {
-                                // Maneja el contenido del popup obtenido en response.content
-                                console.log("recibidaaaaaaaa");
-                            });
-                        }
-                        
+
+                              }else{
+                                  // only send info saved to don't repeat request in the same page
+                                  chrome.runtime.sendMessage({
+                                                message: 'serverResult',
+                                                serverData: {
+                                                  termsOfPrivacy, 
+                                                  termsOfUse, 
+                                                  ifPrivacy, 
+                                                  ifTerms, 
+                                                  host: window.location.host,
+                                                  isAuthenticate,
+                                                  userInfo,
+                                                  errorMessage
+                                                }
+                                  });
+                              }
+                            
                       } catch (error) {
-                        console.log(error);
+                          console.log(error);
                       }
                   });
                 }                       
               }
-          });             
+          });
+          
+          
 
       }
 
+      
       setTimeout(() => {
         contentScript();
       }, 200);
       
-      chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-        if (request.url) {
-          contentScript();
-        }
-      });
+      // chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+      //   if (request.url && !request.message) {
+      //     chrome.runtime.restart()
+      //   }
+      // });
 
 })();
 

@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", async() => {
 
+
       let summaryInfo = {
         privacy: [],
         terms: []
@@ -127,7 +128,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       // send a message to the content.js when the popup is opened.
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-          chrome.tabs.sendMessage(tabs[0].id, {message: 'popupLoaded'});
+          chrome.tabs.sendMessage(tabs[0].id, {message: 'popupLoaded', PopupTabID: tabs[0].id});
       });
 
 
@@ -172,8 +173,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                 privacy: request.serverData.termsOfPrivacy,
                 terms: request.serverData.termsOfUse
               }
-              // Envía el contenido del popup al script de contenido
-              sendResponse({content: document.body.innerHTML});
+              
           }
       });
 
