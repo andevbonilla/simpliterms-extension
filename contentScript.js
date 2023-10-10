@@ -462,7 +462,8 @@
                                         host: window.location.host,
                                         isAuthenticate,
                                         userInfo,
-                                        errorMessage
+                                        errorMessage,
+                                        tokenValidator
                                       }
                                 });
                           }
@@ -480,7 +481,8 @@
                                           host: window.location.host,
                                           isAuthenticate,
                                           userInfo,
-                                          errorMessage
+                                          errorMessage,
+                                          tokenValidator
                                         }
                           });
                       }
