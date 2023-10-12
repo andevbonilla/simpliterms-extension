@@ -151,24 +151,31 @@ h2{
 }
 
 .question-header{
-    color: white;
-    display: flex;
+    display: none;
+    color: rgba(87, 18, 223, 1);
     align-items: center;
-    padding: .5rem .6rem;
+    padding: .5rem 1rem;
     border-radius: 1rem;
-    background-color: #5712DF;
+    background-color: rgba(87, 18, 223, .3);
+    margin-top: 2rem;
 }
 
 .question-header button:first-of-type{
-    background-color: rgb(0, 159, 0);
+    background-color: transparent;
     margin: 0 .6rem;
 }
 
 .question-header button{
+    cursor: pointer;
     border: none;
-    background-color: red;
+    background-color: transparent;
     padding: .5rem;
 }
+
+.question-header button svg{
+    fill: rgba(87, 18, 223, 1);
+}
+
 
 
 @keyframes rotate {
