@@ -138,155 +138,173 @@
           }
 
           // decides if a tag is important to be readed or not
-          const ifIsImportantTag = (tag) => {
-                switch (tag.toString()) {
-                  case "SPAN":
+          // const ifIsImportantTag = (tag) => {
+          //       switch (tag.toString()) {
+          //         case "SPAN":
                     
-                    return true;
-                  case "H1":
+          //           return true;
+          //         case "H1":
                     
-                    return true;
-                  case "H2":
+          //           return true;
+          //         case "H2":
                     
-                    return true;
-                  case "H3":
+          //           return true;
+          //         case "H3":
                     
-                    return true;
-                  case "H4":
+          //           return true;
+          //         case "H4":
                     
-                    return true;
-                  case "H5":
+          //           return true;
+          //         case "H5":
                     
-                    return true;
-                  case "H6":
+          //           return true;
+          //         case "H6":
                     
-                    return true;
-                  case "P":
+          //           return true;
+          //         case "P":
                     
-                    return true;
+          //           return true;
                 
-                  default:
-                    return false;
-                }
-          }
+          //         default:
+          //           return false;
+          //       }
+          // }
 
           // prepare the info and make the http request to obtain the privacy summary
-          const requestPrivacySummaryInfo = async(tokenValidator) => {
+          // const requestPrivacySummaryInfo = async(tokenValidator) => {
 
-            const privacyURLs = [];
-            let privacyBody = "";
-            let PrivacyHtmlWebpage = "";
+          //   const privacyURLs = [];
+          //   let privacyBody = "";
+          //   let PrivacyHtmlWebpage = "";
 
-            for (const tag of linksTag) {
-                //extract privacy policies links from any page  
-                for (const option of privacyPosibilities) {
-                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
-                    if (!privacyURLs.includes(tag.getAttribute("href"))) {
-                      privacyURLs.push(tag.getAttribute("href"));
-                    }
-                    ifPrivacy = true;
-                  }
-                }
-            }
+          //   for (const tag of linksTag) {
+          //       //extract privacy policies links from any page  
+          //       for (const option of privacyPosibilities) {
+          //         if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+          //           if (!privacyURLs.includes(tag.getAttribute("href"))) {
+          //             privacyURLs.push(tag.getAttribute("href"));
+          //           }
+          //           ifPrivacy = true;
+          //         }
+          //       }
+          //   }
 
-            //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
-            if (privacyURLs.length > 0) {
-              const responseOfprivacy = await fetch(privacyURLs[0], {mode: 'no-cors',})
-              PrivacyHtmlWebpage = await responseOfprivacy.text();
-              // Crear un elemento HTML temporal para analizar el HTML
-              const parser = new DOMParser();
-              const doc = parser.parseFromString(PrivacyHtmlWebpage, 'text/html');
+          //   //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
+          //   if (privacyURLs.length > 0) {
+          //     const responseOfprivacy = await fetch(privacyURLs[0], {mode: 'no-cors',})
+          //     PrivacyHtmlWebpage = await responseOfprivacy.text();
+          //     // Crear un elemento HTML temporal para analizar el HTML
+          //     const parser = new DOMParser();
+          //     const doc = parser.parseFromString(PrivacyHtmlWebpage, 'text/html');
 
-              // only select the text of the important elements
+          //     // only select the text of the important elements
               
-              const elements = doc.querySelectorAll('*');
+          //     const elements = doc.querySelectorAll('*');
 
-              // iterte whole html elements
-              for (let i = 0; i < elements.length; i++) {
-                const element = elements[i];
-                if (ifIsImportantTag(element.tagName)) {
-                  privacyBody = privacyBody + " " + element.textContent;
-                }
-              }
-              console.log("PRIVACY", privacyBody)  
+          //     // iterte whole html elements
+          //     for (let i = 0; i < elements.length; i++) {
+          //       const element = elements[i];
+          //       if (ifIsImportantTag(element.tagName)) {
+          //         privacyBody = privacyBody + " " + element.textContent;
+          //       }
+          //     }
+          //     console.log("PRIVACY", privacyBody)  
               
-            }
+          //   }
 
-            return new Promise((resolve, reject) => {
+          //   return new Promise((resolve, reject) => {
                 
-                fetch(`http://localhost:4200/api/summary/privacy`, {
-                                                        method: 'POST',
-                                                        headers: {
-                                                            'Content-Type': 'application/json',
-                                                            'x-token': tokenValidator,
-                                                            'host-petition': window.location.host
-                                                        },
-                                                        body: JSON.stringify({
-                                                                               privacyBody: privacyBody.toString()
-                                                                             })
-                                                    })
-                .then(response => {
-                    if (response) {
-                      return response.json();
-                    } else {
-                      console.error("PRIVACY77777")
-                      return;
-                    }
-                })
-                .then(data => {
-                    resolve(data)
-                })
-                .catch(error => {
-                    reject(error)
-                });
+          //       fetch(`http://localhost:4200/api/summary/privacy`, {
+          //                                               method: 'POST',
+          //                                               headers: {
+          //                                                   'Content-Type': 'application/json',
+          //                                                   'x-token': tokenValidator,
+          //                                                   'host-petition': window.location.host
+          //                                               },
+          //                                               body: JSON.stringify({
+          //                                                                      privacyBody: privacyBody.toString()
+          //                                                                    })
+          //                                           })
+          //       .then(response => {
+          //           if (response) {
+          //             return response.json();
+          //           } else {
+          //             console.error("PRIVACY77777")
+          //             return;
+          //           }
+          //       })
+          //       .then(data => {
+          //           resolve(data)
+          //       })
+          //       .catch(error => {
+          //           reject(error)
+          //       });
                 
-            })
-          }
+          //   })
+          // }
 
           // prepare the info and make the http request to obtain the terms summary
-          const requestTermsSummaryInfo = async(tokenValidator) => {
+          const requestSummaryInfo = async(tokenValidator, posibleWords, politicsType) => {
 
-            const termsUseURLs = [];
-            let termsBody = "";
-            let TermsHtmlWebpage = "";
+            const politicsURLs = [`${window.location.href}`];
+            // let termsBody = "";
+            // let TermsHtmlWebpage = "";
 
             for (const tag of linksTag) {
                 //extract terms of use policies links from any page 
-                for (const option of termsPosibilities) {
-                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
-                    if (!termsUseURLs.includes(tag.getAttribute("href"))) {
-                      termsUseURLs.push(tag.getAttribute("href"));
+                for (const option of posibleWords) {
+                  
+                  if (tag.textContent.toString().replaceAll(' ','').toLowerCase().includes(option.toString().replaceAll(' ','').toLowerCase())) {
+                    
+                    if (!politicsURLs.includes(tag.getAttribute("href"))) {
+
+                      const regexpUrlComplete = /^(http:|https:)/i;
+
+                      if (regexpUrlComplete.test(tag.getAttribute("href").toString().trim())) {
+                 
+                          politicsURLs.push(tag.getAttribute("href"));
+
+                      }else{
+
+                        politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);
+
+                      }
+                      
                     }
-                    ifTerms = true;
+                    if (politicsType === "terms") {
+                      ifTerms = true;
+                    }else {
+                      ifPrivacy = true;
+                    }
                   }
                 }
             }
 
-            //convert the html of TERMS OF USE WEBPAGE to string to will be sent towards the backend
-            if (termsUseURLs.length > 0) {
-                const responseOfterms = await fetch(termsUseURLs[0], {mode: 'no-cors'})
-                TermsHtmlWebpage = await responseOfterms.text();
-                // Crear un elemento HTML temporal para analizar el HTML
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(TermsHtmlWebpage, 'text/html');
+            // //convert the html of TERMS OF USE WEBPAGE to string to will be sent towards the backend
+            // if (termsUseURLs.length > 0) {
+            //     const responseOfterms = await fetch(termsUseURLs[0], {mode: 'no-cors'})
+            //     TermsHtmlWebpage = await responseOfterms.text();
+            //     // Crear un elemento HTML temporal para analizar el HTML
+            //     const parser = new DOMParser();
+            //     const doc = parser.parseFromString(TermsHtmlWebpage, 'text/html');
 
-                // only select the text of the important elements
-                const elements = doc.querySelectorAll('*');
+            //     // only select the text of the important elements
+            //     const elements = doc.querySelectorAll('*');
 
-                // iterte whole html elements
-                for (let i = 0; i < elements.length; i++) {
-                  const element = elements[i];
-                  if (ifIsImportantTag(element.tagName)) {
-                    termsBody = termsBody + " " + element.textContent;
-                  }
-                }
-                console.log("TERMS", termsBody);
-            }
+            //     // iterte whole html elements
+            //     for (let i = 0; i < elements.length; i++) {
+            //       const element = elements[i];
+            //       if (ifIsImportantTag(element.tagName)) {
+            //         termsBody = termsBody + " " + element.textContent;
+            //       }
+            //     }
+            //     console.log("TERMS", termsBody);
+            // }
 
 
             return new Promise((resolve, reject) => {
                 
-                fetch(`http://localhost:4200/api/summary/terms`, {
+                fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
                                                         method: 'POST',
                                                         headers: {
                                                             'Content-Type': 'application/json',
@@ -294,7 +312,8 @@
                                                             'host-petition': window.location.host
                                                         },
                                                         body: JSON.stringify({ 
-                                                                                termsBody: termsBody.toString()
+                                                                                // termsBody: termsBody.toString(),
+                                                                                urlList: politicsURLs
                                                                              })
                                                     })
                 .then(response => {
@@ -423,10 +442,10 @@
 
                 if (firstOpened === true) {
                     // request privacy
-                    const privacyData = await requestPrivacySummaryInfo(tokenValidator);
+                    const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
                     setDataOrShowError(privacyData);
                     // request terms 
-                    const termsData = await requestTermsSummaryInfo(tokenValidator);
+                    const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
                     setDataOrShowError(termsData);
                     // if both petition were made 
                     if (privacyData && termsData) {
