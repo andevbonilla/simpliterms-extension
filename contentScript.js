@@ -3,6 +3,7 @@
       let firstOpened = true;
 
       const contentScript = async() => {
+
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
           const listOfCookies = document.cookie.split(';');
           let tokenValidator = '';
@@ -138,218 +139,72 @@
             }
           }
 
-          // decides if a tag is important to be readed or not
-          // const ifIsImportantTag = (tag) => {
-          //       switch (tag.toString()) {
-          //         case "SPAN":
-                    
-          //           return true;
-          //         case "H1":
-                    
-          //           return true;
-          //         case "H2":
-                    
-          //           return true;
-          //         case "H3":
-                    
-          //           return true;
-          //         case "H4":
-                    
-          //           return true;
-          //         case "H5":
-                    
-          //           return true;
-          //         case "H6":
-                    
-          //           return true;
-          //         case "P":
-                    
-          //           return true;
-                
-          //         default:
-          //           return false;
-          //       }
-          // }
-
-          // prepare the info and make the http request to obtain the privacy summary
-          // const requestPrivacySummaryInfo = async(tokenValidator) => {
-
-          //   const privacyURLs = [];
-          //   let privacyBody = "";
-          //   let PrivacyHtmlWebpage = "";
-
-            for (const tag of linksTag) {
-                //extract privacy policies links from any page  
-                for (const option of privacyPosibilities) {
-                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.replaceAll(' ','').toLowerCase())) {
-                    if (!privacyURLs.includes(tag.getAttribute("href"))) {
-                      privacyURLs.push(tag.getAttribute("href"));
-                    }
-                    ifPrivacy = true;
-                  }
-                }
-            }
-
-            //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
-            if (privacyURLs.length > 0) {
-              const responseOfprivacy = await fetch(privacyURLs[0], {mode: 'no-cors'})
-              PrivacyHtmlWebpage = await responseOfprivacy.text();
-              // Crear un elemento HTML temporal para analizar el HTML
-              const parser = new DOMParser();
-              const doc = parser.parseFromString(PrivacyHtmlWebpage, 'text/html');
-
-          //     // only select the text of the important elements
-              
-          //     const elements = doc.querySelectorAll('*');
-
-              // iterte whole html elements
-              for (let i = 0; i < elements.length; i++) {
-                const element = elements[i];
-                if (ifIsImportantTag(element.tagName)) {
-                  privacyBody = privacyBody + " " + element.textContent;
-                }
-              }
-              console.log("PRIVACY", privacyBody, privacyURLs[0])  
-              
-          //   }
-
-          //   return new Promise((resolve, reject) => {
-                
-          //       fetch(`http://localhost:4200/api/summary/privacy`, {
-          //                                               method: 'POST',
-          //                                               headers: {
-          //                                                   'Content-Type': 'application/json',
-          //                                                   'x-token': tokenValidator,
-          //                                                   'host-petition': window.location.host
-          //                                               },
-          //                                               body: JSON.stringify({
-          //                                                                      privacyBody: privacyBody.toString()
-          //                                                                    })
-          //                                           })
-          //       .then(response => {
-          //           if (response) {
-          //             return response.json();
-          //           } else {
-          //             console.error("PRIVACY77777")
-          //             return;
-          //           }
-          //       })
-          //       .then(data => {
-          //           resolve(data)
-          //       })
-          //       .catch(error => {
-          //           reject(error)
-          //       });
-                
-          //   })
-          // }
 
           // prepare the info and make the http request to obtain the terms summary
           const requestSummaryInfo = async(tokenValidator, posibleWords, politicsType) => {
 
-            const politicsURLs = [`${window.location.href}`];
-            // let termsBody = "";
-            // let TermsHtmlWebpage = "";
+                const politicsURLs = [`${window.location.href}`];
+                const regexUrlComplete = /^(http:|https:)/i;
 
-            for (const tag of linksTag) {
-                //extract terms of use policies links from any page 
-                for (const option of termsPosibilities) {
-                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
-                    if (!termsUseURLs.includes(tag.getAttribute("href"))) {
-                      termsUseURLs.push(tag.getAttribute("href"));
+                for (const tag of linksTag) {
+                    //extract terms of use policies links from any page 
+                    for (const option of posibleWords) {
+                      if (tag.textContent.toString().replaceAll(' ','').toLowerCase().includes(option.replaceAll(' ','').toLowerCase())) {
+                        
+                        if (!politicsURLs.includes(tag.getAttribute("href"))) {
+
+                          if (regexUrlComplete.test(tag.getAttribute("href").toString().trim())) {
+                            
+                            politicsURLs.push(tag.getAttribute);
+
+                          } else {
+
+                            politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);
+                            
+                          }
+
+                        }
+
+                        if (politicsType === "terms") {
+                          ifTerms = true;
+                        } else {
+                          ifPrivacy = true
+                        }
+                        
+                      }
                     }
-                    ifTerms = true;
-                  }
                 }
-            }
 
-            // //convert the html of TERMS OF USE WEBPAGE to string to will be sent towards the backend
-            // if (termsUseURLs.length > 0) {
-            //     const responseOfterms = await fetch(termsUseURLs[0], {mode: 'no-cors'})
-            //     TermsHtmlWebpage = await responseOfterms.text();
-            //     // Crear un elemento HTML temporal para analizar el HTML
-            //     const parser = new DOMParser();
-            //     const doc = parser.parseFromString(TermsHtmlWebpage, 'text/html');
-
-            //     // only select the text of the important elements
-            //     const elements = doc.querySelectorAll('*');
-
-                // iterte whole html elements
-                for (let i = 0; i < elements.length; i++) {
-                  const element = elements[i];
-                  if (ifIsImportantTag(element.tagName)) {
-                    termsBody = termsBody + " " + element.textContent;
-                  }
-                }
-                console.log("TERMS", termsBody);
-            }
-
-
-            return new Promise((resolve, reject) => {
-                
-                fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
-                                                        method: 'POST',
-                                                        headers: {
-                                                            'Content-Type': 'application/json',
-                                                            'x-token': tokenValidator,
-                                                            'host-petition': window.location.host
-                                                        },
-                                                        body: JSON.stringify({ 
-                                                                                // termsBody: termsBody.toString(),
-                                                                                urlList: politicsURLs
-                                                                             })
-                                                    })
-                .then(response => {
-                    if (response) {
-                      return response.json();
-                    } else {
-                      console.error("777777777777777777777777777777")
-                      return;
-                    }
+                return new Promise((resolve, reject) => {
+                    
+                    fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json',
+                                                                'x-token': tokenValidator,
+                                                                'host-petition': window.location.host
+                                                            },
+                                                            body: JSON.stringify({ urlList: politicsURLs })
+                                                        })
+                    .then(response => {
+                        if (response) {
+                          return response.json();
+                        } else {
+                          console.error("error making the json")
+                          return;
+                        }
+                    })
+                    .then(data => {
+                        resolve(data)
+                    })
+                    .catch(error => {
+                        reject(error)
+                    });
+                    
                 })
-                .then(data => {
-                    resolve(data)
-                })
-                .catch(error => {
-                    reject(error)
-                });
-                
-            })
           }
 
-          // const assignValues = (auth) => {
-
-          //     if (auth === false) {
-          //       chrome.storage.sync.set({
-          //       'summary': {
-          //                     termsOfPrivacy: [], 
-          //                     termsOfUse: [], 
-          //                     ifPrivacy: false, 
-          //                     ifTerms: false, 
-          //                     host: window.location.host,
-          //                     isAuthenticate,
-          //                     userInfo: {},
-          //                     errorMessage
-          //                 }
-          //       });
-          //       return;
-          //     }
-
-          //     chrome.storage.sync.set({
-          //       'summary': {
-          //                     termsOfPrivacy, 
-          //                     termsOfUse, 
-          //                     ifPrivacy, 
-          //                     ifTerms, 
-          //                     host: window.location.host,
-          //                     isAuthenticate,
-          //                     userInfo,
-          //                     errorMessage
-          //                 }
-          //     });
-
-          // }
-
+          // set the data or the errors
           const setDataOrShowError = (data) => {
 
               console.log("spisodioi", data)
@@ -363,7 +218,6 @@
               if (data.msj && (data.msj === "Auth failed")) {
                   isAuthenticate = false;
                   userInfo = {}
-                  // assignValues(isAuthenticate);
                   thereWasResponse = true;
                   return;
               }
@@ -371,7 +225,6 @@
               if (data.res === false) {
                   errorMessage = data.message;
                   isAuthenticate = true;
-                  // assignValues(isAuthenticate);
                   thereWasResponse = true;
                   return;
               }
@@ -384,7 +237,6 @@
                   isAuthenticate = true;
               }else{
                   isAuthenticate = false;
-                  // assignValues(isAuthenticate);
                   thereWasResponse = true;
                   return;
               }
@@ -394,7 +246,6 @@
                   termsOfUse = data.summaryDB.conditionsTerms;
                   errorMessage = "";
                   isAuthenticate = true;
-                  // assignValues(isAuthenticate);
                   thereWasResponse = true;
                   return;
               }
@@ -419,6 +270,7 @@
 
           }
 
+          // repond a message
           const respondMessage = async() => {
             
               try {
@@ -469,25 +321,24 @@
                 }
                 
               } catch (error) {
-                console.log(error, "error in respond message function");
-                chrome.runtime.sendMessage({
-                  message: 'serverResult',
-                  serverData: {
-                    termsOfPrivacy: [], 
-                    termsOfUse: [], 
-                    ifPrivacy: false, 
-                    ifTerm: false, 
-                    host: window.location.host,
-                    isAuthenticate,
-                    userInfo,
-                    errorMessage: error.toString(),
-                    tokenValidator
-                  }
-                });
+                  console.log(error, "error in respond message function");
+                  chrome.runtime.sendMessage({
+                    message: 'serverResult',
+                    serverData: {
+                      termsOfPrivacy: [], 
+                      termsOfUse: [], 
+                      ifPrivacy: false, 
+                      ifTerm: false, 
+                      host: window.location.host,
+                      isAuthenticate,
+                      userInfo,
+                      errorMessage: error.toString(),
+                      tokenValidator
+                    }
+                  });
               }
 
           }
-
 
           chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
               
@@ -517,16 +368,9 @@
              
       }
 
-      
       setTimeout(() => {
         contentScript();
       }, 200);
       
-      // chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-      //   if (request.url && !request.message) {
-      //     chrome.runtime.restart()
-      //   }
-      // });
-
 })();
 
