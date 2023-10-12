@@ -170,7 +170,7 @@
                         } else {
                           ifPrivacy = true
                         }
-                        
+
                       }
                     }
                 }
