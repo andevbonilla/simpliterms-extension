@@ -62,7 +62,7 @@
             "política de processament de dades personals", // Catalán
             "politika obdelave osebnih podatkov", // Esloveno
             "politika o obdelavi osebnih podatkov", // Esloveno
-            "politika za obdelavo osebnih podatkov", // Esloveno 
+            "politika za obdelavo osebnih podatkov", // Esloveno
           ];
           const termsPosibilities = [
               'términos',            // Español
@@ -112,20 +112,21 @@
               "podmienky",              // Eslovaco
               "condizioni",             // Italiano
               "warunki",                // Polaco
-              "légal",            // French
-              "legal",            // English
-              "legale",           // Italian
-              "légale",            // french other option
-              "安全",             // Chino (mandarín)
-              "seguridad",       // Español
-              "security",        // Inglés
-              "सुरक्षा",          // Hindi
-              "أمان",            // Árabe
-              "segurança",       // Portugués
-              "নিরাপত্তা",        // Bengalí
-              "безопасность",     // Ruso
-              "سلامتی",          // Urdu
-              "sécurité"         // Francés
+              "légal",                  // French
+              "legal",                  // English
+              "legale",                 // Italian
+              "légale",                 // french other option
+              "安全",                   // Chino (mandarín)
+              "políticas de uso",      // Español
+              "سياسات الاستخدام",      // Árabe
+              "使用政策",               // Chino (Simplificado)
+              "使用政策",               // Chino (Tradicional)
+              "politiques d'utilisation", // Francés
+              "Nutzungsbedingungen",      // Alemán
+              "उपयोग की नीतियाँ",           // Hindi
+              "politiche di utilizzo",    // Italiano
+              "사용 정책",                 // Coreano
+              "políticas de uso"          // Portugués
           ];
 
 
@@ -180,7 +181,7 @@
             for (const tag of linksTag) {
                 //extract privacy policies links from any page  
                 for (const option of privacyPosibilities) {
-                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.replaceAll(' ','').toLowerCase())) {
                     if (!privacyURLs.includes(tag.getAttribute("href"))) {
                       privacyURLs.push(tag.getAttribute("href"));
                     }
@@ -191,7 +192,7 @@
 
             //convert the html of PRIVACY WEBPAGE to string to will be sent towards the backend
             if (privacyURLs.length > 0) {
-              const responseOfprivacy = await fetch(privacyURLs[0], {mode: 'no-cors',})
+              const responseOfprivacy = await fetch(privacyURLs[0], {mode: 'no-cors'})
               PrivacyHtmlWebpage = await responseOfprivacy.text();
               // Crear un elemento HTML temporal para analizar el HTML
               const parser = new DOMParser();
@@ -208,7 +209,7 @@
                   privacyBody = privacyBody + " " + element.textContent;
                 }
               }
-              console.log("PRIVACY", privacyBody)  
+              console.log("PRIVACY", privacyBody, privacyURLs[0])  
               
             }
 
@@ -253,7 +254,7 @@
             for (const tag of linksTag) {
                 //extract terms of use policies links from any page 
                 for (const option of termsPosibilities) {
-                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.trim().toLowerCase())) {
+                  if (tag.textContent.replaceAll(' ','').toLowerCase().includes(option.replaceAll(' ','').toLowerCase())) {
                     if (!termsUseURLs.includes(tag.getAttribute("href"))) {
                       termsUseURLs.push(tag.getAttribute("href"));
                     }
@@ -280,7 +281,7 @@
                     termsBody = termsBody + " " + element.textContent;
                   }
                 }
-                console.log("TERMS", termsBody);
+                console.log("TERMS", termsBody, termsUseURLs[0]);
             }
 
 
