@@ -127,7 +127,6 @@
               "उपयोग की नीतियाँ",           // Hindi
               "politiche di utilizzo",    // Italiano
               "사용 정책",                 // Coreano
-              "políticas de uso"          // Portugués
           ];
 
 
