@@ -127,16 +127,19 @@
               "उपयोग की नीतियाँ",           // Hindi
               "politiche di utilizzo",    // Italiano
               "사용 정책",                 // Coreano
+              "Seguridad", // spanish
+              "Security", // Inglés
+              "セキュリティ", // Japonés
+              "安全", // Chino (Simplificado)
+              "安全", // Chino (Tradicional)
+              "Segurança", // Portugués
+              "Sécurité", // Francés
+              "Sicherheit", // Alemán
+              "सुरक्षा", // Hindi
+              "보안", // Coreano
+              "أمان", // Árabe
+              "Sicurezza" // Italiano
           ];
-
-
-          if (listOfCookies) {
-            for (const cookie of listOfCookies) {
-              if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
-              }
-            }
-          }
 
 
           // prepare the info and make the http request to obtain the terms summary
@@ -151,13 +154,14 @@
                       if (tag.textContent.toString().replaceAll(' ','').toLowerCase().includes(option.replaceAll(' ','').toLowerCase())) {
                         
                         if (!politicsURLs.includes(tag.getAttribute("href"))) {
+                           
 
                           if (regexUrlComplete.test(tag.getAttribute("href").toString().trim())) {
-                            
-                            politicsURLs.push(tag.getAttribute);
+
+                            politicsURLs.push(tag.getAttribute("href"));
 
                           } else {
-
+                            console.log(tag.getAttribute("href"), "jjjjjjj")
                             politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);
                             
                           }
@@ -174,8 +178,9 @@
                     }
                 }
 
+                console.log(politicsURLs, "11111111")
                 return new Promise((resolve, reject) => {
-                    
+                    console.log(politicsURLs, "22222222")
                     fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
                                                             method: 'POST',
                                                             headers: {
@@ -342,6 +347,16 @@
           chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
               
               if (request.message === 'popupLoaded') {
+
+                tokenValidator = "";
+
+                if (listOfCookies) {
+                  for (const cookie of listOfCookies) {
+                    if (cookie && cookie.split("=")[0].trim() === 'x-token') {
+                      tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
+                    }
+                  }
+                }
 
                 if (tokenValidator !== '') {
 
