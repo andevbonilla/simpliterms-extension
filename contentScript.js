@@ -5,7 +5,6 @@
       const contentScript = async() => {
 
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
-          const listOfCookies = document.cookie.split(';');
           let tokenValidator = '';
 
           let termsOfPrivacy = [];
@@ -155,13 +154,12 @@
                         
                         if (!politicsURLs.includes(tag.getAttribute("href")) && !politicsURLs.includes(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`)) {
                            
-
                           if (regexUrlComplete.test(tag.getAttribute("href").toString().trim())) {
 
-                            politicsURLs.push(tag.getAttribute("href"));
+                              politicsURLs.push(tag.getAttribute("href"));
 
                           } else {
-                            politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);                           
+                              politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);                           
                           }
 
                         }
@@ -349,6 +347,8 @@
               if (request.message === 'popupLoaded') {
 
                 tokenValidator = "";
+
+                const listOfCookies = document.cookie.split(';');
 
                 if (listOfCookies) {
                   for (const cookie of listOfCookies) {
