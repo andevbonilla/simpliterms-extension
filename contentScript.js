@@ -211,26 +211,25 @@
           // set the data or the errors
           const setDataOrShowError = (data) => {
 
-              console.log("spisodioi", data)
+              console.log("hhhhhhhhhhhpaaaaa", data)
 
               if (!data) {
-                  console.log("noooo dataaa")
                   thereWasResponse = true;
-                  return;
+                  return false;
               }
 
               if (data.msj && (data.msj === "Auth failed")) {
                   isAuthenticate = false;
                   userInfo = {}
                   thereWasResponse = true;
-                  return;
+                  return false;
               }
 
               if (data.res === false) {
                   errorMessage = data.message;
                   isAuthenticate = true;
                   thereWasResponse = true;
-                  return;
+                  return false;
               }
 
               if ( data.userDB.username && data.userDB.planType ){
@@ -242,7 +241,7 @@
               }else{
                   isAuthenticate = false;
                   thereWasResponse = true;
-                  return;
+                  return false;
               }
 
               if (data.summaryDB) {
@@ -251,7 +250,7 @@
                   errorMessage = "";
                   isAuthenticate = true;
                   thereWasResponse = true;
-                  return;
+                  return true;
               }
 
               if (data.termSummary) {
@@ -260,7 +259,7 @@
                   isAuthenticate = true;
                   // assignValues(isAuthenticate);
                   thereWasResponse = true;
-                  return;
+                  return true;
               }
 
               if (data.privacySummary) {
@@ -269,7 +268,7 @@
                   isAuthenticate = true;
                   // assignValues(isAuthenticate);
                   thereWasResponse = true;
-                  return;
+                  return true;
               }
 
           }
@@ -279,16 +278,20 @@
             
               try {
 
-                if (firstOpened === true) {
+                if (firstOpened) {
                     // request privacy
                     const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
-                    setDataOrShowError(privacyData);
+                    const resInPrivacy = setDataOrShowError(privacyData);
                     // request terms 
                     const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
-                    setDataOrShowError(termsData);
+                    const resInTerms = setDataOrShowError(termsData);
+
+                    if (resInPrivacy && resInTerms) {
+                      firstOpened = false;
+                    }
+
                     // if both petition were made 
-                    if (privacyData && termsData) {
-                          firstOpened = false;
+                    if (privacyData && termsData) {     
                           chrome.runtime.sendMessage({
                                 message: 'serverResult',
                                 serverData: {
