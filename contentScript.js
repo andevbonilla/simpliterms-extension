@@ -153,7 +153,7 @@
                     for (const option of posibleWords) {
                       if (tag.textContent.toString().replaceAll(' ','').toLowerCase().includes(option.replaceAll(' ','').toLowerCase())) {
                         
-                        if (!politicsURLs.includes(tag.getAttribute("href"))) {
+                        if (!politicsURLs.includes(tag.getAttribute("href")) && !politicsURLs.includes(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`)) {
                            
 
                           if (regexUrlComplete.test(tag.getAttribute("href").toString().trim())) {
@@ -161,9 +161,7 @@
                             politicsURLs.push(tag.getAttribute("href"));
 
                           } else {
-                            console.log(tag.getAttribute("href"), "jjjjjjj")
-                            politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);
-                            
+                            politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);                           
                           }
 
                         }
@@ -178,7 +176,6 @@
                     }
                 }
 
-                console.log(politicsURLs, "11111111")
                 return new Promise((resolve, reject) => {
                     console.log(politicsURLs, "22222222")
                     fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
