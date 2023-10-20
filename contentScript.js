@@ -141,6 +141,7 @@
           ];
 
 
+          // REQUESTS TO THE SERVER
           // prepare the info and make the http request to obtain the terms summary
           const requestSummaryInfo = async(tokenValidator, posibleWords, politicsType) => {
 
@@ -202,11 +203,43 @@
                     
                 })
           }
+          // prepare the info and make the http request to obtain the terms summary
+          const requestStaticSummaryInfo = async(tokenValidator) => {
 
-          // set the data or the errors
-          const setDataOrShowError = (data) => {
+                return new Promise((resolve, reject) => {
+                    fetch(`http://localhost:4200/api/summary/static`, {
+                                                            method: 'GET',
+                                                            headers: {
+                                                                'Content-Type': 'application/json',
+                                                                'x-token': tokenValidator,
+                                                                'host-petition': window.location.host
+                                                            }
+                                                        })
+                    .then(response => {
+                        if (response) {
+                          return response.json();
+                        } else {
+                          console.error("error making the json static")
+                          return;
+                        }
+                    })
+                    .then(data => {
+                        resolve(data)
+                    })
+                    .catch(error => {
+                        reject(error)
+                    });
+                    
+                });
 
-              console.log("hhhhhhhhhhhpaaaaa", data)
+          }
+
+
+          // SETTING THE DATA
+          // set the data for static summaries or the errors
+          const setDataOrShowErrorStatic = (data) => {
+
+              console.log("pppppppppppppppp", data)
 
               if (!data) {
                   thereWasResponse = true;
@@ -248,13 +281,87 @@
                   return true;
               }
 
+          }
+          // set the data or the errors
+          const setDataOrShowErrorTerms = (data) => {
+
+              console.log("termmmmmsmsmsm", data)
+
+              if (!data) {
+                  thereWasResponse = true;
+                  return false;
+              }
+
+              if (data.msj && (data.msj === "Auth failed")) {
+                  isAuthenticate = false;
+                  userInfo = {}
+                  thereWasResponse = true;
+                  return false;
+              }
+
+              if (data.res === false) {
+                  errorMessage = data.message;
+                  isAuthenticate = true;
+                  thereWasResponse = true;
+                  return false;
+              }
+
+              if ( data.userDB.username && data.userDB.planType ){
+                  userInfo = {
+                    username: data.userDB.username,
+                    planType: data.userDB.planType
+                  }
+                  isAuthenticate = true;
+              }else{
+                  isAuthenticate = false;
+                  thereWasResponse = true;
+                  return false;
+              }
+
+
               if (data.termSummary) {
                   termsOfUse = data.termSummary;
                   errorMessage = "";
                   isAuthenticate = true;
-                  // assignValues(isAuthenticate);
                   thereWasResponse = true;
                   return true;
+              }
+
+          }
+          // set the data or the errors
+          const setDataOrShowErrorPrivacy = (data) => {
+
+              console.log("termmmmmsmsmsm", data)
+
+              if (!data) {
+                  thereWasResponse = true;
+                  return false;
+              }
+
+              if (data.msj && (data.msj === "Auth failed")) {
+                  isAuthenticate = false;
+                  userInfo = {}
+                  thereWasResponse = true;
+                  return false;
+              }
+
+              if (data.res === false) {
+                  errorMessage = data.message;
+                  isAuthenticate = true;
+                  thereWasResponse = true;
+                  return false;
+              }
+
+              if ( data.userDB.username && data.userDB.planType ){
+                  userInfo = {
+                    username: data.userDB.username,
+                    planType: data.userDB.planType
+                  }
+                  isAuthenticate = true;
+              }else{
+                  isAuthenticate = false;
+                  thereWasResponse = true;
+                  return false;
               }
 
               if (data.privacySummary) {
@@ -268,27 +375,24 @@
 
           }
 
-          // repond a message
-          const respondMessage = async() => {
+          // RESPONSES
+          // repond message with static summary
+          const respondMessageStatic = async() => {
             
               try {
 
                 if (firstOpened) {
                     // request terms 
-                    const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
-                    const resInTerms = setDataOrShowError(termsData);
-                    // request privacy
-                    const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
-                    const resInPrivacy = setDataOrShowError(privacyData);
+                    // request terms 
+                    const staticData = await requestStaticSummaryInfo(tokenValidator);
+                    const resInTerms = setDataOrShowErrorStatic(staticData);
 
-                    if (resInPrivacy && resInTerms) {
+                    if (resInTerms) {
+
                       firstOpened = false;
-                    }
 
-                    // if both petition were made 
-                    if (privacyData && termsData) {     
-                          chrome.runtime.sendMessage({
-                                message: 'serverResult',
+                      chrome.runtime.sendMessage({
+                                message: 'staticResult',
                                 serverData: {
                                   termsOfPrivacy, 
                                   termsOfUse, 
@@ -300,14 +404,15 @@
                                   errorMessage,
                                   tokenValidator
                                 }
-                          });
+                      });
+
                     }
 
                 }else {
-                    console.log("ssssad000000000000")
+                    console.log("ssssad000000000000 staticcccccccc")
                     // only send info saved to don't repeat request in the same page
                     chrome.runtime.sendMessage({
-                                  message: 'serverResult',
+                                  message: 'staticResult',
                                   serverData: {
                                     termsOfPrivacy, 
                                     termsOfUse, 
@@ -321,6 +426,51 @@
                                   }
                     });
                 }
+                
+              } catch (error) {
+                  console.log(error, "error in respond message function");
+                  chrome.runtime.sendMessage({
+                    message: 'staticResult',
+                    serverData: {
+                      termsOfPrivacy: [], 
+                      termsOfUse: [], 
+                      ifPrivacy: false, 
+                      ifTerm: false, 
+                      host: window.location.host,
+                      isAuthenticate,
+                      userInfo,
+                      errorMessage: error.toString(),
+                      tokenValidator
+                    }
+                  });
+              }
+
+          }
+          // repond message with AI terms summary
+          const respondMessageForTerms = async() => {
+            
+              try {
+
+                    // request terms 
+                    const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
+                    const resInTerms = setDataOrShowErrorTerms(termsData);
+
+                    if (resInTerms) {
+                      chrome.runtime.sendMessage({
+                                message: 'termsAIResult',
+                                serverData: {
+                                  termsOfPrivacy, 
+                                  termsOfUse, 
+                                  ifPrivacy, 
+                                  ifTerms, 
+                                  host: window.location.host,
+                                  isAuthenticate,
+                                  userInfo,
+                                  errorMessage,
+                                  tokenValidator
+                                }
+                      });      
+                    }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
@@ -341,43 +491,158 @@
               }
 
           }
+          // repond message with AI privacy summary
+          const respondMessageForPrivacy = async() => {
+            
+              try {
 
+                  const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
+                  const resInPrivacy = setDataOrShowErrorPrivacy(privacyData);
+
+                  if (resInPrivacy) {
+                    chrome.runtime.sendMessage({
+                              message: 'privacyAIResult',
+                              serverData: {
+                                termsOfPrivacy, 
+                                termsOfUse, 
+                                ifPrivacy, 
+                                ifTerms, 
+                                host: window.location.host,
+                                isAuthenticate,
+                                userInfo,
+                                errorMessage,
+                                tokenValidator
+                              }
+                    });      
+                  }
+                
+              } catch (error) {
+                  console.log(error, "error in respond message function");
+                  chrome.runtime.sendMessage({
+                    message: 'privacyAIResult',
+                    serverData: {
+                      termsOfPrivacy: [], 
+                      termsOfUse: [], 
+                      ifPrivacy: false, 
+                      ifTerm: false, 
+                      host: window.location.host,
+                      isAuthenticate,
+                      userInfo,
+                      errorMessage: error.toString(),
+                      tokenValidator
+                    }
+                  });
+              }
+
+          }
+
+
+          // messages on runtime
+          //=================================================================================
           chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
-              
+
               if (request.message === 'popupLoaded') {
 
-                tokenValidator = "";
+                  tokenValidator = "";
 
-                const listOfCookies = document.cookie.split(';');
+                  const listOfCookies = document.cookie.split(';');
 
-                if (listOfCookies) {
-                  for (const cookie of listOfCookies) {
-                    if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                      tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
+                  if (listOfCookies) {
+                    for (const cookie of listOfCookies) {
+                      if (cookie && cookie.split("=")[0].trim() === 'x-token') {
+                        tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
+                      }
                     }
                   }
-                }
 
-                if (tokenValidator !== '') {
+                  if (tokenValidator !== '') {
 
-                    chrome.storage.sync.set({
-                      'xtoken': tokenValidator
+                      chrome.storage.sync.set({
+                        'xtoken': tokenValidator
+                      });
+
+                      await respondMessageStatic();
+                      
+
+                  }else{
+
+                    chrome.storage.sync.get('xtoken', async({xtoken}) => {
+                        tokenValidator = xtoken;
+                        await respondMessageStatic();
                     });
 
-                    await respondMessage();
-                    
-
-                }else{
-
-                  chrome.storage.sync.get('xtoken', async({xtoken}) => {
-                      tokenValidator = xtoken;
-                      await respondMessage();
-                  });
-
-                }
+                  }
 
               }
 
+              if (request.message === 'termsAISumary') {
+
+                  tokenValidator = "";
+
+                  const listOfCookies = document.cookie.split(';');
+
+                  if (listOfCookies) {
+                    for (const cookie of listOfCookies) {
+                      if (cookie && cookie.split("=")[0].trim() === 'x-token') {
+                        tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
+                      }
+                    }
+                  }
+
+                  if (tokenValidator !== '') {
+
+                      chrome.storage.sync.set({
+                        'xtoken': tokenValidator
+                      });
+
+                      await respondMessageForTerms();
+                      
+
+                  }else{
+
+                    chrome.storage.sync.get('xtoken', async({xtoken}) => {
+                        tokenValidator = xtoken;
+                        await respondMessageForTerms();
+                    });
+
+                  }
+
+              }
+
+              if (request.message === 'privacyAISumary') {
+
+                  tokenValidator = "";
+
+                  const listOfCookies = document.cookie.split(';');
+
+                  if (listOfCookies) {
+                    for (const cookie of listOfCookies) {
+                      if (cookie && cookie.split("=")[0].trim() === 'x-token') {
+                        tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
+                      }
+                    }
+                  }
+
+                  if (tokenValidator !== '') {
+
+                      chrome.storage.sync.set({
+                        'xtoken': tokenValidator
+                      });
+
+                      await respondMessageForPrivacy();
+                      
+
+                  }else{
+
+                    chrome.storage.sync.get('xtoken', async({xtoken}) => {
+                        tokenValidator = xtoken;
+                        await respondMessageForPrivacy();
+                    });
+
+                  }
+
+              }
+              
           });
              
       }
