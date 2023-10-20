@@ -385,13 +385,13 @@
                     // request terms 
                     // request terms 
                     const staticData = await requestStaticSummaryInfo(tokenValidator);
-                    const resInTerms = setDataOrShowErrorStatic(staticData);
+                    const resInStatic = setDataOrShowErrorStatic(staticData);
 
-                    if (resInTerms) {
-
+                    if (resInStatic) {
                       firstOpened = false;
+                    }
 
-                      chrome.runtime.sendMessage({
+                    chrome.runtime.sendMessage({
                                 message: 'staticResult',
                                 serverData: {
                                   termsOfPrivacy, 
@@ -404,9 +404,7 @@
                                   errorMessage,
                                   tokenValidator
                                 }
-                      });
-
-                    }
+                    });
 
                 }else {
                     console.log("ssssad000000000000 staticcccccccc")

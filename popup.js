@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", async() => {
       };
       let canGiveAlikeODislike = false;
       let showRequestHeader = true;
+      let actualTabID;
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');
@@ -17,10 +18,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       const loadingContainer = document.getElementById('loading-container');
 
-      const errorView = document.getElementById('if-error');
-      const successView = document.getElementById('not-error');
-
-      const ErrorMessagDiv = document.getElementById("error-message");
 
       const subTypeElement = document.getElementById("sub-type");
       const usernameElement = document.getElementById("username-element");
@@ -192,17 +189,6 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
       }
 
-      const ifErrorShowIt = (errorMessage) => {
-        if (errorMessage === "") {
-          // there weren't none one error (different of the auth error) from the backend
-          successView.style.display = "block";
-          errorView.style.display = "none";
-        }else{
-          ErrorMessagDiv.textContent = `${errorMessage}`
-          successView.style.display = "none";
-          errorView.style.display = "block";
-        }
-      }
 
       const setUserInfo = (userInfo) => {
 
@@ -237,6 +223,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       // send a message to the content.js when the popup is opened.
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+          actualTabID = tabs[0].id
           chrome.tabs.sendMessage(tabs[0].id, {message: 'popupLoaded'});
       });
 
@@ -246,16 +233,19 @@ document.addEventListener("DOMContentLoaded", async() => {
 
           if (request.message === 'staticResult' && request.serverData) {
 
+              console.log("ssssssssfffs")
               loadingContainer.style.display = "none";
               // verify the authentication of user
               verifyIfAuthenticated(request.serverData.isAuthenticate);
 
               // if there was an error obtaining the static summary
+              
               if(request.serverData.errorMessage !== ""){
                 // send a message to the content.js if there is an error different of the auth error.
+                console.log("entroooooo", actualTabID)
                 loadingContainer.style.display = "flex";
-                chrome.tabs.sendMessage(tabs[0].id, {message: 'termsAISumary'});
-                chrome.tabs.sendMessage(tabs[0].id, {message: 'privacyAISumary'});
+                chrome.tabs.sendMessage(actualTabID, {message: 'termsAISumary'});
+                chrome.tabs.sendMessage(actualTabID, {message: 'privacyAISumary'});
                 return;
               }
 
