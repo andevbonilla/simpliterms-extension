@@ -173,10 +173,8 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       const setPrivacySummary = (policies) => {
         if (policies.length === 0) {
-            canGiveAlikeODislike = false;
             questionHeader.style.display = "none";
         }else{
-          canGiveAlikeODislike = true;
           if (showRequestHeader) {
             questionHeader.style.display = "flex";
           }
@@ -187,10 +185,8 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       const setTermsSummary = (policies) => {
         if (policies.length === 0) {
-            canGiveAlikeODislike = false;
             questionHeader.style.display = "none";
         }else{
-          canGiveAlikeODislike = true;
           if (showRequestHeader) {
             questionHeader.style.display = "flex";
           }
@@ -269,13 +265,18 @@ document.addEventListener("DOMContentLoaded", async() => {
 
               // validate there are policies to show
               setTermsSummary(request.serverData.termsOfUse);
+              isLoadingTerms = false;
               setPrivacySummary(request.serverData.termsOfPrivacy);
+              isLoadingPrivacy = false;
 
               disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
                                                It is important to note that this summary has been generated with artificial intelligence,  
                                                so it may not be exact, contain errors and erroneous information. We recommend checking the 
                                                official source for this page's policies and only using simpliTerms as an aid.`;
-              
+
+              if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                canGiveAlikeODislike = true;
+              }
               
               if (request.serverData.ifPrivacy) {
                   policyList.textContent =  `${(request.serverData.ifPrivacy) ? 'Privacy Policy' : ''}, ${(request.serverData.ifTerms) ? 'Terms of Use' : ''}`
@@ -319,16 +320,22 @@ document.addEventListener("DOMContentLoaded", async() => {
               // validate there are policies to show
               setTermsSummary(request.serverData.termsOfUse);
               isLoadingTerms = false;
+
+              // show the terms
+              termButton.className = 'selected';
+              privacyButton.className = '';
+              TermsSummaryHtmlText.style.display = "block";
+              PrivacySummaryHtmlText.style.display = "none";
+
               disclaimerMessage.style.display = "block";
               disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
                                                It is important to note that this summary has been generated with artificial intelligence,  
                                                so it may not be exact, contain errors and erroneous information. We recommend checking the 
                                                official source for this page's policies and only using simpliTerms as an aid.`;
               loadingContainerTerms.style.display = "none";
-
-              // set the username info
-              setUserInfo(request.serverData.userInfo);
-
+              if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                canGiveAlikeODislike = true;
+              }
               
               if (request.serverData.ifTerms) {
                   policyList.textContent = policyList.textContent + 'Terms of Use';
@@ -372,6 +379,12 @@ document.addEventListener("DOMContentLoaded", async() => {
               // validate there are policies to show
               setPrivacySummary(request.serverData.termsOfPrivacy);
               isLoadingPrivacy = false;
+              
+              privacyButton.className = 'selected';
+              termButton.className = '';
+              TermsSummaryHtmlText.style.display = "none";
+              PrivacySummaryHtmlText.style.display = "block";
+
               disclaimerMessage.style.display = "block";
               disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
                                                It is important to note that this summary has been generated with artificial intelligence,  
@@ -379,8 +392,9 @@ document.addEventListener("DOMContentLoaded", async() => {
                                                official source for this page's policies and only using simpliTerms as an aid.`;
               loadingContainerPrivacy.style.display = "none";
 
-              // set the username info
-              setUserInfo(request.serverData.userInfo);
+              if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                canGiveAlikeODislike = true;
+              }
               
               if (request.serverData.ifPrivacy) {
                   policyList.textContent = policyList.textContent + ' Privacy Policy'

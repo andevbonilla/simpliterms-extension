@@ -15,6 +15,9 @@
           let errorMessage = "";
           let userInfo = {};
 
+          let termsResponseCorrect = false;
+          let privacyResponseCorrect = false;
+
           
           const linksTag = document.querySelectorAll('a');
 
@@ -321,6 +324,7 @@
 
               if (data.termSummary) {
                   termsOfUse = data.termSummary;
+                  termsResponseCorrect = true;
                   errorMessage = "";
                   isAuthenticate = true;
                   thereWasResponse = true;
@@ -366,6 +370,7 @@
 
               if (data.privacySummary) {
                   termsOfPrivacy = data.privacySummary;
+                  privacyResponseCorrect = true;
                   errorMessage = "";
                   isAuthenticate = true;
                   // assignValues(isAuthenticate);
@@ -447,26 +452,49 @@
             
               try {
 
-                    // request terms 
-                    const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
-                    const resInTerms = setDataOrShowErrorTerms(termsData);
+                  if (firstOpened) {
 
-                    if (resInTerms) {
+                      // request terms 
+                      const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
+                      const resInTerms = setDataOrShowErrorTerms(termsData);
+
+                      if (termsResponseCorrect && privacyResponseCorrect) {
+                        firstOpened = false;
+                      }
+
+                      if (resInTerms) {
+                        chrome.runtime.sendMessage({
+                                  message: 'termsAIResult',
+                                  serverData: {
+                                    termsOfPrivacy, 
+                                    termsOfUse, 
+                                    ifPrivacy, 
+                                    ifTerms, 
+                                    host: window.location.host,
+                                    isAuthenticate,
+                                    userInfo,
+                                    errorMessage,
+                                    tokenValidator
+                                  }
+                        });      
+                      }
+                    
+                  } else {
                       chrome.runtime.sendMessage({
-                                message: 'termsAIResult',
-                                serverData: {
-                                  termsOfPrivacy, 
-                                  termsOfUse, 
-                                  ifPrivacy, 
-                                  ifTerms, 
-                                  host: window.location.host,
-                                  isAuthenticate,
-                                  userInfo,
-                                  errorMessage,
-                                  tokenValidator
-                                }
-                      });      
-                    }
+                                    message: 'termsAIResult',
+                                    serverData: {
+                                      termsOfPrivacy, 
+                                      termsOfUse, 
+                                      ifPrivacy, 
+                                      ifTerms, 
+                                      host: window.location.host,
+                                      isAuthenticate,
+                                      userInfo,
+                                      errorMessage,
+                                      tokenValidator
+                                    }
+                      });
+                  }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
@@ -492,24 +520,47 @@
             
               try {
 
-                  const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
-                  const resInPrivacy = setDataOrShowErrorPrivacy(privacyData);
+                  if (firstOpened) {
 
-                  if (resInPrivacy) {
-                    chrome.runtime.sendMessage({
-                              message: 'privacyAIResult',
-                              serverData: {
-                                termsOfPrivacy, 
-                                termsOfUse, 
-                                ifPrivacy, 
-                                ifTerms, 
-                                host: window.location.host,
-                                isAuthenticate,
-                                userInfo,
-                                errorMessage,
-                                tokenValidator
-                              }
-                    });      
+                        const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
+                        const resInPrivacy = setDataOrShowErrorPrivacy(privacyData);
+
+                        if (termsResponseCorrect && privacyResponseCorrect) {
+                              firstOpened = false;
+                        }
+
+                        if (resInPrivacy) {
+                          chrome.runtime.sendMessage({
+                                    message: 'privacyAIResult',
+                                    serverData: {
+                                      termsOfPrivacy, 
+                                      termsOfUse, 
+                                      ifPrivacy, 
+                                      ifTerms, 
+                                      host: window.location.host,
+                                      isAuthenticate,
+                                      userInfo,
+                                      errorMessage,
+                                      tokenValidator
+                                    }
+                          });      
+                        }
+                    
+                  } else {
+                      chrome.runtime.sendMessage({
+                                message: 'privacyAIResult',
+                                serverData: {
+                                  termsOfPrivacy, 
+                                  termsOfUse, 
+                                  ifPrivacy, 
+                                  ifTerms, 
+                                  host: window.location.host,
+                                  isAuthenticate,
+                                  userInfo,
+                                  errorMessage,
+                                  tokenValidator
+                                }
+                      });
                   }
                 
               } catch (error) {
