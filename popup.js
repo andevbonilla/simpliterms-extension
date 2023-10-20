@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", async() => {
       const simplitermsNameElement = document.getElementById("simpliterms-name");
 
       const loggedPage = document.getElementById('logged');
-      const summaryHtmlText = document.getElementById('simpli-summary');
+
+      const TermsSummaryHtmlText = document.getElementById('simpli-summary-terms');
+      const PrivacySummaryHtmlText = document.getElementById('simpli-summary-privacy');
+
       const defaultText = document.getElementById('default-text');
       const detectedText = document.getElementById('detected-text');
       const defaultHostname = document.getElementById('default-hostname');
@@ -39,15 +42,19 @@ document.addEventListener("DOMContentLoaded", async() => {
       const privacyButton = document.getElementById('privacy-button');
 
       termButton.addEventListener('click', ()=>{
-        termButton.className = 'selected'
-        privacyButton.className = ''
-        verifyIfThereArePolicies(summaryInfo.terms, 'terms')
+          termButton.className = 'selected';
+          privacyButton.className = '';
+          TermsSummaryHtmlText.style.display = "block";
+          PrivacySummaryHtmlText.style.display = "none";
+          setTermsSummary(summaryInfo.terms);
       });
 
       privacyButton.addEventListener('click', ()=>{
-        privacyButton.className = 'selected'
-        termButton.className = ''
-        verifyIfThereArePolicies(summaryInfo.privacy, 'privacy')
+          privacyButton.className = 'selected';
+          termButton.className = '';
+          TermsSummaryHtmlText.style.display = "none";
+          PrivacySummaryHtmlText.style.display = "block";
+          setPrivacySummary(summaryInfo.privacy);
       });
 
       // like and dislike functionalities
@@ -76,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                                         }
                                     )
 
-                const result = await res.json();                
+                await res.json();                
              
               } catch (error) {
                 console.log(error);
@@ -120,9 +127,7 @@ document.addEventListener("DOMContentLoaded", async() => {
       
       //functions to set data
       const showSummaries = (list, type) => {
-
         for (let i = 0; i < list.length; i++) {
-
           const li = document.createElement('li');
           const h3 = document.createElement('h3');
           h3.textContent = list[i].subtitle;
@@ -130,8 +135,12 @@ document.addEventListener("DOMContentLoaded", async() => {
           p.textContent = list[i].text;
           li.appendChild(h3);
           li.appendChild(p);
-          summaryHtmlText.appendChild(li);
-          
+          if (type === "privacy") {
+            PrivacySummaryHtmlText.appendChild(li);
+          }
+          if (type === "terms") {
+            TermsSummaryHtmlText.appendChild(li);
+          }   
         }
       }
 
@@ -153,18 +162,33 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
       }
 
-      const verifyIfThereArePolicies = (terms, type) => {
-        if (terms.length === 0) {
-          summaryHtmlText.textContent = `loading...`;
-          canGiveAlikeODislike = false;
-          questionHeader.style.display = "none";
+      const setPrivacySummary = (policies) => {
+        if (policies.length === 0) {
+            PrivacySummaryHtmlText.textContent = `loading...`;
+            canGiveAlikeODislike = false;
+            questionHeader.style.display = "none";
         }else{
           canGiveAlikeODislike = true;
           if (showRequestHeader) {
             questionHeader.style.display = "flex";
           }
-          summaryHtmlText.innerHTML = '';
-          showSummaries(terms, type);
+          PrivacySummaryHtmlText.innerHTML = '';
+          showSummaries(policies, "privacy");
+        }
+      }
+
+      const setTermsSummary = (policies) => {
+        if (policies.length === 0) {
+            TermsSummaryHtmlText.textContent = `loading...`;
+            canGiveAlikeODislike = false;
+            questionHeader.style.display = "none";
+        }else{
+          canGiveAlikeODislike = true;
+          if (showRequestHeader) {
+            questionHeader.style.display = "flex";
+          }
+          TermsSummaryHtmlText.innerHTML = '';
+          showSummaries(policies, "terms");
         }
       }
 
@@ -174,7 +198,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           successView.style.display = "block";
           errorView.style.display = "none";
         }else{
-          ErrorMessagDiv.textContent = `Message: ${errorMessage}`
+          ErrorMessagDiv.textContent = `${errorMessage}`
           successView.style.display = "none";
           errorView.style.display = "block";
         }
@@ -229,7 +253,8 @@ document.addEventListener("DOMContentLoaded", async() => {
               ifErrorShowIt(request.serverData.errorMessage);
 
               // validate there are policies to show
-              verifyIfThereArePolicies(request.serverData.termsOfUse);
+              setTermsSummary(request.serverData.termsOfUse);
+              setPrivacySummary(request.serverData.termsOfPrivacy);
 
               // set the username info
               setUserInfo(request.serverData.userInfo);

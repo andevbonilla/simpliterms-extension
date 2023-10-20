@@ -274,12 +274,12 @@
               try {
 
                 if (firstOpened) {
-                    // request privacy
-                    const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
-                    const resInPrivacy = setDataOrShowError(privacyData);
                     // request terms 
                     const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
                     const resInTerms = setDataOrShowError(termsData);
+                    // request privacy
+                    const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
+                    const resInPrivacy = setDataOrShowError(privacyData);
 
                     if (resInPrivacy && resInTerms) {
                       firstOpened = false;

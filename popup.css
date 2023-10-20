@@ -176,6 +176,10 @@ h2{
     fill: rgba(87, 18, 223, 1);
 }
 
+#simpli-summary-privacy{
+    display: none;
+}
+
 
 
 @keyframes rotate {
