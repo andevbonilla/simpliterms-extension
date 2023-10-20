@@ -381,35 +381,16 @@
             
               try {
 
-                if (firstOpened) {
-                    // request terms 
-                    // request terms 
-                    const staticData = await requestStaticSummaryInfo(tokenValidator);
-                    const resInStatic = setDataOrShowErrorStatic(staticData);
+                  if (firstOpened) {
 
-                    if (resInStatic) {
-                      firstOpened = false;
-                    }
+                      const staticData = await requestStaticSummaryInfo(tokenValidator);
+                      const resInStatic = setDataOrShowErrorStatic(staticData);
 
-                    chrome.runtime.sendMessage({
-                                message: 'staticResult',
-                                serverData: {
-                                  termsOfPrivacy, 
-                                  termsOfUse, 
-                                  ifPrivacy, 
-                                  ifTerms, 
-                                  host: window.location.host,
-                                  isAuthenticate,
-                                  userInfo,
-                                  errorMessage,
-                                  tokenValidator
-                                }
-                    });
+                      if (resInStatic) {
+                        firstOpened = false;
+                      }
 
-                }else {
-                    console.log("ssssad000000000000 staticcccccccc")
-                    // only send info saved to don't repeat request in the same page
-                    chrome.runtime.sendMessage({
+                      chrome.runtime.sendMessage({
                                   message: 'staticResult',
                                   serverData: {
                                     termsOfPrivacy, 
@@ -422,8 +403,25 @@
                                     errorMessage,
                                     tokenValidator
                                   }
-                    });
-                }
+                      });
+
+                  }else {
+                      // only send info saved to don't repeat request in the same page
+                      chrome.runtime.sendMessage({
+                                    message: 'staticResult',
+                                    serverData: {
+                                      termsOfPrivacy, 
+                                      termsOfUse, 
+                                      ifPrivacy, 
+                                      ifTerms, 
+                                      host: window.location.host,
+                                      isAuthenticate,
+                                      userInfo,
+                                      errorMessage,
+                                      tokenValidator
+                                    }
+                      });
+                  }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
@@ -535,23 +533,31 @@
           }
 
 
+          // utils functions
+          const searchAndSetToken = () => {
+
+              tokenValidator = "";
+
+              const listOfCookies = document.cookie.split(';');
+
+              if (listOfCookies) {
+                for (const cookie of listOfCookies) {
+                  if (cookie && cookie.split("=")[0].trim() === 'x-token') {
+                     tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
+                  }
+                }
+              }
+
+          }
+
+
           // messages on runtime
           //=================================================================================
           chrome.runtime.onMessage.addListener(async function(request, sender, sendResponse) {
 
               if (request.message === 'popupLoaded') {
 
-                  tokenValidator = "";
-
-                  const listOfCookies = document.cookie.split(';');
-
-                  if (listOfCookies) {
-                    for (const cookie of listOfCookies) {
-                      if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                        tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
-                      }
-                    }
-                  }
+                  searchAndSetToken();
 
                   if (tokenValidator !== '') {
 
@@ -575,17 +581,7 @@
 
               if (request.message === 'termsAISumary') {
 
-                  tokenValidator = "";
-
-                  const listOfCookies = document.cookie.split(';');
-
-                  if (listOfCookies) {
-                    for (const cookie of listOfCookies) {
-                      if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                        tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
-                      }
-                    }
-                  }
+                  searchAndSetToken();
 
                   if (tokenValidator !== '') {
 
@@ -609,17 +605,7 @@
 
               if (request.message === 'privacyAISumary') {
 
-                  tokenValidator = "";
-
-                  const listOfCookies = document.cookie.split(';');
-
-                  if (listOfCookies) {
-                    for (const cookie of listOfCookies) {
-                      if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                        tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
-                      }
-                    }
-                  }
+                  searchAndSetToken();
 
                   if (tokenValidator !== '') {
 

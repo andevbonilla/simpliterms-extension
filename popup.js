@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", async() => {
 
-
       let summaryInfo = {
         privacy: [],
         terms: [],
@@ -10,6 +9,8 @@ document.addEventListener("DOMContentLoaded", async() => {
       let canGiveAlikeODislike = false;
       let showRequestHeader = true;
       let actualTabID;
+      let isLoadingTerms = false;
+      let isLoadingPrivacy = false;
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');
@@ -17,6 +18,8 @@ document.addEventListener("DOMContentLoaded", async() => {
       // logged part
 
       const loadingContainer = document.getElementById('loading-container');
+      const loadingContainerTerms = document.getElementById('loading-container-terms');
+      const loadingContainerPrivacy = document.getElementById('loading-container-privacy');
 
 
       const subTypeElement = document.getElementById("sub-type");
@@ -37,8 +40,13 @@ document.addEventListener("DOMContentLoaded", async() => {
       const policyList = document.getElementById('policy-list');
       const termButton = document.getElementById('terms-buttom');
       const privacyButton = document.getElementById('privacy-button');
+      const disclaimerMessage = document.getElementById('disclaimer');
 
       termButton.addEventListener('click', ()=>{
+          if (isLoadingTerms) {
+            loadingContainerTerms.style.display = "flex";
+          }
+          loadingContainerPrivacy.style.display = "none";
           termButton.className = 'selected';
           privacyButton.className = '';
           TermsSummaryHtmlText.style.display = "block";
@@ -47,6 +55,10 @@ document.addEventListener("DOMContentLoaded", async() => {
       });
 
       privacyButton.addEventListener('click', ()=>{
+          if (isLoadingPrivacy) {
+            loadingContainerPrivacy.style.display = "flex";
+          }
+          loadingContainerTerms.style.display = "none";
           privacyButton.className = 'selected';
           termButton.className = '';
           TermsSummaryHtmlText.style.display = "none";
@@ -161,7 +173,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       const setPrivacySummary = (policies) => {
         if (policies.length === 0) {
-            PrivacySummaryHtmlText.textContent = `loading...`;
             canGiveAlikeODislike = false;
             questionHeader.style.display = "none";
         }else{
@@ -176,7 +187,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       const setTermsSummary = (policies) => {
         if (policies.length === 0) {
-            TermsSummaryHtmlText.textContent = `loading...`;
             canGiveAlikeODislike = false;
             questionHeader.style.display = "none";
         }else{
@@ -223,8 +233,8 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       // send a message to the content.js when the popup is opened.
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-          actualTabID = tabs[0].id
-          chrome.tabs.sendMessage(tabs[0].id, {message: 'popupLoaded'});
+          actualTabID = tabs[0].id;
+          chrome.tabs.sendMessage(actualTabID, {message: 'popupLoaded'});
       });
 
 
@@ -233,25 +243,9 @@ document.addEventListener("DOMContentLoaded", async() => {
 
           if (request.message === 'staticResult' && request.serverData) {
 
-              console.log("ssssssssfffs")
               loadingContainer.style.display = "none";
               // verify the authentication of user
               verifyIfAuthenticated(request.serverData.isAuthenticate);
-
-              // if there was an error obtaining the static summary
-              
-              if(request.serverData.errorMessage !== ""){
-                // send a message to the content.js if there is an error different of the auth error.
-                console.log("entroooooo", actualTabID)
-                loadingContainer.style.display = "flex";
-                chrome.tabs.sendMessage(actualTabID, {message: 'termsAISumary'});
-                chrome.tabs.sendMessage(actualTabID, {message: 'privacyAISumary'});
-                return;
-              }
-
-              // validate there are policies to show
-              setTermsSummary(request.serverData.termsOfUse);
-              setPrivacySummary(request.serverData.termsOfPrivacy);
 
               // set the username info
               setUserInfo(request.serverData.userInfo);
@@ -261,6 +255,27 @@ document.addEventListener("DOMContentLoaded", async() => {
                 hostname.textContent = request.serverData.host;
                 defaultHostname.textContent  = request.serverData.host;
               }
+              // if there was an error obtaining the static summary
+              
+              if(request.serverData.errorMessage !== ""){
+                // send a message to the content.js if there is an error different of the auth error.
+                isLoadingPrivacy = true;
+                isLoadingTerms = true;
+                loadingContainerTerms.style.display = "flex";
+                chrome.tabs.sendMessage(actualTabID, {message: 'termsAISumary'});
+                chrome.tabs.sendMessage(actualTabID, {message: 'privacyAISumary'});
+                return;
+              }
+
+              // validate there are policies to show
+              setTermsSummary(request.serverData.termsOfUse);
+              setPrivacySummary(request.serverData.termsOfPrivacy);
+
+              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                               It is important to note that this summary has been generated with artificial intelligence,  
+                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                               official source for this page's policies and only using simpliTerms as an aid.`;
+              
               
               if (request.serverData.ifPrivacy) {
                   policyList.textContent =  `${(request.serverData.ifPrivacy) ? 'Privacy Policy' : ''}, ${(request.serverData.ifTerms) ? 'Terms of Use' : ''}`
@@ -286,16 +301,6 @@ document.addEventListener("DOMContentLoaded", async() => {
               // verify the authentication of user
               verifyIfAuthenticated(request.serverData.isAuthenticate);
 
-              // if there was an error obtaining the summary generated by AI
-              if (request.serverData.errorMessage !== "") {
-                TermsSummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
-                return;
-              }
-
-              // validate there are policies to show
-              setTermsSummary(request.serverData.termsOfUse);
-              setPrivacySummary(request.serverData.termsOfPrivacy);
-
               // set the username info
               setUserInfo(request.serverData.userInfo);
 
@@ -304,9 +309,29 @@ document.addEventListener("DOMContentLoaded", async() => {
                 hostname.textContent = request.serverData.host;
                 defaultHostname.textContent  = request.serverData.host;
               }
+
+              // if there was an error obtaining the summary generated by AI
+              if (request.serverData.errorMessage !== "") {
+                TermsSummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
+                return;
+              }
+
+              // validate there are policies to show
+              setTermsSummary(request.serverData.termsOfUse);
+              isLoadingTerms = false;
+              disclaimerMessage.style.display = "block";
+              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                               It is important to note that this summary has been generated with artificial intelligence,  
+                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                               official source for this page's policies and only using simpliTerms as an aid.`;
+              loadingContainerTerms.style.display = "none";
+
+              // set the username info
+              setUserInfo(request.serverData.userInfo);
+
               
-              if (request.serverData.ifPrivacy) {
-                  policyList.textContent =  `${(request.serverData.ifPrivacy) ? 'Privacy Policy' : ''}, ${(request.serverData.ifTerms) ? 'Terms of Use' : ''}`
+              if (request.serverData.ifTerms) {
+                  policyList.textContent = policyList.textContent + 'Terms of Use';
                   defaultText.style.display = 'none';
                   detectedText.style.display = 'block';
               }else{
@@ -329,16 +354,6 @@ document.addEventListener("DOMContentLoaded", async() => {
               // verify the authentication of user
               verifyIfAuthenticated(request.serverData.isAuthenticate);
 
-              // if there was an error obtaining the summary generated by AI
-              if (request.serverData.errorMessage !== "") {
-                PrivacySummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
-                return;
-              }
-
-              // validate there are policies to show
-              setTermsSummary(request.serverData.termsOfUse);
-              setPrivacySummary(request.serverData.termsOfPrivacy);
-
               // set the username info
               setUserInfo(request.serverData.userInfo);
 
@@ -347,9 +362,28 @@ document.addEventListener("DOMContentLoaded", async() => {
                 hostname.textContent = request.serverData.host;
                 defaultHostname.textContent  = request.serverData.host;
               }
+
+              // if there was an error obtaining the summary generated by AI
+              if (request.serverData.errorMessage !== "") {
+                PrivacySummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
+                return;
+              }
+
+              // validate there are policies to show
+              setPrivacySummary(request.serverData.termsOfPrivacy);
+              isLoadingPrivacy = false;
+              disclaimerMessage.style.display = "block";
+              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                               It is important to note that this summary has been generated with artificial intelligence,  
+                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                               official source for this page's policies and only using simpliTerms as an aid.`;
+              loadingContainerPrivacy.style.display = "none";
+
+              // set the username info
+              setUserInfo(request.serverData.userInfo);
               
               if (request.serverData.ifPrivacy) {
-                  policyList.textContent =  `${(request.serverData.ifPrivacy) ? 'Privacy Policy' : ''}, ${(request.serverData.ifTerms) ? 'Terms of Use' : ''}`
+                  policyList.textContent = policyList.textContent + ' Privacy Policy'
                   defaultText.style.display = 'none';
                   detectedText.style.display = 'block';
               }else{

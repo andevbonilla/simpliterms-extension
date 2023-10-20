@@ -144,6 +144,21 @@ h2{
     padding: 0 2rem;
 }
 
+.loading-container-policy{
+    margin: 4rem .5rem 1rem .5rem;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-container-policy h2{
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0 2rem;
+}
+
+
 
 .loading-logo{
     border-radius: 100%;
@@ -177,6 +192,10 @@ h2{
 }
 
 #simpli-summary-privacy{
+    display: none;
+}
+
+#simpli-summary-terms{
     display: none;
 }
 
