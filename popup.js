@@ -269,6 +269,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                                                official source for this page's policies and only using simpliTerms as an aid.`;
 
               if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                questionHeader.style.display = "flex";
                 canGiveAlikeODislike = true;
               }
               
