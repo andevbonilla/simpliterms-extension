@@ -43,26 +43,12 @@ document.addEventListener("DOMContentLoaded", async() => {
       const disclaimerMessage = document.getElementById('disclaimer');
 
       termButton.addEventListener('click', ()=>{
-          if (isLoadingTerms) {
-            loadingContainerTerms.style.display = "flex";
-          }
-          loadingContainerPrivacy.style.display = "none";
-          termButton.className = 'selected';
-          privacyButton.className = '';
-          TermsSummaryHtmlText.style.display = "block";
-          PrivacySummaryHtmlText.style.display = "none";
+          showTermsWindow();
           setTermsSummary(summaryInfo.terms);
       });
 
       privacyButton.addEventListener('click', ()=>{
-          if (isLoadingPrivacy) {
-            loadingContainerPrivacy.style.display = "flex";
-          }
-          loadingContainerTerms.style.display = "none";
-          privacyButton.className = 'selected';
-          termButton.className = '';
-          TermsSummaryHtmlText.style.display = "none";
-          PrivacySummaryHtmlText.style.display = "block";
+          showPrivacyWindow();
           setPrivacySummary(summaryInfo.privacy);
       });
 
@@ -153,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
       }
 
-      const verifyIfAuthenticated = (auth) => {
+      const verifyIfAuthenticated = (auth, userInfo) => {
         if (auth === false) {
 
           notloggedPage.style.display = "block";
@@ -163,6 +149,8 @@ document.addEventListener("DOMContentLoaded", async() => {
 
         }else{
           
+          // set the username info
+          setUserInfo(userInfo);
           loggedPage.style.display = "block";
           greetingElement.style.display = "block";
           notloggedPage.style.display = "none";
@@ -172,29 +160,14 @@ document.addEventListener("DOMContentLoaded", async() => {
       }
 
       const setPrivacySummary = (policies) => {
-        if (policies.length === 0) {
-            questionHeader.style.display = "none";
-        }else{
-          if (showRequestHeader) {
-            questionHeader.style.display = "flex";
-          }
           PrivacySummaryHtmlText.innerHTML = '';
           showSummaries(policies, "privacy");
-        }
       }
 
       const setTermsSummary = (policies) => {
-        if (policies.length === 0) {
-            questionHeader.style.display = "none";
-        }else{
-          if (showRequestHeader) {
-            questionHeader.style.display = "flex";
-          }
           TermsSummaryHtmlText.innerHTML = '';
           showSummaries(policies, "terms");
-        }
       }
-
 
       const setUserInfo = (userInfo) => {
 
@@ -227,6 +200,29 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       }
 
+      // factorization functions
+      const showTermsWindow = () => {
+          if (isLoadingTerms) {
+            loadingContainerTerms.style.display = "flex";
+          }
+          loadingContainerPrivacy.style.display = "none";
+          termButton.className = 'selected';
+          privacyButton.className = '';
+          TermsSummaryHtmlText.style.display = "block";
+          PrivacySummaryHtmlText.style.display = "none";
+      }
+
+      const showPrivacyWindow = () => {
+          if (isLoadingPrivacy) {
+            loadingContainerPrivacy.style.display = "flex";
+          }
+          loadingContainerTerms.style.display = "none";
+          privacyButton.className = 'selected';
+          termButton.className = '';
+          TermsSummaryHtmlText.style.display = "none";
+          PrivacySummaryHtmlText.style.display = "block"; 
+      }
+
       // send a message to the content.js when the popup is opened.
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
           actualTabID = tabs[0].id;
@@ -240,19 +236,17 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'staticResult' && request.serverData) {
 
               loadingContainer.style.display = "none";
-              // verify the authentication of user
-              verifyIfAuthenticated(request.serverData.isAuthenticate);
-
-              // set the username info
-              setUserInfo(request.serverData.userInfo);
 
               // set the host
               if (request.serverData.host) {
                 hostname.textContent = request.serverData.host;
                 defaultHostname.textContent  = request.serverData.host;
               }
-              // if there was an error obtaining the static summary
-              
+
+              // verify the authentication of user
+              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+
+              // if there was an error obtaining the static summary        
               if(request.serverData.errorMessage !== ""){
                 // send a message to the content.js if there is an error different of the auth error.
                 isLoadingPrivacy = true;
@@ -299,17 +293,15 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'termsAIResult' && request.serverData) {
 
               loadingContainer.style.display = "none";
-              // verify the authentication of user
-              verifyIfAuthenticated(request.serverData.isAuthenticate);
-
-              // set the username info
-              setUserInfo(request.serverData.userInfo);
 
               // set the host
               if (request.serverData.host) {
                 hostname.textContent = request.serverData.host;
                 defaultHostname.textContent  = request.serverData.host;
               }
+
+              // verify the authentication of user
+              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
 
               // if there was an error obtaining the summary generated by AI
               if (request.serverData.errorMessage !== "") {
@@ -322,10 +314,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               isLoadingTerms = false;
 
               // show the terms
-              termButton.className = 'selected';
-              privacyButton.className = '';
-              TermsSummaryHtmlText.style.display = "block";
-              PrivacySummaryHtmlText.style.display = "none";
+              showTermsWindow();
 
               disclaimerMessage.style.display = "block";
               disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
@@ -333,7 +322,9 @@ document.addEventListener("DOMContentLoaded", async() => {
                                                so it may not be exact, contain errors and erroneous information. We recommend checking the 
                                                official source for this page's policies and only using simpliTerms as an aid.`;
               loadingContainerTerms.style.display = "none";
+
               if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                questionHeader.style.display = "flex";
                 canGiveAlikeODislike = true;
               }
               
@@ -358,17 +349,15 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'privacyAIResult' && request.serverData) {
 
               loadingContainer.style.display = "none";
-              // verify the authentication of user
-              verifyIfAuthenticated(request.serverData.isAuthenticate);
-
-              // set the username info
-              setUserInfo(request.serverData.userInfo);
 
               // set the host
               if (request.serverData.host) {
                 hostname.textContent = request.serverData.host;
                 defaultHostname.textContent  = request.serverData.host;
               }
+
+              // verify the authentication of user
+              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
 
               // if there was an error obtaining the summary generated by AI
               if (request.serverData.errorMessage !== "") {
@@ -380,10 +369,8 @@ document.addEventListener("DOMContentLoaded", async() => {
               setPrivacySummary(request.serverData.termsOfPrivacy);
               isLoadingPrivacy = false;
               
-              privacyButton.className = 'selected';
-              termButton.className = '';
-              TermsSummaryHtmlText.style.display = "none";
-              PrivacySummaryHtmlText.style.display = "block";
+              // show privacy when loaded
+              showPrivacyWindow();
 
               disclaimerMessage.style.display = "block";
               disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
@@ -393,6 +380,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               loadingContainerPrivacy.style.display = "none";
 
               if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                questionHeader.style.display = "flex";
                 canGiveAlikeODislike = true;
               }
               
