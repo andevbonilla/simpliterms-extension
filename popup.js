@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", async() => {
 
-
       let summaryInfo = {
         privacy: [],
         terms: [],
@@ -9,6 +8,9 @@ document.addEventListener("DOMContentLoaded", async() => {
       };
       let canGiveAlikeODislike = false;
       let showRequestHeader = true;
+      let actualTabID;
+      let isLoadingTerms = false;
+      let isLoadingPrivacy = false;
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');
@@ -16,11 +18,9 @@ document.addEventListener("DOMContentLoaded", async() => {
       // logged part
 
       const loadingContainer = document.getElementById('loading-container');
+      const loadingContainerTerms = document.getElementById('loading-container-terms');
+      const loadingContainerPrivacy = document.getElementById('loading-container-privacy');
 
-      const errorView = document.getElementById('if-error');
-      const successView = document.getElementById('not-error');
-
-      const ErrorMessagDiv = document.getElementById("error-message");
 
       const subTypeElement = document.getElementById("sub-type");
       const usernameElement = document.getElementById("username-element");
@@ -29,7 +29,10 @@ document.addEventListener("DOMContentLoaded", async() => {
       const simplitermsNameElement = document.getElementById("simpliterms-name");
 
       const loggedPage = document.getElementById('logged');
-      const summaryHtmlText = document.getElementById('simpli-summary');
+
+      const TermsSummaryHtmlText = document.getElementById('simpli-summary-terms');
+      const PrivacySummaryHtmlText = document.getElementById('simpli-summary-privacy');
+
       const defaultText = document.getElementById('default-text');
       const detectedText = document.getElementById('detected-text');
       const defaultHostname = document.getElementById('default-hostname');
@@ -37,17 +40,16 @@ document.addEventListener("DOMContentLoaded", async() => {
       const policyList = document.getElementById('policy-list');
       const termButton = document.getElementById('terms-buttom');
       const privacyButton = document.getElementById('privacy-button');
+      const disclaimerMessage = document.getElementById('disclaimer');
 
       termButton.addEventListener('click', ()=>{
-        termButton.className = 'selected'
-        privacyButton.className = ''
-        verifyIfThereArePolicies(summaryInfo.terms, 'terms')
+          showTermsWindow();
+          setTermsSummary(summaryInfo.terms);
       });
 
       privacyButton.addEventListener('click', ()=>{
-        privacyButton.className = 'selected'
-        termButton.className = ''
-        verifyIfThereArePolicies(summaryInfo.privacy, 'privacy')
+          showPrivacyWindow();
+          setPrivacySummary(summaryInfo.privacy);
       });
 
       // like and dislike functionalities
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                                         }
                                     )
 
-                const result = await res.json();                
+                await res.json();                
              
               } catch (error) {
                 console.log(error);
@@ -120,9 +122,7 @@ document.addEventListener("DOMContentLoaded", async() => {
       
       //functions to set data
       const showSummaries = (list, type) => {
-
         for (let i = 0; i < list.length; i++) {
-
           const li = document.createElement('li');
           const h3 = document.createElement('h3');
           h3.textContent = list[i].subtitle;
@@ -130,12 +130,16 @@ document.addEventListener("DOMContentLoaded", async() => {
           p.textContent = list[i].text;
           li.appendChild(h3);
           li.appendChild(p);
-          summaryHtmlText.appendChild(li);
-          
+          if (type === "privacy") {
+            PrivacySummaryHtmlText.appendChild(li);
+          }
+          if (type === "terms") {
+            TermsSummaryHtmlText.appendChild(li);
+          }   
         }
       }
 
-      const verifyIfAuthenticated = (auth) => {
+      const verifyIfAuthenticated = (auth, userInfo) => {
         if (auth === false) {
 
           notloggedPage.style.display = "block";
@@ -145,6 +149,8 @@ document.addEventListener("DOMContentLoaded", async() => {
 
         }else{
           
+          // set the username info
+          setUserInfo(userInfo);
           loggedPage.style.display = "block";
           greetingElement.style.display = "block";
           notloggedPage.style.display = "none";
@@ -153,31 +159,14 @@ document.addEventListener("DOMContentLoaded", async() => {
         }
       }
 
-      const verifyIfThereArePolicies = (terms, type) => {
-        if (terms.length === 0) {
-          summaryHtmlText.textContent = `loading...`;
-          canGiveAlikeODislike = false;
-          questionHeader.style.display = "none";
-        }else{
-          canGiveAlikeODislike = true;
-          if (showRequestHeader) {
-            questionHeader.style.display = "flex";
-          }
-          summaryHtmlText.innerHTML = '';
-          showSummaries(terms, type);
-        }
+      const setPrivacySummary = (policies) => {
+          PrivacySummaryHtmlText.innerHTML = '';
+          showSummaries(policies, "privacy");
       }
 
-      const ifErrorShowIt = (errorMessage) => {
-        if (errorMessage === "") {
-          // there weren't none one error (different of the auth error) from the backend
-          successView.style.display = "block";
-          errorView.style.display = "none";
-        }else{
-          ErrorMessagDiv.textContent = `Message: ${errorMessage}`
-          successView.style.display = "none";
-          errorView.style.display = "block";
-        }
+      const setTermsSummary = (policies) => {
+          TermsSummaryHtmlText.innerHTML = '';
+          showSummaries(policies, "terms");
       }
 
       const setUserInfo = (userInfo) => {
@@ -211,33 +200,77 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       }
 
+      // factorization functions
+      const showTermsWindow = () => {
+          if (isLoadingTerms) {
+            loadingContainerTerms.style.display = "flex";
+          }
+          loadingContainerPrivacy.style.display = "none";
+          termButton.className = 'selected';
+          privacyButton.className = '';
+          TermsSummaryHtmlText.style.display = "block";
+          PrivacySummaryHtmlText.style.display = "none";
+      }
+
+      const showPrivacyWindow = () => {
+          if (isLoadingPrivacy) {
+            loadingContainerPrivacy.style.display = "flex";
+          }
+          loadingContainerTerms.style.display = "none";
+          privacyButton.className = 'selected';
+          termButton.className = '';
+          TermsSummaryHtmlText.style.display = "none";
+          PrivacySummaryHtmlText.style.display = "block"; 
+      }
+
       // send a message to the content.js when the popup is opened.
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-          chrome.tabs.sendMessage(tabs[0].id, {message: 'popupLoaded'});
+          actualTabID = tabs[0].id;
+          chrome.tabs.sendMessage(actualTabID, {message: 'popupLoaded'});
       });
 
 
       // listen the response of the content.js 
       chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-          if (request.message === 'serverResult' && request.serverData) {
+
+          if (request.message === 'staticResult' && request.serverData) {
 
               loadingContainer.style.display = "none";
-              // verify the authentication of user
-              verifyIfAuthenticated(request.serverData.isAuthenticate);
-
-              // show the errors from backend or the suscces view in case of no errors
-              ifErrorShowIt(request.serverData.errorMessage);
-
-              // validate there are policies to show
-              verifyIfThereArePolicies(request.serverData.termsOfUse);
-
-              // set the username info
-              setUserInfo(request.serverData.userInfo);
 
               // set the host
               if (request.serverData.host) {
                 hostname.textContent = request.serverData.host;
                 defaultHostname.textContent  = request.serverData.host;
+              }
+
+              // verify the authentication of user
+              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+
+              // if there was an error obtaining the static summary        
+              if(request.serverData.errorMessage !== ""){
+                // send a message to the content.js if there is an error different of the auth error.
+                isLoadingPrivacy = true;
+                isLoadingTerms = true;
+                loadingContainerTerms.style.display = "flex";
+                chrome.tabs.sendMessage(actualTabID, {message: 'termsAISumary'});
+                chrome.tabs.sendMessage(actualTabID, {message: 'privacyAISumary'});
+                return;
+              }
+
+              // validate there are policies to show
+              setTermsSummary(request.serverData.termsOfUse);
+              isLoadingTerms = false;
+              setPrivacySummary(request.serverData.termsOfPrivacy);
+              isLoadingPrivacy = false;
+
+              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                               It is important to note that this summary has been generated with artificial intelligence,  
+                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                               official source for this page's policies and only using simpliTerms as an aid.`;
+
+              if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                questionHeader.style.display = "flex";
+                canGiveAlikeODislike = true;
               }
               
               if (request.serverData.ifPrivacy) {
@@ -248,8 +281,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                   detectedText.style.display = 'none';
                   defaultText.style.display = 'block';
               }
-              
-              
+                  
               summaryInfo = {
                 privacy: request.serverData.termsOfPrivacy,
                 terms: request.serverData.termsOfUse,
@@ -258,48 +290,119 @@ document.addEventListener("DOMContentLoaded", async() => {
               }
               
           }
+
+          if (request.message === 'termsAIResult' && request.serverData) {
+
+              loadingContainer.style.display = "none";
+
+              // set the host
+              if (request.serverData.host) {
+                hostname.textContent = request.serverData.host;
+                defaultHostname.textContent  = request.serverData.host;
+              }
+
+              // verify the authentication of user
+              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+
+              // if there was an error obtaining the summary generated by AI
+              if (request.serverData.errorMessage !== "") {
+                TermsSummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
+                return;
+              }
+
+              // validate there are policies to show
+              setTermsSummary(request.serverData.termsOfUse);
+              isLoadingTerms = false;
+
+              // show the terms
+              showTermsWindow();
+
+              disclaimerMessage.style.display = "block";
+              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                               It is important to note that this summary has been generated with artificial intelligence,  
+                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                               official source for this page's policies and only using simpliTerms as an aid.`;
+              loadingContainerTerms.style.display = "none";
+
+              if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                questionHeader.style.display = "flex";
+                canGiveAlikeODislike = true;
+              }
+              
+              if (request.serverData.ifTerms) {
+                  policyList.textContent = policyList.textContent + 'Terms of Use';
+                  defaultText.style.display = 'none';
+                  detectedText.style.display = 'block';
+              }else{
+                  detectedText.style.display = 'none';
+                  defaultText.style.display = 'block';
+              }
+                  
+              summaryInfo = {
+                ...summaryInfo,
+                terms: request.serverData.termsOfUse,
+                token: request.serverData.tokenValidator,
+                host: request.serverData.host
+              }
+              
+          }
+
+          if (request.message === 'privacyAIResult' && request.serverData) {
+
+              loadingContainer.style.display = "none";
+
+              // set the host
+              if (request.serverData.host) {
+                hostname.textContent = request.serverData.host;
+                defaultHostname.textContent  = request.serverData.host;
+              }
+
+              // verify the authentication of user
+              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+
+              // if there was an error obtaining the summary generated by AI
+              if (request.serverData.errorMessage !== "") {
+                PrivacySummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
+                return;
+              }
+
+              // validate there are policies to show
+              setPrivacySummary(request.serverData.termsOfPrivacy);
+              isLoadingPrivacy = false;
+              
+              // show privacy when loaded
+              showPrivacyWindow();
+
+              disclaimerMessage.style.display = "block";
+              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                               It is important to note that this summary has been generated with artificial intelligence,  
+                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                               official source for this page's policies and only using simpliTerms as an aid.`;
+              loadingContainerPrivacy.style.display = "none";
+
+              if (isLoadingTerms === false && isLoadingPrivacy === false) {
+                questionHeader.style.display = "flex";
+                canGiveAlikeODislike = true;
+              }
+              
+              if (request.serverData.ifPrivacy) {
+                  policyList.textContent = policyList.textContent + ' Privacy Policy'
+                  defaultText.style.display = 'none';
+                  detectedText.style.display = 'block';
+              }else{
+                  detectedText.style.display = 'none';
+                  defaultText.style.display = 'block';
+              }
+                  
+              summaryInfo = {
+                ...summaryInfo,
+                privacy: request.serverData.termsOfPrivacy,
+                token: request.serverData.tokenValidator,
+                host: request.serverData.host
+              }
+              
+          }
+
       });
-
-
-      // chrome.storage.sync.get('summary', (obj) => {
-
-      //   // verify the authentication of user
-      //   verifyIfAuthenticated(obj.summary.isAuthenticate);
-
-      //   // show the errors from backend or the suscces view in case of no errors
-      //   ifErrorShowIt(obj.summary.errorMessage);
-
-      //   // validate there are policies to show
-      //   verifyIfThereArePolicies(obj.summary.termsOfUse);
-
-      //   // set the username info
-      //   setUserInfo(obj.summary.userInfo);
-
-      //   // set the host
-      //   if (obj.summary.host) {
-      //     hostname.textContent = obj.summary.host;
-      //     defaultHostname.textContent  = obj.summary.host;
-      //   }
-        
-      //   if (obj.summary.ifPrivacy) {
-      //       showSummaries(obj.summary.termsOfPrivacy)
-      //       policyList.textContent =  `${(obj.summary.ifPrivacy) ? 'Privacy Policy' : ''}, ${(obj.summary.ifTerms) ? 'Terms of Use' : ''}`
-      //       defaultText.style.display = 'none';
-      //       detectedText.style.display = 'block';
-      //   }else{
-      //       if (obj.summary.ifTerms) {
-      //         showSummaries(obj.summary.termsOfUse);
-      //       }
-      //       detectedText.style.display = 'none';
-      //       defaultText.style.display = 'block';
-      //   }
-        
-        
-      //   summaryInfo = {
-      //     privacy: obj.summary.termsOfPrivacy,
-      //     terms: obj.summary.termsOfUse
-      //   }
-
-      // });
 
 });
