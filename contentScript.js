@@ -159,7 +159,8 @@
               "सुरक्षा", // Hindi
               "보안", // Coreano
               "أمان", // Árabe
-              "Sicurezza" // Italiano
+              "Sicurezza", // Italiano
+              "GTs&Cs"
           ];
 
 
