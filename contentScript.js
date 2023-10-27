@@ -1,11 +1,30 @@
 (() => {
 
       let firstOpened = true;
+      let tokenValidator = "";
+
+      // utils functions
+      const searchAndSetToken = () => {
+
+          tokenValidator = "";
+
+          const listOfCookies = document.cookie.split(';');
+
+          if (listOfCookies) {
+            for (const cookie of listOfCookies) {
+              if (cookie && cookie.split("=")[0].trim() === 'x-token') {
+                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString()
+              }
+            }
+          }
+
+          console.log(tokenValidator, "ooooo")
+
+      }
 
       const contentScript = async() => {
 
           // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
-          let tokenValidator = '';
 
           let termsOfPrivacy = [];
           let termsOfUse = [];
@@ -146,7 +165,7 @@
 
           // REQUESTS TO THE SERVER
           // prepare the info and make the http request to obtain the terms summary
-          const requestSummaryInfo = async(tokenValidator, posibleWords, politicsType) => {
+          const requestSummaryInfo = async( posibleWords, politicsType) => {
 
                 const politicsURLs = [`${window.location.href}`];
                 const regexUrlComplete = /^(http:|https:)/i;
@@ -179,12 +198,12 @@
                 }
 
                 return new Promise((resolve, reject) => {
-                    console.log(politicsURLs, "22222222")
+                    console.log(tokenValidator, "22222222")
                     fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
                                                             method: 'POST',
                                                             headers: {
                                                                 'Content-Type': 'application/json',
-                                                                'x-token': tokenValidator,
+                                                                'Authorization': `Bearer ${tokenValidator}`,
                                                                 'host-petition': window.location.host
                                                             },
                                                             body: JSON.stringify({ urlList: politicsURLs })
@@ -207,14 +226,13 @@
                 })
           }
           // prepare the info and make the http request to obtain the terms summary
-          const requestStaticSummaryInfo = async(tokenValidator) => {
-
+          const requestStaticSummaryInfo = async() => {
                 return new Promise((resolve, reject) => {
                     fetch(`http://localhost:4200/api/summary/static`, {
                                                             method: 'GET',
                                                             headers: {
                                                                 'Content-Type': 'application/json',
-                                                                'x-token': tokenValidator,
+                                                                'Authorization': `Bearer ${tokenValidator}`,
                                                                 'host-petition': window.location.host
                                                             }
                                                         })
@@ -388,7 +406,7 @@
 
                   if (firstOpened) {
 
-                      const staticData = await requestStaticSummaryInfo(tokenValidator);
+                      const staticData = await requestStaticSummaryInfo();
                       const resInStatic = setDataOrShowErrorStatic(staticData);
 
                       if (resInStatic) {
@@ -455,7 +473,7 @@
                   if (firstOpened) {
 
                       // request terms 
-                      const termsData = await requestSummaryInfo(tokenValidator, termsPosibilities, "terms");
+                      const termsData = await requestSummaryInfo( termsPosibilities, "terms");
                       const resInTerms = setDataOrShowErrorTerms(termsData);
 
                       if (termsResponseCorrect && privacyResponseCorrect) {
@@ -522,7 +540,7 @@
 
                   if (firstOpened) {
 
-                        const privacyData = await requestSummaryInfo(tokenValidator, privacyPosibilities, "privacy");
+                        const privacyData = await requestSummaryInfo( privacyPosibilities, "privacy");
                         const resInPrivacy = setDataOrShowErrorPrivacy(privacyData);
 
                         if (termsResponseCorrect && privacyResponseCorrect) {
@@ -582,25 +600,6 @@
               }
 
           }
-
-
-          // utils functions
-          const searchAndSetToken = () => {
-
-              tokenValidator = "";
-
-              const listOfCookies = document.cookie.split(';');
-
-              if (listOfCookies) {
-                for (const cookie of listOfCookies) {
-                  if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                     tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '')
-                  }
-                }
-              }
-
-          }
-
 
           // messages on runtime
           //=================================================================================
@@ -683,6 +682,7 @@
       }
 
       setTimeout(() => {
+        searchAndSetToken();
         contentScript();
       }, 200);
       
