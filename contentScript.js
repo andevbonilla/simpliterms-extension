@@ -13,12 +13,10 @@
           if (listOfCookies) {
             for (const cookie of listOfCookies) {
               if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString()
+                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
               }
             }
           }
-
-          console.log(tokenValidator, "ooooo")
 
       }
 
@@ -199,7 +197,7 @@
                 }
 
                 return new Promise((resolve, reject) => {
-                    console.log(tokenValidator, "22222222")
+
                     fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
                                                             method: 'POST',
                                                             headers: {
@@ -259,9 +257,7 @@
 
           // SETTING THE DATA
           // set the data for static summaries or the errors
-          const setDataOrShowErrorStatic = (data) => {
-
-              console.log("pppppppppppppppp", data)
+          const setDataOrShowError = (data, type) => {
 
               if (!data) {
                   thereWasResponse = true;
@@ -294,108 +290,37 @@
                   return false;
               }
 
-              if (data.summaryDB) {
-                  termsOfPrivacy = data.summaryDB.privacyTerms;
-                  termsOfUse = data.summaryDB.conditionsTerms;
-                  errorMessage = "";
-                  isAuthenticate = true;
-                  thereWasResponse = true;
-                  return true;
+              if (type === "static" && data.summaryDB) {
+                    termsOfPrivacy = data.summaryDB.privacyTerms;
+                    termsOfUse = data.summaryDB.conditionsTerms;
+                    errorMessage = "";
+                    isAuthenticate = true;
+                    thereWasResponse = true;
+                    return true;
               }
 
-          }
-          // set the data or the errors
-          const setDataOrShowErrorTerms = (data) => {
-
-              console.log("termmmmmsmsmsm", data)
-
-              if (!data) {
-                  thereWasResponse = true;
-                  return false;
+              if (type === "terms" && data.termSummary) {
+                    termsOfUse = data.termSummary;
+                    termsResponseCorrect = true;
+                    errorMessage = "";
+                    isAuthenticate = true;
+                    thereWasResponse = true;
+                    return true;
+              }
+              
+              if (type === "privacy" && data.privacySummary) {
+                    termsOfPrivacy = data.privacySummary;
+                    privacyResponseCorrect = true;
+                    errorMessage = "";
+                    isAuthenticate = true;
+                    thereWasResponse = true;
+                    return true;
               }
 
-              if (data.msj && (data.msj === "Auth failed")) {
-                  isAuthenticate = false;
-                  userInfo = {}
-                  thereWasResponse = true;
-                  return false;
-              }
-
-              if (data.res === false) {
-                  errorMessage = data.message;
-                  isAuthenticate = true;
-                  thereWasResponse = true;
-                  return false;
-              }
-
-              if ( data.userDB.username && data.userDB.planType ){
-                  userInfo = {
-                    username: data.userDB.username,
-                    planType: data.userDB.planType
-                  }
-                  isAuthenticate = true;
-              }else{
-                  isAuthenticate = false;
-                  thereWasResponse = true;
-                  return false;
-              }
-
-
-              if (data.termSummary) {
-                  termsOfUse = data.termSummary;
-                  termsResponseCorrect = true;
-                  errorMessage = "";
-                  isAuthenticate = true;
-                  thereWasResponse = true;
-                  return true;
-              }
-
-          }
-          // set the data or the errors
-          const setDataOrShowErrorPrivacy = (data) => {
-
-              console.log("termmmmmsmsmsm", data)
-
-              if (!data) {
-                  thereWasResponse = true;
-                  return false;
-              }
-
-              if (data.msj && (data.msj === "Auth failed")) {
-                  isAuthenticate = false;
-                  userInfo = {}
-                  thereWasResponse = true;
-                  return false;
-              }
-
-              if (data.res === false) {
-                  errorMessage = data.message;
-                  isAuthenticate = true;
-                  thereWasResponse = true;
-                  return false;
-              }
-
-              if ( data.userDB.username && data.userDB.planType ){
-                  userInfo = {
-                    username: data.userDB.username,
-                    planType: data.userDB.planType
-                  }
-                  isAuthenticate = true;
-              }else{
-                  isAuthenticate = false;
-                  thereWasResponse = true;
-                  return false;
-              }
-
-              if (data.privacySummary) {
-                  termsOfPrivacy = data.privacySummary;
-                  privacyResponseCorrect = true;
-                  errorMessage = "";
-                  isAuthenticate = true;
-                  // assignValues(isAuthenticate);
-                  thereWasResponse = true;
-                  return true;
-              }
+              isAuthenticate = true;
+              thereWasResponse = true;
+              errorMessage = "We're sorry there was an unexpected error.";
+              return true;
 
           }
 
@@ -408,7 +333,7 @@
                   if (firstOpened) {
 
                       const staticData = await requestStaticSummaryInfo();
-                      const resInStatic = setDataOrShowErrorStatic(staticData);
+                      const resInStatic = setDataOrShowError(staticData, "static");
 
                       if (resInStatic) {
                         firstOpened = false;
@@ -475,7 +400,7 @@
 
                       // request terms 
                       const termsData = await requestSummaryInfo( termsPosibilities, "terms");
-                      const resInTerms = setDataOrShowErrorTerms(termsData);
+                      const resInTerms = setDataOrShowError(termsData, "terms");
 
                       if (termsResponseCorrect && privacyResponseCorrect) {
                         firstOpened = false;
@@ -542,7 +467,7 @@
                   if (firstOpened) {
 
                         const privacyData = await requestSummaryInfo( privacyPosibilities, "privacy");
-                        const resInPrivacy = setDataOrShowErrorPrivacy(privacyData);
+                        const resInPrivacy = setDataOrShowError(privacyData, "privacy");
 
                         if (termsResponseCorrect && privacyResponseCorrect) {
                               firstOpened = false;

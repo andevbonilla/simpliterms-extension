@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", async() => {
         token: '',
         host: ''
       };
+
       let canGiveAlikeODislike = false;
-      let showRequestHeader = true;
       let actualTabID;
       let isLoadingTerms = false;
       let isLoadingPrivacy = false;
@@ -16,23 +16,16 @@ document.addEventListener("DOMContentLoaded", async() => {
       const notloggedPage = document.getElementById('not-logged');
 
       // logged part
-
       const loadingContainer = document.getElementById('loading-container');
       const loadingContainerTerms = document.getElementById('loading-container-terms');
       const loadingContainerPrivacy = document.getElementById('loading-container-privacy');
-
-
       const subTypeElement = document.getElementById("sub-type");
       const usernameElement = document.getElementById("username-element");
-
       const greetingElement = document.getElementById("greeting");
       const simplitermsNameElement = document.getElementById("simpliterms-name");
-
       const loggedPage = document.getElementById('logged');
-
       const TermsSummaryHtmlText = document.getElementById('simpli-summary-terms');
       const PrivacySummaryHtmlText = document.getElementById('simpli-summary-privacy');
-
       const defaultText = document.getElementById('default-text');
       const detectedText = document.getElementById('detected-text');
       const defaultHostname = document.getElementById('default-hostname');
@@ -200,7 +193,7 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       }
 
-      // factorization functions
+      // functios to simplify the code
       const showTermsWindow = () => {
           if (isLoadingTerms) {
             loadingContainerTerms.style.display = "flex";
@@ -210,6 +203,24 @@ document.addEventListener("DOMContentLoaded", async() => {
           privacyButton.className = '';
           TermsSummaryHtmlText.style.display = "block";
           PrivacySummaryHtmlText.style.display = "none";
+      }
+
+      const ShowdisclaimerAndFeedback = () => {
+
+        disclaimerMessage.style.display = "block";
+
+        disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                         It is important to note that this summary has been generated with artificial intelligence, 
+                                         so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                         official source for this page's policies and only using simpliTerms as an aid.`;
+
+        loadingContainerPrivacy.style.display = "none";
+
+        if (isLoadingTerms === false && isLoadingPrivacy === false) {
+          questionHeader.style.display = "flex";
+          canGiveAlikeODislike = true;
+        }
+
       }
 
       const showPrivacyWindow = () => {
@@ -263,15 +274,8 @@ document.addEventListener("DOMContentLoaded", async() => {
               setPrivacySummary(request.serverData.termsOfPrivacy);
               isLoadingPrivacy = false;
 
-              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
-                                               It is important to note that this summary has been generated with artificial intelligence,  
-                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
-                                               official source for this page's policies and only using simpliTerms as an aid.`;
-
-              if (isLoadingTerms === false && isLoadingPrivacy === false) {
-                questionHeader.style.display = "flex";
-                canGiveAlikeODislike = true;
-              }
+              // show disclaimer message and feedback part if terms and privacy are both loaded
+              ShowdisclaimerAndFeedback();
               
               if (request.serverData.ifPrivacy) {
                   policyList.textContent =  `${(request.serverData.ifPrivacy) ? 'Privacy Policy' : ''}, ${(request.serverData.ifTerms) ? 'Terms of Use' : ''}`
@@ -317,17 +321,8 @@ document.addEventListener("DOMContentLoaded", async() => {
               // show the terms
               showTermsWindow();
 
-              disclaimerMessage.style.display = "block";
-              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
-                                               It is important to note that this summary has been generated with artificial intelligence,  
-                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
-                                               official source for this page's policies and only using simpliTerms as an aid.`;
-              loadingContainerTerms.style.display = "none";
-
-              if (isLoadingTerms === false && isLoadingPrivacy === false) {
-                questionHeader.style.display = "flex";
-                canGiveAlikeODislike = true;
-              }
+              // show disclaimer message and feedback part if terms and privacy are both loaded
+              ShowdisclaimerAndFeedback();
               
               if (request.serverData.ifTerms) {
                   policyList.textContent = policyList.textContent + 'Terms of Use';
@@ -373,17 +368,8 @@ document.addEventListener("DOMContentLoaded", async() => {
               // show privacy when loaded
               showPrivacyWindow();
 
-              disclaimerMessage.style.display = "block";
-              disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
-                                               It is important to note that this summary has been generated with artificial intelligence,  
-                                               so it may not be exact, contain errors and erroneous information. We recommend checking the 
-                                               official source for this page's policies and only using simpliTerms as an aid.`;
-              loadingContainerPrivacy.style.display = "none";
-
-              if (isLoadingTerms === false && isLoadingPrivacy === false) {
-                questionHeader.style.display = "flex";
-                canGiveAlikeODislike = true;
-              }
+              // show disclaimer message and feedback part if terms and privacy are both loaded
+              ShowdisclaimerAndFeedback();
               
               if (request.serverData.ifPrivacy) {
                   policyList.textContent = policyList.textContent + ' Privacy Policy'

@@ -1,7 +1,7 @@
 {
-  "name": "SimpliTerms",
+  "name": "Simpliterms",
   "version": "0.1.0",
-  "description": "summarize terms and conditions, privacy policy and cookies from the any page",
+  "description": "Summarize with AI the terms and conditions and privacy or data policies, with simpliterms.",
   "permissions": ["storage", "tabs", "activeTab"],
   "host_permissions": ["http://*/*","https://*/*"],
   "background": {
@@ -20,7 +20,7 @@
       "32": "assets/icon32.png",
       "128": "assets/icon128.png"
     },
-    "default_title": "SimpliTerms",
+    "default_title": "Simpliterms",
     "default_popup": "popup.html"
   },
   "manifest_version": 3
