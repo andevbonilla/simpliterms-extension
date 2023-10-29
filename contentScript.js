@@ -272,7 +272,7 @@
               }
 
 
-              if ( data.userDB.username && data.userDB.planType ){
+              if (data.userDB.username){
                   userInfo = {
                     username: data.userDB.username,
                     planType: data.userDB.planType
@@ -288,7 +288,7 @@
                   errorMessage = data.message;
                   isAuthenticate = true;
                   thereWasResponse = true;
-                  return true;
+                  return false;
               }
               
               if (type === "static" && data.summaryDB) {
@@ -317,11 +317,6 @@
                     thereWasResponse = true;
                     return true;
               }
-
-              isAuthenticate = true;
-              thereWasResponse = true;
-              errorMessage = "We're sorry there was an unexpected error.";
-              return true;
 
           }
 
@@ -408,7 +403,7 @@
                         firstOpened = false;
                       }
 
-                      if (resInTerms) {
+                      
                         chrome.runtime.sendMessage({
                                   message: 'termsAIResult',
                                   serverData: {
@@ -423,7 +418,7 @@
                                     tokenValidator
                                   }
                         });      
-                      }
+                      
                     
                   } else {
                       chrome.runtime.sendMessage({
@@ -475,7 +470,6 @@
                               firstOpened = false;
                         }
 
-                        if (resInPrivacy) {
                           chrome.runtime.sendMessage({
                                     message: 'privacyAIResult',
                                     serverData: {
@@ -490,7 +484,6 @@
                                       tokenValidator
                                     }
                           });      
-                        }
                     
                   } else {
                       chrome.runtime.sendMessage({
