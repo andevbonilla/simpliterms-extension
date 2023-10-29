@@ -271,12 +271,6 @@
                   return false;
               }
 
-              if (data.res === false) {
-                  errorMessage = data.message;
-                  isAuthenticate = true;
-                  thereWasResponse = true;
-                  return false;
-              }
 
               if ( data.userDB.username && data.userDB.planType ){
                   userInfo = {
@@ -290,6 +284,13 @@
                   return false;
               }
 
+              if (data.res === false) {
+                  errorMessage = data.message;
+                  isAuthenticate = true;
+                  thereWasResponse = true;
+                  return true;
+              }
+              
               if (type === "static" && data.summaryDB) {
                     termsOfPrivacy = data.summaryDB.privacyTerms;
                     termsOfUse = data.summaryDB.conditionsTerms;
@@ -353,6 +354,7 @@
                                     tokenValidator
                                   }
                       });
+                      
 
                   }else {
                       // only send info saved to don't repeat request in the same page
