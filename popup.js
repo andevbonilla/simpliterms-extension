@@ -340,6 +340,14 @@ document.addEventListener("DOMContentLoaded", async() => {
                 return;
               }
 
+              summaryInfo = {
+                  ...summaryInfo,
+                  terms: request.serverData.termsOfUse,
+                  termsError: "",
+                  token: request.serverData.tokenValidator,
+                  host: request.serverData.host
+              }
+
               // validate there are policies to show
               setTermsSummary(request.serverData.termsOfUse);
               isLoadingTerms = false;
@@ -358,15 +366,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                   detectedText.style.display = 'none';
                   defaultText.style.display = 'block';
               }
-                  
-              summaryInfo = {
-                ...summaryInfo,
-                terms: request.serverData.termsOfUse,
-                termsError: "",
-                token: request.serverData.tokenValidator,
-                host: request.serverData.host
-              }
-              
+                                
           }
 
           if (request.message === 'privacyAIResult' && request.serverData) {
@@ -397,6 +397,14 @@ document.addEventListener("DOMContentLoaded", async() => {
                 return;
               }
 
+              summaryInfo = {
+                  ...summaryInfo,
+                  privacy: request.serverData.termsOfPrivacy,
+                  privacyError: "",
+                  token: request.serverData.tokenValidator,
+                  host: request.serverData.host
+              }
+
               // validate there are policies to show
               setPrivacySummary(request.serverData.termsOfPrivacy);
               isLoadingPrivacy = false;
@@ -416,14 +424,6 @@ document.addEventListener("DOMContentLoaded", async() => {
                   defaultText.style.display = 'block';
               }
                   
-              summaryInfo = {
-                ...summaryInfo,
-                privacy: request.serverData.termsOfPrivacy,
-                privacyError: "",
-                token: request.serverData.tokenValidator,
-                host: request.serverData.host
-              }
-              
           }
 
       });

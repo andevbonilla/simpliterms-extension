@@ -397,7 +397,7 @@
 
                       // request terms 
                       const termsData = await requestSummaryInfo( termsPosibilities, "terms");
-                      const resInTerms = setDataOrShowError(termsData, "terms");
+                      setDataOrShowError(termsData, "terms");
 
                       if (termsResponseCorrect && privacyResponseCorrect) {
                         firstOpened = false;
@@ -464,7 +464,7 @@
                   if (firstOpened) {
 
                         const privacyData = await requestSummaryInfo( privacyPosibilities, "privacy");
-                        const resInPrivacy = setDataOrShowError(privacyData, "privacy");
+                        setDataOrShowError(privacyData, "privacy");
 
                         if (termsResponseCorrect && privacyResponseCorrect) {
                               firstOpened = false;
