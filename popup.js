@@ -189,6 +189,9 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       const setPrivacySummary = () => {
           PrivacySummaryHtmlText.innerHTML = '';
+          if (!isLoadingPrivacy) {
+            loadingContainerPrivacy.style.display = "none";
+          }
           if (summaryInfo.privacy.length === 0 && summaryInfo.privacyError !== "") {
             PrivacySummaryHtmlText.textContent = summaryInfo.privacyError;
           }else{
@@ -198,6 +201,9 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       const setTermsSummary = () => {
           TermsSummaryHtmlText.innerHTML = '';
+          if (!isLoadingTerms) {
+            loadingContainerTerms.style.display = "none";
+          }
           if (summaryInfo.terms.length === 0 && summaryInfo.termsError !== "") {
             TermsSummaryHtmlText.textContent = summaryInfo.termsError;
           }else{
@@ -227,8 +233,6 @@ document.addEventListener("DOMContentLoaded", async() => {
                                          It is important to note that this summary has been generated with artificial intelligence, 
                                          so it may not be exact, contain errors and erroneous information. We recommend checking the 
                                          official source for this page's policies and only using simpliTerms as an aid.`;
-
-        loadingContainerPrivacy.style.display = "none";
 
         if (isLoadingTerms === false && isLoadingPrivacy === false) {
           questionHeader.style.display = "flex";
@@ -268,7 +272,6 @@ document.addEventListener("DOMContentLoaded", async() => {
                 defaultHostname.textContent  = request.serverData.host;
               }
 
-              console.log(request.serverData.isAuthenticate, "The authemticated")
               // verify the authentication of user
               verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
 
@@ -281,6 +284,15 @@ document.addEventListener("DOMContentLoaded", async() => {
                 chrome.tabs.sendMessage(actualTabID, {message: 'termsAISumary'});
                 chrome.tabs.sendMessage(actualTabID, {message: 'privacyAISumary'});
                 return;
+              }
+
+              summaryInfo = {
+                privacy: request.serverData.termsOfPrivacy,
+                terms: request.serverData.termsOfUse,
+                token: request.serverData.tokenValidator,
+                host: request.serverData.host,
+                privacyError: "",
+                termsError: ""
               }
 
               // validate there are policies to show
@@ -301,15 +313,6 @@ document.addEventListener("DOMContentLoaded", async() => {
                   defaultText.style.display = 'block';
               }
                   
-              summaryInfo = {
-                privacy: request.serverData.termsOfPrivacy,
-                terms: request.serverData.termsOfUse,
-                token: request.serverData.tokenValidator,
-                host: request.serverData.host,
-                privacyError: "",
-                termsError: ""
-              }
-              
           }
 
           if (request.message === 'termsAIResult' && request.serverData) {
