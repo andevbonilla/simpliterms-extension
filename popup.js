@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
           e.preventDefault();
           questionHeader.style.display = "none";
-          showRequestHeader = false;
           if (canGiveAlikeODislike) {
               try {
                 
@@ -64,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                                           method: 'POST',
                                           headers: {
                                               'Content-Type': 'application/json',
-                                              'x-token': summaryInfo.token
+                                              'Authorization': `Bearer ${summaryInfo.token}`
                                           },
                                           body: JSON.stringify({...summaryInfo,
                                             policyWebpage: summaryInfo.host,
@@ -78,7 +77,6 @@ document.addEventListener("DOMContentLoaded", async() => {
               } catch (error) {
                 console.log(error);
                 questionHeader.style.display = "flex";
-                showRequestHeader = true;
               }
           }
       });
@@ -88,7 +86,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
           e.preventDefault();
           questionHeader.style.display = "none";
-          showRequestHeader = false;
           if (canGiveAlikeODislike) {
               try {
                 
@@ -96,7 +93,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                                           method: 'POST',
                                           headers: {
                                               'Content-Type': 'application/json',
-                                              'x-token': summaryInfo.token
+                                              'Authorization': `Bearer ${summaryInfo.token}`
                                           },
                                           body: JSON.stringify({...summaryInfo,
                                             policyWebpage: summaryInfo.host,
@@ -110,7 +107,6 @@ document.addEventListener("DOMContentLoaded", async() => {
               } catch (error) {
                 console.log(error);
                 questionHeader.style.display = "flex";
-                showRequestHeader = true;
               }
           }
       });
@@ -352,6 +348,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               }
 
               // validate there are policies to show
+              loadingContainerTerms.style.display = "none";
               setTermsSummary(request.serverData.termsOfUse);
               isLoadingTerms = false;
 
@@ -409,6 +406,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               }
 
               // validate there are policies to show
+              loadingContainerPrivacy.style.display = "none";
               setPrivacySummary(request.serverData.termsOfPrivacy);
               isLoadingPrivacy = false;
               
