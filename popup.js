@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", async() => {
       let actualTabID;
       let isLoadingTerms = false;
       let isLoadingPrivacy = false;
+      const backendURL = "https://simpliterms-backend-production.up.railway.app";
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');
@@ -48,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async() => {
       });
 
       // like and dislike functionalities
-      const sendFeedBackUrl = "http://localhost:4200/api/summary";
+      const sendFeedBackUrl = `${backendURL}/api/summary`;
       const questionHeader = document.getElementById('question-header');
 
       const likeButton = document.getElementById('like-button');

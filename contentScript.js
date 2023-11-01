@@ -2,6 +2,7 @@
 
       let firstOpened = true;
       let tokenValidator = "";
+      const backendURL = "https://simpliterms-backend-production.up.railway.app";
 
       // utils functions
       const searchAndSetToken = () => {
@@ -198,7 +199,7 @@
 
                 return new Promise((resolve, reject) => {
 
-                    fetch(`http://localhost:4200/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
+                    fetch(`${backendURL}/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
                                                             method: 'POST',
                                                             headers: {
                                                                 'Content-Type': 'application/json',
@@ -227,7 +228,7 @@
           // prepare the info and make the http request to obtain the terms summary
           const requestStaticSummaryInfo = async() => {
                 return new Promise((resolve, reject) => {
-                    fetch(`http://localhost:4200/api/summary/static`, {
+                    fetch(`${backendURL}/api/summary/static`, {
                                                             method: 'GET',
                                                             headers: {
                                                                 'Content-Type': 'application/json',
