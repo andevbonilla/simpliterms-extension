@@ -2,11 +2,8 @@
   "name": "Simpliterms",
   "version": "0.1.0",
   "description": "Summarize with AI the terms and conditions and privacy or data policies, with simpliterms.",
-  "permissions": ["storage", "tabs", "activeTab"],
+  "permissions": ["storage", "tabs"],
   "host_permissions": ["http://*/*","https://*/*"],
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
     {
       "matches": ["http://*/*","https://*/*"],
