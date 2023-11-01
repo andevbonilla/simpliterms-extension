@@ -15,10 +15,10 @@
   ],
   "action": {
     "default_icon": {
-      "16": "assets/icon16.png",
-      "24": "assets/icon24.png",
-      "32": "assets/icon32.png",
-      "128": "assets/icon128.png"
+      "16": "assets/16.png",
+      "24": "assets/24.png",
+      "32": "assets/32.png",
+      "128": "assets/128.png"
     },
     "default_title": "Simpliterms",
     "default_popup": "popup.html"
