@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", async() => {
       let actualTabID;
       let isLoadingTerms = false;
       let isLoadingPrivacy = false;
-      // const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      const backendURL = "http:localhost:4200";
+      const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      // const backendURL = "http:localhost:4200";
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');

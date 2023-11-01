@@ -2,8 +2,8 @@
 
       let firstOpened = true;
       let tokenValidator = "";
-      // const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      const backendURL = "http:localhost:4200";
+      const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      // const backendURL = "http:localhost:4200";
 
       // utils functions
       const searchAndSetToken = () => {
