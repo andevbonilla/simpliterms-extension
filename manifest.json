@@ -1,6 +1,6 @@
 {
   "name": "Simpliterms",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Summarize with AI the terms and conditions and privacy or data policies, with simpliterms.",
   "permissions": ["storage", "tabs"],
   "host_permissions": ["http://*/*","https://*/*"],
