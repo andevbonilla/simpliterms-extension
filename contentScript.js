@@ -8,28 +8,38 @@
       // utils functions
       const searchAndSetToken = () => {
 
-          console.log("se ejecuto");
+          const actualHost = location.hostname;
+          const ifIsInSimpliterms = (actualHost.toString().trim() === "www.simpliterms.com" || actualHost.toString().trim() === "simpliterms.com");
+
           tokenValidator = "";
 
           const listOfCookies = document.cookie.split(';');
-
+    
           if (listOfCookies) {
             for (const cookie of listOfCookies) {
               if (cookie && cookie.split("=")[0].trim() === 'x-token') {
-                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
+                tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
               }
             }
+          };
+    
+          if (tokenValidator !== '' && ifIsInSimpliterms) {
+
+              chrome.storage.sync.set({
+                'xtoken': tokenValidator
+              });
+    
+          };
+
+          if (tokenValidator === '' && ifIsInSimpliterms) {
+            
+              chrome.storage.sync.set({
+                'xtoken': ""
+              });
+
           }
 
-          if (tokenValidator !== '') {
-
-            chrome.storage.sync.set({
-              'xtoken': tokenValidator
-            });
-
-          }
-
-      }
+      };
 
       const contentScript = async() => {
 
@@ -562,12 +572,7 @@
 
                   if (tokenValidator !== '') {
 
-                      chrome.storage.sync.set({
-                        'xtoken': tokenValidator
-                      });
-
-                      await respondMessageForTerms();
-                      
+                      await respondMessageForTerms();                      
 
                   }else{
 
@@ -586,12 +591,7 @@
 
                   if (tokenValidator !== '') {
 
-                      chrome.storage.sync.set({
-                        'xtoken': tokenValidator
-                      });
-
-                      await respondMessageForPrivacy();
-                      
+                      await respondMessageForPrivacy();                      
 
                   }else{
 
