@@ -551,18 +551,10 @@
 
                   searchAndSetToken();
 
-                  if (tokenValidator !== '') {
-
+                  chrome.storage.sync.get('xtoken', async({xtoken}) => {
+                      tokenValidator = xtoken;
                       await respondMessageStatic();
-                      
-                  }else{
-
-                    chrome.storage.sync.get('xtoken', async({xtoken}) => {
-                        tokenValidator = xtoken;
-                        await respondMessageStatic();
-                    });
-
-                  }
+                  });
 
               }
 
@@ -570,37 +562,21 @@
 
                   searchAndSetToken();
 
-                  if (tokenValidator !== '') {
-
-                      await respondMessageForTerms();                      
-
-                  }else{
-
-                    chrome.storage.sync.get('xtoken', async({xtoken}) => {
-                        tokenValidator = xtoken;
-                        await respondMessageForTerms();
-                    });
-
-                  }
-
+                  chrome.storage.sync.get('xtoken', async({xtoken}) => {
+                    tokenValidator = xtoken;
+                    await respondMessageForTerms();
+                  });
+                
               }
 
               if (request.message === 'privacyAISumary') {
 
                   searchAndSetToken();
 
-                  if (tokenValidator !== '') {
-
-                      await respondMessageForPrivacy();                      
-
-                  }else{
-
-                    chrome.storage.sync.get('xtoken', async({xtoken}) => {
-                        tokenValidator = xtoken;
-                        await respondMessageForPrivacy();
-                    });
-
-                  }
+                  chrome.storage.sync.get('xtoken', async({xtoken}) => {
+                      tokenValidator = xtoken;
+                      await respondMessageForPrivacy();
+                  });
 
               }
               
