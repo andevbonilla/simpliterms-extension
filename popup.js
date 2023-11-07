@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               if(request.serverData.errorMessage !== ""){
                 isLoadingTerms = false;
                 loadingContainerTerms.style.display = "none";
-                TermsSummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
+                TermsSummaryHtmlText.innerHTML = `${request.serverData.errorMessage}`;
                 summaryInfo = {
                   ...summaryInfo,
                   privacy: [],
