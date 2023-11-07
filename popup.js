@@ -274,13 +274,29 @@ document.addEventListener("DOMContentLoaded", async() => {
               verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
 
               // if there was an error obtaining the static summary        
-              if(request.serverData.errorMessage !== ""){
+              if(request.serverData.errorMessage !== "" && request.serverData.continueFetching){
                 // send a message to the content.js if there is an error different of the auth error.
                 isLoadingPrivacy = true;
                 isLoadingTerms = true;
                 loadingContainerTerms.style.display = "flex";
                 chrome.tabs.sendMessage(actualTabID, {message: 'termsAISumary'});
                 chrome.tabs.sendMessage(actualTabID, {message: 'privacyAISumary'});
+                return;
+              }
+
+              if(request.serverData.errorMessage !== ""){
+                isLoadingTerms = false;
+                loadingContainerTerms.style.display = "none";
+                TermsSummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
+                summaryInfo = {
+                  ...summaryInfo,
+                  privacy: [],
+                  privacyError: request.serverData.errorMessage,
+                  terms: [],
+                  termsError: request.serverData.errorMessage,
+                  token: request.serverData.tokenValidator,
+                  host: request.serverData.host
+                }
                 return;
               }
 

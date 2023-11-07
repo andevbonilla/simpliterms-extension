@@ -52,6 +52,7 @@
           let isAuthenticate = false;
           let errorMessage = "";
           let userInfo = {};
+          let continueFetching = false;
 
           let termsResponseCorrect = false;
           let privacyResponseCorrect = false;
@@ -301,6 +302,7 @@
                   isAuthenticate = true;
               }else{
                   isAuthenticate = false;
+                  userInfo = {};
                   thereWasResponse = true;
                   return false;
               }
@@ -309,6 +311,9 @@
                   errorMessage = data.message;
                   isAuthenticate = true;
                   thereWasResponse = true;
+                  if (data.continueFetching) {
+                    continueFetching = true;
+                  }
                   return false;
               }
               
@@ -367,7 +372,8 @@
                                     isAuthenticate,
                                     userInfo,
                                     errorMessage,
-                                    tokenValidator
+                                    tokenValidator,
+                                    continueFetching
                                   }
                       });
                       
