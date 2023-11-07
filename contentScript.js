@@ -8,6 +8,7 @@
       // utils functions
       const searchAndSetToken = () => {
 
+          console.log("se ejecuto");
           tokenValidator = "";
 
           const listOfCookies = document.cookie.split(';');
@@ -18,6 +19,14 @@
                  tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
               }
             }
+          }
+
+          if (tokenValidator !== '') {
+
+            chrome.storage.sync.set({
+              'xtoken': tokenValidator
+            });
+
           }
 
       }
@@ -534,13 +543,8 @@
 
                   if (tokenValidator !== '') {
 
-                      chrome.storage.sync.set({
-                        'xtoken': tokenValidator
-                      });
-
                       await respondMessageStatic();
                       
-
                   }else{
 
                     chrome.storage.sync.get('xtoken', async({xtoken}) => {
