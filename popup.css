@@ -194,7 +194,14 @@ h2{
     display: none;
 }
 
+.static-info{
+    display: none;
+    font-size: 1rem;
+}
 
+.bold{
+    font-weight: bold;
+}
 
 
 @keyframes rotate {

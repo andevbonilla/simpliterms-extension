@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", async() => {
       let canGiveAlikeODislike = false;
       let actualTabID;
       let isLoadingTerms = false;
+      let isStaticResult = false;
       let isLoadingPrivacy = false;
       // const backendURL = "https://simpliterms-backend-production.up.railway.app";
       const backendURL = "http:localhost:4200";
@@ -37,6 +38,15 @@ document.addEventListener("DOMContentLoaded", async() => {
       const privacyButton = document.getElementById('privacy-button');
       const disclaimerMessage = document.getElementById('disclaimer');
 
+      // static summary info
+      const staticInfo = document.getElementById('static-info');
+      const staticSummaryDate = document.getElementById('static-summary-date');
+      const staticSummaryUsername = document.getElementById('static-summary-username');
+
+      // like and dislike functionalities
+      const sendFeedBackUrl = `${backendURL}/api/summary`;
+      const questionHeader = document.getElementById('question-header');
+
 
       termButton.addEventListener('click', ()=>{
           showTermsWindow();
@@ -48,9 +58,6 @@ document.addEventListener("DOMContentLoaded", async() => {
           setPrivacySummary();
       });
 
-      // like and dislike functionalities
-      const sendFeedBackUrl = `${backendURL}/api/summary`;
-      const questionHeader = document.getElementById('question-header');
 
       const likeButton = document.getElementById('like-button');
       likeButton.addEventListener('click', async(e)=>{
@@ -74,36 +81,6 @@ document.addEventListener("DOMContentLoaded", async() => {
                                     )
 
                 await res.json();                
-             
-              } catch (error) {
-                console.log(error);
-                questionHeader.style.display = "flex";
-              }
-          }
-      });
-
-      const dislikeButton = document.getElementById('dislike-button');
-      dislikeButton.addEventListener('click', async(e)=>{
-
-          e.preventDefault();
-          questionHeader.style.display = "none";
-          if (canGiveAlikeODislike) {
-              try {
-                
-                const res =  await fetch(sendFeedBackUrl, {
-                                          method: 'POST',
-                                          headers: {
-                                              'Content-Type': 'application/json',
-                                              'Authorization': `Bearer ${summaryInfo.token}`
-                                          },
-                                          body: JSON.stringify({...summaryInfo,
-                                            policyWebpage: summaryInfo.host,
-                                            type: 'dislike'
-                                          })
-                                        }
-                                    )
-
-                const result = await res.json();                
              
               } catch (error) {
                 console.log(error);
@@ -230,7 +207,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                                          so it may not be exact, contain errors and erroneous information. We recommend checking the 
                                          official source for this page's policies and only using simpliTerms as an aid.`;
 
-        if (isLoadingTerms === false && isLoadingPrivacy === false) {
+        if (isLoadingTerms === false && isLoadingPrivacy === false && isStaticResult === false) {
           questionHeader.style.display = "flex";
           canGiveAlikeODislike = true;
         }
@@ -261,6 +238,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'serverResult' && request.serverData) {
 
               loadingContainer.style.display = "none";
+              isStaticResult = true;
 
               // set the host
               if (request.serverData.host) {
@@ -302,6 +280,9 @@ document.addEventListener("DOMContentLoaded", async() => {
               setPrivacySummary(request.serverData.termsOfPrivacy);
 
               // show disclaimer message and feedback part if terms and privacy are both loaded
+              staticSummaryDate.textContent = request.serverData.staticDate;
+              staticSummaryUsername.textContent = request.serverData.staticUsername;
+              staticInfo.style.display = "flex";
               ShowdisclaimerAndFeedback();
 
               return;
@@ -311,6 +292,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'serverResultTerms' && request.serverData) {
 
               loadingContainer.style.display = "none";
+              isStaticResult = false;
 
               // set the host
               if (request.serverData.host) {
@@ -358,6 +340,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'serverResultPrivacy' && request.serverData) {
 
               loadingContainer.style.display = "none";
+              isStaticResult = false;
 
               // set the host
               if (request.serverData.host) {

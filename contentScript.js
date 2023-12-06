@@ -74,6 +74,8 @@
           let isAuthenticate = false;
           let errorMessage = "";
           let userInfo = {};
+          let staticUsername = "";
+          let staticDate = "";
 
           let termsResponseCorrect = false;
           let privacyResponseCorrect = false;
@@ -219,7 +221,9 @@
                       isAuthenticate,
                       userInfo,
                       errorMessage,
-                      tokenValidator
+                      tokenValidator,
+                      staticUsername,
+                      staticDate
                     }
                   });
                   return;
@@ -235,7 +239,9 @@
                             isAuthenticate,
                             userInfo,
                             errorMessage,
-                            tokenValidator
+                            tokenValidator,
+                            staticUsername,
+                            staticDate
                           }
               });
 
@@ -369,6 +375,8 @@
               if (type === "static" && data.summaryDB) {
                     termsOfPrivacy = data.summaryDB.privacyTerms;
                     termsOfUse = data.summaryDB.conditionsTerms;
+                    staticUsername = data.summaryDB.username.toString();
+                    staticDate = data.summaryDB.createdAt.toString();
                     errorMessage = "";
                     isAuthenticate = true;
                     thereWasResponse = true;
