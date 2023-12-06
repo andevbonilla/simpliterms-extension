@@ -2,16 +2,20 @@
 
       let firstOpened = true;
       let tokenValidator = "";
-      const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      // const backendURL = "http:localhost:4200";
+      let userPlanType = "";
+      // const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      const backendURL = "http://localhost:4200";
+      const simplitermsUrl = "www.simpliterms.com";
+      // const simplitermsUrl = "http://localhost:3000";
 
       // utils functions
       const searchAndSetToken = () => {
 
           const actualHost = location.hostname;
-          const ifIsInSimpliterms = (actualHost.toString().trim() === "www.simpliterms.com" || actualHost.toString().trim() === "simpliterms.com");
+          const ifIsInSimpliterms = (actualHost.toString().trim() === simplitermsUrl);
 
           tokenValidator = "";
+          userPlanType = "";
 
           const listOfCookies = document.cookie.split(';');
     
@@ -20,13 +24,25 @@
               if (cookie && cookie.split("=")[0].trim() === 'x-token') {
                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
               }
+              if (cookie && cookie.split("=")[0].trim() === 'plan-type') {
+                userPlanType = cookie.replace('plan-type=', '').replaceAll(' ', '').toString();
+              }
             }
           };
+
     
           if (tokenValidator !== '' && ifIsInSimpliterms) {
 
               chrome.storage.sync.set({
                 'xtoken': tokenValidator
+              });
+    
+          };
+
+          if (userPlanType !== '' && ifIsInSimpliterms) {
+
+              chrome.storage.sync.set({
+                'plantype': userPlanType
               });
     
           };
@@ -39,6 +55,14 @@
 
           }
 
+          if (userPlanType === '' && ifIsInSimpliterms) {
+            
+              chrome.storage.sync.set({
+                'plantype': ""
+              });
+
+          }
+
       };
 
       const contentScript = async() => {
@@ -47,12 +71,9 @@
 
           let termsOfPrivacy = [];
           let termsOfUse = [];
-          let ifPrivacy =  false;
-          let ifTerms =  false;
           let isAuthenticate = false;
           let errorMessage = "";
           let userInfo = {};
-          let continueFetching = false;
 
           let termsResponseCorrect = false;
           let privacyResponseCorrect = false;
@@ -183,6 +204,43 @@
               "GTs&Cs"
           ];
 
+          // Respond the message as a serverResult
+          const respondMESSAGE = (ifPrivacy, ifTerms, nothing, message = 'serverResult') => {
+
+             if (nothing ===  true) {
+                  chrome.runtime.sendMessage({
+                    message,
+                    serverData: {
+                      termsOfPrivacy: [], 
+                      termsOfUse: [], 
+                      ifPrivacy: false, 
+                      ifTerm: false, 
+                      host: window.location.host,
+                      isAuthenticate,
+                      userInfo,
+                      errorMessage,
+                      tokenValidator
+                    }
+                  });
+                  return;
+              }
+              chrome.runtime.sendMessage({
+                          message,
+                          serverData: {
+                            termsOfPrivacy, 
+                            termsOfUse, 
+                            ifPrivacy, 
+                            ifTerms, 
+                            host: window.location.host,
+                            isAuthenticate,
+                            userInfo,
+                            errorMessage,
+                            tokenValidator
+                          }
+              });
+
+          }
+
 
           // REQUESTS TO THE SERVER
           // prepare the info and make the http request to obtain the terms summary
@@ -206,12 +264,6 @@
                               politicsURLs.push(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`);                           
                           }
 
-                        }
-
-                        if (politicsType === "terms") {
-                          ifTerms = true;
-                        } else {
-                          ifPrivacy = true
                         }
 
                       }
@@ -311,9 +363,6 @@
                   errorMessage = data.message;
                   isAuthenticate = true;
                   thereWasResponse = true;
-                  if (data.continueFetching) {
-                    continueFetching = true;
-                  }
                   return false;
               }
               
@@ -332,7 +381,6 @@
                     errorMessage = "";
                     isAuthenticate = true;
                     thereWasResponse = true;
-                    return true;
               }
               
               if (type === "privacy" && data.privacySummary) {
@@ -341,7 +389,6 @@
                     errorMessage = "";
                     isAuthenticate = true;
                     thereWasResponse = true;
-                    return true;
               }
 
           }
@@ -361,57 +408,18 @@
                         firstOpened = false;
                       }
 
-                      chrome.runtime.sendMessage({
-                                  message: 'staticResult',
-                                  serverData: {
-                                    termsOfPrivacy, 
-                                    termsOfUse, 
-                                    ifPrivacy, 
-                                    ifTerms, 
-                                    host: window.location.host,
-                                    isAuthenticate,
-                                    userInfo,
-                                    errorMessage,
-                                    tokenValidator,
-                                    continueFetching
-                                  }
-                      });
-                      
+                      respondMESSAGE(true, true, false, 'serverResult');                      
 
                   }else {
                       // only send info saved to don't repeat request in the same page
-                      chrome.runtime.sendMessage({
-                                    message: 'staticResult',
-                                    serverData: {
-                                      termsOfPrivacy, 
-                                      termsOfUse, 
-                                      ifPrivacy, 
-                                      ifTerms, 
-                                      host: window.location.host,
-                                      isAuthenticate,
-                                      userInfo,
-                                      errorMessage,
-                                      tokenValidator
-                                    }
-                      });
+                      respondMESSAGE(true, true, false, 'serverResult');
+                      
                   }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
-                  chrome.runtime.sendMessage({
-                    message: 'staticResult',
-                    serverData: {
-                      termsOfPrivacy: [], 
-                      termsOfUse: [], 
-                      ifPrivacy: false, 
-                      ifTerm: false, 
-                      host: window.location.host,
-                      isAuthenticate,
-                      userInfo,
-                      errorMessage: error.toString(),
-                      tokenValidator
-                    }
-                  });
+                  errorMessage = error.toString();
+                  respondMESSAGE(false, false, true, 'serverResult');
               }
 
           }
@@ -430,56 +438,17 @@
                         firstOpened = false;
                       }
 
-                      
-                        chrome.runtime.sendMessage({
-                                  message: 'termsAIResult',
-                                  serverData: {
-                                    termsOfPrivacy, 
-                                    termsOfUse, 
-                                    ifPrivacy, 
-                                    ifTerms, 
-                                    host: window.location.host,
-                                    isAuthenticate,
-                                    userInfo,
-                                    errorMessage,
-                                    tokenValidator
-                                  }
-                        });      
+                      respondMESSAGE(false, true, false, 'serverResultTerms');    
                       
                     
                   } else {
-                      chrome.runtime.sendMessage({
-                                    message: 'termsAIResult',
-                                    serverData: {
-                                      termsOfPrivacy, 
-                                      termsOfUse, 
-                                      ifPrivacy, 
-                                      ifTerms, 
-                                      host: window.location.host,
-                                      isAuthenticate,
-                                      userInfo,
-                                      errorMessage,
-                                      tokenValidator
-                                    }
-                      });
+                      respondMESSAGE(false, true, false, 'serverResultTerms');
                   }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
-                  chrome.runtime.sendMessage({
-                    message: 'serverResult',
-                    serverData: {
-                      termsOfPrivacy: [], 
-                      termsOfUse: [], 
-                      ifPrivacy: false, 
-                      ifTerm: false, 
-                      host: window.location.host,
-                      isAuthenticate,
-                      userInfo,
-                      errorMessage: error.toString(),
-                      tokenValidator
-                    }
-                  });
+                  errorMessage = error.toString();
+                  respondMESSAGE(false, false, true, 'serverResultTerms');
               }
 
           }
@@ -497,54 +466,16 @@
                               firstOpened = false;
                         }
 
-                          chrome.runtime.sendMessage({
-                                    message: 'privacyAIResult',
-                                    serverData: {
-                                      termsOfPrivacy, 
-                                      termsOfUse, 
-                                      ifPrivacy, 
-                                      ifTerms, 
-                                      host: window.location.host,
-                                      isAuthenticate,
-                                      userInfo,
-                                      errorMessage,
-                                      tokenValidator
-                                    }
-                          });      
+                        respondMESSAGE(true, false, false, 'serverResultPrivacy');   
                     
                   } else {
-                      chrome.runtime.sendMessage({
-                                message: 'privacyAIResult',
-                                serverData: {
-                                  termsOfPrivacy, 
-                                  termsOfUse, 
-                                  ifPrivacy, 
-                                  ifTerms, 
-                                  host: window.location.host,
-                                  isAuthenticate,
-                                  userInfo,
-                                  errorMessage,
-                                  tokenValidator
-                                }
-                      });
+                        respondMESSAGE(true, false, false, 'serverResultPrivacy');
                   }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
-                  chrome.runtime.sendMessage({
-                    message: 'privacyAIResult',
-                    serverData: {
-                      termsOfPrivacy: [], 
-                      termsOfUse: [], 
-                      ifPrivacy: false, 
-                      ifTerm: false, 
-                      host: window.location.host,
-                      isAuthenticate,
-                      userInfo,
-                      errorMessage: error.toString(),
-                      tokenValidator
-                    }
-                  });
+                  errorMessage = error.toString();
+                  respondMESSAGE(false, false, true, 'serverResultPrivacy');
               }
 
           }
@@ -558,30 +489,32 @@
                   searchAndSetToken();
 
                   chrome.storage.sync.get('xtoken', async({xtoken}) => {
-                      tokenValidator = xtoken;
-                      await respondMessageStatic();
-                  });
 
-              }
+                      chrome.storage.sync.get('plantype', async({plantype}) => {
 
-              if (request.message === 'termsAISumary') {
+                          tokenValidator = xtoken;
+                          userPlanType = plantype;
 
-                  searchAndSetToken();
+                          if (userPlanType === "free" || userPlanType === "") {
+                            
+                              await respondMessageStatic();
 
-                  chrome.storage.sync.get('xtoken', async({xtoken}) => {
-                    tokenValidator = xtoken;
-                    await respondMessageForTerms();
-                  });
-                
-              }
+                          }else if(userPlanType === "basic" || userPlanType === "pro"){
 
-              if (request.message === 'privacyAISumary') {
+                              const promise1 = respondMessageForTerms();
+                              const promise2 = respondMessageForPrivacy();
 
-                  searchAndSetToken();
+                              await Promise.all([promise1, promise2]);
 
-                  chrome.storage.sync.get('xtoken', async({xtoken}) => {
-                      tokenValidator = xtoken;
-                      await respondMessageForPrivacy();
+                          }else{
+
+                              errorMessage = "the plan of the user is invalid";
+                              respondMESSAGE(false, false, true, 'serverResult');
+
+                          }
+
+                      });
+
                   });
 
               }
@@ -593,7 +526,7 @@
       setTimeout(() => {
         searchAndSetToken();
         contentScript();
-      }, 200);
+      }, 400);
       
 })();
 
