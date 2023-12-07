@@ -280,9 +280,19 @@ document.addEventListener("DOMContentLoaded", async() => {
               setPrivacySummary(request.serverData.termsOfPrivacy);
 
               // show disclaimer message and feedback part if terms and privacy are both loaded
-              staticSummaryDate.textContent = request.serverData.staticDate;
+              const fecha = new Date(request.serverData.staticDate);
+
+              // Obtain data from the date
+              const day = fecha.getUTCDate();
+              const month = fecha.getUTCMonth() + 1; // Months go from 0 to 11, so we add 1
+              const year = fecha.getUTCFullYear();
+
+              // result: "dd/mm/yyyy"
+              const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+
+              staticSummaryDate.textContent = formattedDate;
               staticSummaryUsername.textContent = request.serverData.staticUsername;
-              staticInfo.style.display = "flex";
+              staticInfo.style.display = "block";
               ShowdisclaimerAndFeedback();
 
               return;
