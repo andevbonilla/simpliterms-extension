@@ -197,6 +197,7 @@ h2{
 .static-info{
     display: none;
     font-size: 1rem;
+    color: rgba(87, 18, 223, 1);
 }
 
 .bold{
