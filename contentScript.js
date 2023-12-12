@@ -3,8 +3,8 @@
       let firstOpened = true;
       let tokenValidator = "";
       let userPlanType = "";
-      // const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      const backendURL = "http://localhost:4200";
+      const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      // const backendURL = "http://localhost:4200";
       const simplitermsUrl = "www.simpliterms.com";
       // const simplitermsUrl = "http://localhost:3000";
 

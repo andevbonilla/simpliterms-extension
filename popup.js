@@ -14,16 +14,18 @@ document.addEventListener("DOMContentLoaded", async() => {
       let isLoadingTerms = false;
       let isStaticResult = false;
       let isLoadingPrivacy = false;
-      // const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      const backendURL = "http:localhost:4200";
+      const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      // const backendURL = "http:localhost:4200";
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');
 
       // logged part
       const loadingContainer = document.getElementById('loading-container');
+
       const loadingContainerTerms = document.getElementById('loading-container-terms');
       const loadingContainerPrivacy = document.getElementById('loading-container-privacy');
+
       const subTypeElement = document.getElementById("sub-type");
       const usernameElement = document.getElementById("username-element");
       const greetingElement = document.getElementById("greeting");
@@ -302,6 +304,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'serverResultTerms' && request.serverData) {
 
               loadingContainer.style.display = "none";
+              loadingContainerTerms.style.display = "flex";
               isStaticResult = false;
 
               // set the host
@@ -350,6 +353,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           if (request.message === 'serverResultPrivacy' && request.serverData) {
 
               loadingContainer.style.display = "none";
+              loadingContainerPrivacy.style.display = "flex";
               isStaticResult = false;
 
               // set the host
