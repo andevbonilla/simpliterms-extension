@@ -10,6 +10,12 @@
       "js": ["contentScript.js"]
     }
   ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "simpliterms.com",
+      "strict_min_version": "42.0"
+    }
+  },
   "action": {
     "default_icon": {
       "16": "assets/16.png",
