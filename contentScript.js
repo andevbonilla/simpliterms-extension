@@ -3,10 +3,10 @@
       let firstOpened = true;
       let tokenValidator = "";
       let userPlanType = "";
-      const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      // const backendURL = "http://localhost:4200";
-      const simplitermsUrl = "www.simpliterms.com";
-      // const simplitermsUrl = "http://localhost:3000";
+    //   const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      const backendURL = "http://localhost:4200";
+    //   const simplitermsUrl = "www.simpliterms.com";
+      const simplitermsUrl = "http://localhost:3000";
 
       // utils functions
       const searchAndSetToken = () => {
@@ -250,7 +250,7 @@
 
           // REQUESTS TO THE SERVER
           // prepare the info and make the http request to obtain the terms summary
-          const requestSummaryInfo = async( posibleWords, politicsType) => {
+          const requestSummaryInfo = async(posibleWords, politicsType) => {
 
                 const politicsURLs = [`${window.location.href}`];
                 const regexUrlComplete = /^(http:|https:)/i;
@@ -278,14 +278,14 @@
 
                 return new Promise((resolve, reject) => {
 
-                    fetch(`${backendURL}/api/summary/${(politicsType==="terms")?"terms":"privacy"}`, {
+                    fetch(`${backendURL}/api/summary/generate`, {
                                                             method: 'POST',
                                                             headers: {
                                                                 'Content-Type': 'application/json',
                                                                 'Authorization': `Bearer ${tokenValidator}`,
                                                                 'host-petition': window.location.host
                                                             },
-                                                            body: JSON.stringify({ urlList: politicsURLs })
+                                                            body: JSON.stringify({ urlList: politicsURLs, politicsType })
                                                         })
                     .then(response => {
                         if (response) {
@@ -383,16 +383,16 @@
                     return true;
               }
 
-              if (type === "terms" && data.termSummary) {
-                    termsOfUse = data.termSummary;
+              if (type === "terms" && data.policiesSummary) {
+                    termsOfUse = data.policiesSummary;
                     termsResponseCorrect = true;
                     errorMessage = "";
                     isAuthenticate = true;
                     thereWasResponse = true;
               }
               
-              if (type === "privacy" && data.privacySummary) {
-                    termsOfPrivacy = data.privacySummary;
+              if (type === "privacy" && data.policiesSummary) {
+                    termsOfPrivacy = data.policiesSummary;
                     privacyResponseCorrect = true;
                     errorMessage = "";
                     isAuthenticate = true;

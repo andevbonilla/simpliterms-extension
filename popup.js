@@ -14,8 +14,8 @@ document.addEventListener("DOMContentLoaded", async() => {
       let isLoadingTerms = false;
       let isStaticResult = false;
       let isLoadingPrivacy = false;
-      const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      // const backendURL = "http:localhost:4200";
+      // const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      const backendURL = "http:localhost:4200";
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');
@@ -91,25 +91,6 @@ document.addEventListener("DOMContentLoaded", async() => {
           }
       });
       
-      //functions to set data
-      const showSummaries = (list, type) => {
-        for (let i = 0; i < list.length; i++) {
-          const li = document.createElement('li');
-          const h3 = document.createElement('h3');
-          h3.textContent = list[i].subtitle;
-          const p = document.createElement('p');
-          p.textContent = list[i].text;
-          li.appendChild(h3);
-          li.appendChild(p);
-          if (type === "privacy") {
-            PrivacySummaryHtmlText.appendChild(li);
-          }
-          if (type === "terms") {
-            TermsSummaryHtmlText.appendChild(li);
-          }   
-        }
-      }
-
       const setUserInfo = (userInfo) => {
 
         if (userInfo.username !== null && 
@@ -163,26 +144,26 @@ document.addEventListener("DOMContentLoaded", async() => {
 
 
       const setPrivacySummary = () => {
-          PrivacySummaryHtmlText.innerHTML = '';
+          PrivacySummaryHtmlText.textContent = '';
           if (!isLoadingPrivacy) {
             loadingContainerPrivacy.style.display = "none";
           }
           if (summaryInfo.privacy.length === 0 && summaryInfo.privacyError !== "") {
             PrivacySummaryHtmlText.textContent = summaryInfo.privacyError;
           }else{
-            showSummaries(summaryInfo.privacy, "privacy");
+            PrivacySummaryHtmlText.textContent = summaryInfo.privacy;
           }
       }
 
       const setTermsSummary = () => {
-          TermsSummaryHtmlText.innerHTML = '';
+          TermsSummaryHtmlText.textContent = '';
           if (!isLoadingTerms) {
             loadingContainerTerms.style.display = "none";
           }
           if (summaryInfo.terms.length === 0 && summaryInfo.termsError !== "") {
             TermsSummaryHtmlText.textContent = summaryInfo.termsError;
           }else{
-            showSummaries(summaryInfo.terms, "terms");
+            TermsSummaryHtmlText.textContent = summaryInfo.terms;
           }
       }
 
