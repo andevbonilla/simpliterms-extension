@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               if(request.serverData.errorMessage !== ""){
                   isLoadingTerms = false;
                   loadingContainerTerms.style.display = "none";
-                  TermsSummaryHtmlText.innerHTML = `${request.serverData.errorMessage}`;
+                  TermsSummaryHtmlText.textContent = `${request.serverData.errorMessage}`;
                   summaryInfo = {
                     ...summaryInfo,
                     privacy: [],
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               if (request.serverData.errorMessage !== "") {
                   isLoadingTerms = false;
                   loadingContainerTerms.style.display = "none";
-                  TermsSummaryHtmlText.innerHTML = `${request.serverData.errorMessage}`;
+                  TermsSummaryHtmlText.textContent = `${request.serverData.errorMessage}`;
                   summaryInfo = {
                     ...summaryInfo,
                     terms: [],
@@ -348,7 +348,7 @@ document.addEventListener("DOMContentLoaded", async() => {
               if (request.serverData.errorMessage !== "") {
                   isLoadingPrivacy = false;
                   loadingContainerPrivacy.style.display = "none";
-                  PrivacySummaryHtmlText.innerHTML = `😞 ${request.serverData.errorMessage}`;
+                  PrivacySummaryHtmlText.textContent = `😞 ${request.serverData.errorMessage}`;
                   summaryInfo = {
                       ...summaryInfo,
                       privacy: [],
