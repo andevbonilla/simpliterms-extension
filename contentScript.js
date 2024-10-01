@@ -2,7 +2,7 @@
 
       let firstOpened = true;
       let tokenValidator = "";
-      let userPlanType = "";
+      let useraccessType = "";
     //   const backendURL = "https://simpliterms-backend-production.up.railway.app";
       const backendURL = "http://localhost:4200";
     //   const simplitermsUrl = "www.simpliterms.com";
@@ -15,7 +15,7 @@
           const ifIsInSimpliterms = (actualHost.toString().trim() === simplitermsUrl);
 
           tokenValidator = "";
-          userPlanType = "";
+          useraccessType = "";
 
           const listOfCookies = document.cookie.split(';');
     
@@ -25,7 +25,7 @@
                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
               }
               if (cookie && cookie.split("=")[0].trim() === 'plan-type') {
-                userPlanType = cookie.replace('plan-type=', '').replaceAll(' ', '').toString();
+                useraccessType = cookie.replace('plan-type=', '').replaceAll(' ', '').toString();
               }
             }
           };
@@ -39,10 +39,10 @@
     
           };
 
-          if (userPlanType !== '' && ifIsInSimpliterms) {
+          if (useraccessType !== '' && ifIsInSimpliterms) {
 
               chrome.storage.sync.set({
-                'plantype': userPlanType
+                'accessType': useraccessType
               });
     
           };
@@ -55,10 +55,10 @@
 
           }
 
-          if (userPlanType === '' && ifIsInSimpliterms) {
+          if (useraccessType === '' && ifIsInSimpliterms) {
             
               chrome.storage.sync.set({
-                'plantype': ""
+                'accessType': ""
               });
 
           }
@@ -304,39 +304,9 @@
                     
                 })
           }
-          // prepare the info and make the http request to obtain the terms summary
-          const requestStaticSummaryInfo = async() => {
-                return new Promise((resolve, reject) => {
-                    fetch(`${backendURL}/api/summary/static`, {
-                                                            method: 'GET',
-                                                            headers: {
-                                                                'Content-Type': 'application/json',
-                                                                'Authorization': `Bearer ${tokenValidator}`,
-                                                                'host-petition': window.location.host
-                                                            }
-                                                        })
-                    .then(response => {
-                        if (response) {
-                          return response.json();
-                        } else {
-                          console.error("error making the json static")
-                          return;
-                        }
-                    })
-                    .then(data => {
-                        resolve(data)
-                    })
-                    .catch(error => {
-                        reject(error)
-                    });
-                    
-                });
-
-          }
-
-
+          
           // SETTING THE DATA
-          // set the data for static summaries or the errors
+          // set the data for summaries or the errors
           const setDataOrShowError = (data, type) => {
 
               if (!data) {
@@ -355,7 +325,7 @@
               if (data.userDB.username){
                   userInfo = {
                     username: data.userDB.username,
-                    planType: data.userDB.planType
+                    accessType: data.userDB.accessType
                   }
                   isAuthenticate = true;
               }else{
@@ -372,17 +342,6 @@
                   return false;
               }
               
-              if (type === "static" && data.summaryDB) {
-                    termsOfPrivacy = data.summaryDB.privacyTerms;
-                    termsOfUse = data.summaryDB.conditionsTerms;
-                    staticUsername = data.summaryDB.username.toString();
-                    staticDate = data.summaryDB.createdAt.toString();
-                    errorMessage = "";
-                    isAuthenticate = true;
-                    thereWasResponse = true;
-                    return true;
-              }
-
               if (type === "terms" && data.policiesSummary) {
                     termsOfUse = data.policiesSummary;
                     termsResponseCorrect = true;
@@ -401,36 +360,9 @@
 
           }
 
-          // RESPONSES
-          // repond message with static summary
-          const respondMessageStatic = async() => {
-            
-              try {
+          // RESPONSES ---------------------------------------------------------------------------------------
+          // -------------------------------------------------------------------------------------------------
 
-                  if (firstOpened) {
-
-                      const staticData = await requestStaticSummaryInfo();
-                      const resInStatic = setDataOrShowError(staticData, "static");
-
-                      if (resInStatic) {
-                        firstOpened = false;
-                      }
-
-                      respondMESSAGE(true, true, false, 'serverResult');                      
-
-                  }else {
-                      // only send info saved to don't repeat request in the same page
-                      respondMESSAGE(true, true, false, 'serverResult');
-                      
-                  }
-                
-              } catch (error) {
-                  console.log(error, "error in respond message function");
-                  errorMessage = error.toString();
-                  respondMESSAGE(false, false, true, 'serverResult');
-              }
-
-          }
           // repond message with AI terms summary
           const respondMessageForTerms = async() => {
             
@@ -498,16 +430,11 @@
 
                   chrome.storage.sync.get('xtoken', async({xtoken}) => {
 
-                      chrome.storage.sync.get('plantype', async({plantype}) => {
+                      chrome.storage.sync.get('accessType', async({accessType}) => {
 
                           tokenValidator = xtoken;
-                          userPlanType = plantype;
 
-                          if (userPlanType === "free" || userPlanType === "") {
-                            
-                              await respondMessageStatic();
-
-                          }else if(userPlanType === "basic" || userPlanType === "pro"){
+                          if(accessType === "month" || accessType === "year"){
 
                               const promise1 = respondMessageForTerms();
                               const promise2 = respondMessageForPrivacy();
@@ -516,7 +443,7 @@
 
                           }else{
 
-                              errorMessage = "the plan of the user is invalid";
+                              errorMessage = "To generate a summary of the policies of this page you must have an active plan, in the following link you will be able to acquire a plan: www.simpliterms.com/#pricing";
                               respondMESSAGE(false, false, true, 'serverResult');
 
                           }

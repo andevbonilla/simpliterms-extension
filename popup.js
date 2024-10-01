@@ -49,21 +49,21 @@ document.addEventListener("DOMContentLoaded", async() => {
       const setUserInfo = (userInfo) => {
 
         if (userInfo.username !== null && 
-            userInfo.planType !== null && 
+            userInfo.accessType !== null && 
             userInfo.username !== undefined && 
-            userInfo.planType !== undefined)  
+            userInfo.accessType !== undefined)  
         {
-          subTypeElement.textContent = `${userInfo.planType.toUpperCase()}`;
+          subTypeElement.textContent = `${userInfo.accessType.toUpperCase()}`;
           usernameElement.textContent = `${userInfo.username}`;
-          if (userInfo.planType === "free") {
+          if (userInfo.accessType === "free") {
 
               subTypeElement.style.backgroundColor = '#5712DF';
 
-          }else if(userInfo.planType === "basic"){
+          }else if(userInfo.accessType === "basic"){
 
               subTypeElement.style.backgroundColor = '#32EEB8';
 
-          }else if(userInfo.planType === "pro"){
+          }else if(userInfo.accessType === "pro"){
 
               subTypeElement.style.backgroundColor = 'black';
 
