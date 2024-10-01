@@ -9,13 +9,9 @@ document.addEventListener("DOMContentLoaded", async() => {
         termsError: "",
       };
 
-      let canGiveAlikeODislike = false;
       let actualTabID;
       let isLoadingTerms = false;
-      let isStaticResult = false;
       let isLoadingPrivacy = false;
-      // const backendURL = "https://simpliterms-backend-production.up.railway.app";
-      const backendURL = "http:localhost:4200";
 
       // not logged pages
       const notloggedPage = document.getElementById('not-logged');
@@ -40,16 +36,6 @@ document.addEventListener("DOMContentLoaded", async() => {
       const privacyButton = document.getElementById('privacy-button');
       const disclaimerMessage = document.getElementById('disclaimer');
 
-      // static summary info
-      const staticInfo = document.getElementById('static-info');
-      const staticSummaryDate = document.getElementById('static-summary-date');
-      const staticSummaryUsername = document.getElementById('static-summary-username');
-
-      // like and dislike functionalities
-      const sendFeedBackUrl = `${backendURL}/api/summary`;
-      const questionHeader = document.getElementById('question-header');
-
-
       termButton.addEventListener('click', ()=>{
           showTermsWindow();
           setTermsSummary();
@@ -58,37 +44,6 @@ document.addEventListener("DOMContentLoaded", async() => {
       privacyButton.addEventListener('click', ()=>{
           showPrivacyWindow();
           setPrivacySummary();
-      });
-
-
-      const likeButton = document.getElementById('like-button');
-      likeButton.addEventListener('click', async(e)=>{
-
-          e.preventDefault();
-          questionHeader.style.display = "none";
-          if (canGiveAlikeODislike) {
-              try {
-                
-                const res =  await fetch(sendFeedBackUrl, {
-                                          method: 'POST',
-                                          headers: {
-                                              'Content-Type': 'application/json',
-                                              'Authorization': `Bearer ${summaryInfo.token}`
-                                          },
-                                          body: JSON.stringify({...summaryInfo,
-                                            policyWebpage: summaryInfo.host,
-                                            type: 'like'
-                                          })
-                                        }
-                                    )
-
-                await res.json();                
-             
-              } catch (error) {
-                console.log(error);
-                questionHeader.style.display = "flex";
-              }
-          }
       });
       
       const setUserInfo = (userInfo) => {
@@ -179,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           privacyButton.className = '';
           TermsSummaryHtmlText.style.display = "block";
           PrivacySummaryHtmlText.style.display = "none";
-      }
+      };
 
       const ShowdisclaimerAndFeedback = () => {
 
@@ -190,12 +145,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                                          so it may not be exact, contain errors and erroneous information. We recommend checking the 
                                          official source for this page's policies and only using simpliTerms as an aid.`;
 
-        if (isLoadingTerms === false && isLoadingPrivacy === false && isStaticResult === false) {
-          questionHeader.style.display = "flex";
-          canGiveAlikeODislike = true;
-        }
-
-      }
+      };
 
       const showPrivacyWindow = () => {
           if (isLoadingPrivacy) {
@@ -206,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           termButton.className = '';
           TermsSummaryHtmlText.style.display = "none";
           PrivacySummaryHtmlText.style.display = "block"; 
-      }
+      };
 
       // send a message to the content.js when the popup is opened.
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -217,70 +167,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
       // listen the response of the content.js 
       chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-
-          if (request.message === 'serverResult' && request.serverData) {
-
-              loadingContainer.style.display = "none";
-              isStaticResult = true;
-
-              // set the host
-              if (request.serverData.host) {
-                defaultHostname.textContent  = request.serverData.host;
-              }
-
-              // verify the authentication of user
-              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
-
-              if(request.serverData.errorMessage !== ""){
-                  isLoadingTerms = false;
-                  loadingContainerTerms.style.display = "none";
-                  TermsSummaryHtmlText.textContent = `${request.serverData.errorMessage}`;
-                  summaryInfo = {
-                    ...summaryInfo,
-                    privacy: [],
-                    privacyError: request.serverData.errorMessage,
-                    terms: [],
-                    termsError: request.serverData.errorMessage,
-                    token: request.serverData.tokenValidator,
-                    host: request.serverData.host
-                  }
-                  return;
-              }
-                  
-              summaryInfo = {
-                privacy: request.serverData.termsOfPrivacy,
-                terms: request.serverData.termsOfUse,
-                token: request.serverData.tokenValidator,
-                host: request.serverData.host,
-                privacyError: "",
-                termsError: ""
-              }
-
-              // validate there are policies to show
-              isLoadingTerms = false;
-              setTermsSummary(request.serverData.termsOfUse);
-              isLoadingPrivacy = false;
-              setPrivacySummary(request.serverData.termsOfPrivacy);
-
-              // show disclaimer message and feedback part if terms and privacy are both loaded
-              const fecha = new Date(request.serverData.staticDate);
-
-              // Obtain data from the date
-              const day = fecha.getUTCDate();
-              const month = fecha.getUTCMonth() + 1; // Months go from 0 to 11, so we add 1
-              const year = fecha.getUTCFullYear();
-
-              // result: "dd/mm/yyyy"
-              const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
-
-              staticSummaryDate.textContent = formattedDate;
-              staticSummaryUsername.textContent = request.serverData.staticUsername;
-              staticInfo.style.display = "block";
-              ShowdisclaimerAndFeedback();
-
-              return;
-                  
-          }
 
           if (request.message === 'serverResultTerms' && request.serverData) {
 

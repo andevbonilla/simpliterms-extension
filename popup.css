@@ -165,31 +165,6 @@ h2{
    animation: rotate 1s ease 0s infinite;
 }
 
-.question-header{
-    display: none;
-    color: rgba(87, 18, 223, 1);
-    align-items: center;
-    padding: .5rem 1rem;
-    border-radius: 1rem;
-    background-color: rgba(87, 18, 223, .3);
-    margin-top: 2rem;
-}
-
-.question-header button:first-of-type{
-    background-color: transparent;
-    margin: 0 .6rem;
-}
-
-.question-header button{
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    padding: .5rem;
-}
-
-.question-header button svg{
-    fill: rgba(87, 18, 223, 1);
-}
 #simpli-summary-privacy{
     display: none;
 }
