@@ -2,7 +2,7 @@
 
       let firstOpened = true;
       let tokenValidator = "";
-      let useraccessType = "";
+      let userAccessDate = new Date();
     //   const backendURL = "https://simpliterms-backend-production.up.railway.app";
       const backendURL = "http://localhost:4200";
     //   const simplitermsUrl = "www.simpliterms.com";
@@ -15,7 +15,7 @@
           const ifIsInSimpliterms = (actualHost.toString().trim() === simplitermsUrl);
 
           tokenValidator = "";
-          useraccessType = "";
+          userAccessDate = new Date();
 
           const listOfCookies = document.cookie.split(';');
     
@@ -25,7 +25,7 @@
                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
               }
               if (cookie && cookie.split("=")[0].trim() === 'plan-type') {
-                useraccessType = cookie.replace('plan-type=', '').replaceAll(' ', '').toString();
+                userAccessDate = cookie.replace('access-date=', '').replaceAll(' ', '').toString();
               }
             }
           };
@@ -39,10 +39,10 @@
     
           };
 
-          if (useraccessType !== '' && ifIsInSimpliterms) {
+          if (userAccessDate !== '' && ifIsInSimpliterms) {
 
               chrome.storage.sync.set({
-                'accessType': useraccessType
+                'accessType': userAccessDate
               });
     
           };
@@ -55,7 +55,7 @@
 
           }
 
-          if (useraccessType === '' && ifIsInSimpliterms) {
+          if (userAccessDate === '' && ifIsInSimpliterms) {
             
               chrome.storage.sync.set({
                 'accessType': ""
