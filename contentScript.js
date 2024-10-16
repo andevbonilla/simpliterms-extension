@@ -2,10 +2,10 @@
 
       let firstOpened = true;
       let tokenValidator = "";
-      let userAccessDate = new Date();
-    //   const backendURL = "https://simpliterms-backend-production.up.railway.app";
+      let userAccessDate = null;
+      //   const backendURL = "https://simpliterms-backend-production.up.railway.app";
       const backendURL = "http://localhost:4200";
-    //   const simplitermsUrl = "www.simpliterms.com";
+      //   const simplitermsUrl = "www.simpliterms.com";
       const simplitermsUrl = "http://localhost:3000";
 
       // utils functions
@@ -15,7 +15,7 @@
           const ifIsInSimpliterms = (actualHost.toString().trim() === simplitermsUrl);
 
           tokenValidator = "";
-          userAccessDate = new Date();
+          userAccessDate = null;
 
           const listOfCookies = document.cookie.split(';');
     
@@ -24,7 +24,7 @@
               if (cookie && cookie.split("=")[0].trim() === 'x-token') {
                 tokenValidator = cookie.replace('x-token=', '').replaceAll(' ', '').toString();
               }
-              if (cookie && cookie.split("=")[0].trim() === 'plan-type') {
+              if (cookie && cookie.split("=")[0].trim() === 'access-date') {
                 userAccessDate = cookie.replace('access-date=', '').replaceAll(' ', '').toString();
               }
             }
@@ -39,14 +39,6 @@
     
           };
 
-          if (userAccessDate !== '' && ifIsInSimpliterms) {
-
-              chrome.storage.sync.set({
-                'accessType': userAccessDate
-              });
-    
-          };
-
           if (tokenValidator === '' && ifIsInSimpliterms) {
             
               chrome.storage.sync.set({
@@ -55,10 +47,18 @@
 
           }
 
-          if (userAccessDate === '' && ifIsInSimpliterms) {
+          if (userAccessDate !== null && ifIsInSimpliterms) {
+
+              chrome.storage.sync.set({
+                'accessDate': userAccessDate
+              });
+    
+          };
+
+          if (userAccessDate === null && ifIsInSimpliterms) {
             
               chrome.storage.sync.set({
-                'accessType': ""
+                'accessDate': null
               });
 
           }
@@ -67,8 +67,7 @@
 
       const contentScript = async() => {
 
-          // leer cookies y ver si exite la cookie x-token, para poder hacer validationes posteriormente
-
+          // Read cookies and see if the x-token cookie exists, so that validations can be made later.
           let termsOfPrivacy = [];
           let termsOfUse = [];
           let isAuthenticate = false;
@@ -84,126 +83,269 @@
           const linksTag = document.querySelectorAll('a');
 
           const privacyPosibilities = [
-            'privacidad',         // Español
-            'privacy',            // Inglés
-            'vie privée',         // Francés
-            'datenschutz',        // Alemán
-            'privacy',            // Italiano
-            'privacidade',        // Portugués
-            'privacy',            // Neerlandés
-            'integritet',         // Sueco
-            'privatliv',          // Danés
-            'personvern',         // Noruego
-            'yksityisyys',        // Finés
-            'конфиденциальность', // Ruso
-            '隐私',               // Chino Simplificado
-            '隱私',
-            "política de tratamiento de datos personales", // Español
-            "política de tratamento de dados pessoais", // Portugués (Brasil)
-            "politique de traitement des données personnelles", // Francés
-            "politik zur verarbeitung personenbezogener daten", // Alemán
-            "政策個人資料處理", // Chino (Simplificado)
-            "политика обработки персональных данных", // Ruso
-            "πολιτική επεξεργασίας προσωπικών δεδομένων", // Griego
-            "سياسة معالجة البيانات الشخصية", // Árabe
-            "პერსონალურ მონაცემთა დამუშავების პოლიტიკა", // Georgiano
-            "política de manipulare a datelor personale", // Rumano
-            "politika o rukovanju ličnim podacima", // Serbio
-            "politiikka henkilötietojen käsittelystä", // Finés
-            "מדיניות לטיפול בנתונים אישיים", // Hebreo
-            "personu datu apstrādes politika", // Letón
-            "politika o obradi osobnih podataka", // Croata
-            "politika o spracovaní osobných údajov", // Eslovaco
-            "politica di trattamento dei dati personali", // Italiano
-            "polityka przetwarzania danych osobowych", // Polaco
-            "política de processamento de dados pessoais", // Portugués (Portugal)
-            "politika o procesiranju osobnih podataka", // Bosnio
-            "політика обробки персональних даних", // Ucraniano
-            "политика за обработка на лични данни", // Búlgaro
-            "पर्सनल डेटा प्रसंस्करण नीति", // Hindi
-            "trattamento dati personali politica", // Italiano
-            "politika apie asmens duomenų tvarkymą", // Lituano
-            "politica de prelucrare a datelor cu caracter personal", // Rumano
-            "política de processament de dades personals", // Catalán
-            "politika obdelave osebnih podatkov", // Esloveno
-            "politika o obdelavi osebnih podatkov", // Esloveno
-            "politika za obdelavo osebnih podatkov", // Esloveno
+            // Español (es)
+            "politicadeprivacidad", // es
+            "politicasdeprivacidad", // es (plural)
+            "avisodeprivacidad", // es
+            "avisosdeprivacidad", // es (plural)
+            "politicadedatos", // es
+            "politicasdedatos", // es (plural)
+            "protecciondedatos", // es
+            "proteccionesdedatos", // es (plural)
+            "seguridadyprivacidad", // es
+            "seguridadesyprivacidades", // es (plural)
+            "politicadeconfidencialidad", // es
+            "politicasdeconfidencialidad", // es (plural)
+            "informaciondeprivacidad", // es
+            "informacionesdeprivacidad", // es (plural)
+            "declaraciondeprivacidad", // es
+            "declaracionesdeprivacidad", // es (plural)
+            "detallesdeprivacidad", // es
+            "notificaciondeprivacidad", // es
+            "notificacionesdeprivacidad", // es (plural)
+
+            // Inglés (en)
+            "privacypolicy", // en
+            "privacypolicies", // en (plural)
+            "privacynotice", // en
+            "privacynotices", // en (plural)
+            "datapolicy", // en
+            "datapolicies", // en (plural)
+            "dataprotection", // en
+            "dataprotections", // en (plural)
+            "securityandprivacy", // en
+            "confidentialitypolicy", // en
+            "confidentialitypolicies", // en (plural)
+            "privacyinformation", // en
+            "privacyinformations", // en (plural)
+            "privacystatement", // en
+            "privacystatements", // en (plural)
+            "privacydetails", // en
+            "privacynotification", // en
+            "privacynotifications", // en (plural)
+
+            // Ruso (ru)
+            "политикаконфиденциальности", // ru
+            "политикиконфиденциальности", // ru (plural)
+            "уведомлениеоконфиденциальности", // ru
+            "уведомленияоконфиденциальности", // ru (plural)
+            "политикаданных", // ru
+            "политикиданных", // ru (plural)
+            "защитаданных", // ru
+            "защитыданных", // ru (plural)
+            "безопасностьиконфиденциальность", // ru
+            "информацияоконфиденциальности", // ru
+            "информацииоконфиденциальности", // ru (plural)
+            "заявлениеоконфиденциальности", // ru
+            "заявленияоконфиденциальности", // ru (plural)
+            "деталиконфиденциальности", // ru
+            "уведомлениеоконфиденциальности", // ru
+            "уведомленияоконфиденциальности", // ru (plural)
+
+            // Hindi (hi)
+            "गोपनीयतानिति", // hi
+            "गोपनीयतानीतियाँ", // hi (plural)
+            "गोपनीयताअधिसूचना", // hi
+            "गोपनीयताअधिसूचनाएँ", // hi (plural)
+            "डेटानिति", // hi
+            "डेटानीतियाँ", // hi (plural)
+            "डेटासुरक्षा", // hi
+            "डेटासुरक्षाएँ", // hi (plural)
+            "सुरक्षाऔरगोपनीयता", // hi
+            "गोपनीयताजानकारी", // hi
+            "गोपनीयताजानकारियाँ", // hi (plural)
+            "गोपनीयताविवरण", // hi
+            "गोपनीयतासूचना", // hi
+            "गोपनीयतासूचनाएँ", // hi (plural)
+
+            // Japonés (ja)
+            "プライバシーポリシー", // ja
+            // El japonés no distingue plural, se mantiene igual
+            "プライバシー通知", // ja
+            "データポリシー", // ja
+            "データ保護", // ja
+            "セキュリティとプライバシー", // ja
+            "機密性ポリシー", // ja
+            "プライバシー情報", // ja
+            "プライバシー声明", // ja
+            "プライバシー詳細", // ja
+            "プライバシー通知", // ja
+
+            // Chino (zh)
+            "隐私政策", // zh
+            // El chino no distingue plural, se mantiene igual
+            "隐私声明", // zh
+            "数据政策", // zh
+            "数据保护", // zh
+            "安全和隐私", // zh
+            "保密政策", // zh
+            "隐私信息", // zh
+            "隐私声明", // zh
+            "隐私详情", // zh
+            "隐私通知", // zh
+
+            // Portugués (pt)
+            "politicadeprivacidade", // pt
+            "politicasdeprivacidade", // pt (plural)
+            "avisodeprivacidade", // pt
+            "avisosdeprivacidade", // pt (plural)
+            "politicadedados", // pt
+            "politicasdedados", // pt (plural)
+            "protecãodedados", // pt
+            "protecoesdedados", // pt (plural)
+            "segurançaeprivacidade", // pt
+            "politicadeconfidencialidade", // pt
+            "politicasdeconfidencialidade", // pt (plural)
+            "informacaodeprivacidade", // pt
+            "informacoesdeprivacidade", // pt (plural)
+            "declaracaodeprivacidade", // pt
+            "declaracoesdeprivacidade", // pt (plural)
+            "detalhesdeprivacidade", // pt
+            "notificacaodeprivacidade", // pt
+            "notificacoesdeprivacidade", // pt (plural)
+
+            // Francés (fr)
+            "politiquedeconfidentialite", // fr
+            "politiquesdeconfidentialite", // fr (plural)
+            "avisdeconfidentialite", // fr
+            "politiquededonnees", // fr
+            "politiquesdedonnees", // fr (plural)
+            "protectiondesdonnees", // fr
+            "securiteetconfidentialite", // fr
+            "informationssurlaconfidentialite", // fr
+            "declarationdeconfidentialite", // fr
+            "declarationsdeconfidentialite", // fr (plural)
+            "detailsdeconfidentialite", // fr
+            "notificationdeconfidentialite", // fr
+            "notificationsdeconfidentialite", // fr (plural)
+
+            // Alemán (de)
+            "datenschutzrichtlinie", // de
+            "datenschutzrichtlinien", // de (plural)
+            "datenschutzhinweis", // de
+            "datenschutzhinweise", // de (plural)
+            "datenrichtlinie", // de
+            "datenrichtlinien", // de (plural)
+            "datenschutz", // de
+            "sicherheitunddatenschutz", // de
+            "vertraulichkeitspolitik", // de
+            "vertraulichkeitspolitiken", // de (plural)
+            "datenschutzinformationen", // de
+            "datenschutzerklaerung", // de
+            "datenschutzerklaerungen", // de (plural)
+            "datenschutzdetails", // de
+            "datenschutzbenachrichtigung", // de
+            "datenschutzbenachrichtigungen", // de (plural)
           ];
+
           const termsPosibilities = [
-              'términos',            // Español
-              'terms',               // Inglés
-              'termes',              // Francés
-              'bedingungen',         // Alemán
-              'termini',             // Italiano
-              'termos',              // Portugués
-              'voorwaarden',         // Neerlandés
-              'villkor',             // Sueco
-              'vilkår',              // Danés
-              'betingelser',         // Noruego
-              'ehdot',               // Finés
-              'условия',             // Ruso
-              '条款',                // Chino Simplificado
-              '條款',                // Chino Tradicional
-              "acuerdo legal",       // Español
-              "accord légal",        // Francés
-              "juristische Vereinbarung", // Alemán
-              "法律協議",                  // Chino (Simplificado)
-              "юридическое соглашение",   // Ruso
-              "νομική συμφωνία",          // Griego
-              "اتفاق قانوني",            // Árabe
-              "სამართალი ხელშეკრულება", // Georgiano
-              "acord legal",             // Rumano
-              "pravni sporazum",          // Serbio
-              "oikeudellinen sopimus",   // Finés
-              "הסכם משפטי",             // Hebreo
-              "juridiskais līgums",      // Letón
-              "pravna suglasnost",       // Croata
-              "právna dohoda",           // Eslovaco
-              "accordo legale",          // Italiano
-              "umowa prawna",            // Polaco
-              "acordo legal",            // Portugués
-              "condiciones",             // Español
-              "condições",               // Portugués
-              "conditions",              // Inglés
-              "条件",                    // Chino (Simplificado)
-              "συνθήκες",               // Griego
-              "شروط",                   // Árabe
-              "პირობები",               // Georgiano
-              "condiții",               // Rumano
-              "uslovi",                 // Serbio
-              "תנאים",                  // Hebreo
-              "nosacījumi",             // Letón
-              "uvjeti",                 // Croata
-              "podmienky",              // Eslovaco
-              "condizioni",             // Italiano
-              "warunki",                // Polaco
-              "légal",                  // French
-              "legal",                  // English
-              "legale",                 // Italian
-              "légale",                 // french other option
-              "安全",                   // Chino (mandarín)
-              "políticas de uso",      // Español
-              "سياسات الاستخدام",      // Árabe
-              "使用政策",               // Chino (Simplificado)
-              "使用政策",               // Chino (Tradicional)
-              "politiques d'utilisation", // Francés
-              "Nutzungsbedingungen",      // Alemán
-              "उपयोग की नीतियाँ",           // Hindi
-              "politiche di utilizzo",    // Italiano
-              "사용 정책",                 // Coreano
-              "Seguridad", // spanish
-              "Security", // Inglés
-              "セキュリティ", // Japonés
-              "安全", // Chino (Simplificado)
-              "安全", // Chino (Tradicional)
-              "Segurança", // Portugués
-              "Sécurité", // Francés
-              "Sicherheit", // Alemán
-              "सुरक्षा", // Hindi
-              "보안", // Coreano
-              "أمان", // Árabe
-              "Sicurezza", // Italiano
-              "GTs&Cs"
+              // Español (es)
+              "terminosdeuso", // es
+              "terminoslegales", // es
+              "politicasdeuso", // es
+              "politicasdelservicio", // es
+              "condicionesdeuso", // es
+              "condicionesdelservicio", // es
+              "terminosycondiciones", // es
+              "avisolegal", // es
+              "politicasdelservicio", // es
+              "condicionesgenerales", // es
+
+              // Inglés (en)
+              "termsofuse", // en
+              "legalterms", // en
+              "usagepolicy", // en
+              "servicepolicy", // en
+              "termsofservice", // en
+              "termsandconditions", // en
+              "legalnotice", // en
+              "serviceconditions", // en
+              "legalterms", // en
+              "legalpolicy", // en
+
+              // Ruso (ru)
+              "условияиспользования", // ru
+              "правовыеусловия", // ru
+              "политикаиспользования", // ru
+              "политикасервиса", // ru
+              "условияобслуживания", // ru
+              "правилаиусловия", // ru
+              "правоваяинформация", // ru
+              "правоваяполитика", // ru
+              "условиясервиса", // ru
+              "общиеусловия", // ru
+
+              // Hindi (hi)
+              "उपयोगकीशर्तें", // hi
+              "कानूनीशर्तें", // hi
+              "उपयोगनीति", // hi
+              "सेवानीति", // hi
+              "सेवाकेशर्तें", // hi
+              "नियमऔरशर्तें", // hi
+              "कानूनीनोटिस", // hi
+              "कानूनीनीति", // hi
+              "सेवाकीशर्तें", // hi
+              "सामान्यशर्तें", // hi
+
+              // Japonés (ja)
+              "利用規約", // ja
+              "法的条件", // ja
+              "使用ポリシー", // ja
+              "サービスポリシー", // ja
+              "サービス利用規約", // ja
+              "規約と条件", // ja
+              "法的通知", // ja
+              "法的ポリシー", // ja
+              "サービス条件", // ja
+              "一般条件", // ja
+
+              // Chino (zh)
+              "使用条款", // zh
+              "法律条款", // zh
+              "使用政策", // zh
+              "服务政策", // zh
+              "服务条款", // zh
+              "条款和条件", // zh
+              "法律声明", // zh
+              "法律政策", // zh
+              "服务条件", // zh
+              "一般条件", // zh
+
+              // Portugués (pt)
+              "termosdeuso", // pt
+              "termoslegais", // pt
+              "politicasdeuso", // pt
+              "politicasdoservico", // pt
+              "condicoesdeuso", // pt
+              "condicoesdoservico", // pt
+              "termoscondicoes", // pt
+              "avisolegal", // pt
+              "politicasdoservico", // pt
+              "condicoesgerais", // pt
+
+              // Francés (fr)
+              "conditionsdutilisation", // fr
+              "termeslegaux", // fr
+              "politiquedutilisation", // fr
+              "politiqueduservice", // fr
+              "conditionsduservice", // fr
+              "termesetconditions", // fr
+              "mentionlegale", // fr
+              "politiqueleservice", // fr
+              "termeslegaux", // fr
+              "conditionsgenerales", // fr
+
+              // Alemán (de)
+              "nutzungsbedingungen", // de
+              "rechtlichebedingungen", // de
+              "nutzungspolitik", // de
+              "servicepolitik", // de
+              "servicebedingungen", // de
+              "agb", // de (Allgemeine Geschäftsbedingungen)
+              "rechtlicherhinweis", // de
+              "rechtlichepolitik", // de
+              "dienstleistungsbedingungen", // de
+              "allgemeinebedingungen", // de
           ];
 
           // Respond the message as a serverResult
@@ -247,7 +389,6 @@
 
           }
 
-
           // REQUESTS TO THE SERVER
           // prepare the info and make the http request to obtain the terms summary
           const requestSummaryInfo = async(posibleWords, politicsType) => {
@@ -258,7 +399,7 @@
                 for (const tag of linksTag) {
                     //extract terms of use policies links from any page 
                     for (const option of posibleWords) {
-                      if (tag.textContent.toString().replaceAll(' ','').toLowerCase().includes(option.replaceAll(' ','').toLowerCase())) {
+                      if (tag.textContent.toString().replaceAll(' ','').toLowerCase().includes(option)) {
                         
                         if (!politicsURLs.includes(tag.getAttribute("href")) && !politicsURLs.includes(`${window.location.protocol}//${window.location.host}${tag.getAttribute("href")}`)) {
                            
@@ -371,7 +512,7 @@
                   if (firstOpened) {
 
                       // request terms 
-                      const termsData = await requestSummaryInfo( termsPosibilities, "terms");
+                      const termsData = await requestSummaryInfo(termsPosibilities, "terms");
                       setDataOrShowError(termsData, "terms");
 
                       if (termsResponseCorrect && privacyResponseCorrect) {
@@ -430,11 +571,13 @@
 
                   chrome.storage.sync.get('xtoken', async({xtoken}) => {
 
-                      chrome.storage.sync.get('accessType', async({accessType}) => {
+                      chrome.storage.sync.get('accessDate', async({accessDate}) => {
 
                           tokenValidator = xtoken;
 
-                          if(accessType === "month" || accessType === "year"){
+                          const currentDate = new Date();
+
+                          if(new Date(accessDate) > currentDate){
 
                               const promise1 = respondMessageForTerms();
                               const promise2 = respondMessageForPrivacy();
@@ -443,7 +586,7 @@
 
                           }else{
 
-                              errorMessage = "To generate a summary of the policies of this page you must have an active plan, in the following link you will be able to acquire a plan: www.simpliterms.com/#pricing";
+                              errorMessage = "You do not have access to purchase a plan, purchase one here at a discount:: www.simpliterms.com/#pricing";
                               respondMESSAGE(false, false, true, 'serverResult');
 
                           }
