@@ -68,8 +68,8 @@
       const contentScript = async() => {
 
           // Read cookies and see if the x-token cookie exists, so that validations can be made later.
-          let termsOfPrivacy = [];
-          let termsOfUse = [];
+          let termsOfPrivacy = "";
+          let termsOfUse = "";
           let isAuthenticate = false;
           let errorMessage = "";
           let userInfo = {};
@@ -349,14 +349,13 @@
           ];
 
           // Respond the message as a serverResult
-          const respondMESSAGE = (ifPrivacy, ifTerms, nothing, message = 'serverResult') => {
-
-             if (nothing ===  true) {
+          const respondMESSAGE = (ifPrivacy, ifTerms, message) => {
+             if (message === "serverResultError") {
                   chrome.runtime.sendMessage({
                     message,
                     serverData: {
-                      termsOfPrivacy: [], 
-                      termsOfUse: [], 
+                      termsOfPrivacy: "", 
+                      termsOfUse: "", 
                       ifPrivacy: false, 
                       ifTerm: false, 
                       host: window.location.host,
@@ -368,9 +367,8 @@
                       staticDate
                     }
                   });
-                  return;
-              }
-              chrome.runtime.sendMessage({
+              }else {
+                  chrome.runtime.sendMessage({
                           message,
                           serverData: {
                             termsOfPrivacy, 
@@ -385,9 +383,9 @@
                             staticUsername,
                             staticDate
                           }
-              });
-
-          }
+                  });
+              };
+          };
 
           // REQUESTS TO THE SERVER
           // prepare the info and make the http request to obtain the terms summary
@@ -519,17 +517,17 @@
                         firstOpened = false;
                       }
 
-                      respondMESSAGE(false, true, false, 'serverResultTerms');    
+                      respondMESSAGE(false, true, 'serverResultTerms');    
                       
                     
                   } else {
-                      respondMESSAGE(false, true, false, 'serverResultTerms');
+                      respondMESSAGE(false, true, 'serverResultTerms');
                   }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
                   errorMessage = error.toString();
-                  respondMESSAGE(false, false, true, 'serverResultTerms');
+                  respondMESSAGE(false, false, 'serverResultTerms');
               }
 
           }
@@ -547,16 +545,16 @@
                               firstOpened = false;
                         }
 
-                        respondMESSAGE(true, false, false, 'serverResultPrivacy');   
+                        respondMESSAGE(true, false, 'serverResultPrivacy');   
                     
                   } else {
-                        respondMESSAGE(true, false, false, 'serverResultPrivacy');
+                        respondMESSAGE(true, false, 'serverResultPrivacy');
                   }
                 
               } catch (error) {
                   console.log(error, "error in respond message function");
                   errorMessage = error.toString();
-                  respondMESSAGE(false, false, true, 'serverResultPrivacy');
+                  respondMESSAGE(false, false, 'serverResultPrivacy');
               }
 
           }
@@ -586,8 +584,8 @@
 
                           }else{
 
-                              errorMessage = "You do not have access to purchase a plan, purchase one here at a discount:: www.simpliterms.com/#pricing";
-                              respondMESSAGE(false, false, true, 'serverResult');
+                              errorMessage = "You do not have access to purchase a plan, purchase one here at a discount: www.simpliterms.com/#pricing";
+                              respondMESSAGE(false, false, 'serverResultError');
 
                           }
 

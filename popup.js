@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", async() => {
 
       let summaryInfo = {
-        privacy: [],
-        terms: [],
+        privacy: "",
+        terms: "",
         token: '',
         host: '',
         privacyError: "",
@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           simplitermsNameElement.style.display = "block";
           loggedPage.style.display = "none";
           greetingElement.style.display = "none";
+          return false;
 
         }else{
           
@@ -93,6 +94,7 @@ document.addEventListener("DOMContentLoaded", async() => {
           greetingElement.style.display = "block";
           notloggedPage.style.display = "none";
           simplitermsNameElement.style.display = "none";
+          return true;
 
         }
       }
@@ -123,7 +125,6 @@ document.addEventListener("DOMContentLoaded", async() => {
       }
 
 
-
       // functios to simplify the code
       const showTermsWindow = () => {
           if (isLoadingTerms) {
@@ -134,17 +135,6 @@ document.addEventListener("DOMContentLoaded", async() => {
           privacyButton.className = '';
           TermsSummaryHtmlText.style.display = "block";
           PrivacySummaryHtmlText.style.display = "none";
-      };
-
-      const ShowdisclaimerAndFeedback = () => {
-
-        disclaimerMessage.style.display = "block";
-
-        disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
-                                         It is important to note that this summary has been generated with artificial intelligence, 
-                                         so it may not be exact, contain errors and erroneous information. We recommend checking the 
-                                         official source for this page's policies and only using simpliTerms as an aid.`;
-
       };
 
       const showPrivacyWindow = () => {
@@ -158,6 +148,17 @@ document.addEventListener("DOMContentLoaded", async() => {
           PrivacySummaryHtmlText.style.display = "block"; 
       };
 
+      const ShowdisclaimerAndFeedback = () => {
+
+        disclaimerMessage.style.display = "block";
+
+        disclaimerMessage.textContent = `This summary seeks to summarize the policies of the page you are accessing. 
+                                         It is important to note that this summary has been generated with artificial intelligence, 
+                                         so it may not be exact, contain errors and erroneous information. We recommend checking the 
+                                         official source for this page's policies and only using simpliTerms as an aid.`;
+
+      };
+
       // send a message to the content.js when the popup is opened.
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
           actualTabID = tabs[0].id;
@@ -168,19 +169,43 @@ document.addEventListener("DOMContentLoaded", async() => {
       // listen the response of the content.js 
       chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
+          if (request.message === 'serverResultError' && request.serverData) {
+
+              isLoadingTerms = false;
+              isLoadingPrivacy = false;
+              loadingContainerTerms.style.display = "none";
+              loadingContainerPrivacy.style.display = "none";
+              TermsSummaryHtmlText.textContent = `${request.serverData.errorMessage}`;
+              PrivacySummaryHtmlText.textContent = `${request.serverData.errorMessage}`;
+              summaryInfo = {
+                ...summaryInfo,
+                terms: "",
+                privacy: "",
+                termsError: request.serverData.errorMessage,
+                privacyError: request.serverData.errorMessage,
+                token: request.serverData.tokenValidator,
+                host: request.serverData.host
+              }
+                      
+          }
+
           if (request.message === 'serverResultTerms' && request.serverData) {
 
               loadingContainer.style.display = "none";
               loadingContainerTerms.style.display = "flex";
-              isStaticResult = false;
 
               // set the host
               if (request.serverData.host) {
-                defaultHostname.textContent  = request.serverData.host;
+                defaultHostname.textContent = request.serverData.host;
               }
 
               // verify the authentication of user
-              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+              const isAuth = verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+              if (!isAuth) {
+                  isLoadingTerms = false;
+                  loadingContainerTerms.style.display = "none";
+                  return;
+              }
 
               if (request.serverData.errorMessage !== "") {
                   isLoadingTerms = false;
@@ -188,7 +213,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                   TermsSummaryHtmlText.textContent = `${request.serverData.errorMessage}`;
                   summaryInfo = {
                     ...summaryInfo,
-                    terms: [],
+                    terms: "",
                     termsError: request.serverData.errorMessage,
                     token: request.serverData.tokenValidator,
                     host: request.serverData.host
@@ -221,7 +246,6 @@ document.addEventListener("DOMContentLoaded", async() => {
 
               loadingContainer.style.display = "none";
               loadingContainerPrivacy.style.display = "flex";
-              isStaticResult = false;
 
               // set the host
               if (request.serverData.host) {
@@ -229,7 +253,12 @@ document.addEventListener("DOMContentLoaded", async() => {
               }
 
               // verify the authentication of user
-              verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+              const isAuth = verifyIfAuthenticated(request.serverData.isAuthenticate, request.serverData.userInfo);
+              if (!isAuth) {
+                  isLoadingPrivacy = false;
+                  loadingContainerPrivacy.style.display = "none";
+                  return;
+              };
 
               if (request.serverData.errorMessage !== "") {
                   isLoadingPrivacy = false;
@@ -237,7 +266,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                   PrivacySummaryHtmlText.textContent = `😞 ${request.serverData.errorMessage}`;
                   summaryInfo = {
                       ...summaryInfo,
-                      privacy: [],
+                      privacy: "",
                       privacyError: request.serverData.errorMessage,
                       token: request.serverData.tokenValidator,
                       host: request.serverData.host
